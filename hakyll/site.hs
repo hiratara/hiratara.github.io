@@ -72,7 +72,7 @@ pandocOptions = defaultHakyllWriterOptions{ writerHTMLMathMethod = MathJax "" }
 
 config :: Configuration
 config = defaultConfiguration { deployCommand = deploy }
-  where deploy = "cp -Ri _site/* .. && ./site clean"
+  where deploy = "cp -R _site/* ../ && ./site clean"
 
 postCtx :: Context String
 postCtx =
