@@ -1,0 +1,20 @@
+$for(posts)$
+
+<div>
+  <h2>$title$</h2>
+
+  <div class="info">
+      Posted on $date$
+      $if(author)$
+          by $author$
+      $endif$
+  </div>
+
+  <div class="postbody">
+  $postbody$
+  </div>
+</div>
+
+$endfor$
+
+<p>…or you can find more in the <a href="/archive.html">archives</a>.
