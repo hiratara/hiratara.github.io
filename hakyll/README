@@ -1,0 +1,8 @@
+1. cabal sandbox init
+2. cabal install --dependencies-only
+3. cabal build
+4. ./site build
+5. ./site deploy
+6. Do add and commit and push with git command
+
+If you want to check your post offline, run `./site watch'
