@@ -1,8 +1,12 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
+import qualified Data.Map as Map
 import           Hakyll
-
+import Text.Pandoc (
+  WriterOptions(writerHTMLMathMethod)
+  , HTMLMathMethod(MathJax)
+  )
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -18,15 +22,15 @@ main = hakyll $ do
     match (fromList ["about.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext)
             >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` postCtx)
             >>= relativizeUrls
 
     create ["archive.html"] $ do
@@ -40,7 +44,7 @@ main = hakyll $ do
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` archiveCtx)
                 >>= relativizeUrls
 
 
@@ -56,15 +60,31 @@ main = hakyll $ do
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "templates/default.html" (forceMathCtx `mappend` indexCtx)
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
 
 
 --------------------------------------------------------------------------------
+pandocOptions :: WriterOptions
+pandocOptions = defaultHakyllWriterOptions{ writerHTMLMathMethod = MathJax "" }
+
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     field "postbody" (return . itemBody) `mappend`
     defaultContext
+
+mathTag :: String
+mathTag = "<script type=\"text/javascript\" src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\"></script>"
+
+mathCtx :: Context a
+mathCtx = field "mathjax" $ \item -> do
+  metadata <- getMetadata $ itemIdentifier item
+  return $ if "mathjax" `Map.member` metadata
+           then mathTag
+           else ""
+
+forceMathCtx :: Context a
+forceMathCtx = field "mathjax" $ (const . return) mathTag
