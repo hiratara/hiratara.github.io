@@ -10,7 +10,7 @@ import Text.Pandoc (
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith config $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -69,6 +69,10 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 pandocOptions :: WriterOptions
 pandocOptions = defaultHakyllWriterOptions{ writerHTMLMathMethod = MathJax "" }
+
+config :: Configuration
+config = defaultConfiguration { deployCommand = deploy }
+  where deploy = "cp -Ri _site/* .. && ./site clean"
 
 postCtx :: Context String
 postCtx =
