@@ -19,6 +19,16 @@
         </script>
     </head>
     <body>
+        <!-- facebook SDK -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=100848266724416";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
         <div id="header">
             <div id="logo">
                 <a href="../">Born in Tomakomai city</a>
@@ -37,6 +47,11 @@
 <div class="info">
     Posted on September 13, 2013
     
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2013-09-13-my-first-sample.html" data-text="My first github pages" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="/posts/2013-09-13-my-first-sample.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 </div>
 
 <p>I start writing this blog by using Hakyll. I’m not good at English, so I’m glad to show me my fault.</p>
