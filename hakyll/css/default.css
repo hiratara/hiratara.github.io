@@ -49,6 +49,11 @@ h2 {
     font-size: 20px;
 }
 
+h1 a {
+    color: black;
+    text-decoration: none;
+}
+
 div.info {
     color: #555;
     font-size: 14px;
