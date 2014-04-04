@@ -77,7 +77,6 @@ config = defaultConfiguration { deployCommand = deploy }
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
-    field "postbody" (return . itemBody) `mappend`
     defaultContext
 
 mathTag :: String

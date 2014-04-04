@@ -1,18 +1,7 @@
 $for(posts)$
 
 <div>
-  <h2>$title$</h2>
-
-  <div class="info">
-      Posted on $date$
-      $if(author)$
-          by $author$
-      $endif$
-  </div>
-
-  <div class="postbody">
-  $postbody$
-  </div>
+  $partial("templates/post.html")$
 </div>
 
 $endfor$
