@@ -55,9 +55,9 @@
 </div>
 
 <p>説明変数が複数の二値変数からなり、目的変数が二値をとるロジスティック回帰を考える。</p>
-<p><span class="math">\(\bf{w}\)</span>をウェイト、<span class="math">\(\bf{x}_n\)</span>と<span class="math">\(t_n\)</span>を学習データとする。確率的急勾配法を用いれば、以下のよく見る式で都度重みを更新できる。 ただし、<span class="math">\(y_n\)</span>は<span class="math">\(\bf{w}^{(i)}\)</span>による<span class="math">\(\bf{x}_n\)</span>に対する予測値で、<span class="math">\(\eta\)</span>は1未満の正の定数。</p>
+<p><span class="math">\(\bf{w}\)</span>をウェイト、<span class="math">\(\bf{x}_n\)</span>と<span class="math">\(t_n\)</span>を学習データとする。確率的勾配降下法を用いれば、以下のよく見る式で都度重みを更新できる。 ただし、<span class="math">\(y_n\)</span>は<span class="math">\(\bf{w}^{(i)}\)</span>による<span class="math">\(\bf{x}_n\)</span>に対する予測値で、<span class="math">\(\eta\)</span>は1未満の正の定数。</p>
 <p><span class="math">\[\bf{w}^{(i+1)} = \bf{w}^{(i)} - \eta ( y_n - t_n ) \bf{x}_n \]</span></p>
-<p>二値を0、1とすれば、説明変数は粗ベクトルとなる可能性がある。この場合、ハッシュで表すと空間効率が良い。 定数項を含めるため、<span class="math">\(\bf{w}\)</span>、<span class="math">\(\bf{x}\)</span>にそれぞれ“bias”という項を設け、常に<span class="math">\(1\)</span>で入力するようにする。</p>
+<p>二値を0、1とすれば、説明変数は疎ベクトルとなる可能性がある。この場合、ハッシュで表すと空間効率が良い。 定数項を含めるため、<span class="math">\(\bf{w}\)</span>、<span class="math">\(\bf{x}\)</span>にそれぞれ“bias”という項を設け、常に<span class="math">\(1\)</span>で入力するようにする。</p>
 <p>例えば説明変数が2次元の場合、取りうる値は<span class="math">\((0, 0), (1, 0), (0, 1), (1, 1)\)</span>の4つしかないので、 それぞれの点での値とマッチするようにフィッティングされる。<span class="math">\(N\)</span>次元の場合は、<span class="math">\(2^N\)</span>個の等式ができるが、 パラメータ<span class="math">\(\bf{w}\)</span>の数は定数項を入れて<span class="math">\(N + 1\)</span>個であるので、対数尤度を最大にするようにパラメータを 決めなければならないというのは通常のロジスティック回帰と変わらない。</p>
 <p>perlでさくっと実装すれば以下のような感じ。説明変数が10010次元あり(よって、ウェイトは定数項を入れて10011次元)、それぞれの入力に対して1となる 確率を予測している。</p>
 <pre class="sourceCode perl"><code class="sourceCode perl"><span class="fu">use</span> <span class="kw">strict</span>;
