@@ -1,0 +1,8 @@
+---
+title: llvm memo
+---
+
+```
+*.c -[clang]-> *.ll -[llvm-as]-> *.bc -[opt]-> *.bc -[llc]-> *.s, *.o
+                                                    -[lli]-> EXECUTE
+```
