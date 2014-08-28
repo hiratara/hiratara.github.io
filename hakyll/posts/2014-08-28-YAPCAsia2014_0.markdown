@@ -11,6 +11,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 
 # 欲しいものは作ればいい！ 〜Webアプリ10連発〜
 
+
 ## オープニング / yusukebeさん
 
 - 今日からYAPCです
@@ -23,15 +24,47 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 - 実際に触って見れるアプリばかり
 
 
-<!--
-
 ## __papix__さん「GeekDojo」
+
+- プログラミングを学ぶ障壁
+    - どこから手を出すか
+    - すごいエンジニアに学びたい
+    - 質問しにくい
+    - perl入学識も有るけど
+- GeekDojo
+    - 師匠と弟子
+    - face to face
+- シェア研修 - 合同新人研修 - に優秀
+    - そのまま技術研修で開発
+    - 5週間 → 実装できた
+- なんで実装できたのか → テスト、属人性をなくした、 Bot
+- テスト → 凡ミスに気がつける
+    - 最初からやったのがよかった。「書いて当たり前」
+    - Test::mysqld, DBIx::FixtureLoader など、予め仕組みを作った
+    - PAmon2 っての使ってる
+    - App::Prove::Plugin::MySQLPool
+    - DBIx::FixtureLoader
+- ブログ記事を参照した
+    - sngmuさん、hisaichi5518さん、hirobanexさん
+- 属人性の排除
+    - サーバ構築、DB操作、デプロイなどを、コマンドで自動化。誰でもできる
+    - Daiku → Teng::Schema::Dumper
+- BOT - GaiaChan
+    - UnazuSan + APp::Ikachan
+    - 通知系のタスクを任せた
+    - Bitbucketの通知で不足している部分もサポート
+    - Wercker → マスタのテストが通ったらstagingデプロイ
+- GeekDojoのイベントも開催されたが
+    - 開発の資源不足。新機能追加が困難
+- @geek_dojo へメンションすると、師匠になれるらしい
 
 
 ## hondallicaさん「hrhm.info」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
 
+
+<!--
 
 ## ppworksさん「pplog」
 
