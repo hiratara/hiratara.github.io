@@ -5,3 +5,45 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 今年もYAPCの季節がやってきました。本日の前夜祭から3日間参加しますので、後学のために聞いたセッションについてはメモを残しておこうと思います。
 
 今年も縁あって、gihyo.jpさんにレポートを寄稿できることになりました。もちろん、例年通りリアルタイム更新で行います。メンバーは去年からのメンバーと新しいメンバーを加えた計7名です。こちらもページが公開され次第紹介しますので、どうぞお楽しみに！
+
+とりあえず会場入りして、DMMかき氷を頂いております。
+
+<!--
+
+## __papix__さん「GeekDojo」
+
+- テスト
+
+## hondallicaさん「hrhm.info」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
+
+
+## ppworksさん「pplog」
+
+
+## syachiさん「ゴミ収集カレンダー」
+
+
+## masuidriveさん「wri.pe」
+
+こちらは、 http://gihyo.jp/news/report/01/yapcasia2014/0000 に掲載させて頂いてます。
+
+
+## hika69さん「プライベートで3年間チーム開発した話」
+
+
+## sugyanさん「ttyrecからGIFアニメを作る話」
+
+
+## razokuloverさん「GIFMAGAZINEの話」
+
+こちらは、 http://gihyo.jp/news/report/01/yapcasia2014/0000 に掲載させて頂いてます。
+
+
+## yositosiさん「togetter」
+
+
+## debilityさん「クイズを支える技術」
+
+-->
