@@ -180,15 +180,52 @@
 <li>A. ザッピング機能。いろんな人のポエムが見える。誰かの一面を見たい</li>
 </ul></li>
 </ul>
+<h2 id="syachiさんperlで挑む-ゴミ収集カレンダー">syachiさん「Perlで挑む ゴミ収集カレンダー」</h2>
+<ul>
+<li>「号泣県議コンバーター」を作った
+<ul>
+<li>Mojolicious::LiteとText::Mecab</li>
+<li>旬は3日</li>
+</ul></li>
+<li>(札幌市の)ごみ収集カレンダーのical版 gomical.net
+<ul>
+<li>Hokkaido.pm casual のごみカレンダーPDFからデータを抽出、がきっかけ</li>
+</ul></li>
+<li>札幌市が提供しているもの
+<ul>
+<li>PDF、音声読上げ用カレンダー(HTML)</li>
+<li>46パターンほどある</li>
+<li>他にやった人もいるらしい → 人力でやたらしい</li>
+<li>pdftotextで変換してもきつい</li>
+</ul></li>
+<li>音声読上げ用データ(HTML)があるじゃない！
+<ul>
+<li>自然文になっている。</li>
+<li>「。」で分ける。その後、日付、単語を抽出、曜日を抽出</li>
+<li>Date::Manip → 特定の日付などを一覧でとれる</li>
+<li>元データは手作業で作ってそう</li>
+<li>全部のパターンを正規表現で作る</li>
+</ul></li>
+<li>WWW::Mechanizeを使ってクロール</li>
+<li>csv、json、iCal、SQLなど、お好みの形式で
+<ul>
+<li>データをgithubで公開したが、文字化けした</li>
+<li>charset=utf8 が必要だったので、 heroku にした</li>
+</ul></li>
+<li>札幌以外の地域のカレンダーのpull-reqを募集中</li>
+<li>次回更新は9月だが、スクリプト(正規表現)が動くのか・・・
+<ul>
+<li>おたのしみに！</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. きっかけは？</li>
+<li>A. 勉強会で興味を持った</li>
+</ul></li>
+</ul>
+<h2 id="masuidriveさんwri.pe">masuidriveさん「wri.pe」</h2>
+<p>こちらは、 http://gihyo.jp/news/report/01/yapcasia2014/0000 に掲載させて頂いてます。</p>
 <!--
-
-## syachiさん「ゴミ収集カレンダー」
-
-
-## masuidriveさん「wri.pe」
-
-こちらは、 http://gihyo.jp/news/report/01/yapcasia2014/0000 に掲載させて頂いてます。
-
 
 ## hika69さん「プライベートで3年間チーム開発した話」
 
