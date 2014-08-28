@@ -228,28 +228,109 @@
 <h2 id="hika69さんプライベートで3年間チーム開発した話">hika69さん「プライベートで3年間チーム開発した話」</h2>
 <ul>
 <li>プレゼンはstoryboard を利用。いいね機能がうざい（笑</li>
-<li>REMP – iTunes + youtubeのようなサービス</li>
-<li>storyboard – マークダウンでスライドが作れる – レーザーポインター的な機能も</li>
-<li>triph – 浅草の地図の上の、音声ガイドを聞けるサービス</li>
-<li>Casto – ライブコーディングを配信できる</li>
-<li>Mo(開発中) – 電子マネー系のサービスをつくろうとしている</li>
-<li>アプリが増えると、運用は大変 – storyboardが動かないと、メンションが来たり – ビジネスモデルも何もない – 実は「いいね」されるとお金がかかる – このようなトークの場がもらえるのは、やってていいこと</li>
-<li>欲しい物を作る – 「ポートフォリオに載せたいものをつくろう」「好きな技術をつくろう」</li>
-<li>「スタジオを予約するのがリーダーの仕事」 – 開発する場を作る。毎週水曜日に開発ランチ</li>
-<li>浮き沈みを許容する – モチベーションが高い状態は正常ではない</li>
+<li>REMP
+<ul>
+<li>iTunes + youtubeのようなサービス</li>
+</ul></li>
+<li>storyboard
+<ul>
+<li>マークダウンでスライドが作れる</li>
+<li>レーザーポインター的な機能も</li>
+</ul></li>
+<li>triph
+<ul>
+<li>浅草の地図の上の、音声ガイドを聞けるサービス</li>
+</ul></li>
+<li>Casto
+<ul>
+<li>ライブコーディングを配信できる</li>
+</ul></li>
+<li>Mo(開発中)
+<ul>
+<li>電子マネー系のサービスをつくろうとしている</li>
+</ul></li>
+<li>アプリが増えると、運用は大変
+<ul>
+<li>storyboardが動かないと、メンションが来たり</li>
+<li>ビジネスモデルも何もない</li>
+<li>実は「いいね」されるとお金がかかる</li>
+<li>このようなトークの場がもらえるのは、やってていいこと</li>
+</ul></li>
+<li>欲しい物を作る
+<ul>
+<li>「ポートフォリオに載せたいものをつくろう」「好きな技術をつくろう」</li>
+</ul></li>
+<li>「スタジオを予約するのがリーダーの仕事」
+<ul>
+<li>開発する場を作る。毎週水曜日に開発ランチ</li>
+</ul></li>
+<li>浮き沈みを許容する
+<ul>
+<li>モチベーションが高い状態は正常ではない</li>
+</ul></li>
 <li>スキルから逆算してチームを作る → 声優×ミュージシャン</li>
-<li>チームが勝手に広がる(作ってもらえる) – storyboardのリープモーション対応、REMPのChrome拡張</li>
-<li>質疑応答 – Q. いつも使ってます！ – A. ありがとうございます！ – Q. 仕事にも使ってる技術は還元している？ – A. 実験的に使ってるので、後から仕事に還元することも多い – Q. 無償の愛はどこから産まれてくるの？ – A. 最後のスライドを書いた記憶がない</li>
+<li>チームが勝手に広がる(作ってもらえる)
+<ul>
+<li>storyboardのリープモーション対応、REMPのChrome拡張</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. いつも使ってます！</li>
+<li>A. ありがとうございます！</li>
+<li>Q. 仕事にも使ってる技術は還元している？</li>
+<li>A. 実験的に使ってるので、後から仕事に還元することも多い</li>
+<li>Q. 無償の愛はどこから産まれてくるの？</li>
+<li>A. 最後のスライドを書いた記憶がない</li>
+</ul></li>
 </ul>
+<h2 id="sugyanさんttyrecからgifアニメを作る話">sugyanさん「ttyrecからGIFアニメを作る話」</h2>
+<ul>
+<li>ttyrecはttyのレコーダーで、ttyplayで再生できる
+<ul>
+<li>デモ</li>
+</ul></li>
+<li>ターミナル操作を他人に紹介したい
+<ul>
+<li>blogに貼るにはgifアニメがいい</li>
+</ul></li>
+<li>LICEcap, Gifzoなどというアプリケーションもある
+<ul>
+<li>範囲を指定して録画などができる</li>
+</ul></li>
+<li>ttygifもある → ttyplayを再生しながらcaptureする。ImageMagickでgif化</li>
+<li>が、自分で作ってみた
+<ul>
+<li>goを勉強したくて</li>
+<li>ImageMagickへの依存を無くせる</li>
+</ul></li>
+<li>スクリーンショットは不要ではないか
+<ul>
+<li>ターミナルのエミュレート、描画さえできれば、本物のスクリーンショットじゃなくても</li>
+<li>saitoha/seq2gif ってのが作られた</li>
+<li>これを参考に実装</li>
+</ul></li>
+<li>結局JSつかってwebでできるのでは
+<ul>
+<li>term.js, html2canvas, jnordberg などの道具</li>
+</ul></li>
+<li>ttyrec2gif.herokuapp.com
+<ul>
+<li>ttyrecord ファイルを、すべてWEBで再生</li>
+<li>UIの作成が楽 (端末サイズなど、こだわらなくてもよい)</li>
+<li>サーバ側がやることなくなった (全部JS)</li>
+</ul></li>
+<li>引き続き開発中</li>
+<li>質疑応答
+<ul>
+<li>Q. 声も入れたいな</li>
+<li>A. そこまで行くと動画がいいのでは。検討してみます</li>
+<li>Q. ttyrecordeのフォーマットはバイナリ？</li>
+<li>A. はい。JSで解析している</li>
+</ul></li>
+</ul>
+<h2 id="razokuloverさんgifmagazineの話">razokuloverさん「GIFMAGAZINEの話」</h2>
+<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
 <!--
-
-## sugyanさん「ttyrecからGIFアニメを作る話」
-
-
-## razokuloverさん「GIFMAGAZINEの話」
-
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
-
 
 ## yositosiさん「togetter」
 
