@@ -64,7 +64,43 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 
 ## hondallicaさん「hrhm.info」
 
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
+- 「不適切な発言があったらピー音入れてください」
+- ハードロック、ヘヴィメタルが好きな方は？
+    - ボーカルがモテるのがハードロック、ギターがモテるのはヘビーメタル
+- ヘヴィメタルとは → 写真で
+    - 社会に馴染めない人、重低音、ファンタジー、効いてる人が少ない
+- hrhm.info
+    - ヘヴィメタルに特化したサービス
+    - YouTubeの動画探すのに楽。自分用
+    - デモ
+- 構成
+    - Digital Ocean, nginx, Starman, Mojolicious::Lite, node.js, SQLite
+    - 自分の既存の知識で扱える構成
+    - インフラ構築の勉強も
+    - 公開優先。個人サービスなので後から直す
+- データの収集
+    - PCを使っている。常時稼働がよい
+    - 根こそぎデータを集める、という強い狂気が必要
+    - Scraping,  WEB API
+        - Last.fm, SoundCloud, MusicBrainz, Bandcampなど
+- Last.fm → APIが充実。150個以上
+    - Net::LastFM, WebService::LastFM
+- MusicBrainz → 音楽のwikipedia
+    - Music Brainz ID(MBID)。バンド名など、一意にできる
+    - 音楽系ではよく使ってる
+    - CPANモジュールもある。VMがダウンロードできる。12GBくらいある。マスタと同期できる
+- Artist (500K records), Discography(240K), Track(1.7M)
+- Bandの関連性の集計
+    - 複数Web APIが得られたスコアや、一緒のライブに出てたか、または独断と偏見
+- 副産物
+    - ヘビメタをヘヴィメタと置き換えるモジュール
+    - WebService::BandCamp
+- 95カ国から利用されている。公開することが大事
+- 質疑応答
+    - Q. ヘヴィメタルとヘビメタルの発音の違いを出して
+    - A. わかりました！
+    - Q. term of service とか読んでると使う気が
+    - A. 気にすると負けです
 
 
 ## ppworksさん「pplog」
@@ -136,7 +172,46 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 
 ## masuidriveさん「wri.pe」
 
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
+- wri.pe とは
+    - WEBベースのテキストエディタ
+    - facebook or github。スマホ対応
+    - GWで開発
+- 作りたいものをWEBにまとめている
+- 今まで → memo.txt
+    - 何万行にもなってる
+    - markdown使えない、リンクも使えない → github使ってたけど
+    - プログラマなら markdown
+    - archiveして検索したい
+    - カレンダーで見たい
+    - キーボードオペレーションやmobileのサポート
+- 欲しい物が見つからない → プログラマだから自分で作れる！
+- モデルが単純。UserとNoteのみ。2日程度で作れる
+- 2007年に作って、実は一度クローズしている
+    - サーバの管理が面倒だった → herokuなどに任せる
+- 新しい技術を試す
+    - localStorage, Rails 4, heroku への課金など
+- 適当にツイートして、そのまま寝た
+    - 200人ほど登録してしまった
+    - もう一回仕切りなおし！ 仕事以上に本気で
+- 仕切りなおす
+    - 英語については英語が喋れる友達にお願い
+    - デザインはdribbbleを利用
+    - アイコンは知り合いにお願い
+    - herokuは $200/mo → メモをとるのに・・・？
+    - 毎年、MBPが買える。が、「自分の欲しい物はお金では買えない」
+- 一番の問題点 → 運用が続くのか不明
+    - dropbox, evernote との連携機能がある。データは手元に残してね
+- Seleniumのテストも作っている。SSLもきちんととってる
+- プレスも出した。「個人の時間で」
+- 飽きてきたので、オープンソース化
+- 作った理由
+    - 作れるのはエンジニアの特権
+    - 自分の苦手な部分を知り、きちんと人に頼る
+- 質疑応答
+    - Q. heroku 以外に乗り換える先は？
+    - A. AWSのsmall instanceとかもあるけど、修復コストを考えると。
+
+<!    - こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。     ->
 
 
 ## hika69さん「プライベートで3年間チーム開発した話」
@@ -208,7 +283,33 @@ title: 今日は YAPC::Asia Tokyo 2014 の前夜祭です
 
 ## razokuloverさん「GIFMAGAZINEの話」
 
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0000) に掲載させて頂いてます。
+- GIFMAGAZINE
+    - GIFアニメの作成、共有に特化
+    - 画像からGIFを作成、YoutubeからGIFを作成
+    - Glitch Gifs → ノイズを入れて独特の風合いを
+    - GIFに文字を合成、動画からGIF、GIFMAGAZINE TV、などなど
+- 作った理由
+    - GIFアニメを見るサイトは多い。作成は少ない
+    - 作成から共有までをまとめたかった
+    - iOS、android版もある
+- GIFアニメを作る人が使いたいサービスにする
+    - GIFアニメの重さを気にしない → 平均1.5MB
+    - 通常のGIFのサイトはサイズ制限。Twitterは4MB
+    - 「重いからアップロードできない」は悲しい → 圧縮、フレーム数削減などに時間を取られる
+    - サイズ制限を 20MB とした
+- 4MB以上のGIFアニメをTwitterで動かせる唯一のサービス
+    - 高画質、長いgifに対応
+    - 結果的にユーザ数が大きく増加
+- 一番使って欲しいユーザが誰であるか明確にすることが大事
+    - 画像サイズ制限は、見るユーザには小さいほうがいい。作るユーザには大きいほうがいい
+    - 明確にすることで、webサービスの強みとなる
+- 質疑応答
+    - Q. gifのまま？ h264は？
+    - A. gifのまま。Twitterはmp4にしているが、ドット絵クリエイターを大事にしたい
+    - Q. pngの方は？
+    - A. 実装していないブラウザがあったりもするので。これから挑戦したい
+    - Q. 不便なアニメーションgifにこだわる理由は？
+    - A. まだ好きな人がいる。
 
 
 ## yositosiさん「togetter」
