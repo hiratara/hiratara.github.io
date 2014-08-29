@@ -167,8 +167,61 @@
 <ul>
 <li>英題「Perl and testing libraries」</li>
 <li>TDDでやってる人 → 一人</li>
-<li>テスト書くのは嫌いだが、書く。でも怠けたい – 少しのテストで最大限の効果</li>
-<li>歴史: <code>Test::More</code>, <code>Test::Class</code></li>
+<li>テスト書くのは嫌いだが、書く。でも怠けたい
+<ul>
+<li>少しのテストで最大限の効果</li>
+</ul></li>
+<li>歴史: <code>Test::More</code>, <code>Test::Class</code>
+<ul>
+<li><code>'dan' ne 'kogai'</code> どちらも <code>Test::Builder</code> に依存してて、基本的に同じ</li>
+</ul></li>
+<li>TAP : Test Anything Protocol
+<ul>
+<li><code>ok</code>と<code>not ok</code>を出して<code>prove</code>で</li>
+<li><code>subtest</code>や<code>done_testing</code>のような拡張もできてる</li>
+</ul></li>
+<li><code>Test::Builder2</code>
+<ul>
+<li>2011年から初めてる</li>
+<li>Perl6と同じくらい夢が詰まってる</li>
+<li>Custom output, Full rewrite, OO-ish</li>
+<li>まだ開発中。時間がかかる。すべてのモジュールに対して通るように</li>
+</ul></li>
+<li>Test::Pretty
+<ul>
+<li>出力をunicode文字を使った出力に変える</li>
+<li>subtestの読みにくい出力を読みやすくする</li>
+<li>モンキーパッチ当てまくってる</li>
+</ul></li>
+<li>Test::Ika
+<ul>
+<li>RSpecライク</li>
+<li>Ikaとはikasamaさんのika</li>
+<li>最終的に、ikasamaさんがメンテナンスすることに</li>
+</ul></li>
+<li>Test::Moreの開発が停滞している
+<ul>
+<li>Test::Builder2 は開発が中止となった</li>
+</ul></li>
+<li>Test::Kantan は Test::Builder に依存してない
+<ul>
+<li>出力をフックしたりしている</li>
+<li>subtest にフックをかけられる – before_each、after_each。subtest以下すべてに適用</li>
+<li>jasmineにインスパイアされてる</li>
+<li>BDDっぽく書ける。given, when, then</li>
+<li>Test::More のスタイルも使える</li>
+<li>パワーアサート: B::Tree 使ってソースをhookして実現してる</li>
+<li><code>'kogaidan' ne 'dankogai'</code></li>
+<li>色がついてたほうが一般ウケする</li>
+</ul></li>
+<li><code>not ok 1..1</code> → テストの通ってる数はそんなに意味がない。all or nothing でよい
+<ul>
+<li>大規模ソフトウェアとかのインテグレーションとかなら意味があるかも知れないけど</li>
+</ul></li>
+<li>すぐに使いたいならTest::Prety、RSPEC厨ならTest::Ika or Test::Kantan
+<ul>
+<li>Test::Kantan はコントリビュータを募集中</li>
+</ul></li>
 </ul>
 <!--
 

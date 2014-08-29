@@ -93,9 +93,41 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - 英題「Perl and testing libraries」
 - TDDでやってる人 → 一人
 - テスト書くのは嫌いだが、書く。でも怠けたい
--- 少しのテストで最大限の効果
+    - 少しのテストで最大限の効果
 - 歴史: `Test::More`, `Test::Class`
-
+    - `'dan' ne 'kogai'` どちらも `Test::Builder` に依存してて、基本的に同じ
+- TAP : Test Anything Protocol
+    - `ok`と`not ok`を出して`prove`で
+    - `subtest`や`done_testing`のような拡張もできてる
+- `Test::Builder2`
+    - 2011年から初めてる
+    - Perl6と同じくらい夢が詰まってる
+    - Custom output, Full rewrite, OO-ish
+    - まだ開発中。時間がかかる。すべてのモジュールに対して通るように
+- Test::Pretty
+    - 出力をunicode文字を使った出力に変える
+    - subtestの読みにくい出力を読みやすくする
+    - モンキーパッチ当てまくってる
+- Test::Ika
+    - RSpecライク
+    - Ikaとはikasamaさんのika
+    - 最終的に、ikasamaさんがメンテナンスすることに
+- Test::Moreの開発が停滞している
+    - Test::Builder2 は開発が中止となった
+- Test::Kantan は Test::Builder に依存してない
+    - 出力をフックしたりしている
+    - subtest にフックをかけられる
+    -- before_each、after_each。subtest以下すべてに適用
+    - jasmineにインスパイアされてる
+    - BDDっぽく書ける。given, when, then
+    - Test::More のスタイルも使える
+    - パワーアサート: B::Tree 使ってソースをhookして実現してる
+    - `'kogaidan' ne 'dankogai'` 
+    - 色がついてたほうが一般ウケする
+- `not ok 1..1` → テストの通ってる数はそんなに意味がない。all or nothing でよい
+    - 大規模ソフトウェアとかのインテグレーションとかなら意味があるかも知れないけど
+- すぐに使いたいならTest::Prety、RSPEC厨ならTest::Ika or Test::Kantan
+    - Test::Kantan はコントリビュータを募集中
 
 
 <!--
