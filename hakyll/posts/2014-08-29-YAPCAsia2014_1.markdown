@@ -453,8 +453,9 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - 始めたい人は来てね
 
 
-## hiratara@githubさん「」
+## hiratara@githubさん「Lens : Smart setter for immutable data」
 
+自分のトークでした。
 
 
 ## gugod@twitterさん「Beyond Civic Hacking」
@@ -515,4 +516,4 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - 3人を指名する
     - ハッシュタグは #yapcramen
     - githubでもいい。PerlじゃなくてもO.K.
-- スタート！ https://twitter.com/bayashi/status/505277220223324160
+- (スタート！)[https://twitter.com/bayashi/status/505277220223324160]
