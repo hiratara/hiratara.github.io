@@ -2,19 +2,34 @@
 title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 ---
 
-今日からが本番です。これから会場に入ります。
+今日からが[本番](http://yapcasia.org/)です。これから会場に入ります。
 
 本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) にも掲載していますので、併せてご覧ください。
 
 
+# オープニング / yusukebeさん
+
+- みなさんが作る会です
+- JPAの"和田"さんです
+- "There is MORE THAN ONE WAY to enjoy it!"
+- 無限コーヒーあるよ！ かき氷もレッドブルも
+-- スピーカーと話して欲しい
+-- 仕掛けは用意したので、みなさんで交流してください
+- イベントホール以外飲食禁止
+- ポータブルWifiの電源はOFFに！
+- 同時翻訳あり。機械は無くさないように
+- ベストトークの投票してね
+- ハッシュタグは [#yapcasia](https://twitter.com/search?q=%23yapcasia) 。ブログもね！
+
+
 <!--
 
-## Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
+# Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
 
 
-## Kenichi Ishigakiさん「Get a kick out of CPAN」
+# Kenichi Ishigakiさん「Get a kick out of CPAN」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
 
