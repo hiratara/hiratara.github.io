@@ -45,6 +45,40 @@
             
 
 <div>
+  <h1><a href="./posts/2014-08-29-YAPCAsia2014_1.html">今日は YAPC::Asia Tokyo 2014 の１日目です</a></h1>
+
+<div class="info">
+    Posted on August 29, 2014
+    
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-08-29-YAPCAsia2014_1.html" data-text="今日は YAPC::Asia Tokyo 2014 の１日目です" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="/posts/2014-08-29-YAPCAsia2014_1.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
+
+<p>今日からが本番です。これから会場に入ります。</p>
+<p>本日も一部の内容は <a href="http://gihyo.jp/news/report/01/yapcasia2014/0001">gihyo.jpさん</a> にも掲載していますので、併せてご覧ください。</p>
+<!--
+
+## Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+
+
+## Kenichi Ishigakiさん「Get a kick out of CPAN」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+
+-->
+
+
+
+</div>
+
+
+
+<div>
   <h1><a href="./posts/2014-08-28-YAPCAsia2014_0.html">今日は YAPC::Asia Tokyo 2014 の前夜祭です</a></h1>
 
 <div class="info">
@@ -59,7 +93,7 @@
 
 <p>今年もYAPCの季節がやってきました。本日の前夜祭から3日間参加しますので、後学のために聞いたセッションについてはメモを残しておこうと思います。</p>
 <p>今年も縁あって、gihyo.jpさんにレポートを寄稿できることになりました。もちろん、例年通りリアルタイム更新で行います。メンバーは去年からのメンバーと新しいメンバーを加えた計7名です。こちらもページが公開され次第紹介しますので、どうぞお楽しみに！</p>
-<p>とりあえず会場入りして、DMMかき氷を頂いております。</p>
+<p>とりあえず会場入りして、DMMかき氷を頂いております。一部の内容は <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> にも掲載していますので、併せてご覧ください。</p>
 <h1 id="欲しいものは作ればいい-webアプリ10連発">欲しいものは作ればいい！ 〜Webアプリ10連発〜</h1>
 <h2 id="オープニング-yusukebeさん">オープニング / yusukebeさん</h2>
 <ul>
@@ -130,7 +164,67 @@
 </ul></li>
 </ul>
 <h2 id="hondallicaさんhrhm.info">hondallicaさん「hrhm.info」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>「不適切な発言があったらピー音入れてください」</li>
+<li>ハードロック、ヘヴィメタルが好きな方は？
+<ul>
+<li>ボーカルがモテるのがハードロック、ギターがモテるのはヘビーメタル</li>
+</ul></li>
+<li>ヘヴィメタルとは → 写真で
+<ul>
+<li>社会に馴染めない人、重低音、ファンタジー、効いてる人が少ない</li>
+</ul></li>
+<li>hrhm.info
+<ul>
+<li>ヘヴィメタルに特化したサービス</li>
+<li>YouTubeの動画探すのに楽。自分用</li>
+<li>デモ</li>
+</ul></li>
+<li>構成
+<ul>
+<li>Digital Ocean, nginx, Starman, Mojolicious::Lite, node.js, SQLite</li>
+<li>自分の既存の知識で扱える構成</li>
+<li>インフラ構築の勉強も</li>
+<li>公開優先。個人サービスなので後から直す</li>
+</ul></li>
+<li>データの収集
+<ul>
+<li>PCを使っている。常時稼働がよい</li>
+<li>根こそぎデータを集める、という強い狂気が必要</li>
+<li>Scraping, WEB API
+<ul>
+<li>Last.fm, SoundCloud, MusicBrainz, Bandcampなど</li>
+</ul></li>
+</ul></li>
+<li>Last.fm → APIが充実。150個以上
+<ul>
+<li>Net::LastFM, WebService::LastFM</li>
+</ul></li>
+<li>MusicBrainz → 音楽のwikipedia
+<ul>
+<li>Music Brainz ID(MBID)。バンド名など、一意にできる</li>
+<li>音楽系ではよく使ってる</li>
+<li>CPANモジュールもある。VMがダウンロードできる。12GBくらいある。マスタと同期できる</li>
+</ul></li>
+<li>Artist (500K records), Discography(240K), Track(1.7M)</li>
+<li>Bandの関連性の集計
+<ul>
+<li>複数Web APIが得られたスコアや、一緒のライブに出てたか、または独断と偏見</li>
+</ul></li>
+<li>副産物
+<ul>
+<li>ヘビメタをヘヴィメタと置き換えるモジュール</li>
+<li>WebService::BandCamp</li>
+</ul></li>
+<li>95カ国から利用されている。公開することが大事</li>
+<li>質疑応答
+<ul>
+<li>Q. ヘヴィメタルとヘビメタルの発音の違いを出して</li>
+<li>A. わかりました！</li>
+<li>Q. term of service とか読んでると使う気が</li>
+<li>A. 気にすると負けです</li>
+</ul></li>
+</ul>
 <h2 id="ppworksさんpplog">ppworksさん「pplog」</h2>
 <ul>
 <li>http://pplog.net/
@@ -227,7 +321,65 @@
 </ul></li>
 </ul>
 <h2 id="masuidriveさんwri.pe">masuidriveさん「wri.pe」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>wri.pe とは
+<ul>
+<li>WEBベースのテキストエディタ</li>
+<li>facebook or github。スマホ対応</li>
+<li>GWで開発</li>
+</ul></li>
+<li>作りたいものをWEBにまとめている</li>
+<li>今まで → memo.txt
+<ul>
+<li>何万行にもなってる</li>
+<li>markdown使えない、リンクも使えない → github使ってたけど</li>
+<li>プログラマなら markdown</li>
+<li>archiveして検索したい</li>
+<li>カレンダーで見たい</li>
+<li>キーボードオペレーションやmobileのサポート</li>
+</ul></li>
+<li>欲しい物が見つからない → プログラマだから自分で作れる！</li>
+<li>モデルが単純。UserとNoteのみ。2日程度で作れる</li>
+<li>2007年に作って、実は一度クローズしている
+<ul>
+<li>サーバの管理が面倒だった → herokuなどに任せる</li>
+</ul></li>
+<li>新しい技術を試す
+<ul>
+<li>localStorage, Rails 4, heroku への課金など</li>
+</ul></li>
+<li>適当にツイートして、そのまま寝た
+<ul>
+<li>200人ほど登録してしまった</li>
+<li>もう一回仕切りなおし！ 仕事以上に本気で</li>
+</ul></li>
+<li>仕切りなおす
+<ul>
+<li>英語については英語が喋れる友達にお願い</li>
+<li>デザインはdribbbleを利用</li>
+<li>アイコンは知り合いにお願い</li>
+<li>herokuは $200/mo → メモをとるのに・・・？</li>
+<li>毎年、MBPが買える。が、「自分の欲しい物はお金では買えない」</li>
+</ul></li>
+<li>一番の問題点 → 運用が続くのか不明
+<ul>
+<li>dropbox, evernote との連携機能がある。データは手元に残してね</li>
+</ul></li>
+<li>Seleniumのテストも作っている。SSLもきちんととってる</li>
+<li>プレスも出した。「個人の時間で」</li>
+<li>飽きてきたので、オープンソース化</li>
+<li>作った理由
+<ul>
+<li>作れるのはエンジニアの特権</li>
+<li>自分の苦手な部分を知り、きちんと人に頼る</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. heroku 以外に乗り換える先は？</li>
+<li>A. AWSのsmall instanceとかもあるけど、修復コストを考えると。</li>
+</ul></li>
+</ul>
+<p>&lt;! - こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。 -&gt;</p>
 <h2 id="hika69さんプライベートで3年間チーム開発した話">hika69さん「プライベートで3年間チーム開発した話」</h2>
 <ul>
 <li>プレゼンはstoryboard を利用。いいね機能がうざい（笑</li>
@@ -332,7 +484,47 @@
 </ul></li>
 </ul>
 <h2 id="razokuloverさんgifmagazineの話">razokuloverさん「GIFMAGAZINEの話」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>GIFMAGAZINE
+<ul>
+<li>GIFアニメの作成、共有に特化</li>
+<li>画像からGIFを作成、YoutubeからGIFを作成</li>
+<li>Glitch Gifs → ノイズを入れて独特の風合いを</li>
+<li>GIFに文字を合成、動画からGIF、GIFMAGAZINE TV、などなど</li>
+</ul></li>
+<li>作った理由
+<ul>
+<li>GIFアニメを見るサイトは多い。作成は少ない</li>
+<li>作成から共有までをまとめたかった</li>
+<li>iOS、android版もある</li>
+</ul></li>
+<li>GIFアニメを作る人が使いたいサービスにする
+<ul>
+<li>GIFアニメの重さを気にしない → 平均1.5MB</li>
+<li>通常のGIFのサイトはサイズ制限。Twitterは4MB</li>
+<li>「重いからアップロードできない」は悲しい → 圧縮、フレーム数削減などに時間を取られる</li>
+<li>サイズ制限を 20MB とした</li>
+</ul></li>
+<li>4MB以上のGIFアニメをTwitterで動かせる唯一のサービス
+<ul>
+<li>高画質、長いgifに対応</li>
+<li>結果的にユーザ数が大きく増加</li>
+</ul></li>
+<li>一番使って欲しいユーザが誰であるか明確にすることが大事
+<ul>
+<li>画像サイズ制限は、見るユーザには小さいほうがいい。作るユーザには大きいほうがいい</li>
+<li>明確にすることで、webサービスの強みとなる</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. gifのまま？ h264は？</li>
+<li>A. gifのまま。Twitterはmp4にしているが、ドット絵クリエイターを大事にしたい</li>
+<li>Q. pngの方は？</li>
+<li>A. 実装していないブラウザがあったりもするので。これから挑戦したい</li>
+<li>Q. 不便なアニメーションgifにこだわる理由は？</li>
+<li>A. まだ好きな人がいる。</li>
+</ul></li>
+</ul>
 <h2 id="yositosiさんtogetter">yositosiさん「togetter」</h2>
 <ul>
 <li>togetter はリリース後5年経っている
@@ -605,36 +797,6 @@ UNKNOWN RATE=<span class="fl">6.62</span> %</code></pre>
 <p>本書では定義域方向の区間<span class="math">\((x - b, x + b)\)</span>の存在も示しているが、これは不要に思える。有界域で定義された連続関数なのだから有界なのは当たり前なわけで。本質的に大事なのは、陽関数が一意に存在して<span class="math">\(C^1\)</span>級となることだろう。</p>
 <h2 id="p.26-逆関数定理">p.26 逆関数定理</h2>
 <p><span class="math">\(f(x) - x\)</span>に対して陰関数定理を使って<span class="math">\(x\)</span>について陽関数を得れば、逆関数定理を得られる。</p>
-
-</div>
-
-
-
-<div>
-  <h1><a href="./posts/2014-04-10-multivariate_analysis.html">4/10の読書メモ:続微分積分読本</a></h1>
-
-<div class="info">
-    Posted on April 10, 2014
-    
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-04-10-multivariate_analysis.html" data-text="4/10の読書メモ:続微分積分読本" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="/posts/2014-04-10-multivariate_analysis.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-</div>
-
-<blockquote>
-<p><a href="http://www.amazon.co.jp/%E7%B6%9A-%E5%BE%AE%E5%88%86%E7%A9%8D%E5%88%86%E8%AA%AD%E6%9C%AC-%E5%A4%9A%E5%A4%89%E6%95%B0-%E5%B0%8F%E6%9E%97-%E6%98%AD%E4%B8%83/dp/4785315261%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4785315261" target="_top">続 微分積分読本 -多変数-</a><br />小林 昭七 <br /><a href="http://www.amazon.co.jp/%E7%B6%9A-%E5%BE%AE%E5%88%86%E7%A9%8D%E5%88%86%E8%AA%AD%E6%9C%AC-%E5%A4%9A%E5%A4%89%E6%95%B0-%E5%B0%8F%E6%9E%97-%E6%98%AD%E4%B8%83/dp/4785315261%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4785315261" target="_top"><img src="http://ecx.images-amazon.com/images/I/4150MMH4WHL._SL75_.jpg" border="0" alt="4785315261" /></a><br /><img src="http://www.assoc-amazon.jp/e/ir?t=days0aa-22&amp;l=ur2&amp;o=9" width="1" height="1" style="border: none;" alt /></p>
-</blockquote>
-<h2 id="p.19-平均値定理">p.19 平均値定理</h2>
-<p>２変数の場合、合成関数の微分と同様に<span class="math">\(f_x\)</span>か<span class="math">\(f_y\)</span>の連続を仮定する必要が出てくる。この辺は、<span class="math">\(f_x\)</span>によって<span class="math">\(x\)</span>についての性質は捉えられるが、<span class="math">\(y\)</span>についての性質は捉えられないってことかなと思う。驚くべきはむしろ<span class="math">\(f_x\)</span>と<span class="math">\(f_y\)</span>の片方の連続を仮定するだけでいいことだが、これはある点を基準とした時に<span class="math">\(x\)</span>か<span class="math">\(y\)</span>のどちらか片方の向きについてはもう片方の変数を全く動かさなくて住む、つまり１変数に帰着できるからかなと思う。証明を見ても、</p>
-<p><span class="math">\[
-\begin{align}
-  &amp;  f(a + \Delta x, b + \Delta y) - f(a, b) \\
-  &amp;= f(a + \Delta x, b + \Delta y) - f(a, b + \Delta y) + f(a, b + \Delta y) - f(a, b)
-\end{align}
-\]</span></p>
-<p>という変形を使っていて、ここで最初の2項には固定したい<span class="math">\(y\)</span>側に<span class="math">\(\Delta y\)</span>がいるので、<span class="math">\(x\)</span>軸方向だけで議論を進めることができない。他方、最後の2項は<span class="math">\(y\)</span>方向にしか変化させないので1変数の条件によって各種定理が適用できる。</p>
 
 </div>
 

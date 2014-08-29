@@ -1,0 +1,21 @@
+---
+title: 今日は YAPC::Asia Tokyo 2014 の１日目です
+---
+
+今日からが本番です。これから会場に入ります。
+
+本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) にも掲載していますので、併せてご覧ください。
+
+
+<!--
+
+## Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+
+
+## Kenichi Ishigakiさん「Get a kick out of CPAN」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+
+-->

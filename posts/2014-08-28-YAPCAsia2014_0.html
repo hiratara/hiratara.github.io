@@ -56,7 +56,7 @@
 
 <p>今年もYAPCの季節がやってきました。本日の前夜祭から3日間参加しますので、後学のために聞いたセッションについてはメモを残しておこうと思います。</p>
 <p>今年も縁あって、gihyo.jpさんにレポートを寄稿できることになりました。もちろん、例年通りリアルタイム更新で行います。メンバーは去年からのメンバーと新しいメンバーを加えた計7名です。こちらもページが公開され次第紹介しますので、どうぞお楽しみに！</p>
-<p>とりあえず会場入りして、DMMかき氷を頂いております。</p>
+<p>とりあえず会場入りして、DMMかき氷を頂いております。一部の内容は <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> にも掲載していますので、併せてご覧ください。</p>
 <h1 id="欲しいものは作ればいい-webアプリ10連発">欲しいものは作ればいい！ 〜Webアプリ10連発〜</h1>
 <h2 id="オープニング-yusukebeさん">オープニング / yusukebeさん</h2>
 <ul>
@@ -127,7 +127,67 @@
 </ul></li>
 </ul>
 <h2 id="hondallicaさんhrhm.info">hondallicaさん「hrhm.info」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>「不適切な発言があったらピー音入れてください」</li>
+<li>ハードロック、ヘヴィメタルが好きな方は？
+<ul>
+<li>ボーカルがモテるのがハードロック、ギターがモテるのはヘビーメタル</li>
+</ul></li>
+<li>ヘヴィメタルとは → 写真で
+<ul>
+<li>社会に馴染めない人、重低音、ファンタジー、効いてる人が少ない</li>
+</ul></li>
+<li>hrhm.info
+<ul>
+<li>ヘヴィメタルに特化したサービス</li>
+<li>YouTubeの動画探すのに楽。自分用</li>
+<li>デモ</li>
+</ul></li>
+<li>構成
+<ul>
+<li>Digital Ocean, nginx, Starman, Mojolicious::Lite, node.js, SQLite</li>
+<li>自分の既存の知識で扱える構成</li>
+<li>インフラ構築の勉強も</li>
+<li>公開優先。個人サービスなので後から直す</li>
+</ul></li>
+<li>データの収集
+<ul>
+<li>PCを使っている。常時稼働がよい</li>
+<li>根こそぎデータを集める、という強い狂気が必要</li>
+<li>Scraping, WEB API
+<ul>
+<li>Last.fm, SoundCloud, MusicBrainz, Bandcampなど</li>
+</ul></li>
+</ul></li>
+<li>Last.fm → APIが充実。150個以上
+<ul>
+<li>Net::LastFM, WebService::LastFM</li>
+</ul></li>
+<li>MusicBrainz → 音楽のwikipedia
+<ul>
+<li>Music Brainz ID(MBID)。バンド名など、一意にできる</li>
+<li>音楽系ではよく使ってる</li>
+<li>CPANモジュールもある。VMがダウンロードできる。12GBくらいある。マスタと同期できる</li>
+</ul></li>
+<li>Artist (500K records), Discography(240K), Track(1.7M)</li>
+<li>Bandの関連性の集計
+<ul>
+<li>複数Web APIが得られたスコアや、一緒のライブに出てたか、または独断と偏見</li>
+</ul></li>
+<li>副産物
+<ul>
+<li>ヘビメタをヘヴィメタと置き換えるモジュール</li>
+<li>WebService::BandCamp</li>
+</ul></li>
+<li>95カ国から利用されている。公開することが大事</li>
+<li>質疑応答
+<ul>
+<li>Q. ヘヴィメタルとヘビメタルの発音の違いを出して</li>
+<li>A. わかりました！</li>
+<li>Q. term of service とか読んでると使う気が</li>
+<li>A. 気にすると負けです</li>
+</ul></li>
+</ul>
 <h2 id="ppworksさんpplog">ppworksさん「pplog」</h2>
 <ul>
 <li>http://pplog.net/
@@ -224,7 +284,65 @@
 </ul></li>
 </ul>
 <h2 id="masuidriveさんwri.pe">masuidriveさん「wri.pe」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>wri.pe とは
+<ul>
+<li>WEBベースのテキストエディタ</li>
+<li>facebook or github。スマホ対応</li>
+<li>GWで開発</li>
+</ul></li>
+<li>作りたいものをWEBにまとめている</li>
+<li>今まで → memo.txt
+<ul>
+<li>何万行にもなってる</li>
+<li>markdown使えない、リンクも使えない → github使ってたけど</li>
+<li>プログラマなら markdown</li>
+<li>archiveして検索したい</li>
+<li>カレンダーで見たい</li>
+<li>キーボードオペレーションやmobileのサポート</li>
+</ul></li>
+<li>欲しい物が見つからない → プログラマだから自分で作れる！</li>
+<li>モデルが単純。UserとNoteのみ。2日程度で作れる</li>
+<li>2007年に作って、実は一度クローズしている
+<ul>
+<li>サーバの管理が面倒だった → herokuなどに任せる</li>
+</ul></li>
+<li>新しい技術を試す
+<ul>
+<li>localStorage, Rails 4, heroku への課金など</li>
+</ul></li>
+<li>適当にツイートして、そのまま寝た
+<ul>
+<li>200人ほど登録してしまった</li>
+<li>もう一回仕切りなおし！ 仕事以上に本気で</li>
+</ul></li>
+<li>仕切りなおす
+<ul>
+<li>英語については英語が喋れる友達にお願い</li>
+<li>デザインはdribbbleを利用</li>
+<li>アイコンは知り合いにお願い</li>
+<li>herokuは $200/mo → メモをとるのに・・・？</li>
+<li>毎年、MBPが買える。が、「自分の欲しい物はお金では買えない」</li>
+</ul></li>
+<li>一番の問題点 → 運用が続くのか不明
+<ul>
+<li>dropbox, evernote との連携機能がある。データは手元に残してね</li>
+</ul></li>
+<li>Seleniumのテストも作っている。SSLもきちんととってる</li>
+<li>プレスも出した。「個人の時間で」</li>
+<li>飽きてきたので、オープンソース化</li>
+<li>作った理由
+<ul>
+<li>作れるのはエンジニアの特権</li>
+<li>自分の苦手な部分を知り、きちんと人に頼る</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. heroku 以外に乗り換える先は？</li>
+<li>A. AWSのsmall instanceとかもあるけど、修復コストを考えると。</li>
+</ul></li>
+</ul>
+<p>&lt;! - こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。 -&gt;</p>
 <h2 id="hika69さんプライベートで3年間チーム開発した話">hika69さん「プライベートで3年間チーム開発した話」</h2>
 <ul>
 <li>プレゼンはstoryboard を利用。いいね機能がうざい（笑</li>
@@ -329,7 +447,47 @@
 </ul></li>
 </ul>
 <h2 id="razokuloverさんgifmagazineの話">razokuloverさん「GIFMAGAZINEの話」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0000">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>GIFMAGAZINE
+<ul>
+<li>GIFアニメの作成、共有に特化</li>
+<li>画像からGIFを作成、YoutubeからGIFを作成</li>
+<li>Glitch Gifs → ノイズを入れて独特の風合いを</li>
+<li>GIFに文字を合成、動画からGIF、GIFMAGAZINE TV、などなど</li>
+</ul></li>
+<li>作った理由
+<ul>
+<li>GIFアニメを見るサイトは多い。作成は少ない</li>
+<li>作成から共有までをまとめたかった</li>
+<li>iOS、android版もある</li>
+</ul></li>
+<li>GIFアニメを作る人が使いたいサービスにする
+<ul>
+<li>GIFアニメの重さを気にしない → 平均1.5MB</li>
+<li>通常のGIFのサイトはサイズ制限。Twitterは4MB</li>
+<li>「重いからアップロードできない」は悲しい → 圧縮、フレーム数削減などに時間を取られる</li>
+<li>サイズ制限を 20MB とした</li>
+</ul></li>
+<li>4MB以上のGIFアニメをTwitterで動かせる唯一のサービス
+<ul>
+<li>高画質、長いgifに対応</li>
+<li>結果的にユーザ数が大きく増加</li>
+</ul></li>
+<li>一番使って欲しいユーザが誰であるか明確にすることが大事
+<ul>
+<li>画像サイズ制限は、見るユーザには小さいほうがいい。作るユーザには大きいほうがいい</li>
+<li>明確にすることで、webサービスの強みとなる</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. gifのまま？ h264は？</li>
+<li>A. gifのまま。Twitterはmp4にしているが、ドット絵クリエイターを大事にしたい</li>
+<li>Q. pngの方は？</li>
+<li>A. 実装していないブラウザがあったりもするので。これから挑戦したい</li>
+<li>Q. 不便なアニメーションgifにこだわる理由は？</li>
+<li>A. まだ好きな人がいる。</li>
+</ul></li>
+</ul>
 <h2 id="yositosiさんtogetter">yositosiさん「togetter」</h2>
 <ul>
 <li>togetter はリリース後5年経っている
