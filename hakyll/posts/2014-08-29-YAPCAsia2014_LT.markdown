@@ -1,0 +1,9 @@
+---
+title: YAPCでlensのLTをして来ました
+---
+
+YAPCのLTの資料を上げておく。なんかタイトルページが壊れてるけどとりあえず。
+
+<script async class="speakerdeck-embed" data-id="41ceade011c00132c86d02e2e0c65448" data-ratio="1.41436464088398" src="//speakerdeck.com/assets/embed.js"></script>
+
+(温かいお叱りの言葉)[http://togetter.com/li/712649]を多数頂いてとても反省している。
