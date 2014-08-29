@@ -192,7 +192,84 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 
 # Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
 
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+- いきなり新バージョンをリリース
+-- テストFAIL → リリース断念
+- Perl::Lintとは
+-- source code linter → Perl::Criticでは？
+-- linter : ソースコードを解析して、教えてくれるもの
+- 悪いコードの例
+-- unless + not, not + &&, 2引数、open, openの戻り値、never reached
+-- あら探し(コードレビュー)楽しくない → 人間がやるべき？
+-- そもそも人間は見過ごす
+-- 読みやすい＝レビューしやすい＝保守しやすい
+- 初めてのsource code linter : 1979にC言語のもの
+-- js-hint, find-bugs, Go, Scala などなど
+- PerlではPerl::Critic
+-- PBPスタイルにあっているか見る
+- 機械化する利点
+-- 文句を言わない、疲れない、ミスをしない、速い、自動化ができる、コストが安い
+- Perl::Criticの問題点 → 遅い
+-- Perl::Lintは97 cnt/s (Perl::Criticは18call/s)
+- Perl::Lintをなぜやっているか
+-- TPFの助成金でやってる
+-- みんなもTPFやってください
+- Perlの静的解析のやり方 → Web::DB press読んで
+-- トークン列の評価 or ASTの評価 → Perl::Lint は前者
+-- PPI と Compiler::Lexer → Perl::Lintは後者
+- Compiler::Lexer
+-- 高速な字句解析機
+-- Perl::Lintはこれのお陰で速い
+-- 分析結果の大事な部分→ dataとkindとtype
+- Perl::Lintのコツ
+-- トップレベルにPoliciesとRuleのみ
+-- ポリシーはPBPに従ったもの。ポリシーは独立
+-- 例: 組み込み関数のtieは使わない（ちょっとゴツイ）
+-- 例: もっとゴツイ(スライド8枚くらい)
+- Perl::Lint では C-Style forを使っている
+-- 先読み、後読みが頻繁に必要なため
+-- PBPで禁止されている
+-- C-Style forを使うなというポリシーもC-Style forを使っている
+- Perl::Lintの実装の特徴
+-- 正規表現は遅いから使わない (遅いから)
+-- Perl::Lint は関数呼び出しが少ない (遅いからとサボってるから)
+-- POPOやraw-blessなど、シンプルなものを使ってる
+- Perl::Critic のルールは難しい
+-- perlcriticrcはめんどくさい
+- Perl::Lint はデフォルトでいい感じのポリシーを用意。使わないのをフィルタ
+-- ignoreやfilterが提供されている
+-- perl criticライクなものも
+- Perl Lint Playground というサービスを作った
+-- Share機能もあるのでTwitterに投稿できる
+-- ユーザからのフィードバックは重要。それを得たいがために作った
+-- モチベーションが上がる。ライブラリ開発は地味なので・・・
+- この碁の展望
+-- すべてのPoliciesの実装
+-- 「## no lint」への対応
+-- Test::Perl::Critic 的なもの
+-- Githubとの連携
+-- TODOにlintの結果を埋め込む(rubocopではやってる)
+- Perl::Lintは作りかけ(２ヶ月押してる)
+-- SEGVやABRTが起こる
+-- 「$/」があるとSEGVするので、forkして凌いでいる
+- Perl::LintをPerl::Lintでチェックするデモ
+- 質疑応答
+-- Q. 独自のポリシーの拡張は？
+-- A. 簡単な奴は簡単に書けます
+-- Q. なぜASTを使わない？
+-- A. コンパイラのパーザが不安定
+-- Q. Compiler::Lexerはどうなの？
+-- A. SEGVになるケースはかなり減っている。今後に期待
+-- Q. ポリシーを作るときにASTがあると嬉しそうだけど、トークン列を見ることでよくなることは？
+-- A. 手作業でASTを組み立てている。ほんとはASTがよい
+-- Q. Perl::LintでPerl::Lintのテストを全部通るようにする計画は？
+-- A. 辛いのでないと思います
+-- Q. 実装したくないポリシーを実装して欲しい
+-- A. 実装したくないポリシーを実装して欲しい・・・のは冗談で、ドキュメントを充実させたい。特にポリシーの
+- ダイナミックスコープ解析、がきつい感じしかしない
+- 静的解析友達を募集しています
+
+
+<!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。-->
 
 
 # hakobeさん「Scala In Perl Company : Hatena」
@@ -240,10 +317,83 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - 型システムは最高
 
 
-<!--
+# Lyo Katoさん「O2O/IoT/Wearable時代におけるWeb以外のネットワーク技術入門」
+
+- EventHub系ツール、サービス
+    - IFTTT, PubSub(MQTT)
+    - 前者は、周りのサービスはHUBを知らない。後者は、周りのサービスがHUBを知っている
+- Machine to Machine 以外でも
+    - Beluga (Group Messenger) が採用していた
+    - PubSubはグループチャットと相性がいい
+    - 機械にとってのグループチャットと思うとわかりやすい
+- /区切りのtree構造でイベントを監視する
+    - +はワイルドカード(同じレベルのみ)、#は下のレベルすべて
+    - 省エネ。フォーマットのパケット、手続きの簡略化
+- QoS (Quality of Service)
+    - 機械は動くがネットワークは止まる
+    - QoS 0 : 特殊なことはしない
+    - QoS 1 : 保存してからpush。配信できたら保存を消す。届くまでリトライ
+    - QoS 2 : 一度しか送らないことを保証
+- MQTT-SN → Sensor network。ゲートウェイを使ってまとめる
+- MQTTはほかの技術との比較が混乱しやすい
+    - 「HTTPに比べて省エネである」
+    - Polling : 数秒に一回的な
+    - Long Plooing : responseの戻りを遅らせる
+    - Server Sent Event
+    - APNS / GCM & HTTP GETでも実現できる
+- HTTPによるM2Mネットワーク
+    - IBMとかその辺。HTTPで機器間のやりとり。RESTfulアーキテクチャ
+    - 省エネ的に厳しい
+- CoAP : HTTPをベースにマシン用に最適化したもの
+    - Constrained RESTful Environment (CoRE)
+    - Observeオプション、Bonjour的なものなど
+- Bonjour : Zero Configuration Network
+    - DNSのPTR/SRV/TEXTレコードを使って、機器の追加などを認識する
+-  CoAP VS MQTT
+    - CoAPはHTTPなので外部連携はらくかも
+    - 標準化の途中なので要ウォッチ
+- NAT超え
+    - ICE
+    - 外に飛ばすときにマッピングを記録
+    - ルータによって振る舞いが違う
+    - STUN : NATの外側でのアドレスを知れる
+- MQTTって、Message Queue? Messaging?
+    - AMQP : RabbitMQが有名。キューだけじゃなくバインディングが柔軟だったり
+    - MQTTはMessage Queue関連のプロダクトから名前をもらっただけで違う
+- XMPP : 仕様が非常に複雑。相手が居るかどうかの機能だが、スケールしない
+- Redis/STOMP : Redisはプロトコルでなく実装。STOMPがMQTTに近い
+- MQTTは使うべきか？ → 実装しておくと、家電とかの実装が進めば、利点が出るかも
+- AnyEvent::MQTTというモジュールがある
+    - サーバ実装はなさげ。昨夜リリースされたSango(MQTT as a service)で試すと良さそう
+- Bluetooth Classic
+    - 旧来のBluetooth。高速化の追求
+- Bluetooth Low Energy (BTLE)
+    - 4.0から。別物と考えたほうがいい
+    - BTLEではペアリングなしで使うことがほとんど
+- ピコネット:CentralとPeripheral
+    - Peripheral側がサーバ
+    - Peripherarlがbroadcast。Central側がscan
+    - 小分けで出す(Low energyのため)
+    - 接続後は定期的にやりとり
+    - 周波数を毎回切り替えて混線を防ぐ
+- Bluetooth の Profile は予め用意された仕様
+    - 自分でプロトコルを決める場合は、Classicの場合はSPPで、LEの場合はGATT
+- サービスの中から目的のCharacteristicを読み書き
+- iOSは5.0、androidは4.3からBTLE
+    - androidはLEはまだ時間がかかる。iOSとの連携はまだまだかな
+- iBeacon
+    - 近接検知。近寄ったことがわかる。強度で距離の推測。方角は不明
+    - 2つ使えば移動の検知
+- iBeaconで、スマホで情報を見る際の検索を省ける
+- 情報伝達の歴史 : BROADCAST → PULL → PUSH → PICK
+    - 近くのデータをPICKできるように。GoogleGlassでは使ってる。
+- これからPersonalizationのフェーズ
+    - セキュリティとプライバシー
+    - 裏でビーコンを元にGET/POSTを叩く
+- BTLEは応用の余地がある。MQTTもメリットデメリットを考えれば
+    - 相互作用を考えると面白い
+
 
 # Kenichi Ishigakiさん「Get a kick out of CPAN」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
-
--->

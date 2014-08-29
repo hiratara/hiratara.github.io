@@ -313,7 +313,33 @@
 </ul></li>
 </ul>
 <h1 id="taiki-kawakamiさんperllint---yet-another-perl-source-code-linter">Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」</h1>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0001">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>いきなり新バージョンをリリース – テストFAIL → リリース断念</li>
+<li>Perl::Lintとは – source code linter → Perl::Criticでは？ – linter : ソースコードを解析して、教えてくれるもの</li>
+<li>悪いコードの例 – unless + not, not + &amp;&amp;, 2引数、open, openの戻り値、never reached – あら探し(コードレビュー)楽しくない → 人間がやるべき？ – そもそも人間は見過ごす – 読みやすい＝レビューしやすい＝保守しやすい</li>
+<li>初めてのsource code linter : 1979にC言語のもの – js-hint, find-bugs, Go, Scala などなど</li>
+<li>PerlではPerl::Critic – PBPスタイルにあっているか見る</li>
+<li>機械化する利点 – 文句を言わない、疲れない、ミスをしない、速い、自動化ができる、コストが安い</li>
+<li>Perl::Criticの問題点 → 遅い – Perl::Lintは97 cnt/s (Perl::Criticは18call/s)</li>
+<li>Perl::Lintをなぜやっているか – TPFの助成金でやってる – みんなもTPFやってください</li>
+<li>Perlの静的解析のやり方 → Web::DB press読んで – トークン列の評価 or ASTの評価 → Perl::Lint は前者 – PPI と Compiler::Lexer → Perl::Lintは後者</li>
+<li>Compiler::Lexer – 高速な字句解析機 – Perl::Lintはこれのお陰で速い – 分析結果の大事な部分→ dataとkindとtype</li>
+<li>Perl::Lintのコツ – トップレベルにPoliciesとRuleのみ – ポリシーはPBPに従ったもの。ポリシーは独立 – 例: 組み込み関数のtieは使わない（ちょっとゴツイ） – 例: もっとゴツイ(スライド8枚くらい)</li>
+<li>Perl::Lint では C-Style forを使っている – 先読み、後読みが頻繁に必要なため – PBPで禁止されている – C-Style forを使うなというポリシーもC-Style forを使っている</li>
+<li>Perl::Lintの実装の特徴 – 正規表現は遅いから使わない (遅いから) – Perl::Lint は関数呼び出しが少ない (遅いからとサボってるから) – POPOやraw-blessなど、シンプルなものを使ってる</li>
+<li>Perl::Critic のルールは難しい – perlcriticrcはめんどくさい</li>
+<li>Perl::Lint はデフォルトでいい感じのポリシーを用意。使わないのをフィルタ – ignoreやfilterが提供されている – perl criticライクなものも</li>
+<li>Perl Lint Playground というサービスを作った – Share機能もあるのでTwitterに投稿できる – ユーザからのフィードバックは重要。それを得たいがために作った – モチベーションが上がる。ライブラリ開発は地味なので・・・</li>
+<li>この碁の展望 – すべてのPoliciesの実装 – 「## no lint」への対応 – Test::Perl::Critic 的なもの – Githubとの連携 – TODOにlintの結果を埋め込む(rubocopではやってる)</li>
+<li>Perl::Lintは作りかけ(２ヶ月押してる) – SEGVやABRTが起こる – 「$/」があるとSEGVするので、forkして凌いでいる</li>
+<li>Perl::LintをPerl::Lintでチェックするデモ</li>
+<li>質疑応答 – Q. 独自のポリシーの拡張は？ – A. 簡単な奴は簡単に書けます – Q. なぜASTを使わない？ – A. コンパイラのパーザが不安定 – Q. Compiler::Lexerはどうなの？ – A. SEGVになるケースはかなり減っている。今後に期待 – Q. ポリシーを作るときにASTがあると嬉しそうだけど、トークン列を見ることでよくなることは？ – A. 手作業でASTを組み立てている。ほんとはASTがよい – Q. Perl::LintでPerl::Lintのテストを全部通るようにする計画は？ – A. 辛いのでないと思います – Q. 実装したくないポリシーを実装して欲しい – A. 実装したくないポリシーを実装して欲しい・・・のは冗談で、ドキュメントを充実させたい。特にポリシーの</li>
+<li>ダイナミックスコープ解析、がきつい感じしかしない</li>
+<li>静的解析友達を募集しています</li>
+</ul>
+<!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。-->
+
+
 <h1 id="hakobeさんscala-in-perl-company-hatena">hakobeさん「Scala In Perl Company : Hatena」</h1>
 <ul>
 <li>Hatena はほぼすべてのプロダクトがPerl</li>
@@ -380,15 +406,126 @@
 <li>型システムは最高</li>
 </ul></li>
 </ul>
-<!--
-
-# Kenichi Ishigakiさん「Get a kick out of CPAN」
-
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
-
--->
-
-
+<h1 id="lyo-katoさんo2oiotwearable時代におけるweb以外のネットワーク技術入門">Lyo Katoさん「O2O/IoT/Wearable時代におけるWeb以外のネットワーク技術入門」</h1>
+<ul>
+<li>EventHub系ツール、サービス
+<ul>
+<li>IFTTT, PubSub(MQTT)</li>
+<li>前者は、周りのサービスはHUBを知らない。後者は、周りのサービスがHUBを知っている</li>
+</ul></li>
+<li>Machine to Machine 以外でも
+<ul>
+<li>Beluga (Group Messenger) が採用していた</li>
+<li>PubSubはグループチャットと相性がいい</li>
+<li>機械にとってのグループチャットと思うとわかりやすい</li>
+</ul></li>
+<li>/区切りのtree構造でイベントを監視する
+<ul>
+<li>+はワイルドカード(同じレベルのみ)、#は下のレベルすべて</li>
+<li>省エネ。フォーマットのパケット、手続きの簡略化</li>
+</ul></li>
+<li>QoS (Quality of Service)
+<ul>
+<li>機械は動くがネットワークは止まる</li>
+<li>QoS 0 : 特殊なことはしない</li>
+<li>QoS 1 : 保存してからpush。配信できたら保存を消す。届くまでリトライ</li>
+<li>QoS 2 : 一度しか送らないことを保証</li>
+</ul></li>
+<li>MQTT-SN → Sensor network。ゲートウェイを使ってまとめる</li>
+<li>MQTTはほかの技術との比較が混乱しやすい
+<ul>
+<li>「HTTPに比べて省エネである」</li>
+<li>Polling : 数秒に一回的な</li>
+<li>Long Plooing : responseの戻りを遅らせる</li>
+<li>Server Sent Event</li>
+<li>APNS / GCM &amp; HTTP GETでも実現できる</li>
+</ul></li>
+<li>HTTPによるM2Mネットワーク
+<ul>
+<li>IBMとかその辺。HTTPで機器間のやりとり。RESTfulアーキテクチャ</li>
+<li>省エネ的に厳しい</li>
+</ul></li>
+<li>CoAP : HTTPをベースにマシン用に最適化したもの
+<ul>
+<li>Constrained RESTful Environment (CoRE)</li>
+<li>Observeオプション、Bonjour的なものなど</li>
+</ul></li>
+<li>Bonjour : Zero Configuration Network
+<ul>
+<li>DNSのPTR/SRV/TEXTレコードを使って、機器の追加などを認識する</li>
+</ul></li>
+<li>CoAP VS MQTT
+<ul>
+<li>CoAPはHTTPなので外部連携はらくかも</li>
+<li>標準化の途中なので要ウォッチ</li>
+</ul></li>
+<li>NAT超え
+<ul>
+<li>ICE</li>
+<li>外に飛ばすときにマッピングを記録</li>
+<li>ルータによって振る舞いが違う</li>
+<li>STUN : NATの外側でのアドレスを知れる</li>
+</ul></li>
+<li>MQTTって、Message Queue? Messaging?
+<ul>
+<li>AMQP : RabbitMQが有名。キューだけじゃなくバインディングが柔軟だったり</li>
+<li>MQTTはMessage Queue関連のプロダクトから名前をもらっただけで違う</li>
+</ul></li>
+<li>XMPP : 仕様が非常に複雑。相手が居るかどうかの機能だが、スケールしない</li>
+<li>Redis/STOMP : Redisはプロトコルでなく実装。STOMPがMQTTに近い</li>
+<li>MQTTは使うべきか？ → 実装しておくと、家電とかの実装が進めば、利点が出るかも</li>
+<li>AnyEvent::MQTTというモジュールがある
+<ul>
+<li>サーバ実装はなさげ。昨夜リリースされたSango(MQTT as a service)で試すと良さそう</li>
+</ul></li>
+<li>Bluetooth Classic
+<ul>
+<li>旧来のBluetooth。高速化の追求</li>
+</ul></li>
+<li>Bluetooth Low Energy (BTLE)
+<ul>
+<li>4.0から。別物と考えたほうがいい</li>
+<li>BTLEではペアリングなしで使うことがほとんど</li>
+</ul></li>
+<li>ピコネット:CentralとPeripheral
+<ul>
+<li>Peripheral側がサーバ</li>
+<li>Peripherarlがbroadcast。Central側がscan</li>
+<li>小分けで出す(Low energyのため)</li>
+<li>接続後は定期的にやりとり</li>
+<li>周波数を毎回切り替えて混線を防ぐ</li>
+</ul></li>
+<li>Bluetooth の Profile は予め用意された仕様
+<ul>
+<li>自分でプロトコルを決める場合は、Classicの場合はSPPで、LEの場合はGATT</li>
+</ul></li>
+<li>サービスの中から目的のCharacteristicを読み書き</li>
+<li>iOSは5.0、androidは4.3からBTLE
+<ul>
+<li>androidはLEはまだ時間がかかる。iOSとの連携はまだまだかな</li>
+</ul></li>
+<li>iBeacon
+<ul>
+<li>近接検知。近寄ったことがわかる。強度で距離の推測。方角は不明</li>
+<li>2つ使えば移動の検知</li>
+</ul></li>
+<li>iBeaconで、スマホで情報を見る際の検索を省ける</li>
+<li>情報伝達の歴史 : BROADCAST → PULL → PUSH → PICK
+<ul>
+<li>近くのデータをPICKできるように。GoogleGlassでは使ってる。</li>
+</ul></li>
+<li>これからPersonalizationのフェーズ
+<ul>
+<li>セキュリティとプライバシー</li>
+<li>裏でビーコンを元にGET/POSTを叩く</li>
+</ul></li>
+<li>BTLEは応用の余地がある。MQTTもメリットデメリットを考えれば
+<ul>
+<li>相互作用を考えると面白い</li>
+</ul></li>
+</ul>
+<h1 id="kenichi-ishigakiさんget-a-kick-out-of-cpan">Kenichi Ishigakiさん「Get a kick out of CPAN」</h1>
+<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0001">gihyo.jpさん</a> に掲載させて頂いてます。</p>
 
         </div>
         <div id="footer">
