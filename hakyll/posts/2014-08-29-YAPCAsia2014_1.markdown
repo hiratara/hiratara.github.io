@@ -397,3 +397,122 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 # Kenichi Ishigakiさん「Get a kick out of CPAN」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。
+
+
+# LT
+
+## maka2_donzoko@twitterさん「同人活動の報告と今後の展望」
+
+- 今日は菊池真さんの誕生日
+- コミケ前はAcmeモジュールに向き合う
+- Scalaの仕事をしたい方には、好きなだけPerlが書ける仕事を紹介します
+- Acme大全2014年
+    - チャームポイントは表紙
+    - 雑なPerl (存在しないAcmeモジュールを探す)
+- 「ご覧ぐ」ださい
+- タクシーの運転手「あんた、いつまでこれ続けるの」
+- 紙媒体は今回が最後
+- YAPC::Asiaで離婚の事例にならないように、お願いします
+- シール 150枚くらい余ってる
+- 新作「神捗道Deathか」
+- Acme大全　全巻
+
+
+## charsbar@githubさん「top 10 kwalitative japanese authors 2014」
+
+- 今年は、今年リリースしてない方は省略
+- 3位 HAYAJOさん 2位 YAKEXさん 1位 BAYASHIさん
+- Minilla を使っている方は注意
+    - META.json のバージョンは2だと、ライセンスがリストなので注意
+
+
+## shoichikaji@githubさん「Relocatable Perl」
+
+- 何度もperlをビルドするのがメンドイ
+- 古いsystem perlはちょっと・・・
+- 誰でも使える最新のPel : Relocatable Perl
+    - use 時に -Duserelocatableinc を指定すると、どこに置いても動く
+    - ダウンロードすれば快適に使える
+    - shoichikaji/relocatable-perl
+    - wgetして回答するだけ
+- Perl製のアプリの場合、perl も一緒に配布したい
+- デモ : growth forecast
+    - ダウンロードして解答するだけ
+
+
+## __papix__@twitterさん「perl入学式 2014年度中間報告」
+
+- 東京、大阪に加えて、福岡でも開催
+- 福岡のスタッフさんが増えた
+- 釧路OSSでの短期集中講座 → 参加者10名
+- グループがgithubへ移行
+- 就職してリソースが減ったので、タスク分割した
+- ウェブサイトがリニューアル → やさしい感じのロゴ
+- JPAとの連携
+- 3周年です
+- 始めたい人は来てね
+
+
+## hiratara@githubさん「」
+
+
+
+## gugod@twitterさん「Beyond Civic Hacking」
+
+- 様々なデータのビジュアライズ
+- ゴーン(時間切れ)
+
+
+## shuhei.tanuma@facebookさん「OSSのりそうとげんじつ」
+
+- 承認欲求とは違うと思ってる
+- 自分の考えたアイデアで問題を解決することが楽しい
+- OSS活動にハマった20代
+    - デート中にSEGVの原因を考え続けて怒られた
+- 30代 後どのくらいOSSで遊べる？
+    - 一日の時間 3.5h/日
+    - やらない洗濯が必要
+- 寝ないという手も → 病院に
+- メンテナンスコストの増大
+- 企業のフルタイムOSS VS 個人のOSS
+- うっかり業務アプリに組み込む
+- コミュニティを育てる
+- メンテナンスは難しい xhprofすら・・・
+
+
+## catatsuy@twitterさん「新卒インフラエンジニアが・・・」
+
+- 代表的perl企業
+    - pixivはすべて小文字です
+- 新広告サーバ開発プロジェクト
+    - nginx - circus - go
+- Perlは一部で使っている
+    - ページキャッシュを Sys::PageCache で使用しないログのページを削除
+
+
+## kazeburo@githubさん「Web Framework Benchmarks とPerlの現状報告会」
+
+- Techempower社が21言語、100近いWebアプリケーションのフレームワークのベンチマークを
+- 項目が色々あり、全部実装しなくていい
+- AWSのマシンを使う
+- Perlの惨状
+    - そもそも動かない
+    - PHPの半分
+- ISUCONやります！
+- チューンして良くなった
+    - Unicornがかなり速くなったけど、Perlもかなり良くなった
+    - ActivePerlをやめた、Monoceros、plackupもdefaultだった
+- WAFを作ったらpull-reqするとよさげ
+
+
+## bayashi@twitterさん「YAPC::Asia Ramen Challenge」
+
+- 日吉はラーメン天国
+- 家系が充実
+- Ramen + OSS
+- ルール
+    - ラーメンを食べて写真をあげるかOSSに貢献する
+    - 3人を指名する
+    - ハッシュタグは #yapcramen
+    - githubでもいい。PerlじゃなくてもO.K.
+- スタート！ https://twitter.com/bayashi/status/505277220223324160
