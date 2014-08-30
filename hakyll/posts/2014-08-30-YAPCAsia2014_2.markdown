@@ -1,0 +1,9 @@
+---
+title: 今日は YAPC::Asia Tokyo 2014 の２日目です
+---
+
+昨日HUBの閉店時間までのんびりしてしまいましたが、無事に[２日目](http://yapcasia.org/)を迎えております。
+
+<!--
+本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載していますので、併せてご覧ください。
+-->
