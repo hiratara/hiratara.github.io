@@ -164,7 +164,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 
 ## 地域.pmミートアップ 2014
 
-- 山手線沿線、または新宿まで20分の方々
+- 山手線沿線、または新宿まで20分の方々は、帰って下さい
 - 参加しているpm
     - Hokkaido.pm, Hachioji.pm, Fukuoka.pm, Kansai.pm, Kyoto.pm, Niigata.pm, Yomitan.pm, Mishima.pm, Hachioji.pm, Yokohama.pm
     - (Kokusaitenjijomae.pm)
