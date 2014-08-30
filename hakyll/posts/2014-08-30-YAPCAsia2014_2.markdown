@@ -7,7 +7,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載していますので、併せてご覧ください。
 
 
-# Daisuke Makiさん「オープンソースの開発現場 - Perl 5.20 のSubroutine Signaturesが来るまでの奮闘の軌跡」
+## Daisuke Makiさん「オープンソースの開発現場 - Perl 5.20 のSubroutine Signaturesが来るまでの奮闘の軌跡」
 
 - 他人の言動について解説するトークなので、正確でない部分はご了承下さい
 - Perl5.20
@@ -80,7 +80,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
     - A. プロトタイプに情報を突っ込んで、prototype関数からとれるようにしてた(クソはクソでも入っちゃったクソは仕方ない)
 
 
-# うずらさん「半端なPHPDisでPHPerに陰で笑われないためのPerl Monger向け最新PHP事情（5.6対応）」
+## うずらさん「半端なPHPDisでPHPerに陰で笑われないためのPerl Monger向け最新PHP事情（5.6対応）」
 
 - ゆるふわ暗黒PHP？
 - PHPとは → LAMP、初心者でもできる
@@ -163,17 +163,17 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 
 
 <!--
-# 地域.pmミートアップ 2014
+## 地域.pmミートアップ 2014
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
 
 
-# Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
+## Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
 
 
-# hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」
+## hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
 -->
