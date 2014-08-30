@@ -545,9 +545,129 @@
 <li>Git for Computer Scientists - gitがデータベースレイヤーでどう動いているか</li>
 </ul>
 <h2 id="tatsuro-hisamoriさんyapceurope-2014-に行ってきました">Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>暑いですね → YAPC Europe Tシャツになる</li>
+<li>yusukebeさんがJPA理事になったため、繰り上がって海外に行くことになった</li>
+<li>ブルガリア。8/20出国、8/26帰国</li>
+<li>滞在中5日間、毎日同じメニューだった</li>
+<li>地下鉄はきれいな雰囲気。まだ伸ばしそう
+<ul>
+<li>70円程度</li>
+</ul></li>
+<li>ネフスキー大聖堂 (撮影禁止)</li>
+<li>路面電車。電気で動くバス。</li>
+<li>KARAOKE YESTERDAY</li>
+<li>銀行が並ぶ雰囲気。600〜700円程度でビールも飲める(安い)</li>
+<li>生活用品 : the MALL (イオンモール的なもの。中は栄えている)
+<ul>
+<li>ハリーポッター的なもの</li>
+<li>キッコーマンも売ってたり</li>
+<li>トマトがキロで1レフ(70円)とか。激安</li>
+<li>ペットボトルでビール2L(181円)</li>
+</ul></li>
+<li>KURUBOTO : pre conferenceの会場
+<ul>
+<li>フリービールの会場。100人くらい。寒暖</li>
+<li><span class="citation">@kolcon</span>、ddmitov 現地の人。家賃安いトーク</li>
+</ul></li>
+<li>YAPCはSocialカンファレンスなんだけどぼっち
+<ul>
+<li>Makiさんが紹介してくれたので、ぼっち脱出した</li>
+</ul></li>
+<li>無限コーヒー、お茶、コーラ。無限朝食も
+<ul>
+<li>昼食も振る舞われた。ランチをとれる場所がなかった</li>
+</ul></li>
+<li>オフィシャルディナー
+<ul>
+<li>バスをチャーターで移動。オランダの人とgoogle翻訳経由で会話</li>
+<li>オープンな会場。</li>
+<li>Soyerさん、ovidPerlさん : Perlのカンファレンスの話とか</li>
+</ul></li>
+<li>本編とサブ会場１(100人)とサブ会場２(50人)</li>
+<li>ソーシャルカンファレンスだった
+<ul>
+<li>トークの最中にツッコミが多い</li>
+<li>フリーハンドのマイクが多い</li>
+<li>トーク終わった後の議論が多い</li>
+</ul></li>
+<li>Ukigumoちゃんと自作サーバの話がウケた</li>
+<li>おもしろLT → OAuthの認証のデモを5人で小芝居</li>
+<li>英語について
+<ul>
+<li>EUは母国語が英語じゃない人も多い</li>
+<li>英語ができないことについて寛容。コミュニケーションしてくれる</li>
+<li>もっと英語を勉強したくなった</li>
+</ul></li>
+<li>英語できないこととYAPC::Europe 行けないこととは別</li>
+<li>来年は Granada(Spain)
+<ul>
+<li>ルーム貝が。「観光地です」</li>
+<li>行ったらきっと楽しいので、ぜひ行ってみて欲しい</li>
+</ul></li>
+</ul>
+<!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。 -->
+
+
 <h2 id="hitode909さんperlの静的解析入門とperlリファクタリングツールappprtのご紹介">hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」</h2>
-<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<ul>
+<li>リファクタリング : 振る舞いを変えずにコードを綺麗に
+<ul>
+<li>名前を変える、実装の場所を変える</li>
+<li>変更場所を考えるのは難しいけど</li>
+</ul></li>
+<li>Javaだと、EclipseのRefactor機能がある</li>
+<li>Perlの場合は頑張るしかない
+<ul>
+<li>書き換えながらテストが通ってうまく行ってればO.K.</li>
+<li>Padre → 変数名変更できるらしいけど、クラッシュする</li>
+<li>Devel::Refactor ってのもあった → 正規表現してevalしてうまくいったか見るだけ</li>
+<li>App::EditorTools → Emacs / Vim 用。うまく動く</li>
+<li>sedでやるといいのか → 文字列変更では当然精度が低い</li>
+</ul></li>
+<li>静的解析が必要
+<ul>
+<li>実行して調べちゃうと動的解析になる</li>
+<li>シンタクスハイライト、構文チェック、規約、脆弱、リファクタリング</li>
+<li>wc も立派な静的解析だけど、命令数とかも知りたい</li>
+</ul></li>
+<li>構文木が必要
+<ul>
+<li>PPI で作れる</li>
+<li>Perl Document Object Model を作る。パース難しいからすごい</li>
+<li>Compiler::Lexer → moznionさんの発表を見て下さい</li>
+<li>PPI::Dumperを使うと色々見れる</li>
+<li>findがあるので、ステートメント数を見れる</li>
+<li>構文木があれば、安全にFizzBuzzを破壊できる</li>
+<li>構文木を書き換えて保存して保存</li>
+</ul></li>
+<li>git grepのいいやつを</li>
+<li>App::GitGrepPerlStatement - トークン単位でgrepできる</li>
+<li>Perl::Critic → コーディングスタイルのチェック</li>
+<li>App::PRT (Perl Refactoring Tool)
+<ul>
+<li>リファクタリングの時によくある操作をまとめたもの</li>
+<li>トークン置換、クラスや名前空間のリネーム、メソッド削除、移動</li>
+</ul></li>
+<li>Omikujiアプリのリファクタリングのデモ
+<ul>
+<li>prt replace_token uranau tell みたいな感じで実行できる</li>
+<li>move_class_method</li>
+<li>rename_class</li>
+<li>delete_method</li>
+<li>rename_name_space</li>
+</ul></li>
+<li>Plack::RequestをPlack::Kudasaiにするデモ</li>
+<li>使うコツ
+<ul>
+<li>使うファイルが減ると速い (先にgrep)</li>
+<li>テストを通してからコミット</li>
+</ul></li>
+<li>2000行程度のリファクタリングも成功した</li>
+</ul>
+<!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。 -->
+
+
 <h2 id="lt">LT</h2>
 <h3 id="yappoさん-1minリクルーティング">Yappoさん / 1min「リクルーティング」</h3>
 <ul>
