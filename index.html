@@ -58,45 +58,252 @@
 </div>
 
 <p>昨日HUBの閉店時間までのんびりしてしまいましたが、無事に<a href="http://yapcasia.org/">２日目</a>を迎えております。</p>
-<h1 id="daisuke-makiさんオープンソースの開発現場---perl-5.20-のsubroutine-signaturesが来るまでの奮闘の軌跡">Daisuke Makiさん「オープンソースの開発現場 - Perl 5.20 のSubroutine Signaturesが来るまでの奮闘の軌跡」</h1>
 <p>本日も一部の内容は <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> にも掲載していますので、併せてご覧ください。</p>
+<h1 id="daisuke-makiさんオープンソースの開発現場---perl-5.20-のsubroutine-signaturesが来るまでの奮闘の軌跡">Daisuke Makiさん「オープンソースの開発現場 - Perl 5.20 のSubroutine Signaturesが来るまでの奮闘の軌跡」</h1>
+<ul>
+<li>他人の言動について解説するトークなので、正確でない部分はご了承下さい</li>
+<li>Perl5.20
+<ul>
+<li>Post fix Deref $r-&gt;@*、CGI.pm</li>
+<li>シグネチャ sub foo (<span class="math">\(foo, bar) { \)</span>hoo + $bar; }</li>
+</ul></li>
+<li>シグネチャ
+<ul>
+<li>Sub::Signatures, Method::Signatures, signatures</li>
+<li>ソースフィルタでもできるが、使わないほうがいい。またコアに入ってない</li>
+</ul></li>
+<li>シグネチャの導入を巡る駆け引き
+<ul>
+<li>新しいコードを入れたい人、機能を壊したくない人、機能には賛成だけどコードが気に食わない人</li>
+</ul></li>
+<li>Perlの開発は27年間、ボランティア</li>
+<li>signatures の開発にかかった時間は？
+<ul>
+<li>pecoの例。issue 171は3日</li>
+<li>Perlのコード量はpecoの10倍</li>
+<li>開発期間は2年強。(pecoの20倍以上)</li>
+</ul></li>
+<li>signatures はみんなが欲しい機能だった
+<ul>
+<li>歴史的経緯、実装が面倒、p5pメーリングリストが面倒</li>
+</ul></li>
+<li>perl5-potersという開発MLで議論、パッチのやりとりをする
+<ul>
+<li>pumpkinが最終決定権を持つが、分野のエキスパートの人々が議論</li>
+</ul></li>
+<li>Martini氏の登場
+<ul>
+<li>OSSでありがちな、提案・苦情のみあげてコードを書かない、ではなく、書くと言っていた</li>
+<li>C++チームの人々にPerlを使いやすくしてもらう、ってのが動機</li>
+<li>2ヶ月でプロトタイプ → 賛否両論がすごかった</li>
+</ul></li>
+<li>OSSでありがちな、反響大きすぎ
+<ul>
+<li>賛同が多くても、批判が多いとやる気がなくなる</li>
+<li>話がそれる(これができるならこれもできるでしょ)</li>
+<li>細かい部分のツッコミ</li>
+<li>MLは戦場 : 英語圏の人々はツッコミが厳しい。老練</li>
+<li>「あれはだめ、これはだめ、価値はない、最悪だ」「ちょっとはよくなったかな。次は使えるパッチ書けるといいね」</li>
+<li>こういうたいてい人々はいい人。MLだと攻撃的になる</li>
+<li>人格攻撃になることも多い</li>
+</ul></li>
+<li>今回もダメだな、と思ったら・・・
+<ul>
+<li>Martini氏は何回も何回もパッチを送った</li>
+<li>失礼なメールはうまく受け流す</li>
+<li>必要な変更を徐々に入れ、味方を増やしていった</li>
+</ul></li>
+<li>論点
+<ul>
+<li><span class="citation">@_</span> は使用禁止？</li>
+<li><span class="math">\(_[0] = \)</span>foo した時の挙動 (呼び出し元の引数が変わるやつ)</li>
+</ul></li>
+<li>後方互換性が大切なため → 20年前のコードが動かないと怒られる</li>
+<li>Martini氏のコードではなく、それを批判していた人が書きなおしたものが入った
+<ul>
+<li>今のfeaturesの実装には Martini氏 のやりたかったことが完全にできてない</li>
+</ul></li>
+<li>現在のfeaturesの実装
+<ul>
+<li>単なるシンタックスシュガー(動的チェック)</li>
+<li>関数はシグネチャの情報を持ってない</li>
+<li>Martini氏は静的解析をしたかった(C++の人のため)</li>
+</ul></li>
+<li>Martini氏「重要なのはsigunature構文がコアに入ることで、実装は後で変えられる」
+<ul>
+<li>一旦入った機能がなくなることはない</li>
+<li>彼の勤務先が金融機関なのでこんなに大人なのでは</li>
+</ul></li>
+<li>prototype をうまく使う
+<ul>
+<li>prototype : 関数と引数の情報を直接紐づける</li>
+<li>Martini氏がどさくさに紛れて、すでにprototypeに変更を突っ込んでる(！)</li>
+</ul></li>
+<li>今後は、design by contract を実現すべき静的解析できる方向に進めたい</li>
+<li>歴史のあるOSSの民主主義は脆刃の剣
+<ul>
+<li>政治力が重要になる(エンジニアとしては不満かもしれないが)</li>
+<li>そのお陰で、強力な後方互換が担保できてるとも言える</li>
+</ul></li>
+<li>今は若いOSSでも、20年後は政治・人間スキルは必要になる
+<ul>
+<li>コミュニティで活動する限りはそのリスクについて考える必要がある</li>
+</ul></li>
+<li>ゴール・プライオリティをしっかり持つことが大切
+<ul>
+<li>ただし、別の人は別のプライオリティを持ってる</li>
+<li>誰が書いたコードかより、うまく動くことが大切</li>
+<li>ネガティブな話は、受け流す</li>
+</ul></li>
+<li>現在のp5p
+<ul>
+<li>pumpkin の RJBS は政治力がある</li>
+<li>「大人になれ」というルールを制定してる</li>
+</ul></li>
+<li>我々の使っている技術は、このような人々の地道な努力によるものであることは忘れずに</li>
+<li>質疑応答
+<ul>
+<li>Q. 新しいキーワードを導入するという話は？</li>
+<li>A. 「新しいキーワード入れたら壊れるじゃん」で却下されたらしい</li>
+<li>Q. martini氏の実装はメタ情報を扱えるものだったのか？</li>
+<li>A. プロトタイプに情報を突っ込んで、prototype関数からとれるようにしてた(クソはクソでも入っちゃったクソは仕方ない)</li>
+</ul></li>
+</ul>
 <h1 id="うずらさん半端なphpdisでphperに陰で笑われないためのperl-monger向け最新php事情5.6対応">うずらさん「半端なPHPDisでPHPerに陰で笑われないためのPerl Monger向け最新PHP事情（5.6対応）」</h1>
 <ul>
 <li>ゆるふわ暗黒PHP？</li>
-<li>PHPとは → LAMP、初心者でもできる – レガシーコードがやばい – PHP はテンプレートエンジン？ → はい – カウンターとか超カンタンに作れる！(カウンター・・・？)</li>
+<li>PHPとは → LAMP、初心者でもできる
+<ul>
+<li>レガシーコードがやばい</li>
+<li>PHP はテンプレートエンジン？ → はい</li>
+<li>カウンターとか超カンタンに作れる！(カウンター・・・？)</li>
+</ul></li>
 <li>テンプレにとりあえずコード突っ込めば動かせる</li>
-<li>MODERN PHPとは？ – オブジェクト指向、ライブラリ、Heroku、CI</li>
-<li>WEB 開発 – composer (cartonみたいな) でWAFをインストール – Sinatraっぽい – PHPだけで開発サーバ立つ (5.4移行)</li>
+<li>MODERN PHPとは？
+<ul>
+<li>オブジェクト指向、ライブラリ、Heroku、CI</li>
+</ul></li>
+<li>WEB 開発
+<ul>
+<li>composer (cartonみたいな) でWAFをインストール</li>
+<li>Sinatraっぽい</li>
+<li>PHPだけで開発サーバ立つ (5.4移行)</li>
+</ul></li>
 <li>Macには初めから入っている。使える</li>
-<li>クラスのロード – 昔はrequire_onceを大量に書いていたが、今はオートロード</li>
-<li>規約がなかった – Net_services_Twitter とか – ネームスペースはバックスペース区切り</li>
-<li>PSR : PHPの規約 – Loggerのインタフェースとか</li>
-<li>クラス : namespaceを定義して、クラスを普通に定義。継承はextends – Blessはない。Javaチック</li>
-<li>HTMLはどこに書くのか？ – テンプレートエンジンであるPHPで書かれた安全なPHPエンジンで(！？)</li>
-<li>型ヒント : 引数に型を書ける – 補完がガンガンきいてよい。ただし、classとArrayのみ</li>
+<li>クラスのロード
+<ul>
+<li>昔はrequire_onceを大量に書いていたが、今はオートロード</li>
+</ul></li>
+<li>規約がなかった
+<ul>
+<li>Net_services_Twitter とか</li>
+<li>ネームスペースはバックスペース区切り</li>
+</ul></li>
+<li>PSR : PHPの規約
+<ul>
+<li>Loggerのインタフェースとか</li>
+</ul></li>
+<li>クラス : namespaceを定義して、クラスを普通に定義。継承はextends
+<ul>
+<li>Blessはない。Javaチック</li>
+</ul></li>
+<li>HTMLはどこに書くのか？
+<ul>
+<li>テンプレートエンジンであるPHPで書かれた安全なPHPエンジンで(！？)</li>
+</ul></li>
+<li>型ヒント : 引数に型を書ける
+<ul>
+<li>補完がガンガンきいてよい。ただし、classとArrayのみ</li>
+</ul></li>
 <li>例外クラスがある。finallyもある</li>
-<li>Standard PHP Library – イテレータや例外が定義されている</li>
+<li>Standard PHP Library
+<ul>
+<li>イテレータや例外が定義されている</li>
+</ul></li>
 <li>メタプログラミング: <strong>set() </strong>get()<strong>toString() </strong>clone</li>
 <li>password_hash : 安全。MD5とか使ってる場合じゃない</li>
 <li>Generatorもある</li>
 <li>配列リテラル [1, 2] (昔はarrayを直接書いてた)</li>
 <li>IDE(PHPStorm)がよくできている</li>
-<li>PHP5.6がリリースされた(Yay) – 余波でPHP5.3が終了</li>
-<li>最近のライブラリ – Packagist + Composer – packagist.org → RSSで監視すると便利 – ACMEが多い(hello worldも上がる)</li>
-<li>良さ気なのを紹介 – PhpMetrics – PHPCodeSniffer – PHP-CS-Fixer – bowerphp – pake : make – php-activerecord – php-SQL-Maker – react (AnyEventチック) – PHPPHP (PHPで実装したPHP)</li>
-<li>実行環境 – 実装はたくさんあるが – 本家, HHVM(hip hop vmかっこいいけど、まだまだつらい), ZEND, くらいが使える</li>
+<li>PHP5.6がリリースされた(Yay)
+<ul>
+<li>余波でPHP5.3が終了</li>
+</ul></li>
+<li>最近のライブラリ
+<ul>
+<li>Packagist + Composer</li>
+<li>packagist.org → RSSで監視すると便利</li>
+<li>ACMEが多い(hello worldも上がる)</li>
+</ul></li>
+<li>良さ気なのを紹介
+<ul>
+<li>PhpMetrics</li>
+<li>PHPCodeSniffer</li>
+<li>PHP-CS-Fixer</li>
+<li>bowerphp</li>
+<li>pake : make</li>
+<li>php-activerecord</li>
+<li>php-SQL-Maker</li>
+<li>react (AnyEventチック)</li>
+<li>PHPPHP (PHPで実装したPHP)</li>
+</ul></li>
+<li>実行環境
+<ul>
+<li>実装はたくさんあるが</li>
+<li>本家, HHVM(hip hop vmかっこいいけど、まだまだつらい), ZEND, くらいが使える</li>
+</ul></li>
 <li>mod_phpとmod_rewriteは柔軟。Apacheは手離れがいい</li>
-<li>nginxはネットワークが遅いモバイルには強い – htaccessを使いたいお客さんはいるので辛い</li>
-<li>PHPは遅いのが欠点 – plack 6225 #/sec (kazeburoパラメタ) – PHP 2943 #/sec – PHP(HHVS) 8132.90 #/sec</li>
-<li>PHPはWEBなら手軽。今風にも使える(みなさんなら) – レールが一切ないので、初心者はあっさり崖から落ちる</li>
+<li>nginxはネットワークが遅いモバイルには強い
+<ul>
+<li>htaccessを使いたいお客さんはいるので辛い</li>
+</ul></li>
+<li>PHPは遅いのが欠点
+<ul>
+<li>plack 6225 #/sec (kazeburoパラメタ)</li>
+<li>PHP 2943 #/sec</li>
+<li>PHP(HHVS) 8132.90 #/sec</li>
+</ul></li>
+<li>PHPはWEBなら手軽。今風にも使える(みなさんなら)
+<ul>
+<li>レールが一切ないので、初心者はあっさり崖から落ちる</li>
+</ul></li>
 <li>php the right way : PHPのよい情報源</li>
-<li>ゆるふわ暗黒PHP – 自動変換 – splitの闇 : preg_splitを使う – 返値の謎 : exitに文字列を渡すと挙動が違う – php.net : 評価が低いものは薄くなるように改修</li>
-<li>質疑応答 – Q. 例外のトラップは？ – A. tryとcatch – Q. try catch finallyはあるけど標準関数は例外吐かないのは改善された？ – A. スライド進めましょう</li>
-<li>エラー処理の闇 – 自前のエラーハンドリング関数を使って例外化する – FATALやPARSEなどはトラップできない – register_shutdown_function() → FATALで死ぬときも呼ばれるので、そこで回復しちゃう</li>
+<li>ゆるふわ暗黒PHP
+<ul>
+<li>自動変換</li>
+<li>splitの闇 : preg_splitを使う</li>
+<li>返値の謎 : exitに文字列を渡すと挙動が違う</li>
+<li>php.net : 評価が低いものは薄くなるように改修</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. 例外のトラップは？</li>
+<li>A. tryとcatch</li>
+<li>Q. try catch finallyはあるけど標準関数は例外吐かないのは改善された？</li>
+<li>A. スライド進めましょう</li>
+</ul></li>
+<li>エラー処理の闇
+<ul>
+<li>自前のエラーハンドリング関数を使って例外化する</li>
+<li>FATALやPARSEなどはトラップできない</li>
+<li>register_shutdown_function() → FATALで死ぬときも呼ばれるので、そこで回復しちゃう</li>
+</ul></li>
 <li>￥を織り交ぜた名前空間を作れる</li>
 </ul>
 <!--
-本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載していますので、併せてご覧ください。
+# 地域.pmミートアップ 2014
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
+
+
+# Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
+
+
+# hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
 -->
 
 
