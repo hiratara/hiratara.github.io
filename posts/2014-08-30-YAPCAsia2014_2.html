@@ -425,18 +425,131 @@
 <li>Yomitan.pm は9月下旬くらい。pmでの勉強会で得られた知識をgithubなどでシェアしたい</li>
 </ul></li>
 </ul>
-<!--
-## Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
-
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
-
-
-## hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」
-
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
--->
-
-
+<h2 id="andy-delcambreさんchanging-the-tires-on-a-moving-car-a-case-study-in-upgrading-legacy-architecture">Andy Delcambreさん「Changing the tires on a moving car: a case study in upgrading legacy architecture」</h2>
+<ul>
+<li>30万行がruby、perlは179行程度
+<ul>
+<li>ただ、Perlは重要なscript</li>
+</ul></li>
+<li>「git、githubを毎日使ってる人？」「すばらしいですね」</li>
+<li>githubのシステムは新しくしていっている</li>
+<li>git
+<ul>
+<li>高速に扱う必要がある</li>
+<li>DAG (directed acyclic graph)</li>
+<li>commit, tree, blobオブジェクト</li>
+<li>cat-fileでデリファレンスすると中が見れる</li>
+<li>ポインタを辿らないとコンテンツを見つけられない</li>
+<li>反復的lookupが効率の障害となる</li>
+</ul></li>
+<li>github で新しいリポジトリを作る
+<ul>
+<li>ローカルで作ったリポジトリをpushする</li>
+<li>これだけだとただのgit</li>
+<li>github の面白いところはforkとかcollaborateだけど</li>
+<li>担当しているのはデータのフェッチ</li>
+</ul></li>
+<li>1.5millionのpush、100million pull、27のファイルサーバ、100TB
+<ul>
+<li>シンプルってレベルじゃない！</li>
+<li>方法は常に変化していってる。マイグレーションを終わらせようとしているところ</li>
+</ul></li>
+<li>Grit
+<ul>
+<li>githubのリリースの10日前に開発された(2007年)</li>
+<li>Rubyのgitラッパー</li>
+<li>ローカルでしか動作しない(今は27台サーバがある)</li>
+</ul></li>
+<li>GFS
+<ul>
+<li>すべてのサーバが同じファイルサーバをシェアしているイメージ</li>
+<li>スケールしない</li>
+</ul></li>
+<li>Smoke
+<ul>
+<li>cloud上のGrit</li>
+<li>Chimmney : どこにファイルサーバがあるのか</li>
+<li>Chimmney はスケールしない</li>
+<li>アプリは書き換える必要がない修正だった</li>
+<li>複数のblobの転送が致命的となる</li>
+<li>Gritは毎回サーバに接続する</li>
+</ul></li>
+<li>ラウンドトリップとサーバへの接続の問題したい</li>
+<li>gitの歴史
+<ul>
+<li>Bitkeeper : gitの前のLinuxのカーネルのバージョン管理。OSSでない</li>
+<li>LinusがGitを作った</li>
+<li>linuxの管理に使ったので普及した</li>
+</ul></li>
+<li>Cだから共有ライブラリで簡単にリンクできるのでは？
+<ul>
+<li>gitはコマンドラインを前提</li>
+<li>そのため、エラーハンドリングやメモリ管理が手抜きでヤバイ</li>
+<li>gitはライセンスの問題もある</li>
+</ul></li>
+<li>libgit2
+<ul>
+<li>きちんとしたshared libraryにしたい</li>
+<li>LGPLでクリーンなライセンスに</li>
+<li>すべて1から書き直した</li>
+</ul></li>
+<li>JGit
+<ul>
+<li>libgit2の勢いがなかったので、Java実装が</li>
+<li>こちらのほうが充実してしまった</li>
+<li>githubはRubyだし・・・</li>
+</ul></li>
+<li>libgit2にフルタイムでコミット
+<ul>
+<li>マイクロソフトもメンテなで参加している(visual studioとか)</li>
+</ul></li>
+<li>Rugged
+<ul>
+<li>Rubyのラッパー</li>
+<li>Gritと構造は似ている</li>
+</ul></li>
+<li>Git-Raw
+<ul>
+<li>Perlのlibgit2バインディング</li>
+<li>パっと見だとうまく動きそうだけど、よく知らん</li>
+</ul></li>
+<li>GitRPC
+<ul>
+<li>Ruggedに対するSmoke的なもの</li>
+<li>cachingができる</li>
+<li>pluggable wire protocols : 正しくタギングする</li>
+<li>Encodingの問題を解決する</li>
+<li>gitはエンコーディングを無視する(stupid!)。Smokeも</li>
+</ul></li>
+<li>旧システムから新システムへシステムを入れ替える
+<ul>
+<li>ディスクアクセスの方法は同じなので、SmokeとGritRPCで分けなくていい</li>
+</ul></li>
+<li>Graphite : ラウンドロビンデータベース
+<ul>
+<li>すべてのコールの統計をとってる</li>
+<li>最初は、Smokeが50万コールでGitRPC20万コールほどだった</li>
+<li>最近では99.9%がGitRPCをコールするようになった</li>
+</ul></li>
+<li>残っているのはロングテールの部分</li>
+<li>Backscatter
+<ul>
+<li>モード1: コールされたメソッドの回数</li>
+<li>モード2: 少なくなったとわかったら tracing する</li>
+</ul></li>
+<li>新・旧を並列に走らせる
+<ul>
+<li>推測ではなく計測していく</li>
+<li>最後の0.1%になったら、丁寧にtracingする</li>
+</ul></li>
+<li>Git for Computer Scientists - gitがデータベースレイヤーでどう動いているか</li>
+</ul>
+<h2 id="tatsuro-hisamoriさんyapceurope-2014-に行ってきました">Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」</h2>
+<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<h2 id="hitode909さんperlの静的解析入門とperlリファクタリングツールappprtのご紹介">hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」</h2>
+<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> に掲載させて頂いてます。</p>
+<h2 id="lt">LT</h2>
+<p>こちらは、 <a href="http://gihyo.jp/news/report/01/yapcasia2014/0002">gihyo.jpさん</a> にも掲載させて頂いてます。</p>
 
         </div>
         <div id="footer">

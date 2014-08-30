@@ -258,7 +258,88 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
     - Fukuoka.pm は9月20日14時から。
     - Yomitan.pm は9月下旬くらい。pmでの勉強会で得られた知識をgithubなどでシェアしたい
 
-<!--
+## Andy Delcambreさん「Changing the tires on a moving car: a case study in upgrading legacy architecture」
+
+- 30万行がruby、perlは179行程度
+    - ただ、Perlは重要なscript
+- 「git、githubを毎日使ってる人？」「すばらしいですね」
+- githubのシステムは新しくしていっている
+- git
+    - 高速に扱う必要がある
+    - DAG (directed acyclic graph)
+    - commit, tree, blobオブジェクト
+    - cat-fileでデリファレンスすると中が見れる
+    - ポインタを辿らないとコンテンツを見つけられない
+    - 反復的lookupが効率の障害となる
+- github で新しいリポジトリを作る
+    - ローカルで作ったリポジトリをpushする
+    - これだけだとただのgit
+    - github の面白いところはforkとかcollaborateだけど
+    - 担当しているのはデータのフェッチ
+- 1.5millionのpush、100million pull、27のファイルサーバ、100TB
+    - シンプルってレベルじゃない！
+    - 方法は常に変化していってる。マイグレーションを終わらせようとしているところ
+- Grit
+    - githubのリリースの10日前に開発された(2007年)
+    - Rubyのgitラッパー
+    - ローカルでしか動作しない(今は27台サーバがある)
+- GFS
+    - すべてのサーバが同じファイルサーバをシェアしているイメージ
+    - スケールしない
+- Smoke
+    - cloud上のGrit
+    - Chimmney : どこにファイルサーバがあるのか
+    - Chimmney はスケールしない
+    - アプリは書き換える必要がない修正だった
+    - 複数のblobの転送が致命的となる
+    - Gritは毎回サーバに接続する
+- ラウンドトリップとサーバへの接続の問題したい
+- gitの歴史
+    - Bitkeeper : gitの前のLinuxのカーネルのバージョン管理。OSSでない
+    - LinusがGitを作った
+    - linuxの管理に使ったので普及した
+- Cだから共有ライブラリで簡単にリンクできるのでは？
+    - gitはコマンドラインを前提
+    - そのため、エラーハンドリングやメモリ管理が手抜きでヤバイ
+    - gitはライセンスの問題もある
+- libgit2
+    - きちんとしたshared libraryにしたい
+    - LGPLでクリーンなライセンスに
+    - すべて1から書き直した
+- JGit
+    - libgit2の勢いがなかったので、Java実装が
+    - こちらのほうが充実してしまった
+    - githubはRubyだし・・・
+- libgit2にフルタイムでコミット
+    - マイクロソフトもメンテなで参加している(visual studioとか)
+- Rugged
+    - Rubyのラッパー
+    - Gritと構造は似ている
+- Git-Raw
+    - Perlのlibgit2バインディング
+    - パっと見だとうまく動きそうだけど、よく知らん
+- GitRPC
+    - Ruggedに対するSmoke的なもの
+    - cachingができる
+    - pluggable wire protocols : 正しくタギングする
+    - Encodingの問題を解決する
+    - gitはエンコーディングを無視する(stupid!)。Smokeも
+- 旧システムから新システムへシステムを入れ替える
+    - ディスクアクセスの方法は同じなので、SmokeとGritRPCで分けなくていい
+- Graphite : ラウンドロビンデータベース
+    - すべてのコールの統計をとってる
+    - 最初は、Smokeが50万コールでGitRPC20万コールほどだった
+    - 最近では99.9%がGitRPCをコールするようになった
+- 残っているのはロングテールの部分
+- Backscatter
+    - モード1: コールされたメソッドの回数
+    - モード2: 少なくなったとわかったら tracing する
+- 新・旧を並列に走らせる
+    - 推測ではなく計測していく
+    - 最後の0.1%になったら、丁寧にtracingする
+- Git for Computer Scientists - gitがデータベースレイヤーでどう動いているか
+
+
 ## Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
@@ -267,4 +348,8 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 ## hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
--->
+
+
+## LT
+
+こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載させて頂いてます。
