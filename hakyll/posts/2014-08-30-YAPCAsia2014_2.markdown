@@ -162,12 +162,103 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 - \と￥を織り交ぜた名前空間を作れる
 
 
-<!--
 ## 地域.pmミートアップ 2014
 
-こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
+- 山手線沿線、または新宿まで20分の方々
+- 参加しているpm
+    - Hokkaido.pm, Hachioji.pm, Fukuoka.pm, Kansai.pm, Kyoto.pm, Niigata.pm, Yomitan.pm, Mishima.pm, Hachioji.pm, Yokohama.pm
+    - (Kokusaitenjijomae.pm)
+    - Kamakura.pmとかKushiro.pmとかSendai.pmとかShibuya.pmもある
+    - Yomitan.pm, Mishima.pm, Hachioji.pmはpm.orgに未登録
+- PMとは、Perl Mongers
+    - Perl Moduleが.pmファイルであることもかけてる
+- 自己紹介
+    - Hokkaido.pm : aloelightさん
+        - hokkaido.pm casualもやっていて毎月やってる
+        - 札幌に来るとラーメン食べられる
+        - 活イカを食う(イカも予約)
+        - 帰省に合わせて、年一回から二回、開催することが多い
+    - Hachioji.pm : uzullaさん
+        - 開催前のハッカソン
+        - 居酒屋でLTするのがメイン
+    - Yokohama.pm : yusukebeさん
+        - ラーメン食べ過ぎて中性脂肪を抑える薬をもらった
+        - 懇親飲み会前にラーメン行くメソッド
+        - 3ヶ月に一回開催
+    - Mishima.pm : dockechinさん
+        - ゆるキャラ「ミシマルクン」(銀杏らしい)
+        - こじんまりとした人数で距離感が近い
+        - 6人席に9人が参加
+    - Kyoto.pm : shiba.yu36さん
+        - 寺っぽいとこ
+        - 東京からJPA経由で講師を呼んでテックトーク
+        - 町家の貸し切ってハッカソンすることが多い
+        - 寺も貸しきれるらしい
+        - 観光地多い
+    - KANSAI.pm : 若林さん
+        - yusukebeさんのベストトークショーで開催した
+        - 夜の接待もある(?)
+        - ブログに書くまでがKansai.pm
+        - 大阪のYahoo!さんで開催した
+        - 阪神百貨店のイカ焼きを是非
+    - FUKUOKA.pm : 津留さん
+        - perl入学式、天神perl、が定期的に開催されている
+        - YAPC::Asiaレポートを発表する場にしている
+        - 0次会(勉強会)より1次回がメイン
+        - charsbarさんがすごくかっこよく映ってる
+    - Yomitan.pm : 横田さん
+        - メインはちゃたんちょう
+        - 主催は斉藤さん
+        - 一回のテーマは「system perlは使わないようにしよう」
+        - 二回のテーマは「インフラ関連の監視」
+        - 三回のテーマは「機械学習関連」
+        - 来月あたり第四回をやりたい
+    - Chiba.pm : PGRTさん
+        - ちばぴー
+        - 開催は不定期、元八幡(新宿から30分)
+        - 土曜日開催。全員LT。Perlの話3割
+        - Perlの話をしますというとざわつく
+        - マグロ、肉
+        - 10月11日土曜日(三連休初日)
+        - 「MySQL casualじゃないんですよね？」「それでもいい」
+    - Gotanda.pm : かるぱねらさん
+        - 3ヶ月に一回。6月に立ち上げ
+        - 平日の夜に集まって軽くトークして軽く飲みに
+        - 9/17 に第二回。 #gotandapm
+    - Niigata.pm : shinpei0213さん
+        - 新潟市より長岡市の開催が多い
+        - CPAN Author(HAYAJOさん)を擁する
+        - 魚も日本酒も美味しい
+- 自慢できること
+    - Perl入学式はKansai.pm発祥。世界進出するはず
+    - Niigata.pmは高専からの受け入れが多い大学があり、新潟出身の若いhackerは多い
+    - Fukuoka.pmはコアユーザがヘビーなやりとりをしている会だったが、初級中級上級にうまく別れた
+- Perl casual (ゆーすけべーさん)
+    - ハッカーだけじゃなく、俺トクなもの作った人でも出てこれる場
+    - ドメインが失効して出会い系サイトになったけど
+- JPAとは
+    - YAPCを個人でやると、赤字・黒字の時に面倒だから作った箱でもある
+    - JPA講師派遣精度 : 地方で呼びたい人が居れば、旅費を補助
+- JPAに一言
+    - Kyoto.pmは2〜3回使ってる。発表者を集めるのが大変なので
+    - Hokkaido.pmはクリスマス、お盆の時に帰省のときに合わせることも。講師派遣も便利
+    - 「地方PMから東京などの勉強会に参加して、戻ってシェアするような制度はどうか」「検討する」
+- ライバル視してるPM
+    - Niigata.pm は Hokkaido.pm をライバル視してる (美味しいものは対等。観光資源が負けてる)
+        - Hachioji.pm の緩さにはかなわない
+- 次回開催と野望は
+    - Hachioji.pmは毎月開催なので安心(今日も実はHachioji.pmです！)。野望はPHP化
+    - Yokohama.pmはまこぴーさん任せ。実験的な試みをやりたい
+    - Hokkaido.pmは11月くらいに開催したい。帰省日に合わせたりします
+    - Niigata.pmは年内に
+    - Mishima.pmは年内に。地元の人をもっと増やしたい
+    - Kyoto.pmは京都に来たいという人がいれば。寺ハッカソンを開催したい
+    - Kansai.pmは9月はダメだったので、ベストトークショーの人を狙う。YAPC::Asia Osakaやりたい
+    - Chiba.pm は10月11日。5:5くらいでPerlを話を
+    - Fukuoka.pm は9月20日14時から。
+    - Yomitan.pm は9月下旬くらい。pmでの勉強会で得られた知識をgithubなどでシェアしたい
 
-
+<!--
 ## Tatsuro Hisamoriさん「YAPC::Europe 2014 に行ってきました」
 
 こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。
