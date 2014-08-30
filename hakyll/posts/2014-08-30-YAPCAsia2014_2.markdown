@@ -4,6 +4,94 @@ title: 今日は YAPC::Asia Tokyo 2014 の２日目です
 
 昨日HUBの閉店時間までのんびりしてしまいましたが、無事に[２日目](http://yapcasia.org/)を迎えております。
 
+
+# Daisuke Makiさん「オープンソースの開発現場 - Perl 5.20 のSubroutine Signaturesが来るまでの奮闘の軌跡」
+
+本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載していますので、併せてご覧ください。
+
+
+# うずらさん「半端なPHPDisでPHPerに陰で笑われないためのPerl Monger向け最新PHP事情（5.6対応）」
+
+- ゆるふわ暗黒PHP？
+- PHPとは → LAMP、初心者でもできる
+-- レガシーコードがやばい
+-- PHP はテンプレートエンジン？ → はい
+-- カウンターとか超カンタンに作れる！(カウンター・・・？)
+- テンプレにとりあえずコード突っ込めば動かせる
+- MODERN PHPとは？
+-- オブジェクト指向、ライブラリ、Heroku、CI
+- WEB 開発
+-- composer (cartonみたいな) でWAFをインストール
+-- Sinatraっぽい
+-- PHPだけで開発サーバ立つ (5.4移行)
+- Macには初めから入っている。使える
+- クラスのロード
+-- 昔はrequire_onceを大量に書いていたが、今はオートロード
+- 規約がなかった
+-- Net_services_Twitter とか
+-- ネームスペースはバックスペース区切り
+- PSR : PHPの規約
+-- Loggerのインタフェースとか
+- クラス : namespaceを定義して、クラスを普通に定義。継承はextends
+-- Blessはない。Javaチック
+- HTMLはどこに書くのか？
+-- テンプレートエンジンであるPHPで書かれた安全なPHPエンジンで(！？)
+- 型ヒント : 引数に型を書ける
+-- 補完がガンガンきいてよい。ただし、classとArrayのみ
+- 例外クラスがある。finallyもある
+- Standard PHP Library
+-- イテレータや例外が定義されている
+- メタプログラミング: __set() __get()__toString() __clone
+- password_hash : 安全。MD5とか使ってる場合じゃない
+- Generatorもある
+- 配列リテラル [1, 2] (昔はarrayを直接書いてた)
+- IDE(PHPStorm)がよくできている
+- PHP5.6がリリースされた(Yay)
+-- 余波でPHP5.3が終了
+- 最近のライブラリ
+-- Packagist + Composer
+-- packagist.org → RSSで監視すると便利
+-- ACMEが多い(hello worldも上がる)
+- 良さ気なのを紹介
+-- PhpMetrics
+-- PHPCodeSniffer
+-- PHP-CS-Fixer
+-- bowerphp
+-- pake : make
+-- php-activerecord
+-- php-SQL-Maker
+-- react (AnyEventチック)
+-- PHPPHP (PHPで実装したPHP)
+- 実行環境
+-- 実装はたくさんあるが
+-- 本家, HHVM(hip hop vmかっこいいけど、まだまだつらい), ZEND, くらいが使える
+- mod_phpとmod_rewriteは柔軟。Apacheは手離れがいい
+- nginxはネットワークが遅いモバイルには強い
+-- htaccessを使いたいお客さんはいるので辛い
+- PHPは遅いのが欠点
+-- plack 6225 #/sec (kazeburoパラメタ)
+-- PHP 2943 #/sec
+-- PHP(HHVS) 8132.90 #/sec
+- PHPはWEBなら手軽。今風にも使える(みなさんなら)
+-- レールが一切ないので、初心者はあっさり崖から落ちる
+- php the right way : PHPのよい情報源
+- ゆるふわ暗黒PHP
+-- 自動変換
+-- splitの闇 : preg_splitを使う
+-- 返値の謎 : exitに文字列を渡すと挙動が違う
+-- php.net : 評価が低いものは薄くなるように改修
+- 質疑応答
+-- Q. 例外のトラップは？
+-- A. tryとcatch
+-- Q. try catch finallyはあるけど標準関数は例外吐かないのは改善された？
+-- A. スライド進めましょう
+- エラー処理の闇
+-- 自前のエラーハンドリング関数を使って例外化する
+-- FATALやPARSEなどはトラップできない
+-- register_shutdown_function() → FATALで死ぬときも呼ばれるので、そこで回復しちゃう
+- \と￥を織り交ぜた名前空間を作れる
+
+
 <!--
 本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) にも掲載していますので、併せてご覧ください。
 -->
