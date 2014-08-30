@@ -7,7 +7,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 本日も一部の内容は [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) にも掲載していますので、併せてご覧ください。
 
 
-# オープニング / yusukebeさん
+## オープニング / yusukebeさん
 
 - みなさんが作る会です
 - JPAの"和田"さんです
@@ -22,7 +22,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - ハッシュタグは [#yapcasia](https://twitter.com/search?q=%23yapcasia) 。ブログもね！
 
 
-# Satoshi Suzukiさん「インフラエンジニア(狭義)は死んだ 」
+## Satoshi Suzukiさん「インフラエンジニア(狭義)は死んだ 」
 
 - プログラミングスキルのないエンジニアは死ぬのか
 - フルスタックエンジニアになろうという話ではない
@@ -87,7 +87,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - A. 前職ではコミュニケーションが難しいことがあった。アプリの人もインフラを知るといい
 
 
-# Daisuke Makiさん「Go For Perl Mongers」
+## Daisuke Makiさん「Go For Perl Mongers」
 
 - みんなで発声練習してください「YAPC大好き！」
 - Go を初めて1年弱。10万行くらい書いた
@@ -148,7 +148,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - まとめ: goを書くときは考え方を買える。「goに入りてはgoに従え」
 
 
-# Tokuhiro Matsunoさん「お待たせしました。Perl で BDD を簡単に実践する最高にクールなフレームワークができました」
+## Tokuhiro Matsunoさん「お待たせしました。Perl で BDD を簡単に実践する最高にクールなフレームワークができました」
 
 - 英題「Perl and testing libraries」
 - TDDでやってる人 → 一人
@@ -190,7 +190,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - Test::Kantan はコントリビュータを募集中
 
 
-# Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
+## Taiki Kawakamiさん「Perl::Lint - Yet Another Perl Source Code Linter」
 
 - いきなり新バージョンをリリース
 -- テストFAIL → リリース断念
@@ -272,7 +272,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 <!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。-->
 
 
-# hakobeさん「Scala In Perl Company : Hatena」
+## hakobeさん「Scala In Perl Company : Hatena」
 
 - Hatena はほぼすべてのプロダクトがPerl
 - なぜPerlか？
@@ -317,7 +317,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - 型システムは最高
 
 
-# Lyo Katoさん「O2O/IoT/Wearable時代におけるWeb以外のネットワーク技術入門」
+## Lyo Katoさん「O2O/IoT/Wearable時代におけるWeb以外のネットワーク技術入門」
 
 - EventHub系ツール、サービス
     - IFTTT, PubSub(MQTT)
@@ -394,7 +394,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - 相互作用を考えると面白い
 
 
-# Kenichi Ishigakiさん「Get a kick out of CPAN」
+## Kenichi Ishigakiさん「Get a kick out of CPAN」
 
 - CPANから刺激を受けてモジュールを書きましょう
     - Dave Crossのポスト → perlを評価しているのは内部のコミュニティ
@@ -469,9 +469,9 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 <!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0001) に掲載させて頂いてます。 -->
 
 
-# LT
+## LT
 
-## maka2_donzoko@twitterさん「同人活動の報告と今後の展望」
+### maka2_donzoko@twitterさん「同人活動の報告と今後の展望」
 
 - 今日は菊池真さんの誕生日
 - コミケ前はAcmeモジュールに向き合う
@@ -488,7 +488,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - Acme大全　全巻
 
 
-## charsbar@githubさん「top 10 kwalitative japanese authors 2014」
+### charsbar@githubさん「top 10 kwalitative japanese authors 2014」
 
 - 今年は、今年リリースしてない方は省略
 - 3位 HAYAJOさん 2位 YAKEXさん 1位 BAYASHIさん
@@ -496,7 +496,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - META.json のバージョンは2だと、ライセンスがリストなので注意
 
 
-## shoichikaji@githubさん「Relocatable Perl」
+### shoichikaji@githubさん「Relocatable Perl」
 
 - 何度もperlをビルドするのがメンドイ
 - 古いsystem perlはちょっと・・・
@@ -510,7 +510,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - ダウンロードして解答するだけ
 
 
-## __papix__@twitterさん「perl入学式 2014年度中間報告」
+### __papix__@twitterさん「perl入学式 2014年度中間報告」
 
 - 東京、大阪に加えて、福岡でも開催
 - 福岡のスタッフさんが増えた
@@ -523,12 +523,12 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - 始めたい人は来てね
 
 
-## hiratara@githubさん「Lens : Smart setter for immutable data」
+### hiratara@githubさん「Lens : Smart setter for immutable data」
 
 自分のトークでした。
 
 
-## gugod@twitterさん「Beyond Civic Hacking」
+### gugod@twitterさん「Beyond Civic Hacking」
 
 こちら聞き取れませんでしたが、[懇親会の時にgugodさんに解説して頂き](http://hiratara.github.io/posts/2014-08-29-YAPCAsia2014_g0v.html)ました。
 
@@ -536,7 +536,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - ゴーン(時間切れ)
 
 
-## shuhei.tanuma@facebookさん「OSSのりそうとげんじつ」
+### shuhei.tanuma@facebookさん「OSSのりそうとげんじつ」
 
 - 承認欲求とは違うと思ってる
 - 自分の考えたアイデアで問題を解決することが楽しい
@@ -553,7 +553,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - メンテナンスは難しい xhprofすら・・・
 
 
-## catatsuy@twitterさん「新卒インフラエンジニアが・・・」
+### catatsuy@twitterさん「新卒インフラエンジニアが・・・」
 
 - 代表的perl企業
     - pixivはすべて小文字です
@@ -563,7 +563,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
     - ページキャッシュを Sys::PageCache で使用しないログのページを削除
 
 
-## kazeburo@githubさん「Web Framework Benchmarks とPerlの現状報告会」
+### kazeburo@githubさん「Web Framework Benchmarks とPerlの現状報告会」
 
 - Techempower社が21言語、100近いWebアプリケーションのフレームワークのベンチマークを
 - 項目が色々あり、全部実装しなくていい
@@ -578,7 +578,7 @@ title: 今日は YAPC::Asia Tokyo 2014 の１日目です
 - WAFを作ったらpull-reqするとよさげ
 
 
-## bayashi@twitterさん「YAPC::Asia Ramen Challenge」
+### bayashi@twitterさん「YAPC::Asia Ramen Challenge」
 
 - 日吉はラーメン天国
 - 家系が充実
