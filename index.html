@@ -64,8 +64,73 @@
 <li>悔しい5人と飛び入りLT</li>
 <li>乾杯！</li>
 </ul>
+<h2 id="ytnobody-tsucchi-さんこれはormですか-いいえotogiriです---基礎編"><span class="citation">@ytnobody</span> &amp; <span class="citation">@tsucchi</span> さん｢これはORMですか? いいえOtogiriです - 基礎編｣</h2>
+<h3 id="ytnobodyさん"><span class="citation">@ytnobodyさん</span></h3>
+<ul>
+<li>これゾン関係ない</li>
+<li>DBIx::Sunny + SQL::Maker</li>
+<li>ORM
+<ul>
+<li>車輪の再発明。麻疹の一種</li>
+</ul></li>
+<li>動機
+<ul>
+<li>TengはSchema書くのがおっくう</li>
+<li>TengはSchema::Dumperで自動生成できる</li>
+<li>自動生成されたコードに TYPE =&gt; 4 みたいなマジックナンバーが</li>
+<li>SQL::Translator::Producer::Teng でよくなる</li>
+<li>テーブル変更頻繁だし、そこに手間かけたくない</li>
+</ul></li>
+<li>OogiriはSchmaがないので、面倒事がない
+<ul>
+<li><code>strict =&gt; 0</code> を指定しないと、Hash-refが食わせられなかったり</li>
+<li>select, updateはTengっぽい</li>
+<li>transactionやinflateのサポート</li>
+</ul></li>
+<li>デフォルトではstrict 1
+<ul>
+<li>decode_json したものは食わせられない</li>
+<li>SQL::QueryMakerが提供する関数群がexportされるので、それを使う</li>
+</ul></li>
+<li>行数少ない。合計で200行以下</li>
+</ul>
+<h3 id="tsucchiさん-otogiriの話応用編"><span class="citation">@tsucchiさん</span> Otogiriの話応用(?)編</h3>
+<ul>
+<li>SQL::Executor みたいの作ってた
+<ul>
+<li>似てるけど、DBIx::Sunnyベースじゃない</li>
+<li>一年くらいOtogiriに乗っかってる</li>
+</ul></li>
+<li>Otogiri::Plugin
+<ul>
+<li><code>Otogiri::Plugin::DeleteCascade</code> → FKを辿って親も消す。<code>delete_cascade()</code></li>
+<li>Otogiriの名前空間にメソッド生やす</li>
+<li>TableInfo (show tables), BulkInsert, WueryWithNamedPlaceholder</li>
+</ul></li>
+<li>OtogiriとReplyの組み合わせ
+<ul>
+<li>Reply は irb 的なの。repl</li>
+<li>Otogiri::Plugin::DataDumperAutoEncode → 自動でエンコード</li>
+<li>Reply::Plugin::ORM → Reply環境でotogiriが使える</li>
+</ul></li>
+<li>デモ
+<ul>
+<li>TableInfo, Desc, Selectの例</li>
+<li>Delete_cascadeも便利</li>
+</ul></li>
+<li>oracleのクライアントの代わりに使ったりinflateと組み合わせると便利かもね</li>
+<li>今後
+<ul>
+<li>Pluginで便利なものはコアに引き上げたいな</li>
+<li>Pluginのグルーピングしたいな</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. Tengのスキーマローダーとか使えばいい。O/Rマッパー書く人なら知ってるよね</li>
+<li>A. 麻疹なんで</li>
+</ul></li>
+</ul>
 <!--
-## @ytnobody & @tsucchi  さん｢これはORMですか? いいえOtogiriです｣
 ## @__papix__  さん｢帰ってきたPerCUDA 〜PerlとGPGPUが出会い, そして未来へ〜｣
 ## @punytan  さん｢( ✌'ω')✌ 楽しいモデル層開発｣
 ## @xtetsuji  さん｢今に伝えるメールの技術｣
