@@ -126,13 +126,168 @@
 </ul></li>
 <li>質疑応答
 <ul>
-<li>Q. Tengのスキーマローダーとか使えばいい。O/Rマッパー書く人なら知ってるよね</li>
+<li>Q. Tengのスキーマローダーとか使えばいい。O/Rマッパー書く人なら知ってるよね (<a href="https://twitter.com/tokuhirom/status/507129417852674049">ニュアンス違いそうです</a>、すみません)</li>
 <li>A. 麻疹なんで</li>
 </ul></li>
 </ul>
 <h2 id="papix__-さん帰ってきたpercuda-perlとgpgpuが出会い-そして未来へ"><span class="citation">@__papix__</span> さん｢帰ってきたPerCUDA 〜PerlとGPGPUが出会い, そして未来へ〜｣</h2>
+<ul>
+<li>画面つながらない → 再起動したら直った！</li>
+<li>1年前にPerCUDA構想の話をした
+<ul>
+<li>PerlのコードのみでGPGPUをつくろうとした</li>
+<li>一ヶ月でできた→卒業</li>
+<li>職質テックトークのmoznionさんの会を参照</li>
+</ul></li>
+<li>YAPCのトークで落選した</li>
+<li>GPGPUへの注目
+<ul>
+<li>64〜128個のコア「今は4000以上あるよ！ちゃんと調べて！！」</li>
+<li>EC2でもある（高い）</li>
+</ul></li>
+<li>CUDA、OpenCLなどがある
+<ul>
+<li>静的型付けになっちゃう</li>
+<li>知識必要</li>
+</ul></li>
+<li>スクリプト言語でのマッピング (Ruby、Python、Perlなど)
+<ul>
+<li>楽なんじゃね？</li>
+<li>PyCUDA、Pynvvm は有名</li>
+<li>ParaRuby, Ikra(RubyコードからCを自動生成</li>
+</ul></li>
+<li>Perl
+<ul>
+<li>KappaCUDA、ExtUtils::nvcc、OpenCL、CUDA::Minimal</li>
+<li>PerCUDA → PerlのコードをGPUコードに自動変換
+<ul>
+<li>GPUないときは、pure perlで実行(MBAにはないよ)</li>
+<li>1200倍高速に！</li>
+</ul></li>
+</ul></li>
+<li>CPU側処理とGPU側処理を切り分けて実装する必要
+<ul>
+<li>CPUとGPUのメモリが共通ではないので</li>
+</ul></li>
+<li>CUDA
+<ul>
+<li>NVIDIAが提供するGPGPUフレームワーク</li>
+<li>CUDA C言語とCUDA API</li>
+<li>NVCCコンパイラもある</li>
+<li>llvmを使ってるので、通常のCやFortranでも使える</li>
+</ul></li>
+<li>LLVM
+<ul>
+<li>Clang</li>
+<li>LLVM IRを介すので、言語、アーキテクチャに依存しない</li>
+<li>変換フェーズでの最適化がいい感じ</li>
+</ul></li>
+<li>Compiler::CodeGenerator::LLVM → Perl コードをLLVM IRへ
+<ul>
+<li>使えない構文が多いので見送り</li>
+</ul></li>
+<li>PerCUDA
+<ul>
+<li>変換系と実行系にわかれている</li>
+<li>PTXに変換して、GPU実効しない場合はPerlの通常の関数を呼ぶ</li>
+<li>正規表現でCに変換している(！)</li>
+<li>GPUでじっこうした結果をまたPerlでラップする</li>
+<li>CUDAのAPIでGPUを操作</li>
+</ul></li>
+<li>1024x1024の行列の乗算は1000倍以上(生CUDAの方が5倍くらい速いけど)
+<ul>
+<li>Perlのデータ変換が遅い</li>
+</ul></li>
+<li>極悪な正規表現があっても大学院は終了できる</li>
+<li>今後
+<ul>
+<li>GPUの値段が下がっている</li>
+<li>Imager的なものをGPUでやろうとしてたけど</li>
+<li>GPGPU坂をよ</li>
+</ul></li>
+<li>質疑応答
+<ul>
+<li>Q. OpenCLの予定は？</li>
+<li>A. ないです</li>
+<li>Q. 型あまりよくないですよ</li>
+<li>A. 型ないと動かないですよ</li>
+<li>Q. あの正規表現ずっとあるんですけどなんとかならないですか</li>
+<li>A. 時間がなかったのです</li>
+</ul></li>
+</ul>
+<h2 id="punytan-さんmodel-layer-development-tips"><span class="citation">@punytan</span> さん｢Model Layer Development Tips｣</h2>
+<ul>
+<li>バリデーション、DB、テストをなんとかする</li>
+<li>バリデーション
+<ul>
+<li>Mouse::Util::TypeConstraints</li>
+<li>subtypeを使って、文字列や自然数などを</li>
+</ul></li>
+<li>Data::Validatorを使うとよい</li>
+<li>Internals::SvREADONLY は悲しいことになる
+<ul>
+<li>NoRestricted を使うといい</li>
+<li>ないキーにアクセスすると落ちる</li>
+<li>「それをチェックしたいからそうしてるのでは」「xorとかしているときは厳しい」</li>
+</ul></li>
+<li>SQLの生成にはSQL::Formatを使う</li>
+<li>DBIx::HandlerでDBに接続する
+<ul>
+<li>コネクションハンドリング、scopeベース</li>
+<li>fork safeなのでpreforkの時は必須</li>
+<li>txnメソッドでトランザクション</li>
+</ul></li>
+<li>DBIのマニアックなメソッド
+<ul>
+<li>selectrow_<em>ref, selectall_</em>ref</li>
+</ul></li>
+<li>DBIx::QueryLog
+<ul>
+<li>開発中に、どんなクエリを出してるか見る</li>
+<li>colorとかcompactとかexplainは便利</li>
+</ul></li>
+<li>テスト → コンパイル、データ、prove、高速化
+<ul>
+<li>Test::LoadAllModules → 全部ロードしてコンパイルチェック</li>
+<li>Test::MOre、Test::Deep、Test::Deep::Matcher → データのチェック
+<ul>
+<li>superhashofとか</li>
+</ul></li>
+<li>Test::Pretty → proveの結果を見やすく。<code>prove -Pretty</code></li>
+<li>Test::Docker::MySQL → Dockerコンテナでテストを速く
+<ul>
+<li><code>$guard-&gt;get_port</code> でおｋ</li>
+<li>スキーマやフィクスチャを事前用意しておくとよい</li>
+</ul></li>
+</ul></li>
+<li>Alpaca.pm
+<ul>
+<li>モデルフレームワーク</li>
+<li>Proof of Conceptを実装</li>
+<li>モデルにフォーカス</li>
+<li>大量のデータベースを扱える(スケーラブル)</li>
+<li>ビルトインのテストフレームワーク</li>
+</ul></li>
+<li>例えば、ブログの記事の読み込み
+<ul>
+<li>DB定義、型のバリデーション、ロジックを書く</li>
+<li>テスト → テーブルロード、実行</li>
+<li>cmpとかis_deeplyとかはデータのdumpがでなくて不便</li>
+<li>スロークエリのハイライトとか</li>
+<li>kamipoさんがmysql casualで話してたアレ（？）を使いたい</li>
+</ul></li>
+<li>デモ → さっきまでは動いてたんだけど</li>
+<li>質疑応答
+<ul>
+<li>Q. Test::DockerMysqlDは使ってます?</li>
+<li>A. 今はまだ。使えると思う</li>
+<li>Q. セットアップが面倒なのはどうする？</li>
+<li>A. 頑張る</li>
+<li>Q. Test::Prettyを使うと壊れてしまうようなテストはどうする？</li>
+<li>A. そういうときはTest::Prettyを使わない</li>
+</ul></li>
+</ul>
 <!--
-## @punytan  さん｢( ✌'ω')✌ 楽しいモデル層開発｣
 ## @xtetsuji  さん｢今に伝えるメールの技術｣
 ## @saisa6153 さん ｢今から始めるレガシーコード改善レポート｣
 ## LTタイム

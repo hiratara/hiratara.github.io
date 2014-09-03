@@ -54,16 +54,117 @@ title: 今日は YAPC::Asia 2014 Reject con の日です
     - Pluginで便利なものはコアに引き上げたいな
     - Pluginのグルーピングしたいな
 - 質疑応答
-    - Q. Tengのスキーマローダーとか使えばいい。O/Rマッパー書く人なら知ってるよね
+    - Q. Tengのスキーマローダーとか使えばいい。O/Rマッパー書く人なら知ってるよね ([ニュアンス違いそうです](https://twitter.com/tokuhirom/status/507129417852674049)、すみません)
     - A. 麻疹なんで
-
 
 ## @__papix__  さん｢帰ってきたPerCUDA 〜PerlとGPGPUが出会い, そして未来へ〜｣
 
+- 画面つながらない → 再起動したら直った！
+- 1年前にPerCUDA構想の話をした
+    - PerlのコードのみでGPGPUをつくろうとした
+    - 一ヶ月でできた→卒業
+    - 職質テックトークのmoznionさんの会を参照
+- YAPCのトークで落選した
+- GPGPUへの注目
+    - 64〜128個のコア「今は4000以上あるよ！ちゃんと調べて！！」
+    - EC2でもある（高い）
+- CUDA、OpenCLなどがある
+    - 静的型付けになっちゃう
+    - 知識必要
+- スクリプト言語でのマッピング (Ruby、Python、Perlなど)
+    - 楽なんじゃね？
+    - PyCUDA、Pynvvm は有名
+    - ParaRuby, Ikra(RubyコードからCを自動生成
+- Perl
+    - KappaCUDA、ExtUtils::nvcc、OpenCL、CUDA::Minimal
+    - PerCUDA → PerlのコードをGPUコードに自動変換
+        - GPUないときは、pure perlで実行(MBAにはないよ)
+        - 1200倍高速に！
+- CPU側処理とGPU側処理を切り分けて実装する必要
+    - CPUとGPUのメモリが共通ではないので
+- CUDA
+    - NVIDIAが提供するGPGPUフレームワーク
+    - CUDA C言語とCUDA API
+    - NVCCコンパイラもある
+    - llvmを使ってるので、通常のCやFortranでも使える
+- LLVM
+    - Clang
+    - LLVM IRを介すので、言語、アーキテクチャに依存しない
+    - 変換フェーズでの最適化がいい感じ
+- Compiler::CodeGenerator::LLVM → Perl コードをLLVM IRへ
+    - 使えない構文が多いので見送り
+- PerCUDA
+    - 変換系と実行系にわかれている
+    - PTXに変換して、GPU実効しない場合はPerlの通常の関数を呼ぶ
+    - 正規表現でCに変換している(！)
+    - GPUでじっこうした結果をまたPerlでラップする
+    - CUDAのAPIでGPUを操作
+- 1024x1024の行列の乗算は1000倍以上(生CUDAの方が5倍くらい速いけど)
+    - Perlのデータ変換が遅い
+- 極悪な正規表現があっても大学院は終了できる
+- 今後
+    - GPUの値段が下がっている
+    - Imager的なものをGPUでやろうとしてたけど
+    - GPGPU坂をよ
+- 質疑応答
+    - Q. OpenCLの予定は？
+    - A. ないです
+    - Q. 型あまりよくないですよ
+    - A. 型ないと動かないですよ
+    - Q. あの正規表現ずっとあるんですけどなんとかならないですか
+    - A. 時間がなかったのです
 
+## @punytan さん｢Model Layer Development Tips｣
+
+- バリデーション、DB、テストをなんとかする
+- バリデーション
+    - Mouse::Util::TypeConstraints
+    - subtypeを使って、文字列や自然数などを
+- Data::Validatorを使うとよい
+- Internals::SvREADONLY は悲しいことになる
+    - NoRestricted を使うといい
+    - ないキーにアクセスすると落ちる
+    - 「それをチェックしたいからそうしてるのでは」「xorとかしているときは厳しい」
+- SQLの生成にはSQL::Formatを使う
+- DBIx::HandlerでDBに接続する
+    - コネクションハンドリング、scopeベース
+    - fork safeなのでpreforkの時は必須
+    - txnメソッドでトランザクション
+- DBIのマニアックなメソッド
+    - selectrow_*ref, selectall_*ref
+- DBIx::QueryLog
+    - 開発中に、どんなクエリを出してるか見る
+    - colorとかcompactとかexplainは便利
+- テスト → コンパイル、データ、prove、高速化
+    - Test::LoadAllModules → 全部ロードしてコンパイルチェック
+    - Test::MOre、Test::Deep、Test::Deep::Matcher → データのチェック
+        - superhashofとか
+    - Test::Pretty → proveの結果を見やすく。`prove -Pretty`
+    - Test::Docker::MySQL → Dockerコンテナでテストを速く
+        - `$guard->get_port` でおｋ
+        - スキーマやフィクスチャを事前用意しておくとよい
+- Alpaca.pm
+    - モデルフレームワーク
+    - Proof of Conceptを実装
+    - モデルにフォーカス
+    - 大量のデータベースを扱える(スケーラブル)
+    - ビルトインのテストフレームワーク
+- 例えば、ブログの記事の読み込み
+    - DB定義、型のバリデーション、ロジックを書く
+    - テスト → テーブルロード、実行
+    - cmpとかis_deeplyとかはデータのdumpがでなくて不便
+    - スロークエリのハイライトとか
+    - kamipoさんがmysql casualで話してたアレ（？）を使いたい
+- デモ → さっきまでは動いてたんだけど
+- 質疑応答
+    - Q. Test::DockerMysqlDは使ってます?
+    - A. 今はまだ。使えると思う
+    - Q. セットアップが面倒なのはどうする？
+    - A. 頑張る
+    - Q. Test::Prettyを使うと壊れてしまうようなテストはどうする？
+    - A. そういうときはTest::Prettyを使わない
 
 <!--
-## @punytan  さん｢( ✌'ω')✌ 楽しいモデル層開発｣
 ## @xtetsuji  さん｢今に伝えるメールの技術｣
 ## @saisa6153 さん ｢今から始めるレガシーコード改善レポート｣
 ## LTタイム
