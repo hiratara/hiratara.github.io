@@ -488,15 +488,112 @@
 <li>業務との平行は避ける</li>
 </ul></li>
 </ul>
-<!--
-## LTタイム
-### @mala さん「」
-### @note103 さん「」
-### @karupanerura さん「」
-### @xaicron さん「」
--->
-
-
+<h2 id="ltタイム">LTタイム</h2>
+<h3 id="mala-さんhow-to-hack-metacpan.org"><span class="citation">@mala</span> さん「How to hack metacpan.org」</h3>
+<ul>
+<li>metacpan.orgでremote code executionができた
+<ul>
+<li>Plack::MiddleWare::Session::Cokkie miyagawaさんが長足でリリースした</li>
+<li>metacpanは遅かった</li>
+</ul></li>
+<li>Storableオブジェクト
+<ul>
+<li>任意のクラスのオブジェクトを復元できてしまう</li>
+<li>改ざんcokkieを送ってデシリアライズのタイミングでコード実行できてしまう</li>
+<li>HTTP::Session2 + Amon2 でも</li>
+</ul></li>
+<li>オブジェクトが復原されるということは、初期化処理、デストラクタの処理
+<ul>
+<li>オブジェクトでシリアライザは危険</li>
+<li>blessed hashは気軽に使わない</li>
+<li>JSONは？ → SQL injectionにつながることも</li>
+<li>overload 付けておくと、関連オブジェクトを読んでしまったり</li>
+</ul></li>
+<li>Storableのドキュメントに信頼できないものはだめって書かれた
+<ul>
+<li>デストラクタ実行ではできることは限られる</li>
+<li>デストラクタでコード実行できそうなものを探す</li>
+<li>ファイルへの書き込み → あった！ (目grepで探す)
+<ul>
+<li>ログとか、自動セーブ</li>
+</ul></li>
+</ul></li>
+<li>デモ : ローカルで動かすmetacpan
+<ul>
+<li>任意ファイルへの書き込みを利用して、トップページをdankogaiさんに書き換え</li>
+</ul></li>
+<li>Storableのコード実行は危険
+<ul>
+<li>コアのLWPに付属したものでそういうのがある</li>
+<li>情報の公開が適切か、相談中</li>
+</ul></li>
+<li>Amon2とPlack::Middleware::Sessionの該当バージョンを使ってる人は要対応</li>
+</ul>
+<h3 id="note103-さんはじまりのperl"><span class="citation">@note103</span> さん「はじまりのPerl」</h3>
+<ul>
+<li>音楽系の編集者</li>
+<li>THE FRENCH REVOLUTION (共著) → 編集DTPの基礎</li>
+<li>坂本さんのJ.S.Bachなど</li>
+<li>2008年の仕事
+<ul>
+<li>YAPCがやってた</li>
+<li>YAPCをTwitterで追いかけていた</li>
+<li>Perl Is unDeadが印象に残っていた</li>
+</ul></li>
+<li>面白いこと言う人はエンジニアだと思った</li>
+<li>初心者はいくら手を動かしてもわからない</li>
+<li>実践vimを献本企画で当選（異業種からで優遇）</li>
+<li>YAPC::Asia 2013のearly bird
+<ul>
+<li>これは出なかった</li>
+</ul></li>
+<li>Perl入学式に出会う
+<ul>
+<li>打ちのめされた</li>
+<li>moznionさんが「こんな感じだった」</li>
+</ul></li>
+<li>最後まで参加して、サポーターになった
+<ul>
+<li>Perl入学式でハマったところをブログに</li>
+<li>vimについても書いた</li>
+</ul></li>
+<li>振られて引き受けてはいたけど、選択は自分でしていた</li>
+<li>Acme::revealupのお陰でスライド使えた
+<ul>
+<li>作りすぎた</li>
+</ul></li>
+</ul>
+<h3 id="karupanerura-さんworkman"><span class="citation">@karupanerura</span> さん「Workman」</h3>
+<ul>
+<li>Workman – job que worker – gearman から q4mに変更するのが辛い→できるように – preforkはシグナルつかって辛い→よしなに</li>
+<li>デモ : ワークマンのCMを流しながら – 「透けてるターミナル初めて便利だと思った」 – Fileをqueとして使っている例 – gearmanに切り替える – 強制終了時にどういう処理をするか、例外を書く感じで書ける – 「本当は動くはずです」</li>
+</ul>
+<h3 id="xaicron-さんハッカドール作りました仮"><span class="citation">@xaicron</span> さん「ハッカドール作りました(仮)」</h3>
+<ul>
+<li>「史上空前のプレゼンをしてやるぜ」</li>
+<li>これをこの場に入れてくれた人にシールプレゼント(残り10枚)
+<ul>
+<li>美少女モバゲーのパンフレットも</li>
+</ul></li>
+<li>「欲しいー」「ま、あげないんだよね」</li>
+<li>ハッカドールのプロモーションビデオを鑑賞
+<ul>
+<li>(小道具にペンライトが)</li>
+<li>RECOMENDATION のスペルが間違えている(修正依頼中)</li>
+<li>動画のラストにxaicronさんの名前が入ってる</li>
+</ul></li>
+<li>最近の仕事
+<ul>
+<li>声優の選定、声優の収録、アニサマ</li>
+<li>YAPC行きたかったけど仕事だったので仕方ない</li>
+</ul></li>
+<li>声優ソムリエさいくろん → 17歳くらいの娘ときゃっきゃうふふ
+<ul>
+<li>Perlは歴史ある言語なので、やってるとこういう仕事もある</li>
+<li>弊社に入るとこういう仕事ができる可能性が</li>
+</ul></li>
+<li>YAPCで話すつもりだったけどめんどくさくなった</li>
+</ul>
 
 </div>
 
