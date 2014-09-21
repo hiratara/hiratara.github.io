@@ -62,7 +62,7 @@
 <li>Perl5.20
 <ul>
 <li>Post fix Deref $r-&gt;@*、CGI.pm</li>
-<li>シグネチャ sub foo (<span class="math">\(foo, bar) { \)</span>hoo + $bar; }</li>
+<li>シグネチャ sub foo ($foo, bar) { $hoo + $bar; }</li>
 </ul></li>
 <li>シグネチャ
 <ul>
@@ -113,7 +113,7 @@
 <li>論点
 <ul>
 <li><span class="citation">@_</span> は使用禁止？</li>
-<li><span class="math">\(_[0] = \)</span>foo した時の挙動 (呼び出し元の引数が変わるやつ)</li>
+<li>$_[0] = $foo した時の挙動 (呼び出し元の引数が変わるやつ)</li>
 </ul></li>
 <li>後方互換性が大切なため → 20年前のコードが動かないと怒られる</li>
 <li>Martini氏のコードではなく、それを批判していた人が書きなおしたものが入った
@@ -217,7 +217,7 @@
 <ul>
 <li>イテレータや例外が定義されている</li>
 </ul></li>
-<li>メタプログラミング: <strong>set() </strong>get()<strong>toString() </strong>clone</li>
+<li>メタプログラミング: __set() __get()__toString() __clone</li>
 <li>password_hash : 安全。MD5とか使ってる場合じゃない</li>
 <li>Generatorもある</li>
 <li>配列リテラル [1, 2] (昔はarrayを直接書いてた)</li>
@@ -607,8 +607,6 @@
 </ul></li>
 </ul>
 <!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。 -->
-
-
 <h2 id="hitode909さんperlの静的解析入門とperlリファクタリングツールappprtのご紹介">hitode909さん「Perlの静的解析入門とPerlリファクタリングツールApp::PRTのご紹介」</h2>
 <ul>
 <li>リファクタリング : 振る舞いを変えずにコードを綺麗に
@@ -666,8 +664,6 @@
 <li>2000行程度のリファクタリングも成功した</li>
 </ul>
 <!-- こちらは、 [gihyo.jpさん](http://gihyo.jp/news/report/01/yapcasia2014/0002) に掲載させて頂いてます。 -->
-
-
 <h2 id="lt">LT</h2>
 <h3 id="yappoさん-1minリクルーティング">Yappoさん / 1min「リクルーティング」</h3>
 <ul>
