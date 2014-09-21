@@ -108,7 +108,26 @@
 <li>関数は正規形なのか → lambdaのbody部で簡約されているものがあるとまずい　</li>
 <li><code>deepseq</code>がO(n)って何？→評価は終わってるけど、データ構造は辿らないとダメなので</li>
 </ul></li>
-<li>3章 評価戦略</li>
+<li>3章 評価戦略
+<ul>
+<li><code>Strategy</code>は型だけでなく値も保つことに注意</li>
+<li>「1つの<code>Strategy</code>に梱包？」 → “we’ve packaged it up as a Strategy”</li>
+</ul></li>
+<li>3.1 戦略の並列化</li>
+<li>3.2 リストを並列に評価する戦略</li>
+<li>3.3 例：K平均法
+<ul>
+<li>サンプル動かすなら、<code>cabal sandbox init</code> <code>cabal install --only-dependencies</code> <code>cabal build</code>がいい</li>
+</ul></li>
+<li>3.3.1 K平均法の並列化　</li>
+<li>3.3.2 性能と分析
+<ul>
+<li>少なくとも <code>-Nn</code> の指定した <code>n</code> のOSスレッドは走ってる(実際にはもっと多い)</li>
+<li>writeが並列だと影響しない？ → ハンドルに書くにはロックが必要なので影響する</li>
+<li><code>MVar</code>でとりあってるはず</li>
+<li>ログを吐くようなスレッドを作ればよい → 本の終盤では<code>IORef</code>を使うことになる</li>
+</ul></li>
+<li>3.3.4 粒度</li>
 </ul>
 
 </div>
