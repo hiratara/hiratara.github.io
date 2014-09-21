@@ -92,8 +92,20 @@
 <li><code>data Eval a</code> って右辺要らないの？ → 型定義のみ書いてるだけ</li>
 <li>「プログラムの残りは実行」とは？ → <code>f x</code>と<code>f y</code>も並列に走るという意味</li>
 <li>p.18 s/<code>RTS -N2</code>/<code>+RTS -N2</code>/</li>
+</ul></li>
+<li>2.3 例：並列数独ソルバ
+<ul>
 <li>p.21 s/2つのが出力/2つが出力/</li>
 </ul></li>
+<li>2.4 Deepseq
+<ul>
+<li><code>!</code> と <code>seq</code>の違いは？ → シンタクスシュガー</li>
+<li><code>NFData</code>って自動で<code>deriving</code>できないの？ → すべての型クラスは自動導出できるはず。<code>deepseq-generics</code>がある</li>
+<li><code>deepseq</code>は自分で実装することはないでしょう</li>
+<li>関数は正規形なのか → lambdaのbody部で簡約されているものがあるとまずい　</li>
+<li><code>deepseq</code>がO(n)って何？→評価は終わってるけど、データ構造は辿らないとダメなので</li>
+</ul></li>
+<li>3章 評価戦略</li>
 </ul>
 
         </div>
