@@ -82,6 +82,21 @@
 <li>p. 6 s/データフロー並列/4章 データフロー並列/</li>
 <li>不安定とは？ →性能が不安定という意味</li>
 </ul></li>
+<li>2章 基本の並列性:Evalモナド</li>
+<li>2.1 遅延評価と弱頭部正規形
+<ul>
+<li>p.10の|はなに？ → (box化された)Integerの意</li>
+<li>:sprintのsは？ simplified</li>
+<li>p.9 の例とかで <code>:: Int</code> がないと <code>x</code> が <code>_</code> になるんだけど？ → ghcの7.8系から</li>
+<li>p.12 <code>z = _</code> になるんじゃないの？ → データコンストラクタは遅延されない</li>
+</ul></li>
+<li>2.2 Evalモナド、rpar、rseq
+<ul>
+<li><code>data Eval a</code> って右辺要らないの？ → 型定義のみ書いてるだけ</li>
+<li>「プログラムの残りは実行」とは？ → <code>f x</code>と<code>f y</code>も並列に走るという意味</li>
+<li>p.18 s/<code>RTS -N2</code>/<code>+RTS -N2</code>/</li>
+<li>p.21 s/2つのが出力/2つが出力/</li>
+</ul></li>
 </ul>
 
 </div>
