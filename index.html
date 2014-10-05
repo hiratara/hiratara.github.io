@@ -45,6 +45,43 @@
             
 
 <div>
+  <h1><a href="./posts/2014-10-05-fairly_tmvar.html">Haskellによる並列・並行プログラミングの10.9</a></h1>
+
+<div class="info">
+    Posted on October  5, 2014
+    
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-10-05-fairly_tmvar.html" data-text="Haskellによる並列・並行プログラミングの10.9" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="/posts/2014-10-05-fairly_tmvar.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
+
+<p>公平性のある <code>TMVar</code> を実施しなさいというお題の<a href="https://github.com/hiratara/parconc-examples/commit/43f0be6ea3d39f6b277cb599f46cae1539ed0681">回答</a>を書いたので簡単に解説。</p>
+<p>例えば <code>putMVar</code> ですでに値が入っているとき、キューに <code>TVar</code> を突っ込んでおいてそのままブロックし、 <code>takeMVar</code> によって値が空になったら起こして欲しい。が、書籍にも書いてあるとおり、 <code>STM</code> モナドではブロックは <code>retry</code> なので、ブロックするとキューに <code>TVar</code> を突っ込んだってこともトランザクションの破棄によって捨てられてしまう。</p>
+<p>そこで、<code>STM</code>モナドではキューに突っ込むところまでやり、ブロックする処理は戻り値の <code>IO</code> アクションに任せることにするとうまくいく。以下の部分だ。</p>
+<pre><code>putTMVar :: Show a =&gt; TMVar a -&gt; a -&gt; STM.STM (IO ())
+...(snip)...
+    Just _  -&gt; do
+      t' &lt;- STM.newTVar (Just a)
+      STM.writeTVar queue (qs ++ [t'])
+      return $ do
+        STM.atomically $ do
+          tvar &lt;- STM.readTVar t'
+          case tvar of
+           Nothing -&gt; return ()
+           Just _ -&gt; STM.retry
+        return ()</code></pre>
+<p><code>t'</code>をキューに突っ込んだ後は、ブロックするための <code>IO</code> モナドを作っている。この <code>IO</code> 値内で <code>atomically</code> + <code>retry</code> させることでブロックを実現している。</p>
+<p>型が変わったせいで、利用側も若干めんどくさくなるが、原則 <code>join</code> で <code>atomically</code> の戻り値を潰すだけで問題ない。</p>
+<pre><code>    join . STM.atomically $ putTMVar done 1</code></pre>
+<pre><code>  n1 &lt;- join . STM.atomically $ takeTMVar done</code></pre>
+
+</div>
+
+
+
+<div>
   <h1><a href="./posts/2014-09-23-let_ghci_load_compiled_codes.html">cabal buildで作った*.oをcabal replで再利用させる</a></h1>
 
 <div class="info">
@@ -835,40 +872,6 @@ streamFold fn <span class="fu">!</span>acc instrm <span class="fu">=</span> <spa
 <li>yusukebeさんとmyfinderさんのおかげでした</li>
 <li>ビールなくなるまではどうぞ(後片付けは気にしつつ)</li>
 </ul>
-
-</div>
-
-
-
-<div>
-  <h1><a href="./posts/2014-08-30-YAPCAsia2014_feedback.html">YAPC::Asia Tokyo 2014 の感想</a></h1>
-
-<div class="info">
-    Posted on August 30, 2014
-    
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-08-30-YAPCAsia2014_feedback.html" data-text="YAPC::Asia Tokyo 2014 の感想" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="/posts/2014-08-30-YAPCAsia2014_feedback.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-</div>
-
-<p>レポートは十分過ぎるほど書いたので、個人的ベスト3を。</p>
-<ul>
-<li>1位 Go For Perl Mongers
-<ul>
-<li>自身の経験から得た知見を無駄なく伝えていてとても勉強になった</li>
-</ul></li>
-<li>2位 Get a kick out of CPAN
-<ul>
-<li>色々考えさせられた。Perlへの貢献について新しい視点をもらえた</li>
-</ul></li>
-<li>3位 オープンソースの開発現場
-<ul>
-<li>Perl 5.20にこんなドラマがあったとは知らなかった。映画化したい(言い過ぎ)</li>
-</ul></li>
-</ul>
-<p>お疲れ様でした！！ そしてgihyo.jpさんには今年も大変お世話になりました。</p>
 
 </div>
 
