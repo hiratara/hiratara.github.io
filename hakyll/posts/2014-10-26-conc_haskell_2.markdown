@@ -24,10 +24,13 @@ title: 今日は「第2回 「Haskellによる並列・並行プログラミン�
     * p.67 `ByteStrings` になってる
     * p.68 `sa.hs` ではなく `rsa.hs`
     * 試しに rsa-pipeline.hs の threadscope を動かしてみる
-    * 生産者が `Fork` を入れる。消費者が `fork` する。
+    * 生産者が `Fork` を入れる。消費者が `fork` する。[参考](http://hiratara.github.io/posts/2014-09-14-parallel-haskel-excersize.html)
 * 4.2.1 生産者の流量制限
 * 4.2.2 パイプライン並列の制限
 * 4.3 会議の時間割
     * p.69 「各パイプラインステージが単一のforkによるもので」は読み替える微妙な日本語？
     * p.72 `timetable` の定義が途中で切れてる？ → 以降に実装が続いていて、p.74で完成してる
     * p.74 「永遠に帰ってこない」は「永遠に返って来ない」？
+* 4.3.1 並列性の追加
+    * Pattern guards は Haskell2010 から入ってる
+    * 
