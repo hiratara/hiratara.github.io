@@ -56,7 +56,26 @@
 
 <p><a href="http://partake.in/events/8cb2c3a9-777d-450a-8e1c-350bbb1eb324">第2回 「Haskellによる並列・並行プログラミング」読書会</a>へ来ている。基本的に朗読形式なので、議論を中心にメモしておく。</p>
 <ul>
-<li>4章 データフロー並列:Parモナド</li>
+<li>4章 データフロー並列:Parモナド
+<ul>
+<li>p.59 <code>IVar i</code> より 「<code>IVar</code> の <code>i</code>」と書くべきではないか</li>
+<li>p.61 <code>put_</code> で速度が向上するのはなぜか → 評価済かどうか、データ構造を末端までなめなくていいため</li>
+<li><code>IVar</code> はなぜ <code>Eq</code> なの？</li>
+<li>実装を見ると <code>IORef</code> で実装されてる (via: http://hackage.haskell.org/package/monad-par-0.3.4.6/docs/src/Control-Monad-Par-Scheds-Direct.html#IVar )</li>
+</ul></li>
+<li>4.1 例:グラフの最短経路
+<ul>
+<li>グラフの番号は飛び飛びでもいいの？ → 多分連続してい</li>
+<li>ノードが連結してないとまずいのでは？ → 大きいウェイトで表せばいいでしょう</li>
+<li><code>k=0</code>のとき直接のノードのみになるとは？ → 経由がないので</li>
+<li>脱線: <code>Nothing</code> と <code>Just</code> に順序ついてるけど、逆にしたいとこもあるのでは？ → そういう <code>Down</code> 型がある</li>
+<li><code>Maybe</code> を使ってるけど、 <code>Maybe</code> と同じ性質を持ってるわけではないよね。ので <code>newtype</code> すべき</li>
+<li>Generalized newtype deriving拡張ってのがあるので、それで楽できる</li>
+<li>長さとは重みの合計？ → はい。微妙かも</li>
+<li><code>Data.IntMap.Strict</code> が新しいバージョンにはある</li>
+<li>畳み込みは結合的だと並列化できる？ → 結合則があればどこからでも</li>
+<li>なんで3.02倍？→4.17/1.38</li>
+</ul></li>
 </ul>
 
         </div>
