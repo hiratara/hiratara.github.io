@@ -136,7 +136,100 @@
 </ul></li>
 <li>Pのつく言語につかれた方はぜひいらしてください</li>
 </ul>
-<h2 id="dynalystが広告配信で使っている技術sprayakkakamonzabbix韓翔元さん">「Dynalystが広告配信で使っている技術(Spray×Akka×Kamon×Zabbix)」韓翔元さん</h2>
+<h2 id="dynalyst-scala-culture韓翔元さん">「Dynalyst Scala {Culture})」韓翔元さん</h2>
+<ul>
+<li>ノートとかメモっておいたけど消えたのでアドリブで</li>
+<li>Javaは8年、Scalaは1年</li>
+<li>Dynalyst “Dynamic Retargeting + Analyst”
+<ul>
+<li>スマホに特化したリターゲティング</li>
+<li>Scala 88.7%(前は90%あったんだけど・・・)、Rubyが9.6%</li>
+</ul></li>
+<li>bid, ad, 計測サーバは spray。その裏にakka。ログはredshiftへ
+<ul>
+<li>ログの最終形はakka(bidの最適化など)</li>
+</ul></li>
+<li>sprayの理由
+<ul>
+<li>ドキュメントが充実</li>
+<li>テストキットがいい</li>
+<li>ベンチマークも良い</li>
+<li>Scalaを使いたかった</li>
+</ul></li>
+<li>並行性 → 16コアを使い切れてる</li>
+<li>ExecutionContext(どのスレッドで実行するか)、Future。for記法使える</li>
+<li>spray-routing(他にspray-httpとかもある)
+<ul>
+<li>DSLっぽく見やすく書ける</li>
+<li><code>FutureDirectives</code>。akkaのthreadをブロッキングしない</li>
+<li><code>onComplete</code>で実装させて、<code>Success</code>と<code>Failure</code>でパターンマッチ(failureはno bid)</li>
+<li><code>Future[A&lt;:BidResponse]</code></li>
+</ul></li>
+<li>ひとつのFutureにすべての計算を入れるのは良くない</li>
+<li>Router, Logic, External Resourcesの3レイヤに分ける
+<ul>
+<li>スレッドをキックするディスパッチャが必要</li>
+<li>3つ一緒でもいいし、レイヤごとでも(dynalystはレイヤごとに最適化)</li>
+<li>レイヤのローカルスコープに、 <code>implicit val</code> で定義</li>
+</ul></li>
+<li>Futureのテスト → 別スレッドなので普通には無理
+<ul>
+<li>Specs2 を使う <code>Matcher[Future[T]]</code></li>
+<li><code>.await</code> できる。リトライやタイムアウトも</li>
+</ul></li>
+<li>jenkinsを使っているが、CIのサイドエフェクトの影響でテスト落ちることが
+<ul>
+<li>再ビルド時間かかる。切り分け辛い</li>
+<li>Abstract Future → <code>Monad[M]</code> にしておけばおｋ</li>
+<li><code>Service</code> のコンパニオンで、<code>M</code>を<code>Future</code>にしたり<code>Id</code>にしたり</li>
+<li>テストでは <code>Id</code> 、 本番では <code>Future</code></li>
+</ul></li>
+<li><code>Monad</code>とは → 構造。ステップごとに評価するもの。</li>
+<li>akkaはakka.io読め
+<ul>
+<li>バッチではなくデーモンで動かしてる</li>
+</ul></li>
+<li>Master / Workerパターンを使う (letitcrash.comのポスト)
+<ul>
+<li>Master, Worker, Requester の3つのアクター</li>
+<li>WorkerはMasterから仕事を受け取って、Futureで仕事をさせる(自分のスレッドはブロックしない)</li>
+</ul></li>
+<li>Akkaの監視の仕方
+<ul>
+<li>Typesafe Console
+<ul>
+<li>UIはいい。type safe社のサポート</li>
+<li>値段が高いのでやめた</li>
+</ul></li>
+<li>Kamon
+<ul>
+<li>無料なのでこっち</li>
+<li>Akka, Spray, Playをサポート</li>
+<li>Mailボックスのたまり具合、スループットなどの監視</li>
+<li>StatsD、New Relic, Datadog などで可視化</li>
+<li>Migrationはけっこう大変(昨日コンパイルエラー出たのでpull-reqした)</li>
+</ul></li>
+</ul></li>
+<li>Kamonとzabbixを連携
+<ul>
+<li>StatsDにzabbix統合を利用</li>
+<li>ルータはスレッド使わない、DB周りはスレッド多い</li>
+</ul></li>
+<li>まとめ
+<ul>
+<li>SprayのFutureDirectiveを使ってる</li>
+<li>Abstract Futureでテストしやすく</li>
+<li>Akkaはmaster/worker パターンを使ってスケールできる構成</li>
+<li>Kamonでモニタリング</li>
+</ul></li>
+<li>https://github.com/alexandru/scala-best-practices というのがある
+<ul>
+<li>学習コストが高いと言われることが多いので</li>
+<li>“MUST NOT, SHOULD NOT” だらけ → Scala選ばない理由になりそう・・・</li>
+<li>このページで勉強するといいんじゃね</li>
+<li>トライアンドエラーを繰り返して、いいものを見つけるのがエンジニアのやることでしょう</li>
+</ul></li>
+</ul>
 <!--
 ## 「アドテク×Scala×パフォーマンスチューニング」水谷陽介さん
 

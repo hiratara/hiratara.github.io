@@ -63,7 +63,70 @@ title: 今日は「アドテク×Scala meetup」の日です
     * 分析などに使えるのを調べたい
 * Pのつく言語につかれた方はぜひいらしてください
 
-## 「Dynalystが広告配信で使っている技術(Spray×Akka×Kamon×Zabbix)」韓翔元さん
+## 「Dynalyst Scala {Culture})」韓翔元さん
+
+* ノートとかメモっておいたけど消えたのでアドリブで
+* Javaは8年、Scalaは1年
+* Dynalyst "Dynamic Retargeting + Analyst"
+    * スマホに特化したリターゲティング
+    * Scala 88.7%(前は90%あったんだけど・・・)、Rubyが9.6% 
+* bid, ad, 計測サーバは spray。その裏にakka。ログはredshiftへ
+    * ログの最終形はakka(bidの最適化など)
+* sprayの理由
+    * ドキュメントが充実
+    * テストキットがいい
+    * ベンチマークも良い
+    * Scalaを使いたかった
+* 並行性 → 16コアを使い切れてる 
+* ExecutionContext(どのスレッドで実行するか)、Future。for記法使える
+* spray-routing(他にspray-httpとかもある)
+    * DSLっぽく見やすく書ける
+    * `FutureDirectives`。akkaのthreadをブロッキングしない
+    * `onComplete`で実装させて、`Success`と`Failure`でパターンマッチ(failureはno bid)
+    * `Future[A<:BidResponse]`
+* ひとつのFutureにすべての計算を入れるのは良くない
+* Router, Logic, External Resourcesの3レイヤに分ける
+    * スレッドをキックするディスパッチャが必要
+    * 3つ一緒でもいいし、レイヤごとでも(dynalystはレイヤごとに最適化)
+    * レイヤのローカルスコープに、 `implicit val` で定義
+* Futureのテスト → 別スレッドなので普通には無理
+    * Specs2 を使う `Matcher[Future[T]]`
+    * `.await` できる。リトライやタイムアウトも
+* jenkinsを使っているが、CIのサイドエフェクトの影響でテスト落ちることが
+    * 再ビルド時間かかる。切り分け辛い
+    * Abstract Future → `Monad[M]` にしておけばおｋ
+    * `Service` のコンパニオンで、`M`を`Future`にしたり`Id`にしたり
+    * テストでは `Id` 、 本番では `Future`
+* `Monad`とは → 構造。ステップごとに評価するもの。
+* akkaはakka.io読め
+    * バッチではなくデーモンで動かしてる
+* Master / Workerパターンを使う (letitcrash.comのポスト)
+    * Master, Worker, Requester の3つのアクター
+    * WorkerはMasterから仕事を受け取って、Futureで仕事をさせる(自分のスレッドはブロックしない)
+* Akkaの監視の仕方
+    * Typesafe Console
+        * UIはいい。type safe社のサポート
+        * 値段が高いのでやめた
+    * Kamon
+        * 無料なのでこっち
+        * Akka, Spray, Playをサポート
+        * Mailボックスのたまり具合、スループットなどの監視
+        * StatsD、New Relic, Datadog などで可視化
+        * Migrationはけっこう大変(昨日コンパイルエラー出たのでpull-reqした)
+* Kamonとzabbixを連携
+    * StatsDにzabbix統合を利用
+    * ルータはスレッド使わない、DB周りはスレッド多い
+* まとめ
+    * SprayのFutureDirectiveを使ってる
+    * Abstract Futureでテストしやすく
+    * Akkaはmaster/worker パターンを使ってスケールできる構成
+    * Kamonでモニタリング
+* https://github.com/alexandru/scala-best-practices というのがある
+    * 学習コストが高いと言われることが多いので
+    * "MUST NOT, SHOULD NOT" だらけ → Scala選ばない理由になりそう・・・
+    * このページで勉強するといいんじゃね
+    * トライアンドエラーを繰り返して、いいものを見つけるのがエンジニアのやることでしょう
+
 
 
 
