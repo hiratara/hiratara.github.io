@@ -55,11 +55,89 @@
 </div>
 
 <p><a href="http://connpass.com/event/8384/">アドテク×Scala meetup</a>へ来ているので、内容を適当にメモっておく。タグは<a href="https://twitter.com/search?q=%23adtech_scala">#adtech_scala</a>とのこと。</p>
+<h2 id="挨拶-田村さん">挨拶 / 田村さん</h2>
+<ul>
+<li>前半はプレゼン、後半はパネルディスカッション</li>
+<li>飲み物と寿司あるよ！</li>
+<li>スピーカー紹介</li>
+</ul>
+<h2 id="アドテクを支えるscala---ad-generationの場合野村欣弘さん">「アドテクを支えるScala - Ad Generationの場合」野村欣弘さん</h2>
+<ul>
+<li>Scalaは1.5年、ネット広告業界は2.5年
+<ul>
+<li>medibaさんの前もSSP</li>
+</ul></li>
+<li>なぜScalaを使い始めたか
+<ul>
+<li>medibaの求人ではScalaについて触れてない。けど使ってる</li>
+<li>2011年くらいから Lift を使ってた形跡。それがスタート</li>
+<li>Lift押しの人はもう在籍していない・・・</li>
+<li>その後Play × Spark</li>
+</ul></li>
+<li>Ad Generation → スマホに注力したSSP
+<ul>
+<li>ScaleOutに譲渡予定</li>
+<li>ScalaはRTBに使ってる</li>
+</ul></li>
+<li>流れ
+<ul>
+<li>SDK → 枠データ参照(RTBかどうか)→RTBサーバ(Scala)→DSP</li>
+<li>DSPからのレスは100ms待つ。オークションを実施。高いものをadserverへ返す</li>
+<li>戻すものがなければ adnetwork のタグを戻す</li>
+<li>ログはfluentd → HDFS → ログ集計(scala)</li>
+</ul></li>
+<li>rtb-engineはspray (akkaベース。軽量で速い)
+<ul>
+<li>UIもsprayで実装</li>
+<li>70億オークション/月。250(70×3〜4DSP)億bidリクエスト/月</li>
+<li>対アドサーバは4,900qps、対DSPは20,000QPS</li>
+<li>リソースはまだ余裕ある</li>
+</ul></li>
+<li>ピーク時にさばけないことがあったので、チューニングした
+<ul>
+<li>akkaとsprayの設定を見直し。似たような設定項目があって、戸惑う</li>
+<li>ベンチをとりながら調整</li>
+</ul></li>
+<li>コードの見直し
+<ul>
+<li>ブロックを防ぐためにFutureを利用</li>
+<li>スレッドプールを用途ごとに用意 : アドサーバ、DSP、Future、ログ出力、など</li>
+</ul></li>
+<li>rtb-engine-log
+<ul>
+<li>sparkを利用。Pythonとかでも書けるけどScalaで</li>
+<li>mesos上で実行 : sparkと相性がいいので</li>
+<li>7種のログ(オークション関連は4種類)</li>
+<li>cronで10分、1時間、1日の粒度</li>
+<li>HDFSから読んでPostgressに吐き出し</li>
+<li>cron → spark → mesos master → zoo keeper に登録してあるワーカへ</li>
+<li>6CPU、20GB を 4台。(master 2、slave 4)</li>
+<li>ログの量 500MB〜1.5GB / hour。配信は10台。</li>
+<li>12s 〜 40s / job</li>
+</ul></li>
+<li>spark を使った感想 → 不満はない
+<ul>
+<li>メモリに乗せると速いけど、乗せすぎるのもよくないという印象</li>
+<li>処理が30分で終わるけど、JVMの停止に30分かかるとか</li>
+<li>手軽。身構えなくていい。spark-shellがあったり、コレクション操作する感覚だったり</li>
+</ul></li>
+<li>scalaを使った感想
+<ul>
+<li>並列、並行処理を使いやすい</li>
+<li>アドサーバやRTBサーバには向いている</li>
+<li>用途を選ばず使える。JVMなんで。一種類の言語に統一できていい</li>
+<li>Javaは知っておいたほうが</li>
+<li>チューニングには、JVMのパラメータとか知らないと</li>
+</ul></li>
+<li>今後の課題
+<ul>
+<li>チューニングはこのあと誰かがやるよ！</li>
+<li>分析などに使えるのを調べたい</li>
+</ul></li>
+<li>Pのつく言語につかれた方はぜひいらしてください</li>
+</ul>
+<h2 id="dynalystが広告配信で使っている技術sprayakkakamonzabbix韓翔元さん">「Dynalystが広告配信で使っている技術(Spray×Akka×Kamon×Zabbix)」韓翔元さん</h2>
 <!--
-## 「アドテクを支えるScala - Ad Generationの場合」野村欣弘さん
-
-## 「Dynalystが広告配信で使っている技術(Spray×Akka×Kamon×Zabbix)」韓翔元さん
-
 ## 「アドテク×Scala×パフォーマンスチューニング」水谷陽介さん
 
 ## 「軽量言語メインのWeb系エンジニアだった自分がScalaのシステム開発に携わることになった経緯」 重村道人さん
