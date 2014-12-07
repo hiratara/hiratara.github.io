@@ -45,6 +45,48 @@
             
 
 <div>
+  <h1><a href="./posts/2014-12-14-DependencyMaintenance.html">今はまだtransformers 0.3のサポートが必要</a></h1>
+
+<div class="info">
+    Posted on December 14, 2014
+    
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-12-14-DependencyMaintenance.html" data-text="今はまだtransformers 0.3のサポートが必要" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="/posts/2014-12-14-DependencyMaintenance.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
+
+<p><a href="https://t.co/fjxbuYP8jz">GHC 7.8, transformers 0.3, and lenient lower bounds</a>に書いてあるとおりの話。</p>
+<p><a href="https://github.com/hiratara/lambdabot-hipchat-plugins">lmabdabot-hipchat-plugins</a>で<a href="https://hackage.haskell.org/package/pontarius-xmpp">pontarius-xmpp</a>使ってるんだけど、hh変更が多いライブラリなのでgithubのmasterからビルドしようと思ったらハマった。hackageに<a href="https://github.com/pontarius/pontarius-xmpp/commit/730b3ce61a93c1fa0a">上がってないcommit</a>がtransformer 0.4へ依存し始めたため、先に貼ったリンクの問題でビルドができない。</p>
+<p>具体的には、lambdabotが依存しているmuevalがghcに依存しているためにtransformer 0.3縛りがあるために、以下のエラーが出る。</p>
+<pre><code>% cabal install -p --only-dependencies --ghc-options=&quot;-O2 -threaded -fprof-auto&quot; -j
+Resolving dependencies...
+cabal: Could not resolve dependencies:
+trying: lambdabot-5.0 (user goal)
+trying: lambdabot-hipchat-plugins-0.1.0.0 (dependency of lambdabot-5.0)
+next goal: transformers (dependency of lambdabot-hipchat-plugins-0.1.0.0)
+rejecting: transformers-0.3.0.0/installed-16a... (conflict: pontarius-xmpp =&gt;
+transformers&gt;=0.4)
+trying: transformers-0.4.2.0
+trying: lambdabot-haskell-plugins-5.0 (dependency of lambdabot-5.0)
+trying: mueval-0.9.1.1 (dependency of lambdabot-haskell-plugins-5.0)
+trying: hint-0.4.2.1 (dependency of mueval-0.9.1.1)
+next goal: ghc (dependency of hint-0.4.2.1)
+rejecting: ghc-7.8.3/installed-4d8... (conflict: transformers==0.4.2.0, ghc =&gt;
+transformers==0.3.0.0/installed-16a...)
+Backjump limit reached (change with --max-backjumps).
+
+Note: when using a sandbox, all packages are required to have consistent
+dependencies. Try reinstalling/unregistering the offending packages or
+recreating the sandbox.</code></pre>
+<p>対策としては、pontarius-xmpp側を再度transformer 0.3に対応させるしかないのかなーと思ってる。</p>
+
+</div>
+
+
+
+<div>
   <h1><a href="./posts/2014-11-20-AdtechScala.html">今日は「アドテク×Scala meetup」の日です</a></h1>
 
 <div class="info">
@@ -555,110 +597,6 @@
 <p>もっとひどいのは <code>library</code> 指定されている方で、 <code>cabal</code> のissueに上げられている <a href="https://github.com/haskell/cabal/issues/2048">この問題</a> が ghc-7.8.3 でも解決していない。これに対するワークアラウンドは以下のようなもの。</p>
 <pre><code>cabal repl --ghc-options='-dynamic -osuf dyn_o -hisuf dyn_hi' lib:typedperl</code></pre>
 <p>どうしてこれで <code>cabal</code> が差し込んでいる <code>-dynamic-too</code> が悪さしなくなるのか理解しがたい部分もあるが、こちらの環境ではこれで望みどおりの挙動(コンパイル済コードについてはコンパイルが走らない)となった。いずれにせよ、<a href="https://ghc.haskell.org/trac/ghc/ticket/8736">ghc 7.8.4では直して欲しい問題</a>である。</p>
-
-</div>
-
-
-
-<div>
-  <h1><a href="./posts/2014-09-21-conc_haskell_1.html">今日は「第1回 「Haskellによる並列・並行プログラミング」読書会」の日です</a></h1>
-
-<div class="info">
-    Posted on September 21, 2014
-    
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-09-21-conc_haskell_1.html" data-text="今日は「第1回 「Haskellによる並列・並行プログラミング」読書会」の日です" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="/posts/2014-09-21-conc_haskell_1.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-</div>
-
-<p><a href="http://partake.in/events/b3f4f0f2-8c0a-47c9-b253-b6bd691a45f0">第1回 「Haskellによる並列・並行プログラミング」読書会</a>へ来ている。基本的に朗読形式なので、議論を中心にメモしておく。</p>
-<ul>
-<li>訳者まえがき
-<ul>
-<li>「放牧的」より「牧歌的」では</li>
-</ul></li>
-<li>まえがき
-<ul>
-<li>p.viii 「4、5、6、14章」の後に変な改行が入ってる</li>
-<li>p.viii s/13章はまずII部/13章はまずI部/</li>
-</ul></li>
-<li>1章 はじめに</li>
-<li>1.1 用語：並列性と並行性</li>
-<li>1.2 ツールとリソース</li>
-<li>1.3 サンプルコード
-<ul>
-<li>p.4 プロンプトが一個だけ<code>%</code>になってる</li>
-</ul></li>
-<li>I部 並列Haskell
-<ul>
-<li>「広範囲の並列ハードウェア」？ 「いろんな並列ハードウェア」？</li>
-<li>GCとは→踏み込むと危険なのでスルー</li>
-<li>p. 6 s/データフロー並列/4章 データフロー並列/</li>
-<li>不安定とは？ →性能が不安定という意味</li>
-</ul></li>
-<li>2章 基本の並列性:Evalモナド</li>
-<li>2.1 遅延評価と弱頭部正規形
-<ul>
-<li>p.10の|はなに？ → (box化された)Integerの意</li>
-<li>:sprintのsは？ simplified</li>
-<li>p.9 の例とかで <code>:: Int</code> がないと <code>x</code> が <code>_</code> になるんだけど？ → ghcの7.8系から</li>
-<li>p.12 <code>z = _</code> になるんじゃないの？ → データコンストラクタは遅延されない</li>
-</ul></li>
-<li>2.2 Evalモナド、rpar、rseq
-<ul>
-<li><code>data Eval a</code> って右辺要らないの？ → 型定義のみ書いてるだけ</li>
-<li>「プログラムの残りは実行」とは？ → <code>f x</code>と<code>f y</code>も並列に走るという意味</li>
-<li>p.18 s/<code>RTS -N2</code>/<code>+RTS -N2</code>/</li>
-</ul></li>
-<li>2.3 例：並列数独ソルバ
-<ul>
-<li>p.21 s/2つのが出力/2つが出力/</li>
-</ul></li>
-<li>2.4 Deepseq
-<ul>
-<li><code>!</code> と <code>seq</code>の違いは？ → シンタクスシュガー</li>
-<li><code>NFData</code>って自動で<code>deriving</code>できないの？ → すべての型クラスは自動導出できるはず。<code>deepseq-generics</code>がある</li>
-<li><code>deepseq</code>は自分で実装することはないでしょう</li>
-<li>関数は正規形なのか → lambdaのbody部で簡約されているものがあるとまずい　</li>
-<li><code>deepseq</code>がO(n)って何？→評価は終わってるけど、データ構造は辿らないとダメなので</li>
-</ul></li>
-<li>3章 評価戦略
-<ul>
-<li><code>Strategy</code>は型だけでなく値も保つことに注意</li>
-<li>「1つの<code>Strategy</code>に梱包？」 → “we’ve packaged it up as a Strategy”</li>
-</ul></li>
-<li>3.1 戦略の並列化</li>
-<li>3.2 リストを並列に評価する戦略</li>
-<li>3.3 例：K平均法
-<ul>
-<li>サンプル動かすなら、<code>cabal sandbox init</code> <code>cabal install --only-dependencies</code> <code>cabal build</code>がいい</li>
-</ul></li>
-<li>3.3.1 K平均法の並列化　</li>
-<li>3.3.2 性能と分析
-<ul>
-<li>少なくとも <code>-Nn</code> の指定した <code>n</code> のOSスレッドは走ってる(実際にはもっと多い)</li>
-<li>writeが並列だと影響しない？ → ハンドルに書くにはロックが必要なので影響する</li>
-<li><code>MVar</code>でとりあってるはず</li>
-<li>ログを吐くようなスレッドを作ればよい → 本の終盤では<code>IORef</code>を使うことになる</li>
-</ul></li>
-<li>3.3.3 スパーク活動の可視化</li>
-<li>3.3.3 粒度</li>
-<li>3.4 GCされるスパークと投機的並列性
-<ul>
-<li><code>strat</code>を指しているものがあるかが重要</li>
-<li><code>rpar</code>を悪い使い方してくれてると警告してくれる？ → くれない</li>
-<li><code>using</code>を使えば確実？ → <code>using</code>対象は値だから、使われるはず</li>
-</ul></li>
-<li>3.5 parBufferを使った遅延ストリームの並列化</li>
-<li>3.6 チャンク分け戦略</li>
-<li>3.7 同一性特性
-<ul>
-<li>スパークプールのサイズはオプションで変えられる (デフォルト:4096)</li>
-<li>あふれると、並列にならない</li>
-</ul></li>
-</ul>
 
 </div>
 
