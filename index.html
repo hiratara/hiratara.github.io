@@ -493,9 +493,80 @@
 <li>いろいろな経験がつめてよい</li>
 </ul></li>
 </ul>
-<!--
-## M.T.Burnを支える技術 / 久森さん
--->
+<h2 id="the-technology-behind-m.t.burn-久森さん">The technology behind M.T.Burn / 久森さん</h2>
+<ul>
+<li>M.T.Burn → AppDaviを作ってる</li>
+<li>言語
+<ul>
+<li>Objective-C</li>
+<li>Java, roboletric</li>
+<li>Perl → 経験者が多い</li>
+<li>JS 一択</li>
+</ul></li>
+<li>サーバサイド
+<ul>
+<li>AWS。AutoScaling 自分たちでは運用しない</li>
+<li>EC2インスタンスだけを面倒見るように</li>
+<li>Ubuntu 14.04ベース → 新しいパッケージを使いたい</li>
+<li>PackerでAMI Imageを</li>
+<li>Docker → ワークロードがそこまで上がらないサーバにはいい
+<ul>
+<li>デベロッパが出元でDocker build</li>
+<li>S3へ。インスタンスがpull</li>
+</ul></li>
+<li>Fluentd : Norikra, mackerel</li>
+</ul></li>
+<li>Mackerel → サービスの監視。サービスメトリクスとして任意のものも
+<ul>
+<li>サーバインスタンスが増えたり減ったりする環境だといい</li>
+<li>AutoScalingしてもグラフが途切れない</li>
+</ul></li>
+<li>Norikra → Docker image あるよ
+<ul>
+<li>例: imp, click, conversionを分単位で</li>
+</ul></li>
+<li>BigQueryを採用
+<ul>
+<li>UIの操作ログも。バッチの実行ログも</li>
+<li>とにかく何でも</li>
+<li>ストレージが安い、運用しなくていい。開発速度が上がる</li>
+</ul></li>
+<li>Development Tool
+<ul>
+<li>github : コードとissue。PR駆動</li>
+<li>TravisCI の有料プラン iOS, Android, Perl, JS</li>
+<li>Qiita Team → 日報や技術情報</li>
+<li>Slack → チャット。アラートとかも
+<ul>
+<li>Mackerel - Slack 連携</li>
+<li>メールには頼らない</li>
+</ul></li>
+</ul></li>
+<li>利用者、メディアが急激に伸びている</li>
+<li>3回作り直している
+<ul>
+<li>オンプレ→クラウド、セルフ→マネージド</li>
+</ul></li>
+<li>使わなくなったもの
+<ul>
+<li>オンプレ → 調達が大変。スケールを破壊的にしたいので。</li>
+<li>内部DNS →Route53</li>
+<li>CentOS → 古い</li>
+<li>Cobbler。Cloud-init + AMI</li>
+<li>rsync → S3へ。syncさせる。Auto scalingの際にも安全</li>
+<li>Puppet→Ansible→shellへ。ロールあたりのやることが少なくなったので</li>
+<li>Nagios, CloudForecast → サーバリストが多く、管理につかれた</li>
+<li>HipChat → クラッシュ、API連携がきつい</li>
+<li>Hive, MapReduce → 開発者がコントロールできることをふやす。BigQueryはredshiftより手間が少なくて安い</li>
+</ul></li>
+<li>重要なこと
+<ul>
+<li>マーケット、テクノロジーについてキャッチアップ</li>
+<li>トレンドの変化に強い構成が重要</li>
+<li>スケーラブルで、かつ、オペレーションを減らすこと</li>
+</ul></li>
+<li>常にアップストリームを追う姿勢が大切</li>
+</ul>
 
 </div>
 

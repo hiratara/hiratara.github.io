@@ -298,7 +298,54 @@ title: 今日は「マーケティングテクノロジーの最先端を支え�
     * インフラは全部自動化したい
     * いろいろな経験がつめてよい
 
+## The technology behind M.T.Burn  / 久森さん
 
-<!--
-## M.T.Burnを支える技術 / 久森さん
--->
+* M.T.Burn → AppDaviを作ってる
+* 言語
+    * Objective-C
+    * Java, roboletric
+    * Perl → 経験者が多い
+    * JS 一択
+* サーバサイド
+    * AWS。AutoScaling 自分たちでは運用しない
+    * EC2インスタンスだけを面倒見るように
+    * Ubuntu 14.04ベース → 新しいパッケージを使いたい
+    * PackerでAMI Imageを
+    * Docker → ワークロードがそこまで上がらないサーバにはいい
+        * デベロッパが出元でDocker build
+        * S3へ。インスタンスがpull
+    * Fluentd : Norikra, mackerel
+* Mackerel → サービスの監視。サービスメトリクスとして任意のものも
+    * サーバインスタンスが増えたり減ったりする環境だといい
+    * AutoScalingしてもグラフが途切れない
+* Norikra → Docker image あるよ
+    * 例: imp, click, conversionを分単位で
+* BigQueryを採用
+    * UIの操作ログも。バッチの実行ログも
+    * とにかく何でも
+    * ストレージが安い、運用しなくていい。開発速度が上がる
+* Development Tool
+    * github : コードとissue。PR駆動
+    * TravisCI の有料プラン iOS, Android, Perl, JS
+    * Qiita Team → 日報や技術情報
+    * Slack → チャット。アラートとかも
+        * Mackerel - Slack 連携
+        * メールには頼らない
+* 利用者、メディアが急激に伸びている
+* 3回作り直している
+    * オンプレ→クラウド、セルフ→マネージド
+* 使わなくなったもの
+    * オンプレ → 調達が大変。スケールを破壊的にしたいので。
+    * 内部DNS →Route53 
+    * CentOS → 古い
+    * Cobbler。Cloud-init + AMI
+    * rsync → S3へ。syncさせる。Auto scalingの際にも安全
+    * Puppet→Ansible→shellへ。ロールあたりのやることが少なくなったので
+    * Nagios, CloudForecast → サーバリストが多く、管理につかれた
+    * HipChat → クラッシュ、API連携がきつい
+    * Hive, MapReduce → 開発者がコントロールできることをふやす。BigQueryはredshiftより手間が少なくて安い
+* 重要なこと
+    * マーケット、テクノロジーについてキャッチアップ
+    * トレンドの変化に強い構成が重要
+    * スケーラブルで、かつ、オペレーションを減らすこと
+* 常にアップストリームを追う姿勢が大切
