@@ -242,7 +242,7 @@
 <ul>
 <li>kinesisとかredshiftをがりがりは使ってない</li>
 <li>はてなブログなどで使ったりはしている</li>
-<li>makarel使おう！</li>
+<li>mackerel使おう！</li>
 </ul></li>
 <li>明: 規模が大きくなるとコスト高になる
 <ul>
@@ -251,9 +251,94 @@
 <li>AWSの様々な機能を使っているかといえば、そうでもない</li>
 </ul></li>
 </ul>
+<h2 id="フリークアウトにおける大規模データの取り扱いのこれまでとこれから-加藤さん">フリークアウトにおける大規模データの取り扱いのこれまでとこれから / 加藤さん</h2>
+<ul>
+<li>RTBの仕組みについて
+<ul>
+<li>ユーザ → SSP → 応札！ → 最高値が勝</li>
+<li>アプリの中は 50ms or die</li>
+</ul></li>
+<li>大規模データは２つ
+<ul>
+<li>オーディエンスデータ</li>
+<li>配信ログ</li>
+</ul></li>
+<li>オーディエンス = 広告を見ている人
+<ul>
+<li>広告の接触、セグメント、クリック履歴など</li>
+<li>数十億データ</li>
+<li>日本の人口を超えているが、1人 1 IDではないので</li>
+</ul></li>
+<li>オーディエンスデータを使うところ
+<ul>
+<li>最適な広告をオーディエンスデータから判断する(50ms)</li>
+<li>memcached + KVSの二重構成</li>
+<li>KVSは0.1ms〜数ms。3TBくらい</li>
+<li>15000 get/s</li>
+</ul></li>
+<li>Tokyo Tyrant使ってる。速い
+<ul>
+<li>Expireできない</li>
+<li>consistent hashingはしているがサーバ追加するとロストが出る</li>
+</ul></li>
+<li>OKAWARI作戦
+<ul>
+<li>新しいTTを前段に用意</li>
+<li>旧から新に徐々に書き換えていく</li>
+<li>旧を外す</li>
+<li>サーバ台数がすごいかかるので効率悪</li>
+<li>退役できるのは以降がすんでから</li>
+</ul></li>
+<li>riak → 断念
+<ul>
+<li>writeが厳しいため断念</li>
+<li>OKAWARIに戻った</li>
+</ul></li>
+<li>HBASEを使うことを検討中
+<ul>
+<li>書き込み性能が高い。スケーラビリティ</li>
+<li>もう火山じゃなくなってる（ほんと？）</li>
+<li>HBase 0.98.6を検証中</li>
+<li>手前にラッパーAPIを準備。APIはmessage packで</li>
+<li>うまくいったらまた別途報告を！</li>
+</ul></li>
+<li>配信ログ
+<ul>
+<li>クリック、コンバージョンなど</li>
+<li>配信実績の分析。ABテストの実施</li>
+<li>オーディエンスデータのデモグラ分析</li>
+<li>開発側で使う指標の測定など</li>
+</ul></li>
+<li>大昔 → MySQL
+<ul>
+<li>2013年半ばからHive</li>
+<li>Elastic search + KIBANA体制</li>
+<li>Impara導入、fluentdの監視でNorikra</li>
+</ul></li>
+<li>CDH4 →CDH5
+<ul>
+<li>Yarn対応。Cloudera Manager</li>
+<li>Hadoopエコシステムの進歩の速さについていくため採用</li>
+</ul></li>
+<li>Hivemall → 機械学習</li>
+<li>Impara → バク速Hive</li>
+<li>Norikra → metricsの収集</li>
+<li>Elasticsearch + Kibana → サマリの可視化
+<ul>
+<li>kibanaじゃない別UIも作ってある</li>
+</ul></li>
+<li>Spark使いたい(MLlibも)
+<ul>
+<li>HBaseも</li>
+<li>日次バッチから分次バッチへ</li>
+<li>開発側に訴えかける可視化
+<ul>
+<li>パフォーマンスや使ってるリソースなど</li>
+<li>あなたのコミットが何の役に立ったか</li>
+</ul></li>
+</ul></li>
+</ul>
 <!--
-## フリークアウトにおける大規模データの取り扱いの歴史と今後 / 加藤さん
-
 ## 『BrandSafe はてな』のアドベリフィケーションのしくみ / 伊奈さん
 
 ## ゼロから始めたGunosyのアドサーバ開発運用記 /  粟飯原 さん
