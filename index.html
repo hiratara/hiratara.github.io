@@ -45,6 +45,40 @@
             
 
 <div>
+  <h1><a href="./posts/2014-12-16-MarketingTech.html">今日は「マーケティングテクノロジーの最先端を支える技術を大公開！」の日です</a></h1>
+
+<div class="info">
+    Posted on December 16, 2014
+    
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-12-16-MarketingTech.html" data-text="今日は「マーケティングテクノロジーの最先端を支える技術を大公開！」の日です" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="/posts/2014-12-16-MarketingTech.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
+
+<p><a href="http://eventdots.jp/event/263388">マーケティングテクノロジーの最先端を支える技術を大公開！</a>に参加しています。適当に内容をメモします。</p>
+<!--
+## 対談『アドテクが見据える未来のはなし』
+
+フリークアウトにおける大規模データの取り扱いの歴史と今後
+株式会社FreakOut 加藤 慶一 氏
+
+『BrandSafe はてな』のアドベリフィケーションのしくみ
+株式会社はてな 伊奈 林太郎 氏
+
+ゼロから始めたGunosyのアドサーバ開発運用記
+   株式会社Gunosy 粟飯原 俊介 氏
+
+M.T.Burnを支える技術
+   M.T. Burn株式会社 久森 達郎 氏
+-->
+
+</div>
+
+
+
+<div>
   <h1><a href="./posts/2014-12-14-DependencyMaintenance.html">今はまだtransformers 0.3のサポートが必要</a></h1>
 
 <div class="info">
@@ -572,31 +606,6 @@ recreating the sandbox.</code></pre>
 <p>型が変わったせいで、利用側も若干めんどくさくなるが、原則 <code>join</code> で <code>atomically</code> の戻り値を潰すだけで問題ない。</p>
 <pre><code>    join . STM.atomically $ putTMVar done 1</code></pre>
 <pre><code>  n1 &lt;- join . STM.atomically $ takeTMVar done</code></pre>
-
-</div>
-
-
-
-<div>
-  <h1><a href="./posts/2014-09-23-let_ghci_load_compiled_codes.html">cabal buildで作った*.oをcabal replで再利用させる</a></h1>
-
-<div class="info">
-    Posted on September 23, 2014
-    
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-text="cabal buildで作った*.oをcabal replで再利用させる" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-</div>
-
-<p>最初に断っておくと、開発時にこの方法を使うことは稀だと思う(<a href="https://twitter.com/search?q=%23heyhey_haskell">#heyhey_haskell</a>懇親会調べ)。あくまでも興味本位でやっていることだとを念頭に入れておいてもらいたい。</p>
-<p><a href="http://www.haskell.org/ghc/docs/7.8.3/html/users_guide/ghci-compiled.html">ghciのマニュアル</a>に書いてある原理は把握した上で、やりたかったのは<a href="http://stackoverflow.com/questions/15125825/how-to-reuse-cabal-compiled-modules-when-using-ghci">stackoverflowに出ていたこの質問</a>。幸い <code>cabal repl</code>だと、 <code>-odir</code> に適切な値を渡してくれるので、自前でこの質問にあるようなオプションを指定する必要はない。</p>
-<p>が、ghc 7.8.3現在では、これだけではうまくいかない。まず、 <code>*.cabal</code> 内に <code>executable</code> として指定されているターゲットについては <a href="http://d.hatena.ne.jp/kazu-yamamoto/20130912/1378955823">kazu-yamamotoさんのエントリ</a> に書いてあるとおり <code>cabal</code> は静的ライブラリしか作らず <code>ghci</code> は動的ライブラリを見に行くのでうまく行かない。これは以下のようにbuildしておくと<code>ghci</code>から<code>*.o</code>を参照するようになる。</p>
-<pre><code>cabal build --ghc-option=-dynamic sudoku3</code></pre>
-<p>もっとひどいのは <code>library</code> 指定されている方で、 <code>cabal</code> のissueに上げられている <a href="https://github.com/haskell/cabal/issues/2048">この問題</a> が ghc-7.8.3 でも解決していない。これに対するワークアラウンドは以下のようなもの。</p>
-<pre><code>cabal repl --ghc-options='-dynamic -osuf dyn_o -hisuf dyn_hi' lib:typedperl</code></pre>
-<p>どうしてこれで <code>cabal</code> が差し込んでいる <code>-dynamic-too</code> が悪さしなくなるのか理解しがたい部分もあるが、こちらの環境ではこれで望みどおりの挙動(コンパイル済コードについてはコンパイルが走らない)となった。いずれにせよ、<a href="https://ghc.haskell.org/trac/ghc/ticket/8736">ghc 7.8.4では直して欲しい問題</a>である。</p>
 
 </div>
 
