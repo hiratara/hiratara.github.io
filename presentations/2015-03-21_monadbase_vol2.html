@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="hiratara" />
+  <meta name="dcterms.date" content="2015-03-21" />
+  <title>モナモナ言うモナド変換子入門</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="/reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="/reveal.js/css/theme/simple.css" id="theme">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">モナモナ言うモナド変換子入門</h1>
+    <h2 class="author">hiratara</h2>
+    <h3 class="date">March 21, 2015</h3>
+</section>
+
+<section id="前回の復習" class="slide level1">
+<h1>前回の復習</h1>
+<ul>
+<li class="fragment"><a href="http://connpass.com/event/1152/">わかめのモナド浸し</a></li>
+<li class="fragment"><a href="http://www.slideshare.net/hiratara/ss-15209166">モナモナ言うモナド入門</a>
+<ul>
+<li class="fragment">圏の基礎的な概念の定義</li>
+<li class="fragment">モノイダル圏の定義</li>
+<li class="fragment">モナドは自己関手圏のモノイド</li>
+</ul></li>
+</ul>
+</section>
+<section id="今回のアジェンダ" class="slide level1">
+<h1>今回のアジェンダ</h1>
+<ul>
+<li class="fragment">モナド変換子とは <span class="math">\(T : \left| \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}}) \right| \to \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}})\)</span> なる関手と、埋め込み関手 <span class="math">\(\mathrm{In}\)</span> について <span class="math">\(\mathrm{lift}^T : \mathrm{In} \Rightarrow T\)</span> なる自然変換</li>
+<li class="fragment">プログラムにおいては各モナドにおける操作の持ち上げが重要な関心ごと</li>
+</ul>
+</section>
+<section id="まとめ" class="slide level1">
+<h1>まとめ</h1>
+<ul>
+<li class="fragment"></li>
+<li class="fragment"></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+
+  <script src="/reveal.js/lib/js/head.min.js"></script>
+  <script src="/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: '/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: '/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+    </body>
+</html>

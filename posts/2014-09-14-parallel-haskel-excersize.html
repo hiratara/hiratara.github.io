@@ -122,7 +122,8 @@ streamFold fn <span class="fu">!</span>acc instrm <span class="fu">=</span> <spa
 <span class="fu">...</span>(snip)<span class="fu">...</span></code></pre>
 <p>この実装でthreadscopeをとると以下のようになった。本に載っていたサンプルは消費者の方が速いタイプだったので本件の実装が正しく働いているかは判断できないが、きちんと並列に動作していることは見て取れる。<code>fork</code> の回数が増えたことで、コアは2つだけではなくすべてがまんべんなく使われるようになった。</p>
 <div class="figure">
-<img src="../images/2014-09-14-rsa-pipeline.png" alt="threadwatch" /><p class="caption">threadwatch</p>
+<img src="../images/2014-09-14-rsa-pipeline.png" alt="threadwatch" />
+<p class="caption">threadwatch</p>
 </div>
 <p>完全な実装は<a href="https://github.com/hiratara/parconc-examples/commit/639abe2cad1fc3529313981ede51d5364126c115">githubの方</a>を参照して欲しい。ただし、面倒だったので本に載っていない <code>streamFilter</code> の方は改修していないので使えない(<code>fork</code>しないので最初のchunkで止まる)。</p>
 
