@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import qualified Data.Map as Map
+import qualified Data.Set as Set
 import           Hakyll
 import Text.Pandoc (
   WriterOptions(writerHTMLMathMethod)
@@ -87,9 +88,12 @@ main = do
             , PD.writerHtml5 = True
             , PD.writerIncremental = True
             }
+      let r = let r' = defaultHakyllReaderOptions in r' {
+            PD.readerExtensions = Set.filter (/= PD.Ext_auto_identifiers) (PD.readerExtensions r')
+            }
       route $ setExtension "html"
       compile $ do
-        item <- pandocCompilerWith defaultHakyllReaderOptions w
+        item <- pandocCompilerWith r w
         item <- loadAndApplyTemplate "templates/presentation.html" postCtx item
         return item
 
