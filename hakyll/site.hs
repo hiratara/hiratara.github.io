@@ -83,11 +83,8 @@ main = do
     match "presentations/*" $ do
       let w = defaultHakyllWriterOptions {
             PD.writerSlideVariant = PD.RevealJsSlides
---            , PD.writerTemplate = revealTemplate
---            , PD.writerStandalone = True
---            , PD.writerHTMLMathMethod = MathJax mathjaxURL
+            , PD.writerHTMLMathMethod = MathJax undefined
             , PD.writerHtml5 = True
---            , PD.writerVariables = [("revealjs-url", "/reveal.js")]
             , PD.writerIncremental = True
             }
       route $ setExtension "html"
