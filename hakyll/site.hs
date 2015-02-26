@@ -83,15 +83,18 @@ main = do
     match "presentations/*" $ do
       let w = defaultHakyllWriterOptions {
             PD.writerSlideVariant = PD.RevealJsSlides
-            , PD.writerTemplate = revealTemplate
-            , PD.writerStandalone = True
-            , PD.writerHTMLMathMethod = MathJax mathjaxURL
+--            , PD.writerTemplate = revealTemplate
+--            , PD.writerStandalone = True
+--            , PD.writerHTMLMathMethod = MathJax mathjaxURL
             , PD.writerHtml5 = True
-            , PD.writerVariables = [("revealjs-url", "/reveal.js")]
+--            , PD.writerVariables = [("revealjs-url", "/reveal.js")]
             , PD.writerIncremental = True
             }
       route $ setExtension "html"
-      compile $ pandocCompilerWith defaultHakyllReaderOptions w
+      compile $ do
+        item <- pandocCompilerWith defaultHakyllReaderOptions w
+        item <- loadAndApplyTemplate "templates/presentation.html" postCtx item
+        return item
 
 --------------------------------------------------------------------------------
 pandocOptions :: WriterOptions

@@ -1,6 +1,8 @@
-% モナモナ言うモナド変換子入門
-% hiratara
-% March 21, 2015
+---
+title: モナモナ言うモナド変換子入門
+author: hiratara
+date: March 21, 2015
+---
 
 # 前回の復習
 
