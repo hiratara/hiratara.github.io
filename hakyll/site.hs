@@ -7,21 +7,13 @@ import           Hakyll
 import Text.Pandoc (
   WriterOptions(writerHTMLMathMethod)
   , HTMLMathMethod(MathJax)
-  , getDefaultTemplate
   )
 import qualified Text.Pandoc.Options as PD
 
 --------------------------------------------------------------------------------
 
--- See https://github.com/jgm/pandoc/blob/master/pandoc.hs#L823
-mathjaxURL :: String
-mathjaxURL = "//cdn.mathjax.org/mathjax/latest/MathJax.js" ++
-             "?config=TeX-AMS-MML_HTMLorMML"
-
 main :: IO ()
 main = do
-  revealTemplate <- (\ (Right x) -> x) `fmap` getDefaultTemplate Nothing "revealjs"
-
   hakyllWith config $ do
     match "images/*" $ do
         route   idRoute
