@@ -111,7 +111,7 @@ ol li
 #logo_text h1, #logo_text h1 a, #logo_text h1 a:hover 
 { padding: 22px 0 0 0;
   color: #777;
-  letter-spacing: 0.1em;
+  // letter-spacing: 0.1em;
   text-decoration: none;}
 
 #logo_text h1 a .logo_colour
