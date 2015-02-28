@@ -187,6 +187,23 @@ UNKNOWN RATE=<span class="fl">6.62</span> %</code></pre>
 <p>もう一点、逐次学習するに当たって、学習データにおいてgroupの登場回数(1となっているベクトルの件数)が1つにつき10万回あるのに対し、subgroupの登場回数は100回なので、 subgroupについては十分に学習されないのではないかという懸念もあった。これも結果を見る限りは大丈夫そうだ。 登場回数は少なくても、目的変数が<span class="math">\(1\)</span>となった場合には現時点のズレを元に大きく重みが増えることを考えれば自然に思える。 また、登場回数が少ないということは目的変数が<span class="math">\(0\)</span>になって重みが減算される機会も少ないと言えそうだ。</p>
 </p>
 
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'hiratara';
+    var disqus_title = '二値変数だけからなるロジスティック回帰';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
       </div>
     </div>
     <div id="content_footer"></div>

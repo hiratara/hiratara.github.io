@@ -38,6 +38,7 @@ main = do
         compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= loadAndApplyTemplate "templates/post-page.html" postCtx
             >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` postCtx)
             >>= relativizeUrls
 
