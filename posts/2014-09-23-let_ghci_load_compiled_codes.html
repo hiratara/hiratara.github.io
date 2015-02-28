@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Born in Tomakomai city - cabal buildで作った*.oをcabal replで再利用させる</title>
-        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Born in Tomakomai city - cabal buildで作った*.oをcabal replで再利用させる</title>
+  <meta name="description" content="A blog for programmer" />
+  <meta name="keywords" content="perl,haskell,mathematics" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
         
         <!-- Google Analytics tracking codes -->
         <script>
@@ -17,8 +19,9 @@
           ga('send', 'pageview');
 
         </script>
-    </head>
-    <body>
+</head>
+
+<body>
         <!-- facebook SDK -->
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
@@ -28,44 +31,57 @@
           js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=100848266724416";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-
-        <div id="header">
-            <div id="logo">
-                <a href="../">Born in Tomakomai city</a>
-            </div>
-            <div id="navigation">
-                <a href="../">Top</a>
-                <a href="../about.html">About</a>
-                <a href="../contact.html">Contact</a>
-                <a href="../archive.html">Archive</a>
-            </div>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="../">Born in <span class="logo_colour">Tomakomai</span> city</a></h1>
+          <h2>A programmer who loves mathematics</h2>
         </div>
-
-        <div id="content">
-            <h1><a href="../posts/2014-09-23-let_ghci_load_compiled_codes.html">cabal buildで作った*.oをcabal replで再利用させる</a></h1>
-
-<div class="info">
-    Posted on September 23, 2014
-    
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-text="cabal buildで作った*.oをcabal replで再利用させる" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="../">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../archive.html">Archive</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Useful Links</h3>
+        Nothing
+      </div>
+      <div id="content">
+        <h1>cabal buildで作った*.oをcabal replで再利用させる</h1>
+<div class="post-info">
+    Posted on <a href="../posts/2014-09-23-let_ghci_load_compiled_codes.html">September 23, 2014</a>
     <!-- facebook button -->
-    <div class="fb-like" data-href="/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-</div>
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2014-09-23-let_ghci_load_compiled_codes.html" data-text="cabal buildで作った*.oをcabal replで再利用させる" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-<p>最初に断っておくと、開発時にこの方法を使うことは稀だと思う(<a href="https://twitter.com/search?q=%23heyhey_haskell">#heyhey_haskell</a>懇親会調べ)。あくまでも興味本位でやっていることだとを念頭に入れておいてもらいたい。</p>
+</div>
+<p>
+    <p>最初に断っておくと、開発時にこの方法を使うことは稀だと思う(<a href="https://twitter.com/search?q=%23heyhey_haskell">#heyhey_haskell</a>懇親会調べ)。あくまでも興味本位でやっていることだとを念頭に入れておいてもらいたい。</p>
 <p><a href="http://www.haskell.org/ghc/docs/7.8.3/html/users_guide/ghci-compiled.html">ghciのマニュアル</a>に書いてある原理は把握した上で、やりたかったのは<a href="http://stackoverflow.com/questions/15125825/how-to-reuse-cabal-compiled-modules-when-using-ghci">stackoverflowに出ていたこの質問</a>。幸い <code>cabal repl</code>だと、 <code>-odir</code> に適切な値を渡してくれるので、自前でこの質問にあるようなオプションを指定する必要はない。</p>
 <p>が、ghc 7.8.3現在では、これだけではうまくいかない。まず、 <code>*.cabal</code> 内に <code>executable</code> として指定されているターゲットについては <a href="http://d.hatena.ne.jp/kazu-yamamoto/20130912/1378955823">kazu-yamamotoさんのエントリ</a> に書いてあるとおり <code>cabal</code> は静的ライブラリしか作らず <code>ghci</code> は動的ライブラリを見に行くのでうまく行かない。これは以下のようにbuildしておくと<code>ghci</code>から<code>*.o</code>を参照するようになる。</p>
 <pre><code>cabal build --ghc-option=-dynamic sudoku3</code></pre>
 <p>もっとひどいのは <code>library</code> 指定されている方で、 <code>cabal</code> のissueに上げられている <a href="https://github.com/haskell/cabal/issues/2048">この問題</a> が ghc-7.8.3 でも解決していない。これに対するワークアラウンドは以下のようなもの。</p>
 <pre><code>cabal repl --ghc-options='-dynamic -osuf dyn_o -hisuf dyn_hi' lib:typedperl</code></pre>
 <p>どうしてこれで <code>cabal</code> が差し込んでいる <code>-dynamic-too</code> が悪さしなくなるのか理解しがたい部分もあるが、こちらの環境ではこれで望みどおりの挙動(コンパイル済コードについてはコンパイルが走らない)となった。いずれにせよ、<a href="https://ghc.haskell.org/trac/ghc/ticket/8736">ghc 7.8.4では直して欲しい問題</a>である。</p>
+</p>
 
-        </div>
-        <div id="footer">
-            Site proudly generated by
-            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-        </div>
-    </body>
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="../">Home</a> | <a href="../about.html">About</a> | <a href="../contact.html">Contact</a> | <a href="../archive.html">Archive</a></p>
+      <p>Copyright &copy; hiratara | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a> | <a href="http://jaspervdj.be/hakyll">Hakyll</a></p>
+    </div>
+  </div>
+</body>
 </html>
