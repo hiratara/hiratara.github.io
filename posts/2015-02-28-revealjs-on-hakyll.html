@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Born in Tomakomai city - reveal.js on hakyll</title>
+  <meta name="description" content="A blog for programmer" />
+  <meta name="keywords" content="perl,haskell,mathematics" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        
+        <!-- Google Analytics tracking codes -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-7637699-4', 'hiratara.github.io');
+          ga('send', 'pageview');
+
+        </script>
+</head>
+
+<body>
+        <!-- facebook SDK -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=100848266724416";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="../">Born in <span class="logo_colour">Tomakomai</span> city</a></h1>
+          <h2>A programmer who loves mathematics</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="../">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../archive.html">Archive</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Useful Links</h3>
+        Nothing
+      </div>
+      <div id="content">
+        <h1>reveal.js on hakyll</h1>
+<div class="post-info">
+    Posted on <a href="../posts/2015-02-28-revealjs-on-hakyll.html">February 28, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-02-28-revealjs-on-hakyll.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-02-28-revealjs-on-hakyll.html" data-text="reveal.js on hakyll" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <p>数式を使ったスライドを作るのに、<a href="http://www.mathjax.org/">mathjax</a>と<a href="http://lab.hakim.se/reveal-js">reveal.js</a>の組み合わせはなかなかお手軽でよい。さらに<a href="https://github.com/hakimel/reveal.js/">github pages</a>を使えば、自前サーバなどを用意しなくてもプレゼン環境が整う。これは、<a href="http://nineties.github.io/category-seminar/">2年前の圏論勉強会</a>でも使われていた組み合わせである。</p>
+<p>現在このページは<a href="http://jaspervdj.be/hakyll/">Hakyll</a>で管理しているので、スライドもmarkdownで書いてHakyllで管理して一緒に上げてしまうと楽かなと思って環境を整えた。</p>
+<h2 id="方法1.-pandocのスライド生成機能を使う">方法1). Pandocのスライド生成機能を使う</h2>
+<p>始めにこちらの方法を試してみた。<a href="http://johnmacfarlane.net/pandoc/demos.html">Pandocのデモ</a>にもあるように、Pandocにはreveal.jsを使ったスライドを生成する機能がある。HakyllはPandocを呼び出しているので、この機能を使うといいと考えた。</p>
+<p>まず、今回の主役はreveal.jsは <code>/reveal.js/</code> というpathに展開しておき、単純にコピーするよう <code>site.hs</code> に書く。</p>
+<pre><code>    match &quot;reveal.js/**&quot; $ do
+        route   idRoute
+        compile copyFileCompiler</code></pre>
+<p>プレゼンは <code>presentations/</code> ディレクトリに置き、ブログポストと同様にコンパイルをかける。ここでPandocを噛ませる際に、reveal.jsを使うようにしてやるとよい。以下のように書いた</p>
+<pre><code>  revealTemplate &lt;- (\ (Right x) -&gt; x) `fmap` getDefaultTemplate Nothing &quot;reveal
+
+  .. snip ..
+
+    match &quot;presentations/*&quot; $ do
+      let w = defaultHakyllWriterOptions {
+            PD.writerSlideVariant = PD.RevealJsSlides
+            , PD.writerTemplate = revealTemplate
+            , PD.writerStandalone = True
+            , PD.writerHTMLMathMethod = MathJax mathjaxURL
+            , PD.writerHtml5 = True
+            , PD.writerVariables = [(&quot;revealjs-url&quot;, &quot;/reveal.js&quot;)]
+            , PD.writerIncremental = True
+            }
+      route $ setExtension &quot;html&quot;
+      compile $ pandocCompilerWith defaultHakyllReaderOptions w</code></pre>
+<p>コマンドラインでreveal.jsを吐かせるのは非常に簡単だが、ライブラリ経由で実際に走らせるには自分で引数を作る必要があってかなり骨が折れた。<a href="https://github.com/jgm/pandoc/blob/master/pandoc.hs#L1175">pandoc.hs</a>とか<a href="https://github.com/jgm/pandoc/blob/master/src/Text/Pandoc.hs#L273">Pandoc.hs</a>とかを見ると答えが出ている。</p>
+<p>この方法でプレゼンを吐くことはできたのだが、以下の問題があった。</p>
+<ul>
+<li>実装がめんどくさかった</li>
+<li>(現時点で) reveal.jsの3.0.x系に対応できていない</li>
+<li>reveal.js のmathjaxプラグインを使わず、自前でmathjaxと統合している</li>
+</ul>
+<h2 id="方法2.-hakyllのテンプレート機能を使う">方法2). hakyllのテンプレート機能を使う</h2>
+<p>そもそもhakyllは<a href="https://hackage.haskell.org/package/hakyll-4.6.6.0/docs/Hakyll-Web-Template.html">テンプレート機構を持っている</a>ので、欲しいのはmarkdownをhtmlに変える機能だけのはず。なので、Pandocにstandaloneなhtmlを吐いてもらうのをやめることにする。</p>
+<p>まず、<code>./reveal.js/test/examples/math.html</code> をコピって、 <a href="https://github.com/hiratara/hiratara.github.io/blob/master/hakyll/templates/presentation.html">templates/presentation.html</a>を作った。html化されたスライドを埋めたいところを <code>$body</code> にして、タイトルやら著者はメタデータから取ってきて1枚目のスライドに埋めてやればO.K.。</p>
+<p>で、<code>site.hs</code> ではPandocにmarkdownのhtml化だけやらせる。ただし、reveal.jsで使えるようなhtmlを生成してもらう必要があるので、そのためのオプションはつける必要がある。</p>
+<pre><code>    match &quot;presentations/*&quot; $ do
+      let w = defaultHakyllWriterOptions {
+            PD.writerSlideVariant = PD.RevealJsSlides
+            , PD.writerHTMLMathMethod = MathJax undefined
+            , PD.writerHtml5 = True
+            , PD.writerIncremental = True
+            }
+      let r = let r' = defaultHakyllReaderOptions in r' {
+            PD.readerExtensions = Set.filter (/= PD.Ext_auto_identifiers) (PD.r\
+eaderExtensions r')
+            }
+      route $ setExtension &quot;html&quot;
+      compile $ do
+        item &lt;- pandocCompilerWith r w
+        item &lt;- loadAndApplyTemplate &quot;templates/presentation.html&quot; postCtx item
+        return item</code></pre>
+<p><code>RevealJsSlides</code>は適切な形式のhtmlを吐くために必要、<code>writerIncremental</code> を指定するとリストが一つずつ表示されるように <code>class=&quot;fragment&quot;</code> が加えられる。 <code>MathJax undefined</code>は数式をmathjaxが読めるような形式でhtml化するのに必要となる。</p>
+<p>最後に <code>Ext_auto_identifiers</code> を除いている部分だが、reveal.jsの最新版(3.0.0)は<code>&lt;div&gt;</code>の<code>id</code>属性をURLに使うようで、<code>id</code>属性を自動生成されると挙動に問題が出てしまった。そのために除いている。</p>
+<p>これで <code>presentations/</code> 以下にmarkdownを置くと <a href="http://hiratara.github.io/presentations/2015-03-21_monadbase_vol2.html#/">スライドが生成される</a>。デザインがいまいち気に食わないのはreveal.jsを使う度に思う課題である。日本語と相性そんなに良くないのかなあ。</p>
+</p>
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'hiratara';
+    var disqus_title = 'reveal.js on hakyll';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="../">Home</a> | <a href="../about.html">About</a> | <a href="../contact.html">Contact</a> | <a href="../archive.html">Archive</a></p>
+      <p>Copyright &copy; hiratara | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a> | <a href="http://jaspervdj.be/hakyll">Hakyll</a></p>
+    </div>
+  </div>
+</body>
+</html>
