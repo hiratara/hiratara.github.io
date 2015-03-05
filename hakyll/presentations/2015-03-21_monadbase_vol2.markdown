@@ -17,18 +17,18 @@ date: March 21, 2015
 * モナド変換子とは $T : \left| \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}}) \right| \to \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}})$ なる関手と、埋め込み関手 $\mathrm{In}$ について $\mathrm{lift}^T : \mathrm{In} \Rightarrow T$ なる自然変換
 * プログラムにおいては各モナドにおける操作の持ち上げが重要な関心ごと
 
-# モノイダル圏
+# monoidal 圏
 
 [復習] $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ がモノイダル圏とは、
 
 * $\mathbb{C}$ category
 * $\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}$  bifunctor
 * $I \in \mathbb{C}_0$
-* $\alpha : - \otimes (- \otimes -) \to (- \otimes -) \otimes -$ nat
-* $\lambda : I \otimes - \to -$ nat
-* $\rho : - \otimes I \to -$ nat
+* $\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -$ nat
+* $\lambda : I \otimes - \Rightarrow -$ nat
+* $\rho : - \otimes I \Rightarrow -$ nat
 
-# モノイダル圏
+# monoidal 圏
 
 [復習] $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ がモノイダル圏とは、
 
@@ -36,7 +36,7 @@ date: March 21, 2015
 * $\alpha \circ \alpha = (\alpha \otimes \mathrm{id}) \circ \alpha \circ (\mathrm{id} \otimes \alpha)$
 * $( \rho \otimes \mathrm{id} ) \circ \alpha = \mathrm{id} \otimes \lambda$
 
-# モノイド
+# monoid
 
 [復習] モノイダル圏$\mathbb{C}$において、$(M, e, m)$ がモノイドとは、
 
@@ -44,7 +44,7 @@ date: March 21, 2015
 * $e : I \to M \in \mathbb{C}_1$
 * $m : M \otimes M \to M \in \mathbb{C}_1$
 
-# モノイド
+# monoid
 
 [復習] モノイダル圏$\mathbb{C}$において、$(M, e, m)$ がモノイドとは、
 
@@ -53,14 +53,16 @@ date: March 21, 2015
 * $m \circ ( e \otimes \mathrm{id} ) = \lambda$
 * $\rho =m \circ ( \mathrm{id} \otimes e )$
 
-# モノイド準同型
+# monoid 準同型
 
 射$f : M \to M'$がモノイド$(M, e, m)$と$(M', e', m')$の間の準同型とは、
 
 * $f \circ e = e'$
 * $f \circ m = m' \circ (f \otimes f)$
 
-# 例:通常の意味のモノイド
+# 例: 集合圏
+
+直積を $\otimes$ としたモノイダル圏のモノイド準同型は、通常の意味のモノイド準同型となる。
 
 * exercise
 
@@ -77,6 +79,117 @@ date: March 21, 2015
 # $\mathrm{Mon}(\mathbb{C})$
 
 モノイドとモノイド準同型は圏を成す。
+
+# monoid 変換子
+
+モノイド変換子 $(T, \mathrm{lift})$とは、
+
+* $T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})$ Functor
+* $\mathrm{lift} : \mathrm{In} \Rightarrow T$ Nat
+
+ただし、 $\mathrm{In} : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})$ は埋め込み関手とする。
+
+# monad 変換子
+
+関手圏 $\mathbb{C}^\mathbb{C}$ において、関手の合成・自然変換の水平合成を$\otimes$ ととったモノイダル圏におけるモノイド変換子。
+
+# 弱い定義
+
+* $\mathrm{Mon}(\mathbb{C}^\mathbb{C})_0$ には構造がない
+    * 継続モナドのための定義
+* モノイドの構造を持ち込むだけでは不十分
+    * モナド特有の操作を一緒に考えることが多い
+    * `catchError :: m a -> (e -> m a) -> m a`
+
+# H-operations
+
+モノイダル圏 $\mathbb{C}$ において $op : HM \to M$ が H-operation であるとは、
+
+* $M$ is monoid
+* $H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}$ is functor
+
+# first-order
+
+H-operation $op : HM \to M$ が first-order であるとは、
+
+* $H - = S \otimes -$
+* $S \in \mathbb{C}_0$ is called signature
+
+# algebraic
+
+H-operation $op : HM \to M$ が algebraic であるとは、
+
+* $op$ is first-order operation
+* $m \circ (op \otimes \mathrm{id}) \circ \alpha = op \circ (\mathrm{id} \otimes m)$
+
+# 例: `catchError`
+
+* $S - = - \times -^E$ とする
+* $\mathrm{catchError'} : S \otimes M \to M$ is first-order
+    * exercise: Check that it's not algebraic
+* `catchError = curry catchError'`
+
+# covariant
+
+モナド変換子 $(T, \mathrm{lift})$ がcovariantとは、
+
+* $T : \mathrm{Mon}(\mathbb{C}) \to \mathrm{Mon}(\mathbb{C})$ is functor
+* $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ is nat
+
+# functorial
+
+モナド変換子 $(T, \mathrm{lift})$ がfunctorialとは、
+
+* $(T, \mathrm{lift})$ is covariant
+* $T : \mathbb{C} \to \mathbb{C}$
+* $U(\mathrm{lift}_M) = \mathrm{lift}_{UM}$
+
+# monoidal
+
+モナド変換子 $(T, \mathrm{lift})$ がmonoidalとは、
+
+* $T : \mathbb{C} \to \mathbb{C}$ is monoidal functor
+* $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ is monoidal nat
+
+# (lax) monoidal 関手
+
+モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
+について、$(F, \phi_I, \phi)$ がモノイダル関手とは、
+
+* $F: \mathbb{C} \to \mathbb{C}'$
+* $\phi_I : I' \to FI$ is a morphism
+* $\phi : F- \otimes F- \Rightarrow F(- \otimes -)$ is nat
+
+# (lax) monoidal 関手
+
+モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
+について、$(F, \phi_I, \phi)$ がモノイダル関手とは、
+
+* $F\alpha \circ \phi \circ (\mathrm{id} \otimes' \phi) = \phi \circ (\phi \otimes' \mathrm{id}) \circ \alpha'$
+* $\lambda' = F\lambda \circ \phi \circ (\phi_I \otimes' \mathrm{id})$
+* $\rho' = F\rho \circ \phi \circ (\mathrm{id} \otimes' \phi_I)$
+
+# monoidal nat
+
+モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ と $(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
+の間のモノイダル関手 $(F, \phi_I, \phi)$ と $(F', \phi_I', \phi')$ に対して $\tau$ がモノイダル自然変換とは、
+
+* $\tau : F \Rightarrow F'$
+* $\phi_I' = \tau_I \circ \phi_I$
+* $\phi' \circ (\tau \otimes' \tau) = \tau \circ \phi$
+
+# Theorem
+
+monoidalモノイド変換子 $(T, \mathrm{lift})$ はfunctorialモノイド変換子 $(T_f, \mathrm{lift}_f)$ である。
+
+* $T_f : (M, e, m) \mapsto (TM, Te \circ \phi_I, Tm \circ \phi)$
+* $\mathrm{lift}_f = \mathrm{lift}$
+
+# 参考文献
+
+* "Monad Transformers as Monoid Transformers", Mauro Jaskelio
+    * モノイダル圏での議論は見通しが良い
+    * モノイド変換子、は必要ないかも？
 
 # まとめ
 
