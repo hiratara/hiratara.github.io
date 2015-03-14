@@ -14,8 +14,8 @@ date: March 21, 2015
 
 # 今回のアジェンダ
 
-* モナド変換子とは $T : \left| \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}}) \right| \to \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}})$ なる関手と、埋め込み関手 $\mathrm{In}$ について $\mathrm{lift}^T : \mathrm{In} \Rightarrow T$ なる自然変換
-* プログラムにおいては各モナドにおける操作の持ち上げが重要な関心ごと
+* モノイド変換子
+* [Monatron](https://hackage.haskell.org/package/Monatron) による lifting 
 
 # monoidal 圏
 
@@ -185,14 +185,44 @@ monoidalモノイド変換子 $(T, \mathrm{lift})$ はfunctorialモノイド変�
 * $T_f : (M, e, m) \mapsto (TM, Te \circ \phi_I, Tm \circ \phi)$
 * $\mathrm{lift}_f = \mathrm{lift}$
 
-# 参考文献
+# algebraic lifting
 
-* "Monad Transformers as Monoid Transformers", Mauro Jaskelio
-    * モノイダル圏での議論は見通しが良い
-    * モノイド変換子、は必要ないかも？
+$\mathrm{op}^M : S \otimes M \to M$ をalgebraic operation、 $h : M \to N$ をモノイド変換子とすると、$\mathrm{op}^N : S \otimes N \to N$ なる algebraic operation で $\mathrm{op}^M$ の $h$ に沿った持ち上げとなっているものが唯一存在する。
+
+* $\mathrm{op}^N = m \circ ((h \circ \mathrm{op}^M \circ (S \otimes e) \circ \rho^{-1}) \otimes M)$
+
+# condensity lifting
+
+$\mathbb{C}$ をright closedなモノイダル圏とする。
+
+$\mathrm{op}^M : S \otimes M \to M$をfirst order operation、$(T, \mathrm{lift}^T)$をfunctorial モノイド変換子とする。このとき、$\mathrm{op}^M$ の $\mathrm{lift}^T_M$ に沿った持ち上げ$\mathrm{op}^{TM} : S \otimes TM \to TM$が存在する。
+
+# condensity lifting
+
+* $\mathrm{op}^{TM} = T(\mathrm{down}^K_M) \circ op^{T(KM)} \circ (S \otimes T(\mathrm{lift}^K_M))$
+* ただし、 $(K, \mathrm{lift}^K)$ は condinsity モノイド変換子、$\mathrm{down}^K \circ \mathrm{lift}^K = \mathrm{id}$
+* また、$\mathrm{op}^{KM} = m^K \circ (\lambda(\mathrm{op}^M) \otimes M^M)$はalgebraic operationで、$\mathrm{op}^{T(KM)}$ はその $\mathrm{lift}^T$ に沿った lifting
+
+# monoidal lifting
+
+$(T, \phi_I, \phi, \mathrm{lift}^T)$をmonoidal transformer、$S, F \in \mathbb{C}_0$、$\mathrm{op}^M : S \otimes M \otimes F \to M$ をH-operationとする。このとき、 $\mathrm{lift}^T_M$ に沿った持ち上げ $\mathrm{op}^{TM} : S \otimes TM \otimes F \to TM$ が存在する。
+
+* $\mathrm{op}^{TM} = T(\mathrm{op}^M) \circ \phi_{S \otimes M, F} \circ (\phi_{S, M} \otimes \mathrm{lift}^T_F) \circ (\mathrm{lift}^T_M \otimes TM \otimes F)$
 
 # まとめ
 
-* 
-* 
+* モナド変換子はモナド準同型の族
+* operationの持ち上げは難しい
 
+
+# 参考文献
+
+* [Monad transformers](http://conway.rutgers.edu/~ccshan/wiki/blog/posts/Monad_transformers/), Chung-chieh Shan
+    * 歴史がまとまっているエントリ
+* “An Abstract View of Programming Languages”, Eugenio Moggi
+    * モナド変換子とoperationの問題設定
+* "Modular Monadic Semantics", Sheng Liang, Paul Hudak 
+    * mtl式のadhocなlifting
+* "Monad Transformers as Monoid Transformers", Mauro Jaskelio
+    * モノイダル圏での議論は見通しが良い
+    * モノイド変換子、は必要ないかも？
