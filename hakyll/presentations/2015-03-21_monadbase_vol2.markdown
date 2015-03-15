@@ -12,7 +12,7 @@ date: March 21, 2015
     * モノイダル圏の定義
     * モナドは自己関手圏のモノイド
 
-# 今回のアジェンダ
+# 今回の内容
 
 * モノイド変換子
 * [Monatron](https://hackage.haskell.org/package/Monatron) による lifting 
@@ -21,12 +21,12 @@ date: March 21, 2015
 
 [復習] $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ がモノイダル圏とは、
 
-* $\mathbb{C}$ category
-* $\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}$  bifunctor
+* $\mathbb{C}$ 圏
+* $\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ 双関手
 * $I \in \mathbb{C}_0$
-* $\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -$ nat
-* $\lambda : I \otimes - \Rightarrow -$ nat
-* $\rho : - \otimes I \Rightarrow -$ nat
+* $\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -$ 自然同型
+* $\lambda : I \otimes - \Rightarrow -$ 自然同型
+* $\rho : - \otimes I \Rightarrow -$ 自然同型
 
 # monoidal 圏
 
@@ -68,13 +68,14 @@ date: March 21, 2015
 
 # 例:[mmorph](https://hackage.haskell.org/package/mmorph-1.0.4/docs/Control-Monad-Morph.html)
 
-* Definition: `morph :: forall a . m a -> n a`
+* 定義: `morph :: forall a . m a -> n a`
     * `morph . return = return`
     * `morph . (f >=> g) = morph . f >=> morph . g`
-    * exercise: monoid morphism?
+    * exercise: モノイド準同型の定義と同値か
 * `lift :: Monad m => m a -> t m a`
     * `lift . return = return`
     * `lift (m >>= f) = lift m >>= (lift . f)`
+    * exercise: `morph`の定義と同値か
 
 # $\mathrm{Mon}(\mathbb{C})$
 
@@ -84,8 +85,8 @@ date: March 21, 2015
 
 モノイド変換子 $(T, \mathrm{lift})$とは、
 
-* $T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})$ Functor
-* $\mathrm{lift} : \mathrm{In} \Rightarrow T$ Nat
+* $T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})$ 関手
+* $\mathrm{lift} : \mathrm{In} \Rightarrow T$ 自然変換
 
 ただし、 $\mathrm{In} : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})$ は埋め込み関手とする。
 
@@ -93,97 +94,125 @@ date: March 21, 2015
 
 関手圏 $\mathbb{C}^\mathbb{C}$ において、関手の合成・自然変換の水平合成を$\otimes$ ととったモノイダル圏におけるモノイド変換子。
 
-# 弱い定義
+# monad 変換子
 
-* $\mathrm{Mon}(\mathbb{C}^\mathbb{C})_0$ には構造がない
+* monadから新しいmonadを作れる
+* $T$は貧弱
+    * 射関数がない関手
     * 継続モナドのための定義
-* モノイドの構造を持ち込むだけでは不十分
-    * モナド特有の操作を一緒に考えることが多い
+* モナド準同型の$\mathrm{lift}$は`return`と`bind`を保つ
+* モナドの構造を保つだけでは不十分
+    * モナド特有の操作の再利用が必要
     * `catchError :: m a -> (e -> m a) -> m a`
 
 # H-operations
 
 モノイダル圏 $\mathbb{C}$ において $op : HM \to M$ が H-operation であるとは、
 
-* $M$ is monoid
-* $H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}$ is functor
-
-# first-order
-
-H-operation $op : HM \to M$ が first-order であるとは、
-
-* $H - = S \otimes -$
-* $S \in \mathbb{C}_0$ is called signature
-
-# algebraic
-
-H-operation $op : HM \to M$ が algebraic であるとは、
-
-* $op$ is first-order operation
-* $m \circ (op \otimes \mathrm{id}) \circ \alpha = op \circ (\mathrm{id} \otimes m)$
+* $M$ モノイド
+* $H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}$ 関手
 
 # 例: `catchError`
+
+ほとんどの操作はH-operationsを元に導出できる。
 
 * $S - = - \times -^E$ とする
 * $\mathrm{catchError'} : S \otimes M \to M$ is first-order
     * exercise: Check that it's not algebraic
 * `catchError = curry catchError'`
 
-# covariant
+# lifting
 
-モナド変換子 $(T, \mathrm{lift})$ がcovariantとは、
+$\mathrm{op}^M : HM \to M$をH-operation、$h : M \to N$をモノイド準同型とする。$\mathrm{op}^N : HN \to N$ が以下を満たすとき、$\mathrm{op}^M$の$h$に沿った持ち上げであるという。
 
-* $T : \mathrm{Mon}(\mathbb{C}) \to \mathrm{Mon}(\mathbb{C})$ is functor
-* $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ is nat
+* $h \circ \mathrm{op}^M = \mathrm{op}^N \circ Hh$
 
-# functorial
+# how to lift
 
-モナド変換子 $(T, \mathrm{lift})$ がfunctorialとは、
+| | 変換子 | 共変 | 関手的 | モノイダル |
+| :---- | ----: | ----: | ----: | ----: |
+H-operation | |  |  |  |
+$\tiny{(S \otimes M) \otimes F \to M}$ | | | | M
+first-order | | | C | C M
+代数的 | A | A | A C | A C M
 
-* $(T, \mathrm{lift})$ is covariant
-* $T : \mathbb{C} \to \mathbb{C}$
-* $U(\mathrm{lift}_M) = \mathrm{lift}_{UM}$
+* A : Algebraic lifting
+* C : Condensity lifting
+* M : Monoidal lifting
 
-# monoidal
+# first-order
 
-モナド変換子 $(T, \mathrm{lift})$ がmonoidalとは、
+H-operation $\mathrm{op} : HM \to M$ がfirst-orderであるとは、
 
-* $T : \mathbb{C} \to \mathbb{C}$ is monoidal functor
-* $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ is monoidal nat
+* $H - = S \otimes -$
+* $S \in \mathbb{C}_0$ シグネチャ
 
-# (lax) monoidal 関手
+# algebraic
 
-モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
-について、$(F, \phi_I, \phi)$ がモノイダル関手とは、
+H-operation $\mathrm{op} : HM \to M$ が代数的であるとは、
 
-* $F: \mathbb{C} \to \mathbb{C}'$
-* $\phi_I : I' \to FI$ is a morphism
-* $\phi : F- \otimes F- \Rightarrow F(- \otimes -)$ is nat
+* $\mathrm{op}$ はfirst-order
+* $m \circ (\mathrm{op} \otimes \mathrm{id}) \circ \alpha = \mathrm{op} \circ (\mathrm{id} \otimes m)$
 
-# (lax) monoidal 関手
+# algebraic
 
-モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
-について、$(F, \phi_I, \phi)$ がモノイダル関手とは、
+代数的なoperation $\mathrm{op} : S \otimes M \to M$ と $S \to M$ という形のH-operationは一対一で対応している。
 
-* $F\alpha \circ \phi \circ (\mathrm{id} \otimes' \phi) = \phi \circ (\phi \otimes' \mathrm{id}) \circ \alpha'$
-* $\lambda' = F\lambda \circ \phi \circ (\phi_I \otimes' \mathrm{id})$
-* $\rho' = F\rho \circ \phi \circ (\mathrm{id} \otimes' \phi_I)$
+<!-- # covariant -->
 
-# monoidal nat
+<!-- モナド変換子 $(T, \mathrm{lift})$ が共変とは、 -->
 
-モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ と $(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$
-の間のモノイダル関手 $(F, \phi_I, \phi)$ と $(F', \phi_I', \phi')$ に対して $\tau$ がモノイダル自然変換とは、
+<!-- * $T : \mathrm{Mon}(\mathbb{C}) \to \mathrm{Mon}(\mathbb{C})$ 関手 -->
+<!-- * $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ 自然変換 -->
 
-* $\tau : F \Rightarrow F'$
-* $\phi_I' = \tau_I \circ \phi_I$
-* $\phi' \circ (\tau \otimes' \tau) = \tau \circ \phi$
+<!-- # functorial -->
 
-# Theorem
+<!-- モナド変換子 $(T, \mathrm{lift})$ が関手的とは、 -->
 
-monoidalモノイド変換子 $(T, \mathrm{lift})$ はfunctorialモノイド変換子 $(T_f, \mathrm{lift}_f)$ である。
+<!-- * $(T, \mathrm{lift})$ が covariant -->
+<!-- * $T : \mathbb{C} \to \mathbb{C}$ -->
+<!-- * $U(\mathrm{lift}_M) = \mathrm{lift}_{UM}$ -->
 
-* $T_f : (M, e, m) \mapsto (TM, Te \circ \phi_I, Tm \circ \phi)$
-* $\mathrm{lift}_f = \mathrm{lift}$
+<!-- # monoidal -->
+
+<!-- モナド変換子 $(T, \mathrm{lift})$ がモノイダルとは、 -->
+
+<!-- * $T : \mathbb{C} \to \mathbb{C}$ はモノイダル関手 -->
+<!-- * $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ はモノイダル自然変換 -->
+
+<!-- # (lax) monoidal F -->
+
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- について、$(F, \phi_I, \phi)$ がモノイダル関手とは、 -->
+
+<!-- * $F: \mathbb{C} \to \mathbb{C}'$ -->
+<!-- * $\phi_I : I' \to FI$ 射 -->
+<!-- * $\phi : F- \otimes F- \Rightarrow F(- \otimes -)$ 自然変換 -->
+
+<!-- # (lax) monoidal 関手 -->
+
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- について、$(F, \phi_I, \phi)$ が(緩い)モノイダル関手とは、 -->
+
+<!-- * $F\alpha \circ \phi \circ (\mathrm{id} \otimes' \phi) = \phi \circ (\phi \otimes' \mathrm{id}) \circ \alpha'$ -->
+<!-- * $\lambda' = F\lambda \circ \phi \circ (\phi_I \otimes' \mathrm{id})$ -->
+<!-- * $\rho' = F\rho \circ \phi \circ (\mathrm{id} \otimes' \phi_I)$ -->
+
+<!-- # monoidal nat -->
+
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ と $(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- の間のモノイダル関手 $(F, \phi_I, \phi)$ と $(F', \phi_I', \phi')$ に対して $\tau$ がモノイダル自然変換とは、 -->
+
+<!-- * $\tau : F \Rightarrow F'$ -->
+<!-- * $\phi_I' = \tau_I \circ \phi_I$ -->
+<!-- * $\phi' \circ (\tau \otimes' \tau) = \tau \circ \phi$ -->
+
+<!-- # Theorem -->
+
+<!-- モノイド変換子 $(T, \mathrm{lift})$ がモノイダルであるとき、、以下で定義されるモノイド変換子 $(T', \mathrm{lift}')$ は関手的である。 -->
+
+<!-- * $T' : (M, e, m) \mapsto (TM, Te \circ \phi_I, Tm \circ \phi)$ -->
+<!-- * $\mathrm{lift}' = \mathrm{lift}$ -->
 
 # algebraic lifting
 
@@ -191,23 +220,23 @@ $\mathrm{op}^M : S \otimes M \to M$ をalgebraic operation、 $h : M \to N$ を�
 
 * $\mathrm{op}^N = m \circ ((h \circ \mathrm{op}^M \circ (S \otimes e) \circ \rho^{-1}) \otimes M)$
 
-# condensity lifting
+<!-- # condensity lifting -->
 
-$\mathbb{C}$ をright closedなモノイダル圏とする。
+<!-- $\mathbb{C}$ をright closedなモノイダル圏とする。 -->
 
-$\mathrm{op}^M : S \otimes M \to M$をfirst order operation、$(T, \mathrm{lift}^T)$をfunctorial モノイド変換子とする。このとき、$\mathrm{op}^M$ の $\mathrm{lift}^T_M$ に沿った持ち上げ$\mathrm{op}^{TM} : S \otimes TM \to TM$が存在する。
+<!-- $\mathrm{op}^M : S \otimes M \to M$をfirst order operation、$(T, \mathrm{lift}^T)$をfunctorial モノイド変換子とする。このとき、$\mathrm{op}^M$ の $\mathrm{lift}^T_M$ に沿った持ち上げ$\mathrm{op}^{TM} : S \otimes TM \to TM$が存在する。 -->
 
-# condensity lifting
+<!-- # condensity lifting -->
 
-* $\mathrm{op}^{TM} = T(\mathrm{down}^K_M) \circ op^{T(KM)} \circ (S \otimes T(\mathrm{lift}^K_M))$
-* ただし、 $(K, \mathrm{lift}^K)$ は condinsity モノイド変換子、$\mathrm{down}^K \circ \mathrm{lift}^K = \mathrm{id}$
-* また、$\mathrm{op}^{KM} = m^K \circ (\lambda(\mathrm{op}^M) \otimes M^M)$はalgebraic operationで、$\mathrm{op}^{T(KM)}$ はその $\mathrm{lift}^T$ に沿った lifting
+<!-- * $\mathrm{op}^{TM} = T(\mathrm{down}^K_M) \circ op^{T(KM)} \circ (S \otimes T(\mathrm{lift}^K_M))$ -->
+<!-- * ただし、 $(K, \mathrm{lift}^K)$ は condinsity モノイド変換子、$\mathrm{down}^K \circ \mathrm{lift}^K = \mathrm{id}$ -->
+<!-- * また、$\mathrm{op}^{KM} = m^K \circ (\lambda(\mathrm{op}^M) \otimes M^M)$はalgebraic operationで、$\mathrm{op}^{T(KM)}$ はその $\mathrm{lift}^T$ に沿った lifting -->
 
-# monoidal lifting
+<!-- # monoidal lifting -->
 
-$(T, \phi_I, \phi, \mathrm{lift}^T)$をmonoidal transformer、$S, F \in \mathbb{C}_0$、$\mathrm{op}^M : S \otimes M \otimes F \to M$ をH-operationとする。このとき、 $\mathrm{lift}^T_M$ に沿った持ち上げ $\mathrm{op}^{TM} : S \otimes TM \otimes F \to TM$ が存在する。
+<!-- $(T, \phi_I, \phi, \mathrm{lift}^T)$をmonoidal transformer、$S, F \in \mathbb{C}_0$、$\mathrm{op}^M : S \otimes M \otimes F \to M$ をH-operationとする。このとき、 $\mathrm{lift}^T_M$ に沿った持ち上げ $\mathrm{op}^{TM} : S \otimes TM \otimes F \to TM$ が存在する。 -->
 
-* $\mathrm{op}^{TM} = T(\mathrm{op}^M) \circ \phi_{S \otimes M, F} \circ (\phi_{S, M} \otimes \mathrm{lift}^T_F) \circ (\mathrm{lift}^T_M \otimes TM \otimes F)$
+<!-- * $\mathrm{op}^{TM} = T(\mathrm{op}^M) \circ \phi_{S \otimes M, F} \circ (\phi_{S, M} \otimes \mathrm{lift}^T_F) \circ (\mathrm{lift}^T_M \otimes TM \otimes F)$ -->
 
 # まとめ
 
