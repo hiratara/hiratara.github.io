@@ -100,8 +100,8 @@ date: March 21, 2015
 * $T$は貧弱
     * 射関数がない関手
     * 継続モナドのための定義
-* モナド準同型の$\mathrm{lift}$は`return`と`bind`を保つ
-* モナドの構造を保つだけでは不十分
+* $\mathrm{lift}$は`return`と`bind`を保つ
+* モナドの構造を保つだけではprogrammingでは不十分
     * モナド特有の操作の再利用が必要
     * `catchError :: m a -> (e -> m a) -> m a`
 
