@@ -140,6 +140,25 @@ first-order | | | C | C M
 * C : Condensity lifting
 * M : Monoidal lifting
 
+# Transformers
+
+* モノイダル
+    * `StateT`, `WriterT`
+* 関手的
+    * `ListT`, `ErrorT`
+* 共変
+* モナド変換子
+    * `ContT`
+
+# Operations
+
+* 代数的
+    * `get`, `put`, `trace`, `throw`, `abort`, `callcc`
+* first-order
+    * `local`, `handle`
+* H-operation
+    * `collect`
+
 # first-order
 
 H-operation $\mathrm{op} : HM \to M$ がfirst-orderであるとは、
