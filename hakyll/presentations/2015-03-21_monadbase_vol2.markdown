@@ -53,6 +53,13 @@ date: March 21, 2015
 * $m \circ ( e \otimes \mathrm{id} ) = \lambda$
 * $\rho =m \circ ( \mathrm{id} \otimes e )$
 
+# monoidとmonad
+
+[復習]以下のように読み替えるとよい。
+
+* $\beta \otimes \alpha : G \otimes F \to G' \otimes F'$
+* $\beta_{F'X} \circ G\alpha_X : (G \circ F)X \to (G' \circ F')X$
+
 # monoid 準同型
 
 射$f : M \to M'$がモノイド$(M, e, m)$と$(M', e', m')$の間の準同型とは、
