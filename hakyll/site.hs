@@ -79,7 +79,7 @@ main = do
             PD.writerSlideVariant = PD.RevealJsSlides
             , PD.writerHTMLMathMethod = MathJax undefined
             , PD.writerHtml5 = True
-            , PD.writerIncremental = True
+            -- , PD.writerIncremental = True
             }
       let r = let r' = defaultHakyllReaderOptions in r' {
             PD.readerExtensions = Set.filter (/= PD.Ext_auto_identifiers) (PD.readerExtensions r')
