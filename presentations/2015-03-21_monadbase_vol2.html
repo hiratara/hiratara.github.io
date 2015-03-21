@@ -27,29 +27,347 @@
 			</section>
 
 			<section class="slide level1">
-<h1>前回の復習</h1>
+<h1>前回について</h1>
 <ul>
-<li class="fragment"><a href="http://connpass.com/event/1152/">わかめのモナド浸し</a></li>
-<li class="fragment"><a href="http://www.slideshare.net/hiratara/ss-15209166">モナモナ言うモナド入門</a>
+<li><a href="http://connpass.com/event/1152/">わかめのモナド浸し</a></li>
+<li><a href="http://www.slideshare.net/hiratara/ss-15209166">モナモナ言うモナド入門</a>
 <ul>
-<li class="fragment">圏の基礎的な概念の定義</li>
-<li class="fragment">モノイダル圏の定義</li>
-<li class="fragment">モナドは自己関手圏のモノイド</li>
+<li>圏の基礎的な概念の定義</li>
+<li>モノイダル圏の定義</li>
+<li>モナドは自己関手圏のモノイド</li>
 </ul></li>
 </ul>
 </section>
 <section class="slide level1">
-<h1>今回のアジェンダ</h1>
+<h1>今回の内容</h1>
 <ul>
-<li class="fragment">モナド変換子とは <span class="math">\(T : \left| \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}}) \right| \to \mathrm{Mon}(\mathrm{Hask}^{\mathrm{Hask}})\)</span> なる関手と、埋め込み関手 <span class="math">\(\mathrm{In}\)</span> について <span class="math">\(\mathrm{lift}^T : \mathrm{In} \Rightarrow T\)</span> なる自然変換</li>
-<li class="fragment">プログラムにおいては各モナドにおける操作の持ち上げが重要な関心ごと</li>
+<li>モノイド変換子</li>
+<li><a href="https://hackage.haskell.org/package/Monatron">Monatron</a> による lifting</li>
 </ul>
+</section>
+<section class="slide level1">
+<h1>monoidal 圏</h1>
+<p>[復習] <span class="math">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
+<ul>
+<li><span class="math">\(\mathbb{C}\)</span> 圏</li>
+<li><span class="math">\(\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}\)</span> 双関手</li>
+<li><span class="math">\(I \in \mathbb{C}_0\)</span></li>
+<li><span class="math">\(\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -\)</span> 自然同型</li>
+<li><span class="math">\(\lambda : I \otimes - \Rightarrow -\)</span> 自然同型</li>
+<li><span class="math">\(\rho : - \otimes I \Rightarrow -\)</span> 自然同型</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>monoidal 圏</h1>
+<p>[復習] <span class="math">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
+<ul>
+<li><span class="math">\(\lambda_I = \rho_I\)</span></li>
+<li><span class="math">\(\alpha \circ \alpha = (\alpha \otimes \mathrm{id}) \circ \alpha \circ (\mathrm{id} \otimes \alpha)\)</span></li>
+<li><span class="math">\(( \rho \otimes \mathrm{id} ) \circ \alpha = \mathrm{id} \otimes \lambda\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>monoid</h1>
+<p>[復習] モノイダル圏<span class="math">\(\mathbb{C}\)</span>において、<span class="math">\((M, e, m)\)</span> がモノイドとは、</p>
+<ul>
+<li><span class="math">\(M \in \mathbb{C}_0\)</span></li>
+<li><span class="math">\(e : I \to M \in \mathbb{C}_1\)</span></li>
+<li><span class="math">\(m : M \otimes M \to M \in \mathbb{C}_1\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>monoid</h1>
+<p>[復習] モノイダル圏<span class="math">\(\mathbb{C}\)</span>において、<span class="math">\((M, e, m)\)</span> がモノイドとは、</p>
+<ul>
+<li><p><span class="math">\(m \circ ( m \otimes \mathrm{id} ) \circ \alpha = m \circ ( \mathrm{id} \otimes m )\)</span></p></li>
+<li><span class="math">\(m \circ ( e \otimes \mathrm{id} ) = \lambda\)</span></li>
+<li><p><span class="math">\(\rho =m \circ ( \mathrm{id} \otimes e )\)</span></p></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>monoidとmonad</h1>
+<p>[復習]以下のように読み替えるとよい。</p>
+<ul>
+<li><span class="math">\(\beta \otimes \alpha : G \otimes F \to G&#39; \otimes F&#39;\)</span></li>
+<li><span class="math">\(\beta_{F&#39;X} \circ G\alpha_X : (G \circ F)X \to (G&#39; \circ F&#39;)X\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>monoid 準同型</h1>
+<p>射<span class="math">\(f : M \to M&#39;\)</span>がモノイド<span class="math">\((M, e, m)\)</span>と<span class="math">\((M&#39;, e&#39;, m&#39;)\)</span>の間の準同型とは、</p>
+<ul>
+<li><span class="math">\(f \circ e = e&#39;\)</span></li>
+<li><span class="math">\(f \circ m = m&#39; \circ (f \otimes f)\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>例: 集合圏</h1>
+<p>直積を <span class="math">\(\otimes\)</span> としたモノイダル圏のモノイド準同型は、通常の意味のモノイド準同型となる。</p>
+<ul>
+<li>exercise</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>例:<a href="https://hackage.haskell.org/package/mmorph-1.0.4/docs/Control-Monad-Morph.html">mmorph</a></h1>
+<ul>
+<li>定義: <code>morph :: forall a . m a -&gt; n a</code>
+<ul>
+<li><code>morph . return = return</code></li>
+<li><code>morph . (f &gt;=&gt; g) = morph . f &gt;=&gt; morph . g</code></li>
+<li>exercise: モノイド準同型の定義と同値か</li>
+</ul></li>
+<li><code>lift :: Monad m =&gt; m a -&gt; t m a</code>
+<ul>
+<li><code>lift . return = return</code></li>
+<li><code>lift (m &gt;&gt;= f) = lift m &gt;&gt;= (lift . f)</code></li>
+<li>exercise: <code>morph</code>の定義と同値か</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1><span class="math">\(\mathrm{Mon}(\mathbb{C})\)</span></h1>
+<p>モノイドとモノイド準同型は圏を成す。</p>
+</section>
+<section class="slide level1">
+<h1>monoid 変換子</h1>
+<p>モノイド変換子 <span class="math">\((T, \mathrm{lift})\)</span>とは、</p>
+<ul>
+<li><span class="math">\(T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> 関手</li>
+<li><span class="math">\(\mathrm{lift} : \mathrm{In} \Rightarrow T\)</span> 自然変換</li>
+</ul>
+<p>ただし、 <span class="math">\(\mathrm{In} : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> は埋め込み関手とする。</p>
+</section>
+<section class="slide level1">
+<h1>monad 変換子</h1>
+<p>関手圏 <span class="math">\(\mathbb{C}^\mathbb{C}\)</span> において、関手の合成・自然変換の水平合成を<span class="math">\(\otimes\)</span> ととったモノイダル圏におけるモノイド変換子。</p>
+</section>
+<section class="slide level1">
+<h1>monad 変換子</h1>
+<ul>
+<li>monadから新しいmonadを作れる</li>
+<li><span class="math">\(T\)</span>は貧弱
+<ul>
+<li>射関数がない関手</li>
+<li>継続モナドのための定義</li>
+</ul></li>
+<li><span class="math">\(\mathrm{lift}\)</span>は<code>return</code>と<code>bind</code>を保つ</li>
+<li>モナドの構造を保つだけではprogrammingでは不十分
+<ul>
+<li>モナド特有の操作の再利用が必要</li>
+<li><code>catchError :: m a -&gt; (e -&gt; m a) -&gt; m a</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>H-operations</h1>
+<p>モノイダル圏 <span class="math">\(\mathbb{C}\)</span> において <span class="math">\(op : HM \to M\)</span> が H-operation であるとは、</p>
+<ul>
+<li><span class="math">\(M\)</span> モノイド</li>
+<li><span class="math">\(H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}\)</span> 関手</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>例: <code>catchError</code></h1>
+<p>ほとんどの操作はH-operationsを元に導出できる。</p>
+<ul>
+<li><span class="math">\(S - = - \times -^E\)</span> とする</li>
+<li><span class="math">\(\mathrm{catchError&#39;} : S \otimes M \to M\)</span> is first-order
+<ul>
+<li>exercise: Check that it’s not algebraic</li>
+</ul></li>
+<li><code>catchError = curry catchError'</code></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>lifting</h1>
+<p><span class="math">\(\mathrm{op}^M : HM \to M\)</span>をH-operation、<span class="math">\(h : M \to N\)</span>をモノイド準同型とする。<span class="math">\(\mathrm{op}^N : HN \to N\)</span> が以下を満たすとき、<span class="math">\(\mathrm{op}^M\)</span>の<span class="math">\(h\)</span>に沿った持ち上げであるという。</p>
+<ul>
+<li><span class="math">\(h \circ \mathrm{op}^M = \mathrm{op}^N \circ Hh\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>how to lift</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">変換子</th>
+<th style="text-align: right;">共変</th>
+<th style="text-align: right;">関手的</th>
+<th style="text-align: right;">モノイダル</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">H-operation</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math">\(\tiny{(S \otimes M) \otimes F \to M}\)</span></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">first-order</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">C</td>
+<td style="text-align: right;">C M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">代数的</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">A</td>
+<td style="text-align: right;">A C</td>
+<td style="text-align: right;">A C M</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A : Algebraic lifting</li>
+<li>C : Condensity lifting</li>
+<li>M : Monoidal lifting</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>Transformers</h1>
+<ul>
+<li>モノイダル
+<ul>
+<li><code>StateT</code>, <code>WriterT</code></li>
+</ul></li>
+<li>関手的
+<ul>
+<li><code>ListT</code>, <code>ErrorT</code></li>
+</ul></li>
+<li>共変</li>
+<li>モナド変換子
+<ul>
+<li><code>ContT</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>Operations</h1>
+<ul>
+<li>代数的
+<ul>
+<li><code>get</code>, <code>put</code>, <code>trace</code>, <code>throw</code>, <code>abort</code>, <code>callcc</code></li>
+</ul></li>
+<li>first-order
+<ul>
+<li><code>local</code>, <code>handle</code></li>
+</ul></li>
+<li>H-operation
+<ul>
+<li><code>collect</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>first-order</h1>
+<p>H-operation <span class="math">\(\mathrm{op} : HM \to M\)</span> がfirst-orderであるとは、</p>
+<ul>
+<li><span class="math">\(H - = S \otimes -\)</span></li>
+<li><span class="math">\(S \in \mathbb{C}_0\)</span> シグネチャ</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>algebraic</h1>
+<p>H-operation <span class="math">\(\mathrm{op} : HM \to M\)</span> が代数的であるとは、</p>
+<ul>
+<li><span class="math">\(\mathrm{op}\)</span> はfirst-order</li>
+<li><span class="math">\(m \circ (\mathrm{op} \otimes \mathrm{id}) \circ \alpha = \mathrm{op} \circ (\mathrm{id} \otimes m)\)</span></li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>algebraic</h1>
+<p>代数的なoperation <span class="math">\(\mathrm{op} : S \otimes M \to M\)</span> と <span class="math">\(S \to M\)</span> という形のH-operationは一対一で対応している。</p>
+<!-- # covariant -->
+<!-- モナド変換子 $(T, \mathrm{lift})$ が共変とは、 -->
+<!-- * $T : \mathrm{Mon}(\mathbb{C}) \to \mathrm{Mon}(\mathbb{C})$ 関手 -->
+<!-- * $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ 自然変換 -->
+<!-- # functorial -->
+<!-- モナド変換子 $(T, \mathrm{lift})$ が関手的とは、 -->
+<!-- * $(T, \mathrm{lift})$ が covariant -->
+<!-- * $T : \mathbb{C} \to \mathbb{C}$ -->
+<!-- * $U(\mathrm{lift}_M) = \mathrm{lift}_{UM}$ -->
+<!-- # monoidal -->
+<!-- モナド変換子 $(T, \mathrm{lift})$ がモノイダルとは、 -->
+<!-- * $T : \mathbb{C} \to \mathbb{C}$ はモノイダル関手 -->
+<!-- * $\mathrm{lift} : \mathrm{Id} \Rightarrow T$ はモノイダル自然変換 -->
+<!-- # (lax) monoidal F -->
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- について、$(F, \phi_I, \phi)$ がモノイダル関手とは、 -->
+<!-- * $F: \mathbb{C} \to \mathbb{C}'$ -->
+<!-- * $\phi_I : I' \to FI$ 射 -->
+<!-- * $\phi : F- \otimes F- \Rightarrow F(- \otimes -)$ 自然変換 -->
+<!-- # (lax) monoidal 関手 -->
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$と$(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- について、$(F, \phi_I, \phi)$ が(緩い)モノイダル関手とは、 -->
+<!-- * $F\alpha \circ \phi \circ (\mathrm{id} \otimes' \phi) = \phi \circ (\phi \otimes' \mathrm{id}) \circ \alpha'$ -->
+<!-- * $\lambda' = F\lambda \circ \phi \circ (\phi_I \otimes' \mathrm{id})$ -->
+<!-- * $\rho' = F\rho \circ \phi \circ (\mathrm{id} \otimes' \phi_I)$ -->
+<!-- # monoidal nat -->
+<!-- モノイダル圏 $(\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)$ と $(\mathbb{C}', \otimes', I', \alpha', \lambda', \rho')$ -->
+<!-- の間のモノイダル関手 $(F, \phi_I, \phi)$ と $(F', \phi_I', \phi')$ に対して $\tau$ がモノイダル自然変換とは、 -->
+<!-- * $\tau : F \Rightarrow F'$ -->
+<!-- * $\phi_I' = \tau_I \circ \phi_I$ -->
+<!-- * $\phi' \circ (\tau \otimes' \tau) = \tau \circ \phi$ -->
+<!-- # Theorem -->
+<!-- モノイド変換子 $(T, \mathrm{lift})$ がモノイダルであるとき、、以下で定義されるモノイド変換子 $(T', \mathrm{lift}')$ は関手的である。 -->
+<!-- * $T' : (M, e, m) \mapsto (TM, Te \circ \phi_I, Tm \circ \phi)$ -->
+<!-- * $\mathrm{lift}' = \mathrm{lift}$ -->
+</section>
+<section class="slide level1">
+<h1>algebraic lifting</h1>
+<p><span class="math">\(\mathrm{op}^M : S \otimes M \to M\)</span> をalgebraic operation、 <span class="math">\(h : M \to N\)</span> をモノイド変換子とすると、<span class="math">\(\mathrm{op}^N : S \otimes N \to N\)</span> なる algebraic operation で <span class="math">\(\mathrm{op}^M\)</span> の <span class="math">\(h\)</span> に沿った持ち上げとなっているものが唯一存在する。</p>
+<ul>
+<li><span class="math">\(\mathrm{op}^N = m \circ ((h \circ \mathrm{op}^M \circ (S \otimes e) \circ \rho^{-1}) \otimes M)\)</span></li>
+</ul>
+<!-- # condensity lifting -->
+<!-- $\mathbb{C}$ をright closedなモノイダル圏とする。 -->
+<!-- $\mathrm{op}^M : S \otimes M \to M$をfirst order operation、$(T, \mathrm{lift}^T)$をfunctorial モノイド変換子とする。このとき、$\mathrm{op}^M$ の $\mathrm{lift}^T_M$ に沿った持ち上げ$\mathrm{op}^{TM} : S \otimes TM \to TM$が存在する。 -->
+<!-- # condensity lifting -->
+<!-- * $\mathrm{op}^{TM} = T(\mathrm{down}^K_M) \circ op^{T(KM)} \circ (S \otimes T(\mathrm{lift}^K_M))$ -->
+<!-- * ただし、 $(K, \mathrm{lift}^K)$ は condinsity モノイド変換子、$\mathrm{down}^K \circ \mathrm{lift}^K = \mathrm{id}$ -->
+<!-- * また、$\mathrm{op}^{KM} = m^K \circ (\lambda(\mathrm{op}^M) \otimes M^M)$はalgebraic operationで、$\mathrm{op}^{T(KM)}$ はその $\mathrm{lift}^T$ に沿った lifting -->
+<!-- # monoidal lifting -->
+<!-- $(T, \phi_I, \phi, \mathrm{lift}^T)$をmonoidal transformer、$S, F \in \mathbb{C}_0$、$\mathrm{op}^M : S \otimes M \otimes F \to M$ をH-operationとする。このとき、 $\mathrm{lift}^T_M$ に沿った持ち上げ $\mathrm{op}^{TM} : S \otimes TM \otimes F \to TM$ が存在する。 -->
+<!-- * $\mathrm{op}^{TM} = T(\mathrm{op}^M) \circ \phi_{S \otimes M, F} \circ (\phi_{S, M} \otimes \mathrm{lift}^T_F) \circ (\mathrm{lift}^T_M \otimes TM \otimes F)$ -->
 </section>
 <section class="slide level1">
 <h1>まとめ</h1>
 <ul>
-<li class="fragment"></li>
-<li class="fragment"></li>
+<li>モナド変換子はモナド準同型の族</li>
+<li>operationの持ち上げは難しい</li>
+</ul>
+</section>
+<section class="slide level1">
+<h1>参考文献</h1>
+<ul>
+<li><a href="http://conway.rutgers.edu/~ccshan/wiki/blog/posts/Monad_transformers/">Monad transformers</a>, Chung-chieh Shan
+<ul>
+<li>歴史がまとまっているエントリ</li>
+</ul></li>
+<li>“An Abstract View of Programming Languages”, Eugenio Moggi
+<ul>
+<li>モナド変換子とoperationの問題設定</li>
+</ul></li>
+<li>“Modular Monadic Semantics”, Sheng Liang, Paul Hudak
+<ul>
+<li>mtl式のadhocなlifting</li>
+</ul></li>
+<li>“Monad Transformers as Monoid Transformers”, Mauro Jaskelio
+<ul>
+<li>モノイダル圏での議論は見通しが良い</li>
+<li>モノイド変換子、は必要ないかも？</li>
+</ul></li>
 </ul>
 </section>
 
