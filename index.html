@@ -58,6 +58,39 @@
         
 
 <div>
+  <h1>今日は「モナド基礎勉強会 vol.2」の日です</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-03-21-monadbase_2.html">March 21, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-03-21-monadbase_2.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-03-21-monadbase_2.html" data-text="今日は「モナド基礎勉強会 vol.2」の日です" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <p>名古屋大学で開催されている<a href="http://xbase.connpass.com/event/11252/">モナド基礎勉強会 vol.2</a>に来ています。</p>
+<h2 id="圏論の導入特にモノイダル構造-t6sさん">「圏論の導入、特にモノイダル構造」 / <span class="citation">@t6sさん</span></h2>
+<ul>
+<li>圏 : (Universeを仮定。有効グラフから)</li>
+<li>圏の例 : Set, Hask (とか), モノイド(Objectが一つの圏), poset</li>
+<li>関手 : 圏から圏への射。射関数と対象関数。sourceとtargetを保つ。合成とidを移す。lawはDで満たされてるので不要</li>
+<li>関手の例 : グラフの圏、Maybe</li>
+<li>自然変換 : 関手圏の2-cell。対象から射の関数</li>
+<li>モノイダル圏 : <span class="math">\(\otimes, 1, \alpha, \lambda, \rho\)</span>
+<ul>
+<li>これだけだと<span class="math">\(((a \otimes b) \otimes c) \otimes d \simeq a \otimes (b \otimes (c \otimes d))\)</span>の同型が複数になる</li>
+<li>コヒーレンス定義の話</li>
+</ul></li>
+<li>モノイダル圏の例 : <span class="math">\(\mathbb{C}^{\mathbb{C}}\)</span> / strong monoidal</li>
+</ul>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>reveal.js on hakyll</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-02-28-revealjs-on-hakyll.html">February 28, 2015</a>
@@ -713,388 +746,6 @@ Note: when using a sandbox, all packages are required to have consistent
 dependencies. Try reinstalling/unregistering the offending packages or
 recreating the sandbox.</code></pre>
 <p>対策としては、pontarius-xmpp側を再度transformer 0.3に対応させるしかないのかなーと思ってる。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>今日は「アドテク×Scala meetup」の日です</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2014-11-20-AdtechScala.html">November 20, 2014</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2014-11-20-AdtechScala.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2014-11-20-AdtechScala.html" data-text="今日は「アドテク×Scala meetup」の日です" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <p><a href="http://connpass.com/event/8384/">アドテク×Scala meetup</a>へ来ているので、内容を適当にメモっておく。タグは<a href="https://twitter.com/search?q=%23adtech_scala">#adtech_scala</a>とのこと。</p>
-<h2 id="挨拶-田村さん">挨拶 / 田村さん</h2>
-<ul>
-<li>前半はプレゼン、後半はパネルディスカッション</li>
-<li>飲み物と寿司あるよ！</li>
-<li>スピーカー紹介</li>
-</ul>
-<h2 id="アドテクを支えるscala---ad-generationの場合野村欣弘さん">「アドテクを支えるScala - Ad Generationの場合」野村欣弘さん</h2>
-<ul>
-<li>Scalaは1.5年、ネット広告業界は2.5年
-<ul>
-<li>medibaさんの前もSSP</li>
-</ul></li>
-<li>なぜScalaを使い始めたか
-<ul>
-<li>medibaの求人ではScalaについて触れてない。けど使ってる</li>
-<li>2011年くらいから Lift を使ってた形跡。それがスタート</li>
-<li>Lift押しの人はもう在籍していない・・・</li>
-<li>その後Play × Spark</li>
-</ul></li>
-<li>Ad Generation → スマホに注力したSSP
-<ul>
-<li>ScaleOutに譲渡予定</li>
-<li>ScalaはRTBに使ってる</li>
-</ul></li>
-<li>流れ
-<ul>
-<li>SDK → 枠データ参照(RTBかどうか)→RTBサーバ(Scala)→DSP</li>
-<li>DSPからのレスは100ms待つ。オークションを実施。高いものをadserverへ返す</li>
-<li>戻すものがなければ adnetwork のタグを戻す</li>
-<li>ログはfluentd → HDFS → ログ集計(scala)</li>
-</ul></li>
-<li>rtb-engineはspray (akkaベース。軽量で速い)
-<ul>
-<li>UIもsprayで実装</li>
-<li>70億オークション/月。250(70×3〜4DSP)億bidリクエスト/月</li>
-<li>対アドサーバは4,900qps、対DSPは20,000QPS</li>
-<li>リソースはまだ余裕ある</li>
-</ul></li>
-<li>ピーク時にさばけないことがあったので、チューニングした
-<ul>
-<li>akkaとsprayの設定を見直し。似たような設定項目があって、戸惑う</li>
-<li>ベンチをとりながら調整</li>
-</ul></li>
-<li>コードの見直し
-<ul>
-<li>ブロックを防ぐためにFutureを利用</li>
-<li>スレッドプールを用途ごとに用意 : アドサーバ、DSP、Future、ログ出力、など</li>
-</ul></li>
-<li>rtb-engine-log
-<ul>
-<li>sparkを利用。Pythonとかでも書けるけどScalaで</li>
-<li>mesos上で実行 : sparkと相性がいいので</li>
-<li>7種のログ(オークション関連は4種類)</li>
-<li>cronで10分、1時間、1日の粒度</li>
-<li>HDFSから読んでPostgressに吐き出し</li>
-<li>cron → spark → mesos master → zoo keeper に登録してあるワーカへ</li>
-<li>6CPU、20GB を 4台。(master 2、slave 4)</li>
-<li>ログの量 500MB〜1.5GB / hour。配信は10台。</li>
-<li>12s 〜 40s / job</li>
-</ul></li>
-<li>spark を使った感想 → 不満はない
-<ul>
-<li>メモリに乗せると速いけど、乗せすぎるのもよくないという印象</li>
-<li>処理が30分で終わるけど、JVMの停止に30分かかるとか</li>
-<li>手軽。身構えなくていい。spark-shellがあったり、コレクション操作する感覚だったり</li>
-</ul></li>
-<li>scalaを使った感想
-<ul>
-<li>並列、並行処理を使いやすい</li>
-<li>アドサーバやRTBサーバには向いている</li>
-<li>用途を選ばず使える。JVMなんで。一種類の言語に統一できていい</li>
-<li>Javaは知っておいたほうが</li>
-<li>チューニングには、JVMのパラメータとか知らないと</li>
-</ul></li>
-<li>今後の課題
-<ul>
-<li>チューニングはこのあと誰かがやるよ！</li>
-<li>分析などに使えるのを調べたい</li>
-</ul></li>
-<li>Pのつく言語につかれた方はぜひいらしてください</li>
-</ul>
-<h2 id="dynalyst-scala-culture韓翔元さん">「Dynalyst Scala {Culture})」韓翔元さん</h2>
-<ul>
-<li>ノートとかメモっておいたけど消えたのでアドリブで</li>
-<li>Javaは8年、Scalaは1年</li>
-<li>Dynalyst “Dynamic Retargeting + Analyst”
-<ul>
-<li>スマホに特化したリターゲティング</li>
-<li>Scala 88.7%(前は90%あったんだけど・・・)、Rubyが9.6%</li>
-</ul></li>
-<li>bid, ad, 計測サーバは spray。その裏にakka。ログはredshiftへ
-<ul>
-<li>ログの最終形はakka(bidの最適化など)</li>
-</ul></li>
-<li>sprayの理由
-<ul>
-<li>ドキュメントが充実</li>
-<li>テストキットがいい</li>
-<li>ベンチマークも良い</li>
-<li>Scalaを使いたかった</li>
-</ul></li>
-<li>並行性 → 16コアを使い切れてる</li>
-<li>ExecutionContext(どのスレッドで実行するか)、Future。for記法使える</li>
-<li>spray-routing(他にspray-httpとかもある)
-<ul>
-<li>DSLっぽく見やすく書ける</li>
-<li><code>FutureDirectives</code>。akkaのthreadをブロッキングしない</li>
-<li><code>onComplete</code>で実装させて、<code>Success</code>と<code>Failure</code>でパターンマッチ(failureはno bid)</li>
-<li><code>Future[A&lt;:BidResponse]</code></li>
-</ul></li>
-<li>ひとつのFutureにすべての計算を入れるのは良くない</li>
-<li>Router, Logic, External Resourcesの3レイヤに分ける
-<ul>
-<li>スレッドをキックするディスパッチャが必要</li>
-<li>3つ一緒でもいいし、レイヤごとでも(dynalystはレイヤごとに最適化)</li>
-<li>レイヤのローカルスコープに、 <code>implicit val</code> で定義</li>
-</ul></li>
-<li>Futureのテスト → 別スレッドなので普通には無理
-<ul>
-<li>Specs2 を使う <code>Matcher[Future[T]]</code></li>
-<li><code>.await</code> できる。リトライやタイムアウトも</li>
-</ul></li>
-<li>jenkinsを使っているが、CIのサイドエフェクトの影響でテスト落ちることが
-<ul>
-<li>再ビルド時間かかる。切り分け辛い</li>
-<li>Abstract Future → <code>Monad[M]</code> にしておけばおｋ</li>
-<li><code>Service</code> のコンパニオンで、<code>M</code>を<code>Future</code>にしたり<code>Id</code>にしたり</li>
-<li>テストでは <code>Id</code> 、 本番では <code>Future</code></li>
-</ul></li>
-<li><code>Monad</code>とは → 構造。ステップごとに評価するもの。</li>
-<li>akkaはakka.io読め
-<ul>
-<li>バッチではなくデーモンで動かしてる</li>
-</ul></li>
-<li>Master / Workerパターンを使う (letitcrash.comのポスト)
-<ul>
-<li>Master, Worker, Requester の3つのアクター</li>
-<li>WorkerはMasterから仕事を受け取って、Futureで仕事をさせる(自分のスレッドはブロックしない)</li>
-</ul></li>
-<li>Akkaの監視の仕方
-<ul>
-<li>Typesafe Console
-<ul>
-<li>UIはいい。type safe社のサポート</li>
-<li>値段が高いのでやめた</li>
-</ul></li>
-<li>Kamon
-<ul>
-<li>無料なのでこっち</li>
-<li>Akka, Spray, Playをサポート</li>
-<li>Mailボックスのたまり具合、スループットなどの監視</li>
-<li>StatsD、New Relic, Datadog などで可視化</li>
-<li>Migrationはけっこう大変(昨日コンパイルエラー出たのでpull-reqした)</li>
-</ul></li>
-</ul></li>
-<li>Kamonとzabbixを連携
-<ul>
-<li>StatsDにzabbix統合を利用</li>
-<li>ルータはスレッド使わない、DB周りはスレッド多い</li>
-</ul></li>
-<li>まとめ
-<ul>
-<li>SprayのFutureDirectiveを使ってる</li>
-<li>Abstract Futureでテストしやすく</li>
-<li>Akkaはmaster/worker パターンを使ってスケールできる構成</li>
-<li>Kamonでモニタリング</li>
-</ul></li>
-<li>https://github.com/alexandru/scala-best-practices というのがある
-<ul>
-<li>学習コストが高いと言われることが多いので</li>
-<li>“MUST NOT, SHOULD NOT” だらけ → Scala選ばない理由になりそう・・・</li>
-<li>このページで勉強するといいんじゃね</li>
-<li>トライアンドエラーを繰り返して、いいものを見つけるのがエンジニアのやることでしょう</li>
-</ul></li>
-</ul>
-<h2 id="アドテクscalaパフォーマンスチューニング水谷陽介さん">「アドテク×Scala×パフォーマンスチューニング」水谷陽介さん</h2>
-<ul>
-<li>DSS Tech Blogってのがあるので見てね</li>
-<li>DSPとは → SSPへ入札する</li>
-<li>すべてのプロダクトでscalaを採用している
-<ul>
-<li>サーバサイド、webコンソール、バッチ</li>
-</ul></li>
-<li>パフォーマンスチューニングの目的
-<ul>
-<li>システムの課題の解消
-<ul>
-<li>甲府カジノ問題、レイテンシー、バッチ処理の時間超過、開発ツールの動作の遅さ</li>
-</ul></li>
-<li>インフラコストの削減
-<ul>
-<li>アドテクではコストが肥大化しがち</li>
-<li>配信料による利益＞インフラ投資 を満たさないと</li>
-</ul></li>
-<li>パフォーマンスチューニングにもコスト・リスクはある→インフラ増強が一番の場合もあるので注意</li>
-</ul></li>
-<li>チューニングの仕方→メトリクス測定、ボトルネック特定、仮説を立てて調整</li>
-<li>「80%の時間はコードの20%が占める」パレートの法則
-<ul>
-<li>半分くらいはデータベースが原因</li>
-<li>次点は非同期・スレッド。Scalaの問題とか</li>
-<li>正しい実装をしていればI/O bindになる</li>
-</ul></li>
-<li>I/O : メモリ、ディスク、ネットワーク
-<ul>
-<li>CPU命令を1回1秒とすると、メモリから読み込み3日, ディスク6.5ヶ月, レイテンシ5年</li>
-</ul></li>
-<li>10kbのファイルを100万個読んだ場合 → シーク2.5h 。1回のシークだと3.5msで済む</li>
-<li>メモリ、処理量、応答速度は3すくみの関係
-<ul>
-<li>比重を変えるのがチューニング</li>
-<li>面積を増やすのが最適化</li>
-</ul></li>
-<li>パフォーマンスチューニングは、性能要件について関係者の合意を得ることから
-<ul>
-<li>ブラウザ数、配信数の見積り</li>
-<li>月間10億impだと、1000QPSくらいでしょう</li>
-<li>トラッカーを受け取る量</li>
-<li>集計するもの。誰が何を見るのか</li>
-<li>ビジネスサイドの制約→年度内売上など</li>
-<li>数字を出すのが大事。性能テストの目標とする</li>
-</ul></li>
-<li>並行プログラミングモデルの設計は重要
-<ul>
-<li>ブロッキングを減らす。FutureとActorを使うのか</li>
-<li>スレッドプールのサイズは本番デプロイしないとわからない</li>
-</ul></li>
-<li>DB設計 : ルックアップ回数。レコードあたりのサイズとか。メモリ使用量。</li>
-<li>最初の実装は簡潔さ、明快さを優先
-<ul>
-<li>線形より悪いアルゴリズムは避けること</li>
-<li>推測するな、計測すべし</li>
-<li>sbt-jmh マイクロベンチマークツール。<code>run</code>にオプション指定するだけ</li>
-</ul></li>
-<li>Scalaコードの最適化
-<ul>
-<li>コレクションを正しく使う</li>
-<li>関数呼び出しより再帰を使うとオーバヘッドを防げる</li>
-<li>例: <code>List#length</code> の計算量は <code>O(n)</code> でそれを <code>n</code> 回呼ぶようなコード</li>
-<li>ScalaBlitz : Scalaコレクションの高速化 (マクロでごにょごにょ)</li>
-</ul></li>
-<li>性能テスト
-<ul>
-<li>シンプルであれば ab</li>
-<li>Gatling → Scalaで書かれたテストツール</li>
-<li>JMeterの時代は終わった！</li>
-<li>負荷をかける側のリソースに注意</li>
-<li>二箇所以上変更しない</li>
-</ul></li>
-<li>ログの記録、異常検知が大事
-<ul>
-<li>GCログを出す</li>
-<li>JMX</li>
-<li><code>/dev/null</code> に捨てない</li>
-<li>SLF4J + Profiler どこの処理がボトルネックか</li>
-<li>可視化 Grafana + Graphite : トレンドを見れる</li>
-</ul></li>
-<li>それでも行き詰まったら : C++</li>
-</ul>
-<h2 id="軽量言語メインの文系エンジニアだった自分がscalaのシステム開発に携わることになった経緯-重村道人shigemk2さん">「軽量言語メインの文系エンジニアだった自分がScalaのシステム開発に携わることになった経緯」 重村道人(<span class="citation">@shigemk2</span>)さん</h2>
-<ul>
-<li>文系だった。和民でバイトしながらRuby
-<ul>
-<li>フィリピンで英会話ごにょごにょ</li>
-<li>ソシャゲ Pythonとか</li>
-</ul></li>
-<li>A8.net(2000-), moba8.net(2006-) → Java。tomcat。レガシー</li>
-<li>トラッキングサーバがScala、Play</li>
-<li>Github Enterprise を導入してつらい目にあったり</li>
-<li>Scalaを採用した理由
-<ul>
-<li>レガシーのリプレイス。Javaからなら楽だろう</li>
-<li>上司がScala好き (LiftでWebアプリ書くほど)</li>
-<li>メンバーもScala好き (Scala Matsuriのスタッフが2名)</li>
-<li>モナドや圏論が飛び交う職場。ScalaZ</li>
-</ul></li>
-<li>コンパイルが遅い対策
-<ul>
-<li>性能の良いLinuxマシン</li>
-</ul></li>
-<li>Javaの会社かと思ったらScalaだった
-<ul>
-<li>まったくわからん。「Javaでいうところの」がわからない</li>
-<li>とりあえずブログを書く</li>
-<li>わからなければ教えを請う (自分以外ほぼ全員が書ける)</li>
-<li>月10,000円の書籍代(なれる！SEはNG)</li>
-<li>Brainfuck方言を作ったり</li>
-<li>LLとの共通点 : Rubyのオブジェクト指向。JSの関数型っぽさ</li>
-<li>Scalaの本をたくさん読む (Google翻訳フル稼働で英語も)</li>
-<li>F#でPDP-11のインタプリタを書いたり</li>
-<li>8086の逆アセンブラをHaskellで書く</li>
-<li>関数プログラミング実践入門、JavaScriptで学ぶ関数型プログラミング、とかとか</li>
-</ul></li>
-<li>「俺のScala道はこれからだ」</li>
-<li>人が足りていないので募集しています</li>
-</ul>
-<h2 id="パネルディスカッション質疑応答など">パネルディスカッション(質疑応答など)</h2>
-<ul>
-<li>Q. JVMはスペックが必要で配信に向いてないのでは？</li>
-<li>水. Scalaを選んだらたまたまJVMだった。できそうだったから</li>
-<li>重. もともとJavaだった。資源を使える。Javaよりコード数が少ない</li>
-<li>野. はじめからJVMだった。バケモノって感じではないのでカジュアルになった気がする
-<ul>
-<li>サーバスペックも上がってる。前職はApache × Perl、Erlang</li>
-<li>前職40台くらいだったが10台くらいになった。akkaが軽量ぽい</li>
-</ul></li>
-<li>韓. Scala文化が広がっている。経験上、JVMでも2万QPSくらいさばけるのは知ってた。だからScalaも</li>
-<li>Q. Haskell経験あるのでScalazを使いたくなる。どうしてる？</li>
-<li>韓. Haskellは知らなかった。関数型をやるときはHaskellを避けられない。今のトレンドであり、悪いことではない</li>
-<li>Q. 反対の声はあった？</li>
-<li>韓. 心の中にはあるかもしれないけど聞いてない</li>
-<li>水. どうやって勉強した？</li>
-<li>韓. Functional programming in scalaを読んでる。scala baseの気になるセッションを見たり。みんなで勉強する文化を作った</li>
-<li>Q. ログのフォーマットには何を採用？</li>
-<li>Q. Scalaを使ってからプロダクトをリリースするまでの時間</li>
-<li>野. LTSV。2〜3人で4ヶ月くらい。</li>
-<li>韓. TSV。2〜3ヶ月くらい</li>
-<li>重. トレジャーデータを使っているのでCSV。6ヶ月〜1年くらいのスパン</li>
-<li>水. redshiftを使っているのでJSON。圧縮がいいものはmessage pack。2〜3ヶ月でプロトタイプ、ロンチは半年</li>
-<li>Q. LLが恋しくなることは？</li>
-<li>重. コードを書くことが恋しい。なんでもいい(から書きたい)</li>
-<li>Q. フレームワークの選定基準は？</li>
-<li>野. 理由は、速そうだから。深い理由はない。ベンチはとった。速度が重要</li>
-<li>韓. type safe社のライブラリを使いたかった</li>
-<li>水. 個人的にはフレームワーク使いたいが、ノウハウがない。スケジュールがタイト。手慣れたものを使った</li>
-<li>重. Railsを使ってるとこもある。言語に対する好み。CakeかRails使います</li>
-<li>麻. コロッサス？という「軽量NIOフレームワークが出てたよね</li>
-<li>Q. Scalaと機械学習</li>
-<li>水. 機械学習メインではない。Javaのlib linearとか使ってる</li>
-<li>会場でScalaで機械学習やってる人は？ → いない</li>
-<li>Q. Scalaを採用して難しかったことは？</li>
-<li>韓. DIの解決が難しい。cake patternとか。むずかしかったのでやめた</li>
-<li>水. 個人のレベル差。Scalaは個人の力が出やすい。ペアプロで意見があわなかったり。チームの底上げが難しい</li>
-<li>克服するための社内での取り組みは？</li>
-<li>水. 逆に知りたい。スカラのテストをするだけでも奥が深い</li>
-<li>「複雑・・・高機能な言語」</li>
-<li>韓. チームメンバーがもともとよかった。ペアプロ、勉強会</li>
-<li>Q. Scalaエンジニアの採用が難しい。RubyとJava、どちらのエンジニアが向いてる？</li>
-<li>重. Javaの人が市場に多いので、多い。Rubyの人は一人だけ。もともとJavaを使ってたのもある。言語関係なくエンジニアのレベルの高さによる</li>
-<li>水. PHPのエンジニアもいるけど、習得速かった</li>
-<li>韓. 最初からScalaの人が来たらラッキー。モチベーション、言語に対する理解は大事。Javaの理解は役に立つ</li>
-<li>野. 募集はJavaエンジニアのほうが多い。Javaやってたほうが慣れるのは速そう。いミュータブルではハマるかも。クロージャとかで悩んだり</li>
-<li>麻. 多くの言語を習得している人のほうが習得が早いという発表も前にあった</li>
-<li>Q. sparkを使ってハマったことは？</li>
-<li>野. HDFSとかでハマることのほうが多い。sparkはいいと思ってる</li>
-<li>韓. 特にハマったことは聞いてない。「がんばりました」くらいの報告</li>
-<li>麻. コミッタが来てた。twitterの</li>
-<li>Q. アドテク</li>
-<li>韓. 今のところはない。adrollという会社の話によると、海外ではerlangを使ってることが多いらしい。選択肢の一つかも</li>
-<li>韓. 他のプロダクトでは、goでやるという決断をしたところもある</li>
-<li>水. Apache, enginx の中で処理するときはCで書いている会社もあると聞いた。FPGAでのプログラミングも</li>
-<li>Q. スレッドプールを分けることでどのような問題が解決されたのか？</li>
-<li>韓. 特に問題はなかった。早く終わるfutureもあれば、時間がかかるのもある。プールが枯渇したりする。どのレイヤが時間がかかるか見にくかったのが見やすくなった</li>
-<li>Q. スレッドプールを分けると監視がしやすかった？</li>
-<li>韓. わかりやすくなった</li>
-<li>Q. コーディング規約は？</li>
-<li>全員コーディング規約は無さそう。書きたいように書いてそう。</li>
-<li>重. scalaリフォームはいれている。明文化はしていない</li>
-<li>麻. Rubyの人とJavaの人のコードが結構違うので、あえてもたないことも多いと聞いている</li>
-<li>Q. Scalaの言語仕様の更新頻度とかどうなんでしょう？</li>
-<li>水. Javaより更新スピード早い。後方互換もなくなることある。新しいものはその時点の最新版。ハマったら解決。</li>
-<li>重. Playはバージョンアップ早い。2.3からアクティベータによって起動方法が変わったり。リプレースは辛そう</li>
-</ul>
 </p>
 
 </div>
