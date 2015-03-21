@@ -108,6 +108,114 @@
 </ul>
 <h2 id="モナモナ言うモナド変換子入門hiratara">「モナモナ言うモナド変換子入門」<span class="citation">@hiratara</span></h2>
 <p>自分のトーク。<a href="http://hiratara.github.io/presentations/2015-03-21_monadbase_vol2.html#/">資料</a>はアップしておいた。</p>
+<h2 id="基礎から学ばないfree-monadpocketberserker-さん">「基礎から学ばないFree Monad」<span class="citation">@pocketberserker</span> さん</h2>
+<ul>
+<li>HaskellやScalaの界隈でよく知られている</li>
+<li>FunctorからMOnadへシングルトン生成とネストの結合の一般化</li>
+<li><code>class Functor f</code>, <code>class Monad m</code>, <code>instance Functor f =&gt; Monad  (Free f)</code></li>
+<li><code>bind</code>の列は左結合時のパフォーマンスが良くない → CPSで解決</li>
+<li>中間状態にアクセスするとCPSの利点が損なわれる → Reflection without remorse
+<ul>
+<li>type aligned sequence</li>
+<li>Free Monad, Iteratee, LigicT に適用が可能</li>
+</ul></li>
+<li>MonadReaderとか定義するのめんどくさい</li>
+<li><a href="http://homepages.cwi.nl/~ploeg/papers/zseq.pdf">Reflection without Remorse</a></li>
+<li>結合可能キューで実装されているので速い。<code>fmap</code>が重要</li>
+</ul>
+<h2 id="ioモナドを実装してみたmzp-さん">「IOモナドを実装してみた」<span class="citation">@mzp</span> さん</h2>
+<ul>
+<li>Haskellによるモナドチュートリアルが増えている</li>
+<li>HaskellといえばIOモナド</li>
+<li>IOの表現 synchronized stream, continuation, linear logic, side effect</li>
+<li><code>dialog : [Response] - &gt; [Request]</code> → 初期のHashkell。定義が簡単。入力を消費しすぎるとまず</li>
+<li>継続 : 初期のHaskell。フロー制御しやすい。生の <code>k</code> を扱う。Hugsなど</li>
+<li>線形論理による実装 : Haskell。<code>World</code> が複製される問題。複数回使えない型 (<code>*World</code>)
+<ul>
+<li>ghcで型チェックはしていない。IOモナドで隠蔽されてるので</li>
+<li>もともとClean</li>
+<li>複数の状態 <code>WorldA</code> <code>WorldB</code> を明示的に扱える</li>
+<li>IOモナドを使って線形型を定義するのは不明</li>
+</ul></li>
+<li>副作用によってIOを表す　（サンクを明示すればO.K. )</li>
+<li>異なる言語機能をラップして導入できるモナドは便利</li>
+<li><a href="http://togetter.com/li/252981">shelarcyさんの</a></li>
+</ul>
+<h2 id="yonedaについて-its_out_of_tune-さん">Yonedaについて / <span class="citation">@its_out_of_tune</span> さん</h2>
+<ul>
+<li>Takahashi Monad, Sarasvati (PortAudioのラッパーのラッパー)</li>
+<li>米田の補題の証明
+<ul>
+<li>共変hom関手</li>
+<li><span class="math">\(\mathrm{Hom}_D(r, f) R = f\)</span></li>
+<li><span class="math">\(Y': D \to Set ^{D^{\mathrm{op}}}\)</span> 充満忠実</li>
+</ul></li>
+<li>Haskellでの話
+<ul>
+<li><code>newtype Yoneda</code></li>
+<li><code>instance Functor (Yoneda f)</code> は <code>Functor f</code> と同値</li>
+<li>若干のパフォーマンス改善を望める</li>
+</ul></li>
+<li>Coyoneda
+<ul>
+<li><code>lowerCoYoneda</code>でFunctorが要求される (YOneda は <code>liftYoneda</code> だった)</li>
+<li>意味がわからなかった</li>
+<li><code>Coyoneda</code> の補題と言われるものが複数あるので、どれか確認する必要があるね</li>
+</ul></li>
+<li>Free monad は <code>retract</code> 関数を使えばモナドの代理になる</li>
+<li>Free monad と CoYonedaを合わせるとOperationalモナドとなる</li>
+<li><code>interpret</code> 関数でIOアクションを定義</li>
+<li>Operationalモナド
+<ul>
+<li>モナドを作るのはややこしい</li>
+<li>DSLをつくるためのツール</li>
+</ul></li>
+<li>米田先生すごい</li>
+</ul>
+<h2 id="schemeによるモナド論文semantic-legoを訳しましたihdkzさん">「Schemeによるモナド論文『Semantic Lego』を訳しました」<span class="citation">@iHdkzさん</span></h2>
+<p>プロジェクタが死亡したため、本トークはスライドなしで。</p>
+<ul>
+<li><a href="http://groups.csail.mit.edu/mac/users/dae/papers/thesis.ps.Z">Semantic Lego</a></li>
+<li>SICPの続きみたいな言語の実装
+<ul>
+<li>導入した機能を壊すたびに実装していっててムカつく</li>
+<li>waddlerのessential programmingをヒントに実装</li>
+<li>言語の意味論として利用</li>
+<li>monolicic と modular interpreterの話</li>
+</ul></li>
+<li>monadは一つの言語のインタプリタ。合成でモナド変換子と持ち上げ</li>
+<li>階層化モナド</li>
+</ul>
+<h2 id="free-applicative-functorshalcat0x15aさん">「Free Applicative Functors」<span class="citation">@halcat0x15aさん</span></h2>
+<ul>
+<li>Applicative とは : <code>pure</code>, <code>&lt;*&gt;</code></li>
+<li>任意のarityの関数に利用可能、Monadより軽量</li>
+<li>FreeはHaskellでは very well-known なデータ構造</li>
+<li>Free Applicative : 左結合と右結合で異なるが、同型</li>
+<li>例: Option parser。作用が独立しているので解析が可能</li>
+<li>Applicativeの圏から自己関手の圏への忘却関手の左随伴</li>
+</ul>
+<h2 id="haskellerのためのオブジェクト指向入門モナドもあるよfumievalさん">「Haskellerのためのオブジェクト指向入門(モナドもあるよ！」<span class="citation">@fumievalさん</span></h2>
+<ul>
+<li>オブジェクトは射。作用に基づいたパラダイム</li>
+<li>内部状態、命令、操作、を定義</li>
+<li><code>Data.Extensible</code> Lensのアクセサを定義</li>
+<li>操作は GADT で定義する</li>
+<li>メッセージの型とアクションの型</li>
+<li><code>@~</code> と lambda case で作れる。<code>new</code>と<code>.-</code>で利用</li>
+<li>Minecraft風のゲームのデモ</li>
+<li>記述量が少ない、合成可能、消滅するものも作れる</li>
+</ul>
+<h2 id="monadなんてどうってことなかった話">Monadなんてどうってことなかった話</h2>
+<p>LTでした。</p>
+<ul>
+<li>Monadはただの型クラス</li>
+<li>do記法がある</li>
+<li><code>&lt;-</code>や行間で何かをしてるだけだった</li>
+<li>大事なことは大体 <code>&gt;&gt;=</code> でやってる</li>
+<li>何もしない<code>return</code>、入れ子の<code>do</code>でも大丈夫</li>
+<li>みんなちがって、みんないい。ニートでもいい</li>
+</ul>
 </p>
 
 
