@@ -58,6 +58,28 @@
         
 
 <div>
+  <h1>5/6の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-06-diary.html">May  6, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-06-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-06-diary.html" data-text="5/6の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p><a href="https://hackage.haskell.org/package/pipes-safe-2.2.2/docs/Pipes-Safe.html">pipe-safe</a> の <code>readFile</code> のサンプルで、<code>bracket</code> がなぜ <code>P.fromHandle</code> の完了後すぐに閉じないか疑問になったので調べた。結論を言うと「完了後すぐに閉じない」が誤りで、 <code>P.fromHandle</code> が終了しない、が正解。サンプルコードの場合、 <code>P.fromHandle h &gt;&gt; undefined</code> としても <code>undefined</code> が評価されることはない。<code>yield</code>と<code>await</code>でほかのPipeに処理が移るので、別のPipeで処理が完了した場合は <code>P.fromHandle</code> の残っている処理は実行されないっていう話。</p>
+<h2 id="ekemettさん">ekemettさん</h2>
+<p><a href="http://ja.stackoverflow.com/users/8101/edward-kmett">ekemettさん日本語を使えた</a>ことに衝撃。しかも流暢。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/5の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-05-diary.html">May  5, 2015</a>
@@ -161,60 +183,6 @@
 </div>
 <h2 id="ゲームあれこれ">ゲームあれこれ</h2>
 <p>PS4のDark Souls 2は罪人以外の3匹まで倒してSL110超え。なんでこんなに上がってしまったのかよくわからない。奇跡に振ってるくせに牢を最後に回したので、未だに属性強化できないのが辛い。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>WxHaskellをWindows 8.1でビルドする</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-04-27-wxhaskell-for-win.html">April 27, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-04-27-wxhaskell-for-win.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-04-27-wxhaskell-for-win.html" data-text="WxHaskellをWindows 8.1でビルドする" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <p>WxHaskellをSurface Pro 3上でビルドした。 <a href="https://wiki.haskell.org/WxHaskell/Windows">公式のwiki</a> に従うべきだが、ハマったところを書いておく。</p>
-<h2 id="haskell-platform-の導入">Haskell Platform の導入</h2>
-<p>以前にインストールしたものを使ったので割愛。2014.2.0.0を利用。</p>
-<h2 id="mingw-と-msys-の導入">MinGW と msys の導入</h2>
-<p>こちらも以前にインストールしたものを使ったので割愛。 <code>sh.exe</code> を利用するためにmsysまで導入しておく必要がある。</p>
-<h2 id="wxwidgets-のビルド">wxWidgets のビルド</h2>
-<p><a href="https://www.wxwidgets.org/downloads/">wxWidgetsのダウンロードページ</a> のWindows Installerを使ってソースコードを用意した。これをMinGWでビルドするのだけど、ポイントはHaskell Platformに付属する <code>gcc</code> でビルドすること。原則公式のWikiに従えばいいのだけど、PATHが結構違ったりするので確認しながら作業したい。こちらの環境では以下のようにコマンドを実行した。</p>
-<pre><code>C:\wxWidgets-3.0.2\build\msw&gt; Set HASKELL_COMPILER_DIR=C:\Program Files\Haskell Platform\2014.2.0.0
-C:\wxWidgets-3.0.2\build\msw&gt; Set PATH=%HASKELL_COMPILER_DIR%\mingw\libexec\gcc\mingw32\4.8.1\;%HASKELL_COMPILER_DIR%\lib\extralibs\bin;%HASKELL_COMPILER_DIR%\bin;%HASKELL_COMPILER_DIR%\mingw\bin;C:\MinGW\msys\1.0\bin
-C:\wxWidgets-3.0.2\build\msw&gt; Set LIBRARY_PATH=%HASKELL_COMPILER_DIR%\mingw\lib;%HASKELL_COMPILER_DIR%\mingw\lib\gcc\mingw32\4.8.1
-C:\wxWidgets-3.0.2\build\msw&gt; sh -c &quot;C:/MinGW/bin/mingw32-make.exe  -j -f makefile.gcc clean&quot;
-C:\wxWidgets-3.0.2\build\msw&gt; sh -c &quot;C:/MinGW/bin/mingw32-make.exe  -j -f makefile.gcc all&quot;</code></pre>
-<p>ここでハマったのが <code>cmd.exe</code> とシェルでの <code>&quot;</code> の振舞の違い。 <code>%PATH%</code> などを <code>Set</code> する際にスペース入りのパスを <code>&quot;</code> で包んで補完してくる癖にこれらの環境変数には <code>&quot;</code> が入ってはいけないっぽい。が、シェルでは逆に空白スペース入りのパスをうまく使えないようだったので、シェルから呼ぶ <code>mingw32-make.exe</code> は明示的に指定した。この辺はなにかWindowsやMinGWの流儀に沿ってないことをやってる気もしつつ、とりあえずwxWidgetsのビルドは完了。</p>
-<h2 id="wx-config.exe-の準備">wx-config.exe の準備</h2>
-<p>公式ページで指示されたURLからDLするだけ。PATHが通ってるとこに置くのだけど、後述する <code>git clone</code> した <code>wxHaskell</code> フォルダの中に放り込んでおけば十分。もしくは <code>.cabal-sandbox\bin</code> に PATH を通してそこに置くか。</p>
-<h2 id="wxhaskell-のビルド">wxHaskell のビルド</h2>
-<p>言われるままに <code>git</code> でソースコードをとってきてビルドした。ディレクトリは適当なとこに移った上で、以下のような感じ。公式ページでは男らしくグローバルに突っ込む手順になっているが、恐ろしすぎるので <code>cabal sandbox</code> 利用した。</p>
-<pre><code>...&gt; git clone https://github.com/wxHaskell/wxHaskell.git
-...&gt; Cd wxHaskell
-...&gt; Set WXCFG=gcc_dll\mswu
-...&gt; Set CPLUS_INCLUDE_PATH=%HASKELL_COMPILER_DIR%\mingw\lib\gcc\mingw32\4.8.1\include\c++;%WXWIN%\include
-...&gt; Set LIBRARY_PATH=%WXWIN%\lib\gcc_lib;%HASKELL_COMPILER_DIR%\mingw\lib\
-...&gt; cabal sandbox init
-...&gt; cabal install .\wxdirect
-...&gt; cabal install .\wxc
-...&gt; cabal install .\wxcore
-...&gt; cabal install .\wx</code></pre>
-<h2 id="サンプルの実行">サンプルの実行</h2>
-<p>サンドボックスを使ったのでそれを <code>ghc</code> に教える必要がある。後、各種 <code>.dll</code> があるディレクトリを PATH に入れる必要がある。</p>
-<pre><code>...&gt; ghc -package-db .cabal-sandbox\x86_64-windows-ghc-7.8.3-packages.conf.d samples\wxcore\BouncingBalls.hs
-...&gt; Set PATH=c:\wxWidgets-3.0.2\lib\gcc_dll\;.cabal-sandbox\x86_64-windows-ghc-7.8.3\wxc-0.92.0.0;%HASKELL_COMPILER_DIR%\mingw\bin;
-...&gt; samples\wxcore\BouncingBalls.exe</code></pre>
-<div class="figure">
-<img src="./images/2015-04-27-bouncing-balls.png" alt="BouncingBalls.exe" />
-<p class="caption">BouncingBalls.exe</p>
-</div>
 </p>
 
 </div>
