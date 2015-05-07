@@ -58,6 +58,29 @@
         
 
 <div>
+  <h1>5/7の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-07-daiary.html">May  7, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-07-daiary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-07-daiary.html" data-text="5/7の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="統計学入門">統計学入門</h2>
+<p>11章の点推定の話が思ったより奥深い。普遍性、一致性はともかく、有効性という基準はなかなか面白い。有効性(minimum variance unbiased estimator)の議論は掘り下げて欲しかったが、この本では事実の紹介だけで終わりっぽい。</p>
+<p>最尤推定で普遍推定量が求まらないのはどうも直観に反して腑に落ちない。もうちょっと手を動かしてみたら印象変わるかな。</p>
+<h2 id="haskellあれこれ">haskellあれこれ</h2>
+<p><a href="http://search.cpan.org/~mlehmann/AnyEvent/">AnyEvent</a> の代わりになるのってなんだっけなと思って<a href="http://www.amazon.co.jp/Haskell%E3%81%AB%E3%82%88%E3%82%8B%E4%B8%A6%E5%88%97%E3%83%BB%E4%B8%A6%E8%A1%8C%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0-Simon-Marlow/dp/4873116899%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873116899">並列並行本</a>引っ張り出してきた。<a href="https://hackage.haskell.org/package/async">async</a>か<a href="http://hackage.haskell.org/package/monad-par-0.3.4.1">ParIO</a>がそれっぽくて、後者の方が高速っぽい。後者で例外とかcancelの処理がどの程度できるかは調べる必要あり。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/6の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-06-diary.html">May  6, 2015</a>
@@ -144,45 +167,6 @@
 <p>GWど真ん中に <a href="http://www.keikyu.co.jp/information/otoku/otoku_maguro/">みさきまぐろきっぷ</a> を買って三崎口へ行ってきた。結論から言うとGWはこういうものを買うべきではない。</p>
 <p>とりあえず行きの快特電車から座れず完全にテンションダウン。金沢文庫で降りて普通列車に乗り換えることで混雑は回避できた。<a href="http://tabelog.com/kanagawa/A1401/A140310/14009903/">駅前のサンドイッチ屋</a>はなかなかのお味。その後三崎口へ着いてからはどこへ行っても人・人・人。切符の特典で食事とレジャーが付いてくるのだけどどこへ行ってもディズニーランド的な待ち時間でとても利用できない。19時過ぎくらいに30分待ちくらいの列になったので、なんとか利用して帰ってきた。寿司屋もネタがほとんどなくなっていて、生ビールすら品切れ状態。完全に切符が機能していない状態だった。</p>
 <p>三浦海岸は海の水も赤くて小汚かったけど、城ケ崎はなかなかの雰囲気でよかった。次は普通の日にリベンジしたい。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/2の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-02-diary.html">May  2, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-02-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-02-diary.html" data-text="5/2の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>昔Perlで書いたTCP/IPで通信するアプリをHaskellで書き換えようと思い立つ。</p>
-<p>ハマらないようにおとなしく<a href="https://www.stackage.org/">stackage</a>を利用。プロジェクトのルートに<code>cabal.config</code> を置くだけ。ユーザに強制すべきものではないのでsandbox系のファイルと一緒に<code>.gitignore</code>に突っ込む。今回は5/1のnightlyを利用。</p>
-<p>streaming周りconduitっていいかなーと思ったけど、試しに <a href="https://hackage.haskell.org/package/pipes">pipes</a> を触ってみた。<a href="https://www.stackage.org/snapshot/nightly-2015-05-01/package/pipes-network-0.6.4">pipes-network</a>見たけどconduitでいう <code>runTCPClient</code>が見つからない悲しみ。conduitの方で実装見たらだいたい <code>fromSocket</code> と <code>toSocket</code> の間に <code>Pipe</code> を挟むだけでよさそうだったのでそれで済ました。</p>
-<p>後、socketからの入力をパースしたくて <a href="https://www.stackage.org/snapshot/nightly-2015-05-01/package/pipes-parse-3.0.2">pipes-parse</a>を見たのだけどこっちは使い方がよくわからず。<a href="https://www.stackage.org/snapshot/nightly-2015-05-01/package/pipes-attoparsec-0.5.1.1">pipes-attoparsec</a>で<code>Parser</code>作れるのはわかったのだけど、それをどうやってpipesのエコシステムに組み込むべきなのか判断に迷う。conduitだと<code>conduitParser</code>がきちんとあるので簡単にエコシステムに組み込めるのだけど、<code>Parser</code>から<code>Pipes</code>を作る道具がない。この辺はconduitにはleftoverの型があるけどpipesにはそれがないせいな気がする。</p>
-<p>仕方ないので <code>Producer</code> をラップして目的の <code>Producer</code> を作るようにした。これがエコシステムにあう実装かはちょっと判断できず。</p>
-<pre><code>wrapWithParser parser producer = do
-  (r, producer') &lt;- Pipes.Parse.runStateT parser producer
-  case r of
-   (Just (Right bs)) -&gt; do
-     Pipes.yield bs
-     wrapWithParser parser producer'
-   {- snip -}</code></pre>
-<h2 id="narrative-clip">Narrative clip</h2>
-<p><a href="http://getnarrative.com/narrative-clip-1">narrative clip</a>を最近買ってつけてる。あてずっぽうにシャッター押してるようなものなので大したものは撮れないのだけど、ライフログとしては面白い。たとえばチャリで移動中だとこんな感じ。</p>
-<div class="figure">
-<img src="./images/2015-05-02.jpg" alt="By narrative clip" />
-<p class="caption">By narrative clip</p>
-</div>
-<h2 id="ゲームあれこれ">ゲームあれこれ</h2>
-<p>PS4のDark Souls 2は罪人以外の3匹まで倒してSL110超え。なんでこんなに上がってしまったのかよくわからない。奇跡に振ってるくせに牢を最後に回したので、未だに属性強化できないのが辛い。</p>
 </p>
 
 </div>
