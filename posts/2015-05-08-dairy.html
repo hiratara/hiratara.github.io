@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Born in Tomakomai city - 5/8の日記</title>
+  <meta name="description" content="A blog for programmer" />
+  <meta name="keywords" content="perl,haskell,mathematics" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        
+        <!-- Google Analytics tracking codes -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-7637699-4', 'hiratara.github.io');
+          ga('send', 'pageview');
+
+        </script>
+</head>
+
+<body>
+        <!-- facebook SDK -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=100848266724416";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="../">Born in <span class="logo_colour">Tomakomai</span> city</a></h1>
+          <h2>A programmer who loves mathematics</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="../">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../archive.html">Archive</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Useful Links</h3>
+        Nothing
+      </div>
+      <div id="content">
+        <h1>5/8の日記</h1>
+<div class="post-info">
+    Posted on <a href="../posts/2015-05-08-dairy.html">May  8, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-08-dairy.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-08-dairy.html" data-text="5/8の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p>昨日に引き続きAnyEventの代替の模索。ParIOでキャンセルどうなってるかググったら <a href="http://tomasp.net/blog/speculative-par-monad.aspx/">こんなエントリ</a> 引いた。本体にがつっとパッチ当ててる感じ。</p>
+<p>そもそもParIOは決定的な並列処理を行うものなので、並行処理を記述したいAnyEventとは趣旨が違う気がする。その目的だとやっぱりasyncを使うべきかな。</p>
+<h2 id="統計学入門">統計学入門</h2>
+<p>手を動かして最尤推定を求めてみてる。昨日の疑問はまだ謎のまま。測度論をやってからはマシになったが、密度関数と質量関数を混同すると議論に置いてかれるので油断ならない。後、長年同じこと言ってるけど、未だに正規分布の確率密度関数を覚えてなくて辛い。</p>
+</p>
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'hiratara';
+    var disqus_title = '5/8の日記';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="../">Home</a> | <a href="../about.html">About</a> | <a href="../contact.html">Contact</a> | <a href="../archive.html">Archive</a></p>
+      <p>Copyright &copy; hiratara | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a> | <a href="http://jaspervdj.be/hakyll">Hakyll</a></p>
+    </div>
+  </div>
+</body>
+</html>
