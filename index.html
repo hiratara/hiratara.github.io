@@ -58,6 +58,28 @@
         
 
 <div>
+  <h1>5/12の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-12-diary.html">May 12, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-12-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-12-diary.html" data-text="5/12の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="統計学入門">統計学入門</h2>
+<p>一様分布のパラメータ <span class="math">\(a\)</span> 、 <span class="math">\(b\)</span> の推定がなかなか興味深い。モーメント法だと変数が2個なので2次のモーメントまでしか利用しないため、最尤推定とは違う結果が出てしまう。最尤推定も興味深く、端的に言えば <span class="math">\((-\infty, +\infty)\)</span> が解となる。実際は教科書にあるように <span class="math">\(a \leq \min(X_i), b \geq \max(X_i)\)</span> を満たす <span class="math">\((a, b)\)</span> すべてが最大尤度を与える。これは、母集団分布が一様分布の場合には、標本は区間がその標本を含むという情報しか提供しないってことなんだろう。</p>
+<h2 id="narrative-clip-を落とした">narrative clip を落とした</h2>
+<p>通勤中にどこかで落として紛失してがっかりしてたのだけど、帰りに駅の窓口などを何か所かまわって探したら幸い見つかった。撮影されていた画像から判断すると、地元駅のエレベータに乗ってから改札を通るまでに落としてしまい、誰かがそのまま駅員に届けたっぽい。届けてくれた人には感謝。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/11の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-11-diary.html">May 11, 2015</a>
@@ -138,29 +160,6 @@
 <p>そもそもParIOは決定的な並列処理を行うものなので、並行処理を記述したいAnyEventとは趣旨が違う気がする。その目的だとやっぱりasyncを使うべきかな。</p>
 <h2 id="統計学入門">統計学入門</h2>
 <p>手を動かして最尤推定を求めてみてる。昨日の疑問はまだ謎のまま。測度論をやってからはマシになったが、密度関数と質量関数を混同すると議論に置いてかれるので油断ならない。後、長年同じこと言ってるけど、未だに正規分布の確率密度関数を覚えてなくて辛い。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/7の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-07-daiary.html">May  7, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-07-daiary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-07-daiary.html" data-text="5/7の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="統計学入門">統計学入門</h2>
-<p>11章の点推定の話が思ったより奥深い。普遍性、一致性はともかく、有効性という基準はなかなか面白い。有効性(minimum variance unbiased estimator)の議論は掘り下げて欲しかったが、この本では事実の紹介だけで終わりっぽい。</p>
-<p>最尤推定で普遍推定量が求まらないのはどうも直観に反して腑に落ちない。もうちょっと手を動かしてみたら印象変わるかな。</p>
-<h2 id="haskellあれこれ">haskellあれこれ</h2>
-<p><a href="http://search.cpan.org/~mlehmann/AnyEvent/">AnyEvent</a> の代わりになるのってなんだっけなと思って<a href="http://www.amazon.co.jp/Haskell%E3%81%AB%E3%82%88%E3%82%8B%E4%B8%A6%E5%88%97%E3%83%BB%E4%B8%A6%E8%A1%8C%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0-Simon-Marlow/dp/4873116899%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873116899">並列並行本</a>引っ張り出してきた。<a href="https://hackage.haskell.org/package/async">async</a>か<a href="http://hackage.haskell.org/package/monad-par-0.3.4.1">ParIO</a>がそれっぽくて、後者の方が高速っぽい。後者で例外とかcancelの処理がどの程度できるかは調べる必要あり。</p>
 </p>
 
 </div>
