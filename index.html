@@ -58,6 +58,26 @@
         
 
 <div>
+  <h1>5/13の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-13-diary.html">May 13, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-13-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-13-diary.html" data-text="5/13の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="池上彰のやさしい経済学">池上彰のやさしい経済学</h2>
+<p><a href="http://www.amazon.co.jp/%E6%B1%A0%E4%B8%8A%E5%BD%B0%E3%81%AE%E3%82%84%E3%81%95%E3%81%97%E3%81%84%E7%B5%8C%E6%B8%88%E5%AD%A6-1-%E3%81%97%E3%81%8F%E3%81%BF%E3%81%8C%E3%82%8F%E3%81%8B%E3%82%8B-%E6%97%A5%E7%B5%8C%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E4%BA%BA%E6%96%87%E5%BA%AB-%E6%B1%A0%E4%B8%8A/dp/4532197104%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4532197104">池上彰のやさしい経済学</a>。本当に易し過ぎてほとんど得るものがないけど、まあ用語の整理ってことで。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/12の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-12-diary.html">May 12, 2015</a>
@@ -137,29 +157,6 @@
 <p>
     <h2 id="haskellあれこれ">Haskellあれこれ</h2>
 <p>スレッド周りで悩む。AnyEventでシングルスレッドだったものをマルチスレッドに書き換えようとしてるので、グローバル変数は基本的に全部<code>MVar</code>になるのだけど、その際のロック周りの戦略はきちんと考え直さなきゃならないところ。<code>MVar</code>が再入不可なので、そこも整理しつつ。何も考えずにtakeとputすると非同期例外に対して安全にならないのだけど、maskを使いこなせる自信もなくどうしようかなーと。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/8の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-08-dairy.html">May  8, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-08-dairy.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-08-dairy.html" data-text="5/8の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>昨日に引き続きAnyEventの代替の模索。ParIOでキャンセルどうなってるかググったら <a href="http://tomasp.net/blog/speculative-par-monad.aspx/">こんなエントリ</a> 引いた。本体にがつっとパッチ当ててる感じ。</p>
-<p>そもそもParIOは決定的な並列処理を行うものなので、並行処理を記述したいAnyEventとは趣旨が違う気がする。その目的だとやっぱりasyncを使うべきかな。</p>
-<h2 id="統計学入門">統計学入門</h2>
-<p>手を動かして最尤推定を求めてみてる。昨日の疑問はまだ謎のまま。測度論をやってからはマシになったが、密度関数と質量関数を混同すると議論に置いてかれるので油断ならない。後、長年同じこと言ってるけど、未だに正規分布の確率密度関数を覚えてなくて辛い。</p>
 </p>
 
 </div>
