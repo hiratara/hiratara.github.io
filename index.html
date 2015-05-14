@@ -58,6 +58,27 @@
         
 
 <div>
+  <h1>5/14の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-14-diary.html">May 14, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-14-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-14-diary.html" data-text="5/14の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="ghc-mod">ghc-mod</h2>
+<p>ghc-modのバイナリは頻繁に入れ替えてるのだけど、elispを全然入れ替えてないことに気が付いたのでMELPAから最新版を取ってきた。パッケージ名はghcなので注意。</p>
+<p>後、C-c C-lしたときのターゲット名が実行ファイルとライブラリで被るときは <code>exe:XXXX</code> とか <code>lib:XXXX</code> で指定するって初めて知った。そもそもこれって誰が提供してる昨日なんだろ。 haskell-mode ？</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/13の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-13-diary.html">May 13, 2015</a>
@@ -137,26 +158,6 @@
 <p>結局 <code>async</code> も使わずひたすら <code>MVar</code> 書いてる。<a href="https://downloads.haskell.org/~ghc/7.10.1/docs/html/users_guide/typed-holes.html">_で始まる項に特別な意味がある</a>のは知らなかった。いや、正確に言うと昔一度試したけど忘れてた、かな。</p>
 <h2 id="等々力渓谷">等々力渓谷</h2>
 <p>結構普通に渓谷でビビった。街中だから当然空気はそんなにきれいじゃないけど、散歩には良さげ。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/9の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-09-dairy.html">May  9, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-09-dairy.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-09-dairy.html" data-text="5/9の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>スレッド周りで悩む。AnyEventでシングルスレッドだったものをマルチスレッドに書き換えようとしてるので、グローバル変数は基本的に全部<code>MVar</code>になるのだけど、その際のロック周りの戦略はきちんと考え直さなきゃならないところ。<code>MVar</code>が再入不可なので、そこも整理しつつ。何も考えずにtakeとputすると非同期例外に対して安全にならないのだけど、maskを使いこなせる自信もなくどうしようかなーと。</p>
 </p>
 
 </div>
