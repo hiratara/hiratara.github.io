@@ -76,41 +76,41 @@
 <p>こちらの演習問題の解答が <a href="http://stackoverflow.com/questions/24773130/parallel-haskell-rate-limiting-the-producer">stackoverflow</a> とか <a href="https://github.com/erantapaa/parconc-examples/commit/d2c657c516377c29bca2521452dbfbe966ef6ee4">github</a> に上がってるんだけど、間違えてそうなので<a href="https://github.com/hiratara/parconc-examples/commit/639abe2cad1fc3529313981ede51d5364126c115">自分が書いたもの</a>を解説しておく。</p>
 <p>問題の例を読むと、一回のforkで生産する要素数は200だけど、消費者側が100個目を消費したところで次のforkが走り始める必要があることがわかる。これがなかなか難しい。</p>
 <p>まず簡単なところから。型は問題文で与えられているので、<code>streamFold</code>は自明である。<code>Fork</code>は<code>Cons</code>を持っているので、<code>fork</code>する以外は<code>Cons</code>と同じ事をやるだけでいい。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">streamFold ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Stream</span> b <span class="ot">-&gt;</span> <span class="dt">Par</span> a
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">streamFold ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Stream</span> b <span class="ot">-&gt;</span> <span class="dt">Par</span> a
 streamFold fn <span class="fu">!</span>acc instrm <span class="fu">=</span> <span class="kw">do</span>
   ilst <span class="ot">&lt;-</span> get instrm
   <span class="kw">case</span> ilst <span class="kw">of</span>
     <span class="dt">Nil</span>      <span class="ot">-&gt;</span> return acc
     <span class="dt">Cons</span> h t <span class="ot">-&gt;</span> streamFold fn (fn acc h) t
-    <span class="dt">Fork</span> kick (<span class="dt">Cons</span> h t) <span class="ot">-&gt;</span> fork kick <span class="fu">&gt;&gt;</span> streamFold fn (fn acc h) t</code></pre>
+    <span class="dt">Fork</span> kick (<span class="dt">Cons</span> h t) <span class="ot">-&gt;</span> fork kick <span class="fu">&gt;&gt;</span> streamFold fn (fn acc h) t</code></pre></div>
 <p><code>streamFromList</code>は問題文よりchunkの大きさとforkするタイミングを渡せって言われてるので以下の型。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">ForkSetting</span> <span class="fu">=</span> (<span class="dt">Int</span>, <span class="dt">Int</span>)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">ForkSetting</span> <span class="fu">=</span> (<span class="dt">Int</span>, <span class="dt">Int</span>)
 <span class="ot">streamFromList ::</span> <span class="dt">NFData</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Par</span> (<span class="dt">Stream</span> a)
-<span class="ot">streamFromList' ::</span> <span class="dt">NFData</span> a <span class="ot">=&gt;</span> <span class="dt">ForkSetting</span> <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Par</span> (<span class="dt">Stream</span> a)</code></pre>
+<span class="ot">streamFromList' ::</span> <span class="dt">NFData</span> a <span class="ot">=&gt;</span> <span class="dt">ForkSetting</span> <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Par</span> (<span class="dt">Stream</span> a)</code></pre></div>
 <p>これにあわせて<code>loop</code>も型を変える必要がある。が、さらにもうひと工夫 <code>Maybe (IVar (IList a))</code> という引数が必要で、これは後述する。　</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">loop ::</span> (<span class="dt">Int</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">IVar</span> (<span class="dt">IList</span> a) <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">IVar</span> (<span class="dt">IList</span> a)) <span class="ot">-&gt;</span> <span class="dt">Par</span> ()</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">loop ::</span> (<span class="dt">Int</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">IVar</span> (<span class="dt">IList</span> a) <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">IVar</span> (<span class="dt">IList</span> a)) <span class="ot">-&gt;</span> <span class="dt">Par</span> ()</code></pre></div>
 <p><code>loop</code> の通常時の動作は改修前と変わらない。<code>loop</code>の引数の変更にあわせてパラメータを適切に受け渡すだけである。ただし、追加したカウンタのデクリメントは必要である。　</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  loop _ [] var _ <span class="fu">=</span> put var <span class="dt">Nil</span>   <span class="co">-- &lt;4&gt;</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  loop _ [] var _ <span class="fu">=</span> put var <span class="dt">Nil</span>   <span class="co">-- &lt;4&gt;</span>
   loop (n, k) (x<span class="fu">:</span>xs) var nVar <span class="fu">=</span> <span class="kw">do</span>      <span class="co">-- &lt;5&gt;</span>
     tail <span class="ot">&lt;-</span> new                         <span class="co">-- &lt;6&gt;</span>
     put var (<span class="dt">Cons</span> x tail)               <span class="co">-- &lt;7&gt;</span>
-    loop (n <span class="fu">-</span> <span class="dv">1</span>, k <span class="fu">-</span> <span class="dv">1</span>) xs tail nVar    <span class="co">-- &lt;8&gt;</span></code></pre>
+    loop (n <span class="fu">-</span> <span class="dv">1</span>, k <span class="fu">-</span> <span class="dv">1</span>) xs tail nVar    <span class="co">-- &lt;8&gt;</span></code></pre></div>
 <p><code>n == 1</code> のときも簡単。これは指定された数のチャンクを生産し終わった時なので、再帰を停止すればよい。ただ、再帰をやめるのにあたり、新しい<code>IVar</code>をここで生成してしまうと、この<code>IVar</code>へ値を<code>put</code>してくれるワーカーがどこにもいなくなってしまう。そこで前述した <code>loop</code> へ追加した最後の引数を使う。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (<span class="dv">1</span>, _) (x<span class="fu">:</span>_) var (<span class="dt">Just</span> next) <span class="fu">=</span> put var (<span class="dt">Cons</span> x next)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (<span class="dv">1</span>, _) (x<span class="fu">:</span>_) var (<span class="dt">Just</span> next) <span class="fu">=</span> put var (<span class="dt">Cons</span> x next)</code></pre></div>
 <p>この <code>next</code> は、次のchunkの生産時に結果を <code>put</code> する <code>Stream</code> の先頭要素である。なので、消費者側はこの <code>next</code> を <code>get</code> することで続きのデータが得られる。</p>
 <p><code>k == 0</code> の時が次のchunkの生産を <code>fork</code> すべきときで、ここで <code>loop</code> の最後の引数も作る必要がある。あと、 <code>Fork</code> は <code>Cons</code> も兼ねているので、通常の <code>Cons</code> を生成する場合の処理も必要となる。 <code>nVar</code> が次のchunkの結果を含む<code>Stream</code>の先頭で、これを <code>loop</code> で引き回して今のchunkの生産が終わったら <code>nVar</code> へ繋げてやる。<code>fork</code>する際、現在のワーカーが残り <code>n - 1</code> 個の生産をする予定のはずなので、それらは <code>drop</code> でリストから捨ててやる。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (n, <span class="dv">0</span>) (x<span class="fu">:</span>xs) var <span class="dt">Nothing</span> <span class="fu">=</span> <span class="kw">do</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (n, <span class="dv">0</span>) (x<span class="fu">:</span>xs) var <span class="dt">Nothing</span> <span class="fu">=</span> <span class="kw">do</span>
     tail <span class="ot">&lt;-</span> new
     nVar <span class="ot">&lt;-</span> new
     put var (<span class="dt">Fork</span> (kick (drop (n <span class="fu">-</span> <span class="dv">1</span>) xs) nVar)
                   (<span class="dt">Cons</span> x tail))
     loop (n <span class="fu">-</span> <span class="dv">1</span>, <span class="fu">-</span><span class="dv">1</span>) xs tail (<span class="dt">Just</span> nVar)
 
-  kick xs var <span class="fu">=</span> loop (chunkSize, forkPoint) xs var <span class="dt">Nothing</span></code></pre>
+  kick xs var <span class="fu">=</span> loop (chunkSize, forkPoint) xs var <span class="dt">Nothing</span></code></pre></div>
 <p>ここまでできてしまえば、 <code>streamMap</code> は生産者と消費者の両方の役割を兼ねるだけなのでさくっと実装できるかと思うが、実はそうはいかない。 <code>streamFromList</code> はlistを相手にしていたために <code>Fork</code> を消費者へ渡す時点で次のchunkがどの要素から生成を始めればよいかがわかったが、言語今回は入力が <code>Stream</code> なので上流からの値を <code>chunkSize</code> 個すべて受け取るまでは次のchunkの対象とすべき要素が確定しない。</p>
 <p>この問題を解決するには、 <code>loop</code> の最後の引数を <code>Maybe (IVar (IVar (IList a), IVar (IList b)))</code> というように入れ個の <code>IVar</code> に変えてやるとよい。そして、現在のforkが<code>chunkSize</code>個のデータの生産を終えた時点で、次のforkに対して入力と出力の2つの <code>Stream</code> を表す <code>IVar</code> を伝えてやればよい。</p>
 <p><code>Fork</code>を要求する側は、だいたいこうなる(<code>Nil</code> は再帰を終えるので自明、<code>Fork</code>を消費する部分は<code>Cons</code>の消費と同じなので、それぞれ省略している)。次のchunkの入出力の先頭を表す<code>Stream</code>を受け取るために <code>nextstrm</code> という <code>IVar</code> を生成し、これを <code>loop</code> の引数としてchunkの末尾まで引き回している。chunkの末尾までいって対象となる <code>Stream</code> が確定した時点で、<code>(instrm, outstrm) &lt;- get var</code> と結果を受け取って次のchunkの処理を開始する。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (n, <span class="dv">0</span>) instrm outstrm <span class="dt">Nothing</span> <span class="fu">=</span> <span class="kw">do</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (n, <span class="dv">0</span>) instrm outstrm <span class="dt">Nothing</span> <span class="fu">=</span> <span class="kw">do</span>
     ilst <span class="ot">&lt;-</span> get instrm
     <span class="kw">case</span> ilst <span class="kw">of</span>
 <span class="fu">...</span>(snip)<span class="fu">...</span>
@@ -125,9 +125,9 @@ streamFold fn <span class="fu">!</span>acc instrm <span class="fu">=</span> <spa
   kick instrm outstrm <span class="fu">=</span> loop (chunkSize, forkPoint) instrm outstrm <span class="dt">Nothing</span>
   kick' var <span class="fu">=</span> <span class="kw">do</span>
     (instrm, outstrm) <span class="ot">&lt;-</span> get var
-    kick instrm outstrm</code></pre>
+    kick instrm outstrm</code></pre></div>
 <p>chunkの末尾でやることは、だいたい以下の通り。次のchunkの入力の先頭である <code>tail</code> がここで確定し、また、出力を書き込むために <code>newtl</code> という新たな <code>Stream</code> を生成し、 <code>loop</code> の末尾の引数を使って次のchunkにそれらを伝えると共に、消費者には続きを得るために <code>newtl</code> を返している。</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (<span class="dv">1</span>, _) instrm outstrm (<span class="dt">Just</span> next) <span class="fu">=</span> <span class="kw">do</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  loop (<span class="dv">1</span>, _) instrm outstrm (<span class="dt">Just</span> next) <span class="fu">=</span> <span class="kw">do</span>
     ilst <span class="ot">&lt;-</span> get instrm
     <span class="kw">case</span> ilst <span class="kw">of</span>
 <span class="fu">...</span>(snip)<span class="fu">...</span>
@@ -135,7 +135,7 @@ streamFold fn <span class="fu">!</span>acc instrm <span class="fu">=</span> <spa
         newtl <span class="ot">&lt;-</span> new
         put next (tail, newtl)
         put outstrm (<span class="dt">Cons</span> (fn h) newtl)
-<span class="fu">...</span>(snip)<span class="fu">...</span></code></pre>
+<span class="fu">...</span>(snip)<span class="fu">...</span></code></pre></div>
 <p>この実装でthreadscopeをとると以下のようになった。本に載っていたサンプルは消費者の方が速いタイプだったので本件の実装が正しく働いているかは判断できないが、きちんと並列に動作していることは見て取れる。<code>fork</code> の回数が増えたことで、コアは2つだけではなくすべてがまんべんなく使われるようになった。</p>
 <div class="figure">
 <img src="../images/2014-09-14-rsa-pipeline.png" alt="threadwatch" />
