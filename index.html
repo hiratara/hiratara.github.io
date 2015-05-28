@@ -62,13 +62,35 @@
         
 
 <div>
-  <h1>5/26の日記</h1>
+  <h1>5/28の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-28-diary.html">May 28, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-28-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-28-diary.html" data-text="5/28の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskell-あれこれ">Haskell あれこれ</h2>
+<p><code>Attoparsec</code>の<code>Partial</code>を知らずにだいぶハマった。これ、どういうとき使うのがおいしいんだろう。<code>parseOnly</code>使えば気にせずにすむ。</p>
+<h2 id="病院">病院</h2>
+<p>先生に会うことすらままならないとはさすが巨大病院。一か月後に残りの検査で、そのあと先生が登場するっぽい。</p>
+</p>
+
+</div>
+
+
+
+<div>
+  <h1>5/27の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-27-diary.html">May 27, 2015</a>
     <!-- facebook button -->
     <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-27-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
     <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-27-diary.html" data-text="5/26の日記" data-via="hiratara">Tweet</a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-27-diary.html" data-text="5/27の日記" data-via="hiratara">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </div>
@@ -152,31 +174,6 @@
 <p>ghc-modとcabalのあれこれに嫌気がさしたのでghc7.10へ乗り換え。<a href="https://github.com/kazu-yamamoto/ghc-mod/issues/437">まだ解決してないポイ</a>ので <code>git clone</code> してきてmasterでビルド。</p>
 <p>一方で<a href="https://github.com/kazu-yamamoto/ghc-mod/pull/468">emacs側も問題抱えてる</a>っぽかったけど、さっき <code>package-list-packages</code> 使って <code>ghc</code> と <code>haskell-mode</code> ぶっこみ直したら動いてるっぽいのでよしとする。</p>
 <p>しかしghc-modも昔はシンプルだったんだな。最初のバージョンは<a href="https://hackage.haskell.org/package/haskell-src-exts">haskell-src-ext</a>使ったシンプルなものだし、0.4系でも<a href="https://github.com/kazu-yamamoto/ghc-mod/blob/v0.4.4/Check.hs">この程度のコード</a>で自分でもさくっと読めるレベル。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/23の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-23-diary.html">May 23, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-23-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-23-diary.html" data-text="5/23の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="保険学">保険学</h2>
-<p>養老保険と言う概念を知った。生存しても死亡しても保険金が貰えるというもの。テキストの例だと生存でも死亡でも同額の金額が貰えることになっていて、なんで成り立つか不思議だったのだけど金利によるものらしい。じゃあこれだけ低金利だとどうなっちゃうのさってことなんだけど、やっぱり<a href="http://toyokeizai.net/articles/-/59111">こういうこと</a>みたい。</p>
-<h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>ghc-modで使ってるghcパッケージってどこにドキュメントあるんだよって思って探してたんだけど、ghcをインストールしたディレクトリに入ってた。もしくは<a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/ghc/index.html">downloads.haskell.org</a>覗くことも。</p>
-<p>GHCのライブラリむずいなーと思ったら<a href="https://wiki.haskell.org/GHC/As_a_library">こんなの</a>リンク集に入ってた。後で試してみる。</p>
-<h2 id="カジュアルなhttpサーバ">カジュアルなhttpサーバ</h2>
-<p>Plackか<a href="http://mew.org/~kazu/proj/mighttpd/en/">mighty</a>入れようかと思ったけど、Python3入ってたら <code>python3.4 -m http.server 12345</code> で十分だった。もしくは <code>ruby -run -e httpd . -p 12345</code> でも。</p>
 </p>
 
 </div>
