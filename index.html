@@ -62,6 +62,58 @@
         
 
 <div>
+  <h1>今日はLens&Prism勉強会の日です</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-05-30-lens-prism.html">May 30, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-30-lens-prism.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-30-lens-prism.html" data-text="今日はLens&Prism勉強会の日です" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <p><a href="http://connpass.com/event/13929/">Lens&amp;Prism勉強会</a>に途中から来ています。</p>
+<h2 id="lensの説明-gakuzzzzさん">Lensの説明 / gakuzzzzさん</h2>
+<p>途中から。</p>
+<ul>
+<li>lensは部分から構成</li>
+<li>ekmett さん「<code>set l (set l s b) a == set l s b</code>が抜けてるよ」</li>
+<li>ネストされた設定の例</li>
+<li><code>At</code> マップのキーバリューから値を取り出す</li>
+<li><code>Iso</code>, <code>Prism</code>, <code>Lens</code> について、 <code>f</code>, <code>g</code> の比較</li>
+<li><code>Optional</code> or <code>Travarsal</code>, Affine Traversal, 0-1 Traversal などの呼び方
+<ul>
+<li><code>Prism</code> と <code>Lens</code>を合わせたもの</li>
+</ul></li>
+<li><code>Index</code> と <code>At</code> の違い
+<ul>
+<li>存在しないインデックスだと部分が取り出せない</li>
+</ul></li>
+<li><code>Json</code> の例
+<ul>
+<li><code>String</code> からの変換から始まってひたすらネストが必要</li>
+<li><code>parse</code>は<code>Prism</code>ではダメ。JSONの表記ゆれがあるから元に戻せない
+<ul>
+<li><code>Optional</code> を使う</li>
+<li>ekmettさんによると、表記ゆれを同値と見なすこともできるのであってるともあってないとも言える</li>
+</ul></li>
+<li><code>Lens</code>より<code>Optional</code>と<code>Prism</code>が使われてる</li>
+</ul></li>
+<li>他に <code>Getter</code> とか <code>Setter</code> とかある</li>
+<li>Scalaで使ってうれしいの？
+<ul>
+<li>そんなに頻繁にはない</li>
+<li>手で書くとそんなにコード短くならない。マクロ使えれば嬉しいかも</li>
+</ul></li>
+</ul>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>5/29の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-05-29-diary.html">May 29, 2015</a>
@@ -148,30 +200,6 @@
 <p><a href="http://www.amazon.co.jp/%E7%89%A9%E7%90%86%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%95%B0%E5%AD%A6-BERET-SCIENCE-%E4%B8%80%E7%9F%B3-%E8%B3%A2/dp/4860643089%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Ddays0aa-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4860643089">この本</a>。この手の本によくある乱暴でええかげんな語り口で好みではない。要らないとこ飛ばしてさくっといきたい。</p>
 <h2 id="自宅のネットワーク">自宅のネットワーク</h2>
 <p>いろいろ再起動したら快適になった。いろいろ再起動しすぎて何がよかったのかはわからない。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>5/25の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-25-diary.html">May 25, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-25-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-25-diary.html" data-text="5/25の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="統計学入門">統計学入門</h2>
-<p>検定。伝統的にそういう議論の展開だってのは重々承知だけど、他にもっと納得感のある方法はないものかね。</p>
-<h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>ghc-modがcabal installとか走らせるとおかしくなる気がする。ghcは起動済てきなこと言われる気がする。調べる気力はない。</p>
-<h2 id="自宅のネットワーク">自宅のネットワーク</h2>
-<p>安定しない。ping打つとたまに2秒以上止まってきつい。ルータ再起動すると多少落ち着くのでやっぱルータのせいなのかな。</p>
 </p>
 
 </div>
