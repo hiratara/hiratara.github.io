@@ -178,6 +178,67 @@
 </ul></li>
 <li>Q. 「準同型」の言葉が違う、 <code>Const r</code> の定義が実際と違う (<code>mappend</code> 使う)</li>
 </ul>
+<h2 id="deriving-lanses-halcat0x15a-さん">DERIVING LANSES / halcat0x15a さん</h2>
+<ul>
+<li>Lensを手で作るのは辛い</li>
+<li>JavaでReflection
+<ul>
+<li>Java8でパラメータ名をReflectionで取れる</li>
+<li>コンストラクタからパラメータ名を取ってゲッターの名前を作ってとる</li>
+<li>(めっちゃ辛い)</li>
+</ul></li>
+<li>Scala のマクロによるlens
+<ul>
+<li>マクロ：ブラックボックスとホワイトボックス</li>
+<li>→強力な方(ホワイトボックス)</li>
+<li>フィールド名が存在しなくてもコンパイル時に弾かれる</li>
+<li>型安全かつ速い。ただしホワイトボックスマクロは将来なくなるかも</li>
+</ul></li>
+<li>HaskellのGeneric
+<ul>
+<li><code>GHC.Generic</code></li>
+<li><code>Generic</code> クラスはderiving可能</li>
+<li>名前の取り出し方がわからないので何番目のフィールドか
+<ul>
+<li>→ 型レベル自然数が必要</li>
+</ul></li>
+<li>型安全、マクロ不要、遅い</li>
+</ul></li>
+<li>Q. <code>Deriving Generic</code> する？ → ライブラリとかよろしく使ってくれる。JSONとか</li>
+<li>Q. <code>lens</code> にも <code>Generic</code> あるよね？ → <code>Generic</code> に対する <code>ISO</code> があるだけでは
+<ul>
+<li>Genericのインスタンスについて <code>Traversal</code> にする<a href="http://hackage.haskell.org/package/lens-4.11/docs/Generics-Deriving-Lens.html">仕組みはある</a></li>
+<li>この仕組みはフィールドを明示して <code>Lens</code> にしてる点が違う</li>
+</ul></li>
+</ul>
+<h2 id="xpath-in-lens-tanakh-さん">XPath in Lens / tanakh さん</h2>
+<ul>
+<li>ブラウザを開かずにAsk.fmで質問したい</li>
+<li><code>xml-conduit</code> でADT取り出して直接も書ける</li>
+<li><code>Text.XML.Cursor</code> を使えばいい → パッケージごとにDSL覚えるのはちょっと</li>
+<li><code>Text.XML.Lens</code> ： <code>..</code> とか <code>./</code> とかきついけど広く使われてる</li>
+<li>そして <code>Lens</code> 沼へ</li>
+<li>XPATHと <code>Lens</code> の対比表 → 結構違う</li>
+<li>「無尽蔵に演算子が増える」</li>
+<li>CSSセレクターも使える
+<ul>
+<li>XPathよりナウい。「題材を間違えた感」</li>
+</ul></li>
+<li><code>http-condit</code> と組み合わせると楽</li>
+<li><code>aeson-lens</code> VS <code>lens-aeson</code>
+<ul>
+<li>前者を tanakh さんが更新しないから ekmett さんが作ったのが後者</li>
+</ul></li>
+<li>Q. <code>xml-lens</code> の作者だけど何かある？
+<ul>
+<li>属性があるかないか書きにくい</li>
+<li>足します</li>
+</ul></li>
+<li>Q. CSSセレクタからレンズを作る機能があるとすごい
+<ul>
+<li>作ると面白いと思います</li>
+</ul></li>
+</ul>
 </p>
 
 

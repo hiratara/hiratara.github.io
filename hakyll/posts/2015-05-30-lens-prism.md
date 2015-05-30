@@ -81,3 +81,46 @@ title: 今日はLens&Prism勉強会の日です
 * `Const r` は `Monoid` 制約がないと `Applicative` にならない
     * `pure` の定義に `mempty` 必要
 * Q. 「準同型」の言葉が違う、 `Const r` の定義が実際と違う (`mappend` 使う)
+
+## DERIVING LANSES / halcat0x15a さん
+
+* Lensを手で作るのは辛い
+* JavaでReflection
+    * Java8でパラメータ名をReflectionで取れる
+    * コンストラクタからパラメータ名を取ってゲッターの名前を作ってとる
+    * (めっちゃ辛い)
+* Scala のマクロによるlens
+    * マクロ：ブラックボックスとホワイトボックス
+    * →強力な方(ホワイトボックス)
+    * フィールド名が存在しなくてもコンパイル時に弾かれる
+    * 型安全かつ速い。ただしホワイトボックスマクロは将来なくなるかも
+* HaskellのGeneric
+    * `GHC.Generic`
+    * `Generic` クラスはderiving可能
+    * 名前の取り出し方がわからないので何番目のフィールドか
+        * → 型レベル自然数が必要
+    * 型安全、マクロ不要、遅い
+* Q. `Deriving Generic` する？ → ライブラリとかよろしく使ってくれる。JSONとか
+* Q. `lens` にも `Generic` あるよね？ → `Generic` に対する `ISO` があるだけでは
+    * Genericのインスタンスについて `Traversal` にする[仕組みはある](http://hackage.haskell.org/package/lens-4.11/docs/Generics-Deriving-Lens.html)
+    * この仕組みはフィールドを明示して `Lens` にしてる点が違う
+
+## XPath in Lens / tanakh さん
+
+* ブラウザを開かずにAsk.fmで質問したい
+* `xml-conduit` でADT取り出して直接も書ける
+* `Text.XML.Cursor` を使えばいい → パッケージごとにDSL覚えるのはちょっと
+* `Text.XML.Lens` ： `..` とか `./` とかきついけど広く使われてる
+* そして `Lens` 沼へ
+* XPATHと `Lens` の対比表 → 結構違う
+* 「無尽蔵に演算子が増える」
+* CSSセレクターも使える
+    * XPathよりナウい。「題材を間違えた感」
+* `http-condit` と組み合わせると楽
+* `aeson-lens` VS `lens-aeson`
+    * 前者を tanakh さんが更新しないから ekmett さんが作ったのが後者
+* Q. `xml-lens` の作者だけど何かある？
+    * 属性があるかないか書きにくい
+    * 足します
+* Q. CSSセレクタからレンズを作る機能があるとすごい
+    * 作ると面白いと思います
