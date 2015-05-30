@@ -239,6 +239,42 @@
 <li>作ると面白いと思います</li>
 </ul></li>
 </ul>
+<h2 id="ちょっぴり危険なlensのヒミツ-fumieval-さん">ちょっぴり危険なLensのヒミツ / fumieval さん</h2>
+<ul>
+<li><code>newtype</code> はオーバーヘッドがない (NOOP)
+<ul>
+<li><code>unsafeCoerce</code> で書ける (型を強引に変える)</li>
+<li>ルールはある。さまざまな変換でNOOPを保存する</li>
+<li><code>#.</code> は効率よく引数をはがしたりできる</li>
+</ul></li>
+<li>lensの特徴の3つの操作
+<ul>
+<li><code>views</code> : <code>.#</code> を使っていて、NOOPになる</li>
+<li><code>over</code> : 同じく NOOP</li>
+<li><code>review</code> : NOOP</li>
+<li>つまり全部 <code>unsafeCoerce</code> で定義するだけでO.K.</li>
+</ul></li>
+<li>よってすっげー速い</li>
+<li>プログラムを速くしたいときは <code>unsafeCoerce</code></li>
+<li>7.8 から入った <code>coerce</code> でもよい。型から安全課判断してくれる</li>
+</ul>
+<h2 id="lensにもprismにもなるフィールド仮称-fumieval-さん">LensにもPrismにもなるフィールド(仮称) / fumieval さん</h2>
+<p>今朝、スライドデータを吹っ飛ばしたとのことです。</p>
+<ul>
+<li>フィールドをlensでもprismでも使う</li>
+<li>漢字変数ははGHCだと大文字になるので注意</li>
+<li>Q. どうしてこういう発想に？
+<ul>
+<li>パターンマッチをしたいから。名前をまとめたかった</li>
+</ul></li>
+</ul>
+<h2 id="monocleとかいうのがありまして-aoiroaoinoさん">Monocleとかいうのがありまして / AoiroAoinoさん</h2>
+<ul>
+<li>BSON : MongoDBなどで利用。Binary JSON</li>
+<li>Javaのドライバ使うとすごくJavaっぽくなる</li>
+<li>Prismを定義する。Immutableに扱える</li>
+<li>「あんまり顔文字に見えない演算子」でHaskellっぽくも書ける</li>
+</ul>
 </p>
 
 

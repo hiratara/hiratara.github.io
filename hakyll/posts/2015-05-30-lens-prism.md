@@ -124,3 +124,37 @@ title: 今日はLens&Prism勉強会の日です
     * 足します
 * Q. CSSセレクタからレンズを作る機能があるとすごい
     * 作ると面白いと思います
+
+
+## ちょっぴり危険なLensのヒミツ / fumieval さん
+
+* `newtype` はオーバーヘッドがない (NOOP)
+    * `unsafeCoerce` で書ける (型を強引に変える)
+    * ルールはある。さまざまな変換でNOOPを保存する 
+    * `#.` は効率よく引数をはがしたりできる
+* lensの特徴の3つの操作
+    * `views` : `.#` を使っていて、NOOPになる
+    * `over` : 同じく NOOP
+    * `review` : NOOP
+    * つまり全部 `unsafeCoerce` で定義するだけでO.K.
+* よってすっげー速い
+* プログラムを速くしたいときは `unsafeCoerce`
+* 7.8 から入った `coerce` でもよい。型から安全課判断してくれる
+
+
+## LensにもPrismにもなるフィールド(仮称) / fumieval さん
+
+今朝、スライドデータを吹っ飛ばしたとのことです。
+
+* フィールドをlensでもprismでも使う
+* 漢字変数ははGHCだと大文字になるので注意
+* Q. どうしてこういう発想に？
+    * パターンマッチをしたいから。名前をまとめたかった
+
+
+## Monocleとかいうのがありまして / AoiroAoinoさん
+
+* BSON : MongoDBなどで利用。Binary JSON
+* Javaのドライバ使うとすごくJavaっぽくなる
+* Prismを定義する。Immutableに扱える
+* 「あんまり顔文字に見えない演算子」でHaskellっぽくも書ける
