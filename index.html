@@ -101,11 +101,85 @@
 <li><code>Lens</code>より<code>Optional</code>と<code>Prism</code>が使われてる</li>
 </ul></li>
 <li>他に <code>Getter</code> とか <code>Setter</code> とかある</li>
-<li>Scalaで使ってうれしいの？
+<li>Q. Scalaで使ってうれしいの？
 <ul>
 <li>そんなに頻繁にはない</li>
 <li>手で書くとそんなにコード短くならない。マクロ使えれば嬉しいかも</li>
 </ul></li>
+<li>Q. <code>ScalaZ</code>と<code>Monocle</code>とで<code>PLens</code>は違う
+<ul>
+<li>Partial LensとPolymorphic Lens</li>
+<li>HaskellだとLensはレンズファミリー、<code>Lens'</code>がレンズ</li>
+<li>ScalaのPartial LensはHaskellでは<code>Traversal</code>では(怪しげ)</li>
+</ul></li>
+</ul>
+<h2 id="lensでhaskellをもっと格好良く-its_out_of_tune-さん">LensでHaskellをもっと格好良く！ / its_out_of_tune さん</h2>
+<ul>
+<li>タプルの <code>set</code> <code>get</code> は普通めんどい → <code>lens</code></li>
+<li><code>^.</code> <code>_1</code> get , <code>_2</code> <code>.~</code> set, <code>&amp;</code> (<code>flip ($)</code>)</li>
+<li><code>makeLenses</code> Template Haskell</li>
+<li>lensの作り方</li>
+<li><code>Traversable</code> の <code>fmapDefault</code>, <code>over</code>, と <code>Setter</code></li>
+<li><code>Data.Foldable</code> の<code>foldMap</code>と<code>foleMapOf</code>, <code>Getting</code></li>
+<li><code>Setter</code> と <code>Getting</code> を <code>Functor</code> を使ってそろえる</li>
+<li>便利な使い方</li>
+<li><code>%~</code> は <code>over</code></li>
+<li><code>to</code> は関数適用。getterになる</li>
+<li><code>use</code> と <code>.=</code> は <code>MonadState</code> で使う</li>
+</ul>
+<h2 id="opticから見たlensprism-its_out_of_tune-さん">Opticから見たLens/Prism / its_out_of_tune さん</h2>
+<ul>
+<li><code>Either</code> が入ると <code>Lens</code> ではきつい</li>
+<li><code>^?</code> : <code>Prism</code> での値の取り出し
+<ul>
+<li>setterは一緒</li>
+<li><code>Monoid</code> の取り出しでは <code>mempty</code> があるので一緒</li>
+</ul></li>
+<li><code>Prism</code> も合成可能。 <code>Lens</code> と合成すると <code>re</code> は使えない</li>
+<li><code>MonadState</code> 内でも普通に使える
+<ul>
+<li>ただし、<code>use</code> はMonoidのみ。 <code>preuse</code></li>
+<li><code>Int</code> は <code>Sum</code> を使えばモノイドになるよ！</li>
+</ul></li>
+<li><code>Functor</code> いろいろ
+<ul>
+<li><code>Contravariant</code> 反変。HomとかConstとか</li>
+<li><code>Bifunctor</code> 双関手</li>
+<li><code>Profunctor</code></li>
+</ul></li>
+<li><code>Optic</code> : <code>Lens</code> から <code>(-&gt;)</code> を抽象化
+<ul>
+<li><code>Prism</code> も表現できる</li>
+<li><code>Optical</code> : <code>(-&gt;)</code> を 1 種類から 2 種類に増やしたもの</li>
+</ul></li>
+<li>ekemett/lens はすべて <code>Optic</code> 型で全て合成可能
+<ul>
+<li>後はコンパイラお任せ</li>
+</ul></li>
+<li><code>Equality</code> : <code>id</code> のみ</li>
+<li><code>Iso</code> : 同型。 <code>from</code> で逆にできる</li>
+<li><code>Iso</code> から <code>Prism</code> と <code>Lens</code>
+<ul>
+<li><code>Prism</code> から <code>Review</code> 、さらに <code>AReview</code> へ。 <code>unto</code>, <code>un</code>, <code>re</code></li>
+<li><code>unto</code>, <code>un</code> → <code>Review</code> を作る</li>
+<li><code>re</code> → <code>Getter</code> を作る</li>
+</ul></li>
+<li><code>Getting</code> は <code>Getter</code> 、<code>Setter</code>は<code>Settable</code></li>
+<li><code>Fold</code> は <code>Getter</code>と<code>Traversal</code> を強くしたもの
+<ul>
+<li><code>(^..)</code>, <code>(^?)</code></li>
+<li><code>Getting r s a</code> の <code>r</code> が <code>Monoid</code> なら <code>Fold</code></li>
+</ul></li>
+<li><code>Choice</code> と <code>Prism</code>
+<ul>
+<li><code>Choice</code> は <code>Profunctor</code>。関数と<code>Tagged</code></li>
+<li><code>Prism</code> は <code>prism</code> 関数で作る</li>
+</ul></li>
+<li><code>Const r</code> は <code>Monoid</code> 制約がないと <code>Applicative</code> にならない
+<ul>
+<li><code>pure</code> の定義に <code>mempty</code> 必要</li>
+</ul></li>
+<li>Q. 「準同型」の言葉が違う、 <code>Const r</code> の定義が実際と違う (<code>mappend</code> 使う)</li>
 </ul>
 </p>
 
