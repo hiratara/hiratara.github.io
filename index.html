@@ -62,6 +62,30 @@
         
 
 <div>
+  <h1>6/4の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-06-04-diary.html">June  4, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-06-04-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-06-04-diary.html" data-text="6/4の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="adsense">adsense</h2>
+<p>住所の認証のためのPINが郵送で届いた。半月くらいかかった気がする。口座確認は昨日登録して今日完了。入金する金額をPINにするとかよく考えたもんだ。</p>
+<h2 id="ドローン">ドローン</h2>
+<p>規制される前なら20万出して買ってた。早めに規制してくれてありがとう。</p>
+<h2 id="オポチュニティ関連">オポチュニティ関連</h2>
+<p>Ruby書く予定はないよ。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>6/3の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-06-03-diary.html">June  3, 2015</a>
@@ -137,229 +161,6 @@
 <p>
     <h2 id="二子玉川">二子玉川</h2>
 <p>Rが移転するということで見に行ったけど、あんな大量に人が居るところだとは思ってもみなかった。蔦屋家電は食指が伸びそうなものを中心に置いてあって楽しい。Inspired by STARBUCKSはチーズフライトがお手軽でいい。自分で買った方が安くていいもの食べれるけど。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>今日はLens&Prism勉強会の日です</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-05-30-lens-prism.html">May 30, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-05-30-lens-prism.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-05-30-lens-prism.html" data-text="今日はLens&Prism勉強会の日です" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <p><a href="http://connpass.com/event/13929/">Lens&amp;Prism勉強会</a>に途中から来ています。</p>
-<h2 id="lensの説明-gakuzzzzさん">Lensの説明 / gakuzzzzさん</h2>
-<p>途中から。</p>
-<ul>
-<li>lensは部分から構成</li>
-<li>ekmett さん「<code>set l (set l s b) a == set l s b</code>が抜けてるよ」</li>
-<li>ネストされた設定の例</li>
-<li><code>At</code> マップのキーバリューから値を取り出す</li>
-<li><code>Iso</code>, <code>Prism</code>, <code>Lens</code> について、 <code>f</code>, <code>g</code> の比較</li>
-<li><code>Optional</code> or <code>Travarsal</code>, Affine Traversal, 0-1 Traversal などの呼び方
-<ul>
-<li><code>Prism</code> と <code>Lens</code>を合わせたもの</li>
-</ul></li>
-<li><code>Index</code> と <code>At</code> の違い
-<ul>
-<li>存在しないインデックスだと部分が取り出せない</li>
-</ul></li>
-<li><code>Json</code> の例
-<ul>
-<li><code>String</code> からの変換から始まってひたすらネストが必要</li>
-<li><code>parse</code>は<code>Prism</code>ではダメ。JSONの表記ゆれがあるから元に戻せない
-<ul>
-<li><code>Optional</code> を使う</li>
-<li>ekmettさんによると、表記ゆれを同値と見なすこともできるのであってるともあってないとも言える</li>
-</ul></li>
-<li><code>Lens</code>より<code>Optional</code>と<code>Prism</code>が使われてる</li>
-</ul></li>
-<li>他に <code>Getter</code> とか <code>Setter</code> とかある</li>
-<li>Q. Scalaで使ってうれしいの？
-<ul>
-<li>そんなに頻繁にはない</li>
-<li>手で書くとそんなにコード短くならない。マクロ使えれば嬉しいかも</li>
-</ul></li>
-<li>Q. <code>ScalaZ</code>と<code>Monocle</code>とで<code>PLens</code>は違う
-<ul>
-<li>Partial LensとPolymorphic Lens</li>
-<li>HaskellだとLensはレンズファミリー、<code>Lens'</code>がレンズ</li>
-<li>ScalaのPartial LensはHaskellでは<code>Traversal</code>では(怪しげ)</li>
-</ul></li>
-</ul>
-<h2 id="lensでhaskellをもっと格好良く-its_out_of_tune-さん">LensでHaskellをもっと格好良く！ / its_out_of_tune さん</h2>
-<ul>
-<li>タプルの <code>set</code> <code>get</code> は普通めんどい → <code>lens</code></li>
-<li><code>^.</code> <code>_1</code> get , <code>_2</code> <code>.~</code> set, <code>&amp;</code> (<code>flip ($)</code>)</li>
-<li><code>makeLenses</code> Template Haskell</li>
-<li>lensの作り方</li>
-<li><code>Traversable</code> の <code>fmapDefault</code>, <code>over</code>, と <code>Setter</code></li>
-<li><code>Data.Foldable</code> の<code>foldMap</code>と<code>foleMapOf</code>, <code>Getting</code></li>
-<li><code>Setter</code> と <code>Getting</code> を <code>Functor</code> を使ってそろえる</li>
-<li>便利な使い方</li>
-<li><code>%~</code> は <code>over</code></li>
-<li><code>to</code> は関数適用。getterになる</li>
-<li><code>use</code> と <code>.=</code> は <code>MonadState</code> で使う</li>
-</ul>
-<h2 id="opticから見たlensprism-its_out_of_tune-さん">Opticから見たLens/Prism / its_out_of_tune さん</h2>
-<ul>
-<li><code>Either</code> が入ると <code>Lens</code> ではきつい</li>
-<li><code>^?</code> : <code>Prism</code> での値の取り出し
-<ul>
-<li>setterは一緒</li>
-<li><code>Monoid</code> の取り出しでは <code>mempty</code> があるので一緒</li>
-</ul></li>
-<li><code>Prism</code> も合成可能。 <code>Lens</code> と合成すると <code>re</code> は使えない</li>
-<li><code>MonadState</code> 内でも普通に使える
-<ul>
-<li>ただし、<code>use</code> はMonoidのみ。 <code>preuse</code></li>
-<li><code>Int</code> は <code>Sum</code> を使えばモノイドになるよ！</li>
-</ul></li>
-<li><code>Functor</code> いろいろ
-<ul>
-<li><code>Contravariant</code> 反変。HomとかConstとか</li>
-<li><code>Bifunctor</code> 双関手</li>
-<li><code>Profunctor</code></li>
-</ul></li>
-<li><code>Optic</code> : <code>Lens</code> から <code>(-&gt;)</code> を抽象化
-<ul>
-<li><code>Prism</code> も表現できる</li>
-<li><code>Optical</code> : <code>(-&gt;)</code> を 1 種類から 2 種類に増やしたもの</li>
-</ul></li>
-<li>ekemett/lens はすべて <code>Optic</code> 型で全て合成可能
-<ul>
-<li>後はコンパイラお任せ</li>
-</ul></li>
-<li><code>Equality</code> : <code>id</code> のみ</li>
-<li><code>Iso</code> : 同型。 <code>from</code> で逆にできる</li>
-<li><code>Iso</code> から <code>Prism</code> と <code>Lens</code>
-<ul>
-<li><code>Prism</code> から <code>Review</code> 、さらに <code>AReview</code> へ。 <code>unto</code>, <code>un</code>, <code>re</code></li>
-<li><code>unto</code>, <code>un</code> → <code>Review</code> を作る</li>
-<li><code>re</code> → <code>Getter</code> を作る</li>
-</ul></li>
-<li><code>Getting</code> は <code>Getter</code> 、<code>Setter</code>は<code>Settable</code></li>
-<li><code>Fold</code> は <code>Getter</code>と<code>Traversal</code> を強くしたもの
-<ul>
-<li><code>(^..)</code>, <code>(^?)</code></li>
-<li><code>Getting r s a</code> の <code>r</code> が <code>Monoid</code> なら <code>Fold</code></li>
-</ul></li>
-<li><code>Choice</code> と <code>Prism</code>
-<ul>
-<li><code>Choice</code> は <code>Profunctor</code>。関数と<code>Tagged</code></li>
-<li><code>Prism</code> は <code>prism</code> 関数で作る</li>
-</ul></li>
-<li><code>Const r</code> は <code>Monoid</code> 制約がないと <code>Applicative</code> にならない
-<ul>
-<li><code>pure</code> の定義に <code>mempty</code> 必要</li>
-</ul></li>
-<li>Q. 「準同型」の言葉が違う、 <code>Const r</code> の定義が実際と違う (<code>mappend</code> 使う)</li>
-</ul>
-<h2 id="deriving-lanses-halcat0x15a-さん">DERIVING LANSES / halcat0x15a さん</h2>
-<ul>
-<li>Lensを手で作るのは辛い</li>
-<li>JavaでReflection
-<ul>
-<li>Java8でパラメータ名をReflectionで取れる</li>
-<li>コンストラクタからパラメータ名を取ってゲッターの名前を作ってとる</li>
-<li>(めっちゃ辛い)</li>
-</ul></li>
-<li>Scala のマクロによるlens
-<ul>
-<li>マクロ：ブラックボックスとホワイトボックス</li>
-<li>→強力な方(ホワイトボックス)</li>
-<li>フィールド名が存在しなくてもコンパイル時に弾かれる</li>
-<li>型安全かつ速い。ただしホワイトボックスマクロは将来なくなるかも</li>
-</ul></li>
-<li>HaskellのGeneric
-<ul>
-<li><code>GHC.Generic</code></li>
-<li><code>Generic</code> クラスはderiving可能</li>
-<li>名前の取り出し方がわからないので何番目のフィールドか
-<ul>
-<li>→ 型レベル自然数が必要</li>
-</ul></li>
-<li>型安全、マクロ不要、遅い</li>
-</ul></li>
-<li>Q. <code>Deriving Generic</code> する？ → ライブラリとかよろしく使ってくれる。JSONとか</li>
-<li>Q. <code>lens</code> にも <code>Generic</code> あるよね？ → <code>Generic</code> に対する <code>ISO</code> があるだけでは
-<ul>
-<li>Genericのインスタンスについて <code>Traversal</code> にする<a href="http://hackage.haskell.org/package/lens-4.11/docs/Generics-Deriving-Lens.html">仕組みはある</a></li>
-<li>この仕組みはフィールドを明示して <code>Lens</code> にしてる点が違う</li>
-</ul></li>
-</ul>
-<h2 id="xpath-in-lens-tanakh-さん">XPath in Lens / tanakh さん</h2>
-<ul>
-<li>ブラウザを開かずにAsk.fmで質問したい</li>
-<li><code>xml-conduit</code> でADT取り出して直接も書ける</li>
-<li><code>Text.XML.Cursor</code> を使えばいい → パッケージごとにDSL覚えるのはちょっと</li>
-<li><code>Text.XML.Lens</code> ： <code>..</code> とか <code>./</code> とかきついけど広く使われてる</li>
-<li>そして <code>Lens</code> 沼へ</li>
-<li>XPATHと <code>Lens</code> の対比表 → 結構違う</li>
-<li>「無尽蔵に演算子が増える」</li>
-<li>CSSセレクターも使える
-<ul>
-<li>XPathよりナウい。「題材を間違えた感」</li>
-</ul></li>
-<li><code>http-condit</code> と組み合わせると楽</li>
-<li><code>aeson-lens</code> VS <code>lens-aeson</code>
-<ul>
-<li>前者を tanakh さんが更新しないから ekmett さんが作ったのが後者</li>
-</ul></li>
-<li>Q. <code>xml-lens</code> の作者だけど何かある？
-<ul>
-<li>属性があるかないか書きにくい</li>
-<li>足します</li>
-</ul></li>
-<li>Q. CSSセレクタからレンズを作る機能があるとすごい
-<ul>
-<li>作ると面白いと思います</li>
-</ul></li>
-</ul>
-<h2 id="ちょっぴり危険なlensのヒミツ-fumieval-さん">ちょっぴり危険なLensのヒミツ / fumieval さん</h2>
-<ul>
-<li><code>newtype</code> はオーバーヘッドがない (NOOP)
-<ul>
-<li><code>unsafeCoerce</code> で書ける (型を強引に変える)</li>
-<li>ルールはある。さまざまな変換でNOOPを保存する</li>
-<li><code>#.</code> は効率よく引数をはがしたりできる</li>
-</ul></li>
-<li>lensの特徴の3つの操作
-<ul>
-<li><code>views</code> : <code>.#</code> を使っていて、NOOPになる</li>
-<li><code>over</code> : 同じく NOOP</li>
-<li><code>review</code> : NOOP</li>
-<li>つまり全部 <code>unsafeCoerce</code> で定義するだけでO.K.</li>
-</ul></li>
-<li>よってすっげー速い</li>
-<li>プログラムを速くしたいときは <code>unsafeCoerce</code></li>
-<li>7.8 から入った <code>coerce</code> でもよい。型から安全課判断してくれる</li>
-</ul>
-<h2 id="lensにもprismにもなるフィールド仮称-fumieval-さん">LensにもPrismにもなるフィールド(仮称) / fumieval さん</h2>
-<p>今朝、スライドデータを吹っ飛ばしたとのことです。</p>
-<ul>
-<li>フィールドをlensでもprismでも使う</li>
-<li>漢字変数ははGHCだと大文字になるので注意</li>
-<li>Q. どうしてこういう発想に？
-<ul>
-<li>パターンマッチをしたいから。名前をまとめたかった</li>
-</ul></li>
-</ul>
-<h2 id="monocleとかいうのがありまして-aoiroaoinoさん">Monocleとかいうのがありまして / AoiroAoinoさん</h2>
-<ul>
-<li>BSON : MongoDBなどで利用。Binary JSON</li>
-<li>Javaのドライバ使うとすごくJavaっぽくなる</li>
-<li>Prismを定義する。Immutableに扱える</li>
-<li>「あんまり顔文字に見えない演算子」でHaskellっぽくも書ける</li>
-</ul>
 </p>
 
 </div>
