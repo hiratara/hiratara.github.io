@@ -62,6 +62,26 @@
         
 
 <div>
+  <h1>6/6の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-06-06-diary.html">June  6, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-06-06-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-06-06-diary.html" data-text="6/6の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">haskellあれこれ</h2>
+<p>もう何年も前に <code>AnyEvent</code> で書いたデーモンを <code>Haskell</code> で書き換えようとチマチマ作ってたんだけど、ようやく正常系が動くようになった。試しにREPLから起動したままで接続先を <code>Haskell</code> 版の方に差し替えてみたら、一発で動いた。互換性も完璧。超きもちいい。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>6/5の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-06-05-diary.html">June  5, 2015</a>
@@ -143,26 +163,6 @@
 <p><a href="http://qiita.com/tanakh/items/b4069a6d3485ef4278ce">tanakhさんの解答</a>、<a href="http://qiita.com/hiratara/items/753e6311b5d00873c488">自分の解答</a>と比べるとかっこ良過ぎてウケる。自分もシンプルに書けるように頑張ろう。</p>
 <h2 id="スプラトゥーン">スプラトゥーン</h2>
 <p>面白い。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>6/1の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-06-01-diary.html">June  1, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-06-01-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-06-01-diary.html" data-text="6/1の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">haskellあれこれ</h2>
-<p><a href="https://hackage.haskell.org/package/pipes-concurrency">pipes-concurrency</a>使おうと思ってソース見たら想像以上に単純でビビった。<code>Buffer</code>によってSTMのデータ構造(メールボックス)変えてるだけ。<code>Weak</code>の使い方が引っかかるけど、これ、<code>readTVar</code> してるのは意味がなくて単に参照保持してGCを追跡してると思っていいのかね。<code>()</code> とはいえオーバーヘッドにならないのかしら。</p>
 </p>
 
 </div>
