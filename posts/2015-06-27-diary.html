@@ -71,7 +71,7 @@
 </div>
 <p>
     <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p><a href="http://qiita.com/tanakh/items/6866d0f570d0547df026">stack</a>を試してる。ビルドが超きっつい<a href="https://github.com/hiratara/build-lambdabot-with-hipchat">lamdabotで試した</a>。ビルドが超きっついのは代わりないけど、多くのモジュールをStackageが面倒を見てくれるのは楽。結局muevalの依存の関係でLTS-2.15(ghc-7.8.4)を使わざるを得なかったのだけど、stackの場合はビルド済のバイナリを<code>~/.stack</code>以下に持つので、nightlyではなくLTSくらいの単位で指定をした方が速くビルドできておいしい気がする。</p>
+<p><a href="http://qiita.com/tanakh/items/6866d0f570d0547df026">stack</a>を試してる。ビルドが超きっつい<a href="https://github.com/hiratara/build-lambdabot-with-hipchat">lamdabotで試した</a>。ビルドが超きっついのは代わりないけど、多くのモジュールをStackageが面倒を見てくれるのは楽。結局muevalの依存の関係でLTS-2.15(ghc-7.8.4)を使わざるを得なかったのだけど、stackの場合はビルド済のバイナリを<code>~/.stack</code>以下に持つので、nightlyではなくLTSくらいの単位で指定をした方が速くビルドできておいしい気がする。 <code>stack exec</code> は意図したとおりにきちんと動いてくれて、これはほんとに鼻血出そうになる。</p>
 <p>package DBが <code>package.conf.d</code> じゃなくて <code>pkgdb</code> なのは注意が必要。後、 <code>ghc-mod</code> などの開発ツールのエコシステムとの連携はまだ何も試してない。</p>
 </p>
 
