@@ -22,7 +22,7 @@ mathjax: on
 * 自動化した例
 * 練習問題をオンライン学習システムの砂場で（各自）
 * 練習問題1.3 => $1 + n_1 (n_2 + 2)$
-    * $N(n_1 times n_2 is n_4) = 1 + N(n_1 - 1 times n_2 is n_3) + N(n_2 plus n_3 is n_4) + 1$, $N(Z times n is Z) = 1$, $N(n_1 + n_2 is n) = n_1 + 1$ より
+    * $N(\text{n_1 times n_2 is n_4}) = 1 + N(\text{n_1 - 1 times n_2 is n_3}) + N(\text{n_2 plus n_3 is n_4}) + 1$, $N(\text{Z times n is Z}) = 1$, $N(\text{n_1 + n_2 is n}) = n_1 + 1$ より
 
 ## 1.2
 
