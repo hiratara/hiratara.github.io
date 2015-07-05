@@ -22,7 +22,7 @@ mathjax: on
 * 自動化した例
 * 練習問題をオンライン学習システムの砂場で（各自）
 * 練習問題1.3 => $1 + n_1 (n_2 + 2)$
-    * $N(\text{n_1 times n_2 is n_4}) = 1 + N(\text{n_1 - 1 times n_2 is n_3}) + N(\text{n_2 plus n_3 is n_4}) + 1$, $N(\text{Z times n is Z}) = 1$, $N(\text{n_1 + n_2 is n}) = n_1 + 1$ より
+    * $N(n_1 \text{times} n_2 \text{is} n_4) = 1 + N(n_1 - 1 \text{times} n_2 \text{is} n_3) + N(n_2 \text{plus} n_3 \text{is} n_4) + 1$, $N(Z \text{times} n \text{is} Z) = 1$, $N(n_1 \text{plus} n_2 \text{is} n) = n_1 + 1$ より
 
 ## 1.2
 
@@ -54,3 +54,16 @@ mathjax: on
     * 前者はペアノ自然数、後者は算術式
     * 前後が逆なのが違和感 → 前提なので逆に見える
 * EvalNatExp は式から値、ReduceNatExpは式から式
+* PC持ってない人もいるので、練習問題は各自として次へ
+
+## 第2章 2.1
+
+* なんで判断って呼ぶの？ → テクニカルタームなので、命題、でもO.K.
+* 2.2節以降は飛ばせるらしいけど、今回は全部読む
+* s/metatheroy/metatheory/
+* $\equiv$ の意味は？ → ペアノ自然数もBNFで書かれているのでO.K.
+* 練習問題2.1の「意味」とは？ → 普通に大小関係でいい
+* 定理2.12 → 逆はもともと推論規則に入っているので、これで同値になる
+    * 全て結論に S が入っているので、外せる、というのはなかなか奇妙
+* 定理2.14 の証明は練習問題になってる
+* 今回は 2.1.2 まで
