@@ -62,6 +62,26 @@
         
 
 <div>
+  <h1>7/12-7/15の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-07-12-15-diary.html">July 12, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-12-15-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-12-15-diary.html" data-text="7/12-7/15の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="旅">旅</h2>
+<p>しばらく留守にします。探さないでください。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>7/9の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-07-09-diary.html">July  9, 2015</a>
@@ -152,104 +172,6 @@ MAIN                        MAIN                                287           0 
 <li>チューニング</li>
 <li>通るテストを増やす</li>
 <li>ghci使えるようにする</li>
-</ul>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>今日は第1回 「プログラミング言語の基礎概念」読書会の日です</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-07-05-heyhey_haskell.html">July  5, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-05-heyhey_haskell.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-05-heyhey_haskell.html" data-text="今日は第1回 「プログラミング言語の基礎概念」読書会の日です" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <p><a href="http://sampou.connpass.com/event/16253/">第1回 「プログラミング言語の基礎概念」読書会</a>に来ています。音読方式なので、議論を中心にメモします。</p>
-<h2 id="はじめに">はじめに</h2>
-<ul>
-<li>オンライン学習システムに登録して負荷を上げましょう</li>
-</ul>
-<h2 id="第一章-1.1">第一章 1.1</h2>
-<ul>
-<li>判断と形式は違うもの？
-<ul>
-<li>違う</li>
-</ul></li>
-<li>推論規則をどう選べばいいの？
-<ul>
-<li>アルゴリズムが存在するものもある</li>
-<li>センス？</li>
-<li>この例だと逆に辿ればいいけど、複雑になるとどうなのか</li>
-<li>completeじゃない公理系だと、導けないことを言えないこともある</li>
-<li>式は可算個なので全探索はできる</li>
-</ul></li>
-<li>自動化した例</li>
-<li>練習問題をオンライン学習システムの砂場で（各自）</li>
-<li>練習問題1.3 =&gt; <span class="math">\(1 + n_1 (n_2 + 2)\)</span>
-<ul>
-<li><span class="math">\(N(n_1 \text{times} n_2 \text{is} n_4) = 1 + N(n_1 - 1 \text{times} n_2 \text{is} n_3) + N(n_2 \text{plus} n_3 \text{is} n_4) + 1\)</span>, <span class="math">\(N(Z \text{times} n \text{is} Z) = 1\)</span>, <span class="math">\(N(n_1 \text{plus} n_2 \text{is} n) = n_1 + 1\)</span> より</li>
-</ul></li>
-</ul>
-<h2 id="section">1.2</h2>
-<ul>
-<li>何で具体化できるか、とは？ → SやZ</li>
-<li>Fooがかっこ付いたりしてるのは？
-<ul>
-<li>規則の定義は (Foo) 、適用は Foo と書く</li>
-</ul></li>
-<li>練習問題1.4はプログラムにて</li>
-</ul>
-<h2 id="section-1">1.3</h2>
-<ul>
-<li>less than の定義がこれでいいのか
-<ul>
-<li>逆で、 less than がこれで定義されている、ともいえる</li>
-<li>現実的には、足りなければ規則を追加する</li>
-<li>構文とルールを合わせるのは基本</li>
-<li>公理が被っても公理系としては同じなので</li>
-</ul></li>
-<li>練習問題1.5 → 各自砂場で</li>
-<li>練習問題1.6 → CompareNat1 (<span class="math">\(N_2\)</span> を任意に選べる)</li>
-</ul>
-<h2 id="section-2">1.4</h2>
-<ul>
-<li><a href="https://web.stanford.edu/class/cs242/readings/backus.pdf">バッカスさん</a> 1978年
-<ul>
-<li>FORTRANの開発から関数型言語の時代へ</li>
-<li>LISPは関数型ってよりメタプログラミングだよね</li>
-<li>ナウアーさんはAlgol 60で受賞</li>
-</ul></li>
-<li>練習問題1.7 → (7)は外せない</li>
-<li>練習問題1.8 → めんどい((4)くらいになると木が画面に収まらない)</li>
-<li>R-Plusは “デルタ簡約” になってる</li>
-<li><code>n1 plus n2 is n3</code> と <code>n1 + n2 ---&gt; n3</code> は何が違うの？
-<ul>
-<li>前者はペアノ自然数、後者は算術式</li>
-<li>前後が逆なのが違和感 → 前提なので逆に見える</li>
-</ul></li>
-<li>EvalNatExp は式から値、ReduceNatExpは式から式</li>
-<li>PC持ってない人もいるので、練習問題は各自として次へ</li>
-</ul>
-<h2 id="第2章-2.1">第2章 2.1</h2>
-<ul>
-<li>なんで判断って呼ぶの？ → テクニカルタームなので、命題、でもO.K.</li>
-<li>2.2節以降は飛ばせるらしいけど、今回は全部読む</li>
-<li>s/metatheroy/metatheory/</li>
-<li><span class="math">\(\equiv\)</span> の意味は？ → ペアノ自然数もBNFで書かれているのでO.K.</li>
-<li>練習問題2.1の「意味」とは？ → 普通に大小関係でいい</li>
-<li>定理2.12 → 逆はもともと推論規則に入っているので、これで同値になる
-<ul>
-<li>全て結論に S が入っているので、外せる、というのはなかなか奇妙</li>
-</ul></li>
-<li>定理2.14 の証明は練習問題になってる</li>
-<li>今回は 2.1.2 まで</li>
 </ul>
 </p>
 
