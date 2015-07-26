@@ -62,6 +62,50 @@
         
 
 <div>
+  <h1>7/26の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-07-26-diary.html">July 26, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-26-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-26-diary.html" data-text="7/26の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p><code>EitherT</code> 使った実装にしたけど遅くなった。 <code>&gt;&gt;=</code> が遅いって結果も相変わらず。定義は <code>newtype</code> の変換しかないので、素直に考えれば積んである変換子がボトルネックってこと。ただ、ライブラリ側の関数がcost centerに登録されてないのがおかしい。なんで？ <code>stack</code> のせい？</p>
+<h2 id="スプラトゥーン">スプラトゥーン</h2>
+<p>ようやくN-ZAP98の使い方がわかったのと小学生タイムだったせいで14連勝くらいしてた。ほとんど自分のチームだったけど。</p>
+</p>
+
+</div>
+
+
+
+<div>
+  <h1>7/25の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-07-25-diary.html">July 25, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-25-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-25-diary.html" data-text="7/25の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p>どうやっても早くならないので <code>EitherT</code> 使った実装にする決意。<code>RankNTypes</code>でだいぶハマった。高階型と型推論は相性悪いってのはともかく、型の明示する記法もわかりきってないのが困りどころ。</p>
+<h2 id="スプラトゥーン">スプラトゥーン</h2>
+<p>フェスで負けまくった。N-ZAP89思ったより濡れない。スプラシューターと同じ飛距離から連射で打ち勝つ武器ってことね。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>7/24の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-07-24-diary.html">July 24, 2015</a>
@@ -115,48 +159,6 @@
 <p>
     <h2 id="haskellあれこれ">Haskellあれこれ</h2>
 <p>打つ手なしなので <code>{-# SCC ... #-}</code> を手で入れてみたりしたけどやっぱり同じように <code>bind</code> が遅いって結論が出てくる。昨日は <code>Either</code> をCPS変換したのだけど <code>EitherT IO</code> にしないと意味ない気がしてきたので次はそっちやってみる。明日か明後日か週末か。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>7/21の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-07-21-diary.html">July 21, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-21-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-21-diary.html" data-text="7/21の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>さらにCPS変換を進めてみるも逆に遅くなった。実装が誤ってる気もするので、次はどうするかちょっと考える。</p>
-<h2 id="安産祈願">安産祈願</h2>
-<p>神社でお参りしてきた。来年1月の予定。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>7/20の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-07-20-diary.html">July 20, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-20-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-20-diary.html" data-text="7/20の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p><a href="https://hackage.haskell.org/package/mtl-c">CPS変換</a>で速くなった気がする。</p>
 </p>
 
 </div>
