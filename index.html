@@ -62,6 +62,30 @@
         
 
 <div>
+  <h1>7/27の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-07-27-diary.html">July 27, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-27-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-27-diary.html" data-text="7/27の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p><a href="http://www.kotha.net/hperf/">mkothaさんとこ</a>見て、わかってなさそうな部分多かったので色々見直す。いったん <code>cabal</code> に戻ってみた方が実績が多いのとググラビリティが高いのとの両方でいい気がしてきた。</p>
+<blockquote>
+<p>ものすごく頻繁に呼ばれる関数(自分でモナドを定義した場合の(&gt;&gt;=)など)にコスト集約点を設定すると、プロファイル自体のコストが跳ね上がって、プロファイル結果が少なからず撹乱されることがある。</p>
+</blockquote>
+<p>特にこの記述は気になる。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>7/26の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-07-26-diary.html">July 26, 2015</a>
@@ -139,26 +163,6 @@
 <p>
     <h2 id="haskellあれこれ">Haskellあれこれ</h2>
 <p><a href="https://wiki.haskell.org/Performance/GHC">ここ</a>みてオプション渡してみたけど遅くなった気がする。後、リファクタリングしようとしているクラスがexport明示してなかったのでコツコツと明示。準備はできた。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>7/22の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-07-22-diary.html">July 22, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-22-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-22-diary.html" data-text="7/22の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p>打つ手なしなので <code>{-# SCC ... #-}</code> を手で入れてみたりしたけどやっぱり同じように <code>bind</code> が遅いって結論が出てくる。昨日は <code>Either</code> をCPS変換したのだけど <code>EitherT IO</code> にしないと意味ない気がしてきたので次はそっちやってみる。明日か明後日か週末か。</p>
 </p>
 
 </div>
