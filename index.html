@@ -62,6 +62,27 @@
         
 
 <div>
+  <h1>7/28の日記</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-07-28-diary.html">July 28, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-28-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-28-diary.html" data-text="7/28の日記" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
+<p><code>stack</code> が隠蔽してくれてる <code>ghc</code> の呼び出しとか見る方法がよくわからなかったので一度 <code>cabal</code> に戻ってみる。</p>
+<p>でもって <code>-ddump-simpl -ddump-to-file</code> を試してみるも、dumpがごちゃごちゃ過ぎて何もわからず。 <code>&gt;&gt;=</code> の定義を 見る限りだとcast以外何もしてないように見えるんだよな。暗礁に乗り上げてる感がすごくて悩む。</p>
+</p>
+
+</div>
+
+
+
+<div>
   <h1>7/27の日記</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-07-27-diary.html">July 27, 2015</a>
@@ -143,26 +164,6 @@
 <p>
     <h2 id="haskellあれこれ">Haskellあれこれ</h2>
 <p>ghc7.8.x系というか、現行のLTS haskellでもコンパイルできるよう <code>MIN_VERSION_*(0, 0, 0)</code> マクロを使ってコードを微調整。後、ものすごい勢いで <code>DeriveDataTypeable</code> を求められたのだけど、これって7.10系だとデフォルトになったりしたってことかね。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>7/23の日記</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-07-23-diary.html">July 23, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-07-23-diary.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-07-23-diary.html" data-text="7/23の日記" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <h2 id="haskellあれこれ">Haskellあれこれ</h2>
-<p><a href="https://wiki.haskell.org/Performance/GHC">ここ</a>みてオプション渡してみたけど遅くなった気がする。後、リファクタリングしようとしているクラスがexport明示してなかったのでコツコツと明示。準備はできた。</p>
 </p>
 
 </div>
