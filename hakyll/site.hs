@@ -15,7 +15,7 @@ import qualified Text.Pandoc.Options as PD
 main :: IO ()
 main = do
   hakyllWith config $ do
-    match "images/*" $ do
+    match "images/**" $ do
         route   idRoute
         compile copyFileCompiler
 
