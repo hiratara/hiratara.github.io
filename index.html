@@ -649,6 +649,154 @@
 <li>A. カバレッジ90%以上</li>
 </ul></li>
 </ul>
+<h2 id="lt">LT</h2>
+<h3 id="くしいさん日本最多のオフィス訪問シリーズ-行ってきたシリーズのtop5αとして日本のイケてるオフィスを紹介しちゃうよ">くしいさん「日本最多のオフィス訪問シリーズ 「行ってきたシリーズ」のTOP5＋αとして日本のイケてるオフィスを紹介しちゃうよ！」</h3>
+<ul>
+<li>反応してね！</li>
+<li>Perl書いたことないけど運営やってた</li>
+<li>「行ってきた」</li>
+<li>107記事、2009年より</li>
+<li>自分のオフィス移転に伴って他社の写真をとった</li>
+<li>オフィスという切り口で環境を変えると人生が変わる</li>
+<li>5位 NHN</li>
+<li>4位 グリー</li>
+<li>3位 クックパッド</li>
+<li>2位 フリークアウト</li>
+<li>1位 ネクストイノベーション株式会社(ドラマのセット)</li>
+<li>日本マイクロソフト、バーグハンバーグバーグ (番外編)</li>
+<li>isuconあるのでよろ！ WEB DB Pressよろ！</li>
+</ul>
+<h3 id="どきゅねおさんgitの作り方">どきゅねおさん「Gitの作り方」</h3>
+<ul>
+<li>今月就職しました！</li>
+<li>gitを理解する最良の方法は自分でGitを実装する</li>
+<li>gitはコンテンツ管理システムと見れる
+<ul>
+<li>ソース、コンテンツ。</li>
+<li>KVSで格納している</li>
+<li>SHA1とzlib圧縮されたなにか</li>
+<li>“hello world” 12byte → headerつけて圧縮</li>
+</ul></li>
+<li><code>git cat-file-p</code> Cでzlibでごにょごにょすれば実装できる</li>
+<li>サブコマンドを一個ずつ作っていけば作れる
+<ul>
+<li>サブコマンド数個で疲れたので終了</li>
+</ul></li>
+</ul>
+<h3 id="papixさんsaasを組み合わせて作る-ぼくらの障害対応術">papixさん「SaaSを組み合わせて作る, ぼくらの障害対応術!」</h3>
+<ul>
+<li>障害はぼくらに牙をむく</li>
+<li>発見する仕組みを各社作ってるでしょう</li>
+<li>直ればO.K.ではない</li>
+<li>記録を残すことも大事</li>
+<li>Saasで作る</li>
+<li>Mackerel::Webhook::Manager がミソ</li>
+<li>デモ
+<ul>
+<li>Mackerelで発生したものをチャットで対応</li>
+<li>電話もかかってくる</li>
+<li>qiita teamなどで情報共有</li>
+<li>障害は起こるので対応する</li>
+</ul></li>
+</ul>
+<h3 id="shoichi-kajiさんcpm---an-experimental-cpan-client">Shoichi Kajiさん「cpm - an experimental cpan client」</h3>
+<ul>
+<li>cpm : cpanクライアント</li>
+<li>インストールするモジュールの量が多いと、直列なので時間がかかる</li>
+<li>cpanm 2.0を内部で並列で使うという仕組み</li>
+<li>デモ : Plack のインストール
+<ul>
+<li>cpanmで50秒、cpmだと18秒</li>
+</ul></li>
+</ul>
+<h3 id="masahiro-naganoさんnorikraで作るphpの例外検出システム">Masahiro Naganoさん「Norikraで作るPHPの例外検出システム」</h3>
+<ul>
+<li>PHPをやってた</li>
+<li>PHPの例外 : <code>error_log</code>, <code>set_exception_handler</code>, <code>set_error_handler</code></li>
+<li>syntaxエラーや存在しないメソッドの呼び出しとかは拾えない</li>
+<li><code>error_reporting</code> を指定する</li>
+<li>Apacheの設定に書く。ErrorLogも見る</li>
+<li>結局、4つのファイルに書かれる</li>
+<li>Norikraで集約してslackへ送る</li>
+<li>Norikraで一分間のログを集約する</li>
+<li>PHPすごいむずいけど uzullaさんすごい</li>
+</ul>
+<h3 id="aceさんrssをざっくりクロールしてゆるふわにパースする">ACEさん「RSSをざっくりクロールしてゆるふわにパースする」</h3>
+<ul>
+<li>グンマーにインタネットなどない→あります！</li>
+<li>Feed windというサービスをやっている</li>
+<li>RSSから生成する系</li>
+<li>ブロックされる系 → 先方に連絡がつかなければプロクシ使う</li>
+<li>Mojo::DOM : <code>&lt;br&lt;</code> をパースできないバグ (？)
+<ul>
+<li>ゆるふわに正規表現で</li>
+</ul></li>
+<li>もし断ると不思議な力で死ぬことになる</li>
+</ul>
+<h3 id="さいさんslack-hubot-でお前の一番好きな二次元嫁キャラと一緒に仕事をする">さいさん「Slack + Hubot でお前の一番好きな二次元嫁キャラと一緒に仕事をする」</h3>
+<ul>
+<li>一人で趣味プログラミングはさみしい</li>
+<li>「ほい！」</li>
+<li>二次元の美少女が大好きです</li>
+<li>marisaと二人でチームを作る</li>
+<li>２人が大事。botがほかの人としゃべってヤキモチ妬かないように</li>
+<li>「まりさ」「呼んだか？」COOL</li>
+<li>cronで向こうから話しかけてくれる</li>
+<li>メッセージはJSONでまとめている</li>
+<li>github issueとかチケット書かせたりとか</li>
+<li>botより自分でやった方が速いけど、BOTがやってくれるのが大事!</li>
+</ul>
+<h3 id="likkさんyapc雨事情">Likkさん「YAPC?雨事情」</h3>
+<ul>
+<li>会社を出てエレベータを降りたら雨、は辛い</li>
+<li>エレベータホールで雨を通知したりするのもあるみたいだけど</li>
+<li>tenki.jp からデータ取ってきて、通知</li>
+<li>縮尺が小さすぎて五反田がわからない</li>
+<li>航空写真と見比べて、西側に広く</li>
+<li>普段の色と、今の色の違いを見て、違ったら雨 → Slack</li>
+<li>YAPCの過去に雨が降ったかの情報を取れることに気が付いた</li>
+<li>デモ</li>
+<li>返事くるまで宣伝 : ametto</li>
+</ul>
+<h3 id="hiratarahaskell-strikes-back">hiratara「Haskell Strikes Back」</h3>
+<p>自分のセッションでした。</p>
+<h3 id="wataru-miyaguniさん昔の-php-が誇った最高の機能-register_globals-の真実そして未来へ">Wataru MIYAGUNIさん「(昔の) PHP が誇った最高の機能 register_globals の真実、そして未来へ」</h3>
+<ul>
+<li>PHPの話をします</li>
+<li>5.3以下を使ってる人は？
+<ul>
+<li>安全でないコードを書くことをきわめて容易にする</li>
+</ul></li>
+<li>php.netに秘策が出ている
+<ul>
+<li>載っていない隠された使用があるので、使ってはいけない</li>
+<li><code>$_FILES</code></li>
+</ul></li>
+<li>「その結果に驚くことでしょう」</li>
+<li>ゴーン</li>
+</ul>
+<h3 id="makamakaさんperl同人活動報告2015">makamakaさん「Perl同人活動報告2015」</h3>
+<ul>
+<li>「今宣伝できますよ！」「気が散るから！」</li>
+<li>「本日はコミケ・・・あ、いや」</li>
+<li>例の紐→例のモヒ</li>
+<li>Acme大全2015
+<ul>
+<li>チャームポイントはない</li>
+<li>電子書籍版・・・？</li>
+<li>全巻格納BOXは待ってね</li>
+</ul></li>
+<li>何で書いてる？ Microsoft Word</li>
+<li>フォントは？ IPAexフォント</li>
+<li>なぜ作るの？ CPANにAcmeモジュールがあるから</li>
+<li>7/7が起点？ 覚えてない</li>
+<li>期間は？ 仕事のさぼりぐわい</li>
+<li>いいモジュールは？ Acme::Cake</li>
+<li>息詰まることは？ 常に行き詰ってるので</li>
+<li>電子書籍版は？ Perl6と同時リリース</li>
+<li>250枚のシールが150枚余ってる</li>
+<li>もずにおん (ゴーン)</li>
+</ul>
 </p>
 
 </div>
