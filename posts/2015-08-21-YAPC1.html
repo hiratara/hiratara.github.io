@@ -299,6 +299,150 @@
 <li>A. 30～50台くらいでgitサーバの負荷が高くなる</li>
 </ul></li>
 </ul>
+<h2 id="kazuho-okuさん-http2-時代のウェブサイト設計">Kazuho Okuさん 「HTTP/2 時代のウェブサイト設計」</h2>
+<ul>
+<li>サーバの応答遅延とクリック率の研究 by Microsoft
+<ul>
+<li>2秒の遅延で4.4%クリック率が下がる</li>
+</ul></li>
+<li>WEBサイトあたりのデータ転送量の増加</li>
+<li>インタネットのバンド幅の増加、年率50%</li>
+<li>ページロード時間はバンド幅に比例しない。1.6Mbps程度で頭打ち</li>
+<li>バンド幅ではなくレイテンシーが小さいとページロードが速い</li>
+<li>1RTTにに1リクエストしか送れない
+<ul>
+<li>HTTP/1.1 のパイプラインによる改善
+<ul>
+<li>サーバにおくれたかわからない、最初の転送が遅いと詰まる、サーバ実装にバグ</li>
+</ul></li>
+</ul></li>
+<li>レイテンシは光の速度で決まる。アメリカで80ms</li>
+<li>携帯回線のレイテンシのおおきさ</li>
+<li>レイテンシに負けないプロトコルの作成 HTTP/2</li>
+<li>ChromeのQUICプロトコルを標準化
+<ul>
+<li>バイナリ、多重化、ヘッダ圧縮、優先度制御、サーバプッシュ</li>
+</ul></li>
+<li>バイナリ
+<ul>
+<li>脆弱性の防止
+<ul>
+<li>asciiだと、スペースなどの解釈があいまいとなる</li>
+</ul></li>
+<li>転送データを小さくする</li>
+<li>ヘッダ圧縮がバイナリなんだから</li>
+</ul></li>
+<li>全ての通信データはフレームに
+<ul>
+<li>様々なフレームタイプがある</li>
+</ul></li>
+<li>先にHEADERSフレームをクライアントとサーバで交換、その後DATAフレーム</li>
+<li>METHODやschmeもヘッダに入れることに注意</li>
+<li><code>h2i</code> ASCIIでHTTP/2を試せるツール</li>
+<li>同時に100以上のリクエストが可能、レスポンスも任意、stream IDで制御</li>
+<li>HTTP/1.1のヘッダのおおきさ → 100レスポンスでで30KBとか
+<ul>
+<li>HPACK : 静的は不満圧縮、再登場の文字列をオフセットで、など</li>
+<li>最初のリクエストは半分くらいのサイズに</li>
+<li>2回目は直前のリクエストを利用して 1/5 に</li>
+<li>3回目は1/20程度に！</li>
+<li>画像、CSSの大量な数の転送に強い</li>
+</ul></li>
+<li>小さい画像をたくさん並べるでもデモ
+<ul>
+<li>リロードを続けて失敗が(まあこういうことも)</li>
+</ul></li>
+<li>優先度
+<ul>
+<li>クライアントが指定</li>
+<li>サーバが尊重</li>
+</ul></li>
+<li>HTTP/1.1, SPDY/3.1, HTTP/2 の比較</li>
+<li>Firefoxの優先度制御
+<ul>
+<li>weightに比例して優先してレスポンスを返す</li>
+<li>HEADのJSとBODYのJSで違う</li>
+</ul></li>
+<li>chromeの優先度制御 : 残念
+<ul>
+<li>依存関係を分析してない</li>
+<li>画像がバンド幅を食いつぶす</li>
+</ul></li>
+<li>H2Oの優先度制御
+<ul>
+<li>クライアントの優先度が怪しいとき、サーバ側が優先度制御する</li>
+</ul></li>
+<li>他のサーバの優先度制御
+<ul>
+<li>nghttp2 は頑張ってるけど、他はやばい</li>
+<li>サーバがやらないとクライアントの最適化が効かない</li>
+</ul></li>
+<li>サーバプッシュ
+<ul>
+<li>ラウンドトリップを0にする</li>
+<li><code>&lt;link /&gt;</code> を見るとかして、予測して返す</li>
+<li>RFC通りだと速くならない</li>
+</ul></li>
+<li>キャッシュに入っている場合はpushしたくない
+<ul>
+<li>H2O 1.5 : cache-aware server-push → Cookieでキャッシュに何を持ってるか追跡する</li>
+</ul></li>
+<li>HTTP/2 で無意味になるクライアントの最適化
+<ul>
+<li>アセットの結合 : 余分なものが入っていると転送量が増えるため</li>
+<li>expiresの利用 : 304レスポンスを使い放題なので。 <code>?</code> の管理が面倒</li>
+<li>ドメインシャーディング : 複数TCPにしてしまうと、優先度制御ができない
+<ul>
+<li>WEBアプリからのレスポンスもCDNを通すといい</li>
+</ul></li>
+</ul></li>
+<li>「H2Oを使えば売り上げが上がる」</li>
+<li>HTTP/2はHTTPS限定
+<ul>
+<li>無料で。 LetsEncrypt 11/16から</li>
+<li>Ciphersuites : 使ってよい暗号化手法の一覧</li>
+<li>Forward Secrecy : 暗号カギを変える
+<ul>
+<li>CiphersuitesのみではPFSにならない</li>
+<li>セッションキャッシュによって</li>
+<li>session resumption</li>
+<li>session ticket : クッキーと同様、サーバが覚える
+<ul>
+<li>キーを暗号化する鍵がバレルと終わる</li>
+<li>session ticketを無効にする</li>
+</ul></li>
+<li>H2Oはクラスタ化してもmemcachedでresumption可。session ticketの秘密鍵も自動更新</li>
+</ul></li>
+</ul></li>
+<li>nginxの技術者とも意見交換したので追いかけてくる
+<ul>
+<li>H2Oはその先を行くので、ぜひ使ってください</li>
+</ul></li>
+<li>Q. RFCの機能への対応表一覧は？
+<ul>
+<li>A. <code>MUST</code>、<code>SHOULD</code>は大体対応している</li>
+</ul></li>
+<li>Q. 画像が表示できなかった理由のイメージは？
+<ul>
+<li>A. サーバ負荷の問題ではないかと予想</li>
+</ul></li>
+<li>Q. HTTPはRPCでも使われていてHTTP/2の恩恵は受けられるが、クライアント側の状況は？
+<ul>
+<li>A. 今のところ <code>libcurl</code> のみ。</li>
+</ul></li>
+<li>Q. 1st paint timeはどうやって計測している？ Firefoxは対応してなかったはず
+<ul>
+<li>A. 最後のCSS、JSの転送終了を見ている。いつ1st paintが起きうるか、で測定</li>
+</ul></li>
+<li>Q. 普及時期は？
+<ul>
+<li>A. Firefox, Chromeは対応済。主要なブラウザもサーバも秋には対応される。HTTPSである必要があるのでLetsEncrypt待ち。早いと今年の年末には3～4割になるのでは</li>
+</ul></li>
+<li>Q. チューニングの勘所はApacheなどと違う？
+<ul>
+<li>A. デフォルトで最適になるようにするので、チューニングは不要。サイト設計のファイルサイズが変わるのが</li>
+</ul></li>
+</ul>
 </p>
 
 
