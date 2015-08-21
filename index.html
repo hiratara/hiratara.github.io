@@ -177,6 +177,131 @@
 <li>Perl7の設計できるまで長生きするかもね。</li>
 <li>パーティーを楽しみましょう！</li>
 </ul>
+<h2 id="aerealさん灘友さん世界展開する大規模ウェブサービスのデプロイを支える技術">aerealさん、灘友さん「世界展開する大規模ウェブサービスのデプロイを支える技術」</h2>
+<ul>
+<li>Miiverse
+<ul>
+<li>世界展開。リージョン跨ぎ</li>
+<li>Wii Uや3DSのアバターサービス</li>
+<li>PC、スマホからも利用可能</li>
+<li>全てをWEBベースで実装</li>
+<li>ゲームからAPIを叩くことも。専用ライブラリも</li>
+</ul></li>
+<li>インフラはHatena、クライアントはNintendo
+<ul>
+<li>ローカライズや運営は海外ごと</li>
+<li>JS/US/EUの3リージョン構成</li>
+</ul></li>
+<li>Proxy server, AppServer, DB
+<ul>
+<li>DBはマルチマスタで相互レプリケーション</li>
+<li>PC版はUSリージョンのみ</li>
+</ul></li>
+<li>Timeline, Empathy, Notificationを処理を分離。RESTで</li>
+<li>Capistrano2 + Git : いわゆるpull型
+<ul>
+<li>海を越えると <code>git pull</code> は辛い</li>
+<li>Gitサーバが耐えられなくなる</li>
+</ul></li>
+<li>Git slaveを用意する
+<ul>
+<li>lsyncdでinode監視してrsync</li>
+<li>ファイル数多すぎてlsyncdの上限を超えた事件</li>
+<li>rsync中のgit fetchで配布物がサーバ毎に変わる事件</li>
+</ul></li>
+<li>ロールでデプロイを分ける。ランダムスリープ</li>
+<li>デプロイ対象サーバの管理は Mackerel APIを使って
+<ul>
+<li>net-sshが負荷でセグフォするなど</li>
+<li>サーバ毎にroleを分けてる</li>
+<li>サブシステムはMackerelでAutoScale</li>
+</ul></li>
+<li>内容による手動対応も多い</li>
+</ul>
+<p>ここからバトンタッチ。</p>
+<ul>
+<li>昔はRedmineで開発していた</li>
+<li>GitHub Enterpriseを導入</li>
+<li>コードレビュー用の <code>ghe</code> というリモートを別に用意している
+<ul>
+<li>2箇所に <code>push</code> が必要</li>
+<li>Merge pull requestボタンは使わない (GHE上でマージすると <code>HEAD</code> の不一致が起こる可能性)</li>
+</ul></li>
+<li>複数のGitリポジトリの同期
+<ul>
+<li><code>google/hesokuri</code> Clojureで書かれている
+<ul>
+<li>マッピングは静的に決まる</li>
+<li><code>ghe</code> のメンテなどに耐えられない</li>
+</ul></li>
+<li><code>ghm</code> はてな製
+<ul>
+<li>Webアプリ。同期したりしなかったり</li>
+</ul></li>
+<li>同期が直列 (リポジトリが増えるときつい)</li>
+<li>古いリビジョンのデプロイ</li>
+</ul></li>
+<li>新たなgit同期システムを開発
+<ul>
+<li>JSONのREST API群</li>
+<li>Gitサーバ登録・取得、マスタ昇格・降格、リポジトリ、ジョブ実施</li>
+<li>GHEへpush → リポジトリsyncへWEB HOOK → <code>pull@して</code>push`</li>
+<li>HTTP POSTすればいいだけなのでいろいろなサービスとの連携が容易</li>
+<li>複数スレーブを扱える、同期ジョブの並列実行</li>
+</ul></li>
+</ul>
+<p>ここでまたバトンタッチ。</p>
+<ul>
+<li>pull型の問題
+<ul>
+<li>全部 <code>commit</code> する場合 : リポジトリが肥大化（コンパイルしたものも）</li>
+<li>ソースだけの場合 : デプロイが長い、違う成果物</li>
+</ul></li>
+<li>Consulとstretcher
+<ul>
+<li>配布物をAmazon S3などへ保存</li>
+<li>デプロイのmanifest(YAML)も</li>
+<li>consul event でイベント通知</li>
+<li>イベントを受けてデプロイを実施</li>
+<li>consulなので並列</li>
+<li>S3なので負荷は考えなくていい</li>
+<li>gitリポジトリに成果物は不要</li>
+<li>追加、rollbackなどもmanifest指定だけ</li>
+</ul></li>
+<li>成果物はjenkins先生におまかせ</li>
+<li>100台へのデプロイでベンチ
+<ul>
+<li>1,142秒から29秒</li>
+<li><code>git pull</code> がそんなに早くない、という話</li>
+</ul></li>
+<li>AutoScaleとの連携をしたい (ただし、初回はconsulイベントは送れない)</li>
+<li>Miiverse での利用もしたい (3リージョン必要)</li>
+<li>デプロイの高速化で、価値のお届けも高速化</li>
+<li>Q. どの言語で？ なぜ？
+<ul>
+<li>A. Perl5。MiiverseなどはPerl5で実装されている。開発を支えるものなので冒険せずに済むもの</li>
+</ul></li>
+<li>Q. デプロイの頻度は？
+<ul>
+<li>A. 2週間に一度。bug fixがあればいつでも</li>
+</ul></li>
+<li>Q. capistranoでデプロイに失敗した時の検出は
+<ul>
+<li>A. strecherは成功・失敗のコマンドフックがある。Ikachan経由で通知を</li>
+</ul></li>
+<li>Q. Merge pull request ボタンは使えるようになった？
+<ul>
+<li>A. リポジトリ同期システムがあれば使えるようになった</li>
+</ul></li>
+<li>Q. コードデプロイの検討は？
+<ul>
+<li>A. 検討してない。確かまだリリースされていなかった</li>
+</ul></li>
+<li>Q. consulは台数が少ないとメリットない？
+<ul>
+<li>A. 30～50台くらいでgitサーバの負荷が高くなる</li>
+</ul></li>
+</ul>
 </p>
 
 </div>
