@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ja">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Pugs on stack</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="/reveal.js/css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="/reveal.js/css/print/pdf.css" type="text/css" media="print">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+			<section>
+			    <h1 class="title">Pugs on stack</h1>
+                            
+			    <h2 class="author">hiratara @ FreakOut!</h2>
+                            
+			    <h3 class="date">August 21, 2015</h3>
+			</section>
+
+			<section class="slide level1">
+<h1>Do you know Pugs?</h1>
+</section>
+<section class="slide level1">
+
+<h2>What is “Pugs”?</h2>
+<ul>
+<li>a <span style="color:#0F0;">Haskell</span>-based implementation of <span style="color:#0F0;">Perl6</span></li>
+<li>“Perl6 User Golfing System”</li>
+<li>Contributes to the design of Perl6</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>History of Pugs</h2>
+<ul>
+<li>Started on 2005-2-1 by Audrey Tang</li>
+<li>YAPC::Asia 2006 Tokyo
+<ul>
+<li>Audrey Tang, “Introduction to Pugs”</li>
+</ul></li>
+<li>Was suddenly <span style="color:#f00;">unmaintained</span> in 2007</li>
+<li><a href="http://perl6.org/compilers/features">Feature comparison of Perl 6 compilers</a>
+<ul>
+<li>“not being actively maintained, many things are <span style="color:#f00;">broken</span>”</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>Where is source codes?</h2>
+<ul>
+<li>svn.pugscode.org was gone</li>
+<li><a href="https://code.google.com/p/pugs/">google code</a> r13820</li>
+<li><a href="http://svn.openfoundry.org/pugs/src/">svn.openfoundry.org</a> r16464 2007-5-21</li>
+<li><a href="http://search.cpan.org/~audreyt/Perl6-Pugs-6.2.13/">CPAN</a> 2006-10-17</li>
+<li><a href="https://hackage.haskell.org/package/Pugs">hackage</a>, <a href="https://github.com/perl6/Pugs.hs">github</a> 6.2.13.20130611</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>pugs-6.2.13.20130611</h2>
+<ul>
+<li>not a 6.28.x release but the latest <span style="color:#F00;">6.2.x</span></li>
+<li>“the Pugs.hs project exists mainly for <span style="color:#F00;">historical/archival</span> purposes”</li>
+<li>Build with <span style="color:#F00;">ghc-7.6.3</span></li>
+<li>You can install it by using <span style="color:#F00;">cabal</span></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>Improvement of Haskell</h2>
+<ul>
+<li>2013-4-21 ghc-7.6.3</li>
+<li>2014-4-9 ghc-7.8.1</li>
+<li>2014-4-12 ghc-7.8.2</li>
+<li>2014-7-11 ghc-7.8.3</li>
+<li>2014-12-23 ghc-7.8.4</li>
+<li>2015-3-27 ghc-7.10.1</li>
+<li>2015-7-29 ghc-7.10.2</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>A lot of breaking changes</h2>
+<ul>
+<li>ghc-7.8
+<ul>
+<li><span style="color:#0F0;">Typeable</span> is now poly-kinded</li>
+<li>user-written instances of <span style="color:#0F0;">Typeable</span> are now disallowed</li>
+<li>Roles - Nominal, Representational, and Phantom</li>
+<li>Some bugs of <span style="color:#0F0;">functional dependencies</span> are fixed</li>
+</ul></li>
+<li>ghc-7.10
+<ul>
+<li>Prelude are re-exported from <span style="color:#0F0;">more generic</span> modules</li>
+<li><span style="color:#0F0;">Applicative</span> typeclass becomes a superclass of <span style="color:#0F0;">Monad</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>Cabal isn’t newbie friendly</h2>
+<ul>
+<li>Strict versioning causes <span style="color:#F00;">dependency hell</span></li>
+<li>You need to use <span style="color:#F00;"><code>cabal sandbox</code></span></li>
+<li>It takes <span style="color:#F00;">a long time</span> to install all dependenies</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>stack 0.1</h2>
+<ul>
+<li>An alternative of <span style="color:#F00;"><code>cabal-install</code></span></li>
+<li>Provide <span style="color:#0F0;">reproducible build</span></li>
+<li>Fix versions of all packages by using <a href="https://www.stackage.org/">Stackage</a></li>
+<li>public beta quality</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>Just write stack.yaml</h2>
+<pre><code>packages:
+- HsParrot/
+- HsPerl5/
+- HsSyck/
+- MetaObject/
+- Pugs/
+- pugs-compat/
+- pugs-DrIFT/
+extra-deps:
+- FindBin-0.0.5
+- control-timeout-0.1.2
+- stringtable-atom-0.0.7
+resolver: lts-2.20</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>Pugs-6.2.13.20150815</h2>
+<ul>
+<li>Build with <span style="color:#0F0;">ghc-7.10.2</span></li>
+<li>You can install it by using <span style="color:#0F0;">stack</span></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>You only have to do</h2>
+<p>Install <span style="color:#0F0;"><code>stack</code></span> and <span style="color:#0F0;"><code>libperl-dev</code></span>, <span style="color:#0F0;"><code>libtinfo-dev</code></span>, then:</p>
+<pre><code>$ git clone git@github.com:perl6/Pugs.hs.git
+$ cd Pugs.hs
+$ stack build --install-ghc
+$ stack exec -- pugs</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>How is Pugs doing?</h2>
+<p>A popular Perl6 benchmark:</p>
+<p><img src="/images/yapc2015/p6-benchmark.png" height="480"></img></p>
+</section>
+<section class="slide level1">
+
+<h2>It’s very slow</h2>
+<pre><code>% time pugs -e &#39;my $i=0; for (1..5_000) { $i++ }; say $i&#39;
+5000
+pugs  0.23s user 0.01s system 98% cpu 0.239 total</code></pre>
+<ul>
+<li>Run as the <span style="color:#F00;">interpreter</span></li>
+<li>All eveluation in <span style="color:#F00;"><code>Eval</code></span> monad</li>
+<li>A stack of <span style="color:#F00;">Monad Transformers</span></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Eval</span> a <span class="fu">=</span> <span class="dt">EvalT</span> <span class="dt">ContT</span> (<span class="dt">EvalResult</span> <span class="dt">Val</span>) (<span class="dt">ReaderT</span> <span class="dt">Env</span> <span class="dt">SIO</span>) (<span class="dt">EvalResult</span> a)
+<span class="kw">data</span> <span class="dt">EvalResult</span> a
+    <span class="fu">=</span> <span class="dt">RNormal</span>    <span class="fu">!</span>a
+    <span class="fu">|</span> <span class="dt">RException</span> <span class="fu">!</span><span class="dt">Val</span></code></pre></div>
+</section>
+<section class="slide level1">
+<h1>50ms or die</h1>
+</section>
+<section class="slide level1">
+
+<h2>CPS transformation of Monads</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Eval</span> a <span class="fu">=</span> <span class="dt">EvalT</span> <span class="dt">ContT</span> (<span class="dt">EvalResult</span> <span class="dt">Val</span>) (<span class="dt">ReaderT</span> <span class="dt">Env</span> <span class="dt">SIO</span>) (<span class="dt">EvalResult</span> a)
+<span class="kw">data</span> <span class="dt">EvalResult</span> a
+    <span class="fu">=</span> <span class="dt">RNormal</span>    <span class="fu">!</span>a
+    <span class="fu">|</span> <span class="dt">RException</span> <span class="fu">!</span><span class="dt">Val</span></code></pre></div>
+<p>Unrolled Monad.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Eval</span> a <span class="fu">=</span> <span class="dt">Eval</span> (<span class="dt">Env</span> <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">SIO</span> <span class="dt">Val</span>) <span class="ot">-&gt;</span> (<span class="dt">Val</span> <span class="ot">-&gt;</span> <span class="dt">SIO</span> <span class="dt">Val</span>) <span class="ot">-&gt;</span> <span class="dt">SIO</span> <span class="dt">Val</span>)
+<span class="kw">newtype</span> <span class="dt">EvalResult</span> a <span class="fu">=</span> <span class="dt">RException</span> <span class="dt">Val</span></code></pre></div>
+</section>
+<section class="slide level1">
+
+<h2>Benchmarks</h2>
+<pre><code>% time pugs -e &#39;my $i=0; for (1..5_000) { $i++ }; say $i&#39;
+5000
+pugs  0.23s user 0.01s system 98% cpu 0.239 total</code></pre>
+<pre><code>% time pugs-patched -e &#39;my $i=0; for (1..5_000) { $i++ }; say $i&#39;
+5000
+pugs-patched  0.20s user 0.01s system 98% cpu 0.206 total</code></pre>
+<pre><code>% time perl6 -e &#39;my $i=0; for (1..5_000) { $i++ }; say $i&#39;
+5000
+perl6  0.22s user 0.03s system 98% cpu 0.259 total</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>More Benchmarks</h2>
+<pre><code>% time pugs -e &#39;my $i=0; for (1..10_000) { $i++ }; say $i&#39;
+10000
+pugs  0.40s user 0.01s system 99% cpu 0.416 total</code></pre>
+<pre><code>% time pugs-patched -e &#39;my $i=0; for (1..10_000) { $i++ }; say $i&#39;
+10000
+pugs-patched  0.36s user 0.01s system 99% cpu 0.368 total</code></pre>
+<pre><code>% time perl6 -e &#39;my $i=0; for (1..10_000) { $i++ }; say $i&#39;
+10000
+perl6  0.23s user 0.03s system 99% cpu 0.263 total</code></pre>
+</section>
+<section class="slide level1">
+<h1>50ms and died …</h1>
+</section>
+<section class="slide level1">
+
+<h2>A reuse of Pugs</h2>
+<ul>
+<li>An implementation of a language <span style="color:#0F0;">similar to Perl6</span></li>
+<li>Presented at <span style="color:#0F0;">YAPC Asia 2010</span></li>
+<li>It’s called <span style="color:#0F0;">Werl</span></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2>Werl specification</h2>
+<p><img src="/images/yapc2015/werl5.png" width="480"></img></p>
+</section>
+<section class="slide level1">
+<h1><span style="color:#0F0;">Wugs</span></h1>
+<p>A reference implementations of <span style="color:#0F0;">Werl6</span></p>
+</section>
+<section class="slide level1">
+
+<h2>How to install Wugs</h2>
+<p>A reference implementations of Werl6</p>
+<pre><code>$ git clone git@github.com:hiratara/Pugs.hs.git
+$ cd Pugs.hs
+$ git checkout origin/wugs
+$ stack build --install-ghc
+$ stack exec -- wugs</code></pre>
+</section>
+<section class="slide level1">
+
+<pre><code>% stack exec -- wugs
+ __      __                         (W)erl 6
+/  \    /  \__ __  ____  ______     (U)ser&#39;s
+\   \/\/   /  |  \/ ___\/  ___/     (G)olfing
+ \        /|  |  / /_/  &gt;___ \      (S)ystem
+  \__/\  / |____/\___  /____  &gt;          Version: 6.2.13.dev
+       \/       /_____/     \/   Copyright 2005-2015, The Wugs Contributors
+--------------------------------------------------------------------
+
+Welcome to Wugs -- Werl6 User&#39;s Golfing System
+Type :h for help.
+
+Loading Prelude... done.
+wugs&gt; wwwWw 1 .. 80 -&gt; $wW { WWwwWW wwWWWW &gt; .5 ?? &#39;W&#39; !! &#39;w&#39; }; wWWWw
+WWWwwWWWwWwwwWwWwWWWWwWWWwwwwwwWwwWwwWWWwWWwwwwWWWwWWwWwWWwwWWwwwWwWwwwWwwwWWwWw
+Bool::True</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>Werl5 and Werl6</h2>
+<p>Werl5</p>
+<pre><code>Wwwww wwww_wwww {
+      WWW $w_w = WWwWWW;
+      WWW $w_ww = WWwWWW;
+      wWW ($w_w &gt;= $w_ww) {
+            wwWwWWw $w_w;
+      } WWwWW {
+            wwWwWWw $w_ww;
+      }
+}
+
+wwWwWww wwww_wwww(10,20),&quot;\n&quot;;</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>Werl5 and Werl6</h2>
+<p><span span="color:#0F0;">Werl6</span> is more readable</p>
+<pre><code>Wwwww wwww_wwww (WWW $w_w, WWW $w_ww){
+      wWW ($w_w &gt;= $w_ww) {
+            wwWwWWw $w_w;
+      } WWwWW {
+            wwWwWWw $w_ww;
+      }
+}
+
+wWWWw wwww_wwww(10,20);</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>Inside of <span style="color:#0f0">Wugs</span></h2>
+<p>The map of reserved words</p>
+<pre><code>+werl6perl6 :: [(String, String)]
++werl6perl6 =
++  [ (&quot;w&quot;, &quot;m&quot;)
++  , (&quot;W&quot;, &quot;q&quot;)
++  , (&quot;ww&quot;, &quot;s&quot;)
++  , (&quot;wW&quot;, &quot;x&quot;)
++  , (&quot;Ww&quot;, &quot;y&quot;)
++  , (&quot;WW&quot;, &quot;do&quot;)
++  , (&quot;www&quot;, &quot;eq&quot;)
++  , (&quot;wwW&quot;, &quot;ge&quot;)
++  , (&quot;wWw&quot;, &quot;gt&quot;)
++  , (&quot;wWW&quot;, &quot;if&quot;)
++  , (&quot;Www&quot;, &quot;lc&quot;)
++  , (&quot;WwW&quot;, &quot;le&quot;)
++  , (&quot;WWw&quot;, &quot;lt&quot;)
++  , (&quot;WWW&quot;, &quot;my&quot;)</code></pre>
+</section>
+<section class="slide level1">
+
+<h2>Inside of <span style="color:#0f0">Wugs</span></h2>
+<p>Parse both Perl6 and Werl6 reserved words</p>
+<pre><code> symbol :: String -&gt; RuleParser String
+ -symbol s = try $ do
+ +symbol s = case perl6ToWerl6 s of
+ +  Nothing -&gt; symbol&#39; s
+ +  Just w -&gt; do ret &lt;- symbol&#39; s &lt;|&gt; symbol&#39; w
+ +               return $ case werl6ToPerl6 ret of
+ +                 Nothing -&gt; ret
+ +                 Just p -&gt; p</code></pre>
+</section>
+<section class="slide level1">
+
+<p><font style="font-size:200px"><code>-O</code> <span class="math">\(fun\)</span> ☺</font></p>
+<!--
+# YAPC and Haskell
+
+* [YAPC::Asia 2006 "Learning Haskell" Audrey Tang](http://tokyo.yapcasia.org/sessions/learning_haskell.html)
+* [YAPC::NA 2009 "What Haskell did to my brain" nothingmuch](http://www.yapcna.org/yn2009/talk/1956)
+* [YAPC::Europe 2011 "Perlude: a taste of haskell in perl" eiro](http://yapceurope.lv/ye2011/talk/3386)
+* [YAPC::Europe 2015 "Is Haskell an Acceptable Perl?" osfameron](http://act.yapc.eu/ye2015/talk/6320)
+-->
+</section>
+
+			</div>
+
+		</div>
+
+		<script src="/reveal.js/lib/js/head.min.js"></script>
+		<script src="/reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'linear',
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: '/reveal.js/lib/js/classList.js' },
+					{ src: '/reveal.js/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
