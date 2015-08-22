@@ -590,31 +590,181 @@
 </ul></li>
 <li>構築してくれた皆様に拍手。1時間でというのは前日に伝えました！</li>
 </ul>
-<!--
-## LT
-
-### yoku0825さん「MySQL 5.7の罠があなたを狙っている」
-
-### magnoliaさん「吉祥寺.pmというイベントを作った話〜聞きたいトークが有れば自分でイベントを作ろう！〜」
-
-### Satoshi.Sさん「命名の話をします」
-
-### HIRATA, Satoshiさん「botになる技術」
-
-### zoncoenさん「モダンなクライアントサイド JavaScript に追い付くためのための小さな（しかし大変な）一歩の話」
-
-### Koji Ishimotoさん「Evaluating your stylesheets」
-
-### Kazuhiro Osawaさん「Thank you for ${^ENCODING} variable」
-
-### moznionさん「本物の "ロック" ってやつを魅せてあげますよ - 分散排他ロック篇」
-
-### cho45さん「コミュ力あげてこ」
-
-### Hirotaka Tajimaさん「CONBUの道具箱」
-
-### Kuniwakさん「Vim script静的解析の光と闇」
--->
+<h2 id="lt">LT</h2>
+<h3 id="yoku0825さんmysql-5.7の罠があなたを狙っている">yoku0825さん「MySQL 5.7の罠があなたを狙っている」</h3>
+<ul>
+<li>2013年にβ版、今年に5.7.8-rc2</li>
+<li>default_password_lifetime = 360</li>
+<li>UTC</li>
+<li>show_comaptibility_56 = OFF
+<ul>
+<li>REPLICATION SLAVE 権限</li>
+</ul></li>
+<li>binlogの書き込み</li>
+<li>sql_mode
+<ul>
+<li>16桁ハッシュの古いパスワード廃止</li>
+<li>10年前の ＊og_error_verhoshity 同じ変数を2つの設定で弄る</li>
+</ul></li>
+<li>後勝ち</li>
+<li>internal_tmp_disk_storage_ inno_db
+<ul>
+<li>一度容量を確保するとmysqldを再起動必要</li>
+</ul></li>
+<li>.ibdファイルを読み込む</li>
+<li>innbdb_buffer_pool サポートされたがブロックされる</li>
+<li>validate_password パスワードに英字記号</li>
+<li>mysql.user.password</li>
+<li>MySQL 5.7の罠はたくさんある</li>
+</ul>
+<h3 id="magnoliaさん吉祥寺.pmというイベントを作った話聞きたいトークが有れば自分でイベントを作ろう">magnoliaさん「吉祥寺.pmというイベントを作った話〜聞きたいトークが有れば自分でイベントを作ろう！〜」</h3>
+<ul>
+<li>IT勉強会参加してる人、 懇親会まで参加してる人</li>
+<li>聞きたいテーマの勉強会が都合よくない</li>
+<li>懇親会だと帰宅時間が深夜</li>
+<li>解決策 : 自分でイベントを開発する</li>
+<li>リツイートしてもらったりして吉祥寺.pm</li>
+<li>利点: 日程、テーマ、聞きたい人、懇親会、家に近い</li>
+<li>3か月に一度、4回開催、 トーク15分、ＬＴ5分、毎回20人</li>
+<li>miniもやってる。1＝2か月、1つのテーマをじっくり話し合う</li>
+<li>次は10月初旬</li>
+<li>自分が聞きたいトークがあれば自分でイベントを作ればいい</li>
+</ul>
+<h3 id="satoshi.sさんa-good-naming-makes-a-good-design">Satoshi.Sさん「a good naming makes a good design」</h3>
+<ul>
+<li>写真撮ったり</li>
+<li>いい名前が決まると設計が決まって勝手に実装ができる</li>
+<li>名前以上の機能を持たせない
+<ul>
+<li><code>build</code> というメソッドなのにいろいろやりすぎ</li>
+<li>日本語で命名してから英語化</li>
+<li>適切に役割を分割</li>
+</ul></li>
+<li>スライドのタイトル以上のことをやってはいけません</li>
+</ul>
+<h3 id="hirata-satoshiさんbotになる技術">HIRATA, Satoshiさん「botになる技術」</h3>
+<ul>
+<li>botを作ったことある人</li>
+<li>botの人</li>
+<li>Slackは便利</li>
+<li>botは簡単に自作できる</li>
+<li>Beagleboneで温度測るbot</li>
+<li>発言をEvernoteに記録する
+<ul>
+<li>100を超えた</li>
+</ul></li>
+<li>botデビューしてた
+<ul>
+<li>Openshift, PHP</li>
+</ul></li>
+<li>botになった結果は？ 便利
+<ul>
+<li>本人依頼内</li>
+</ul></li>
+<li>深夜作業の音も、水切り遊び、言いにくいことを、八つ当たり</li>
+<li>どうしてこうなった</li>
+<li>PHP 49行、159行の語録</li>
+<li>「生きろ」</li>
+</ul>
+<h3 id="zoncoenさんモダンなクライアントサイド-javascript-に追い付くためのための小さなしかし大変な一歩の話">zoncoenさん「モダンなクライアントサイド JavaScript に追い付くためのための小さな（しかし大変な）一歩の話」</h3>
+<ul>
+<li>モダン？ いけてる最近の Angular、react, browserifyとかとか</li>
+<li>jQuery 1.10, CoffeScript</li>
+<li>関数はすべてグローバル</li>
+<li>cofeescript 1200行の</li>
+<li>クソコードなおしてって言われた</li>
+<li>npm、ファイルmoderl viewとか分割、webpack、Marionette.js</li>
+<li>弄りやすくなった</li>
+<li>継続的なリファクタリングが必要</li>
+<li>app.coffee 1000行以上</li>
+<li>リファクタリング坂を登る</li>
+</ul>
+<h3 id="koji-ishimotoさんevaluating-your-stylesheets">Koji Ishimotoさん「Evaluating your stylesheets」</h3>
+<ul>
+<li>CSS解析ツール</li>
+<li>Naoyaさんはいい人です (Sushi Takusanntaberu Animesukinahito)</li>
+<li>技術顧問ビッチ</li>
+<li>フロントエンドデベロッパはCSSきちんとしたの書けてるのか？</li>
+<li>CSSの良し悪しは難しい</li>
+<li>StyleStats (stylestats) 静的解析するコマンド
+<ul>
+<li>テーブルで表示したりJSではいたり</li>
+</ul></li>
+<li>WEB版もある</li>
+<li>Metricsは30種類くらいある</li>
+<li>ブランチを切るとslackに自動でデータが出る</li>
+</ul>
+<h3 id="kazuhiro-osawaさんthank-you-for-encoding-variable">Kazuhiro Osawaさん「Thank you for ${^ENCODING} variable」</h3>
+<ul>
+<li><code>$^ENCODING</code> 2.22 のデルタを読むと、廃止されると書いている</li>
+<li><code>use Encodings</code> 生のcp932でもソース書けるように</li>
+<li>^<span class="math">\(H{\)</span>class} レキシカルスコープなモジュールを作る</li>
+<li>便利な変数だったけど 「さようなら！」</li>
+</ul>
+<h3 id="moznionさん本物の-ロック-ってやつを魅せてあげますよ---分散排他ロック篇">moznionさん「本物の “ロック” ってやつを魅せてあげますよ - 分散排他ロック篇」</h3>
+<ul>
+<li>分散排他ロック
+<ul>
+<li>ロックを取って、ロックを返す、みたいな</li>
+</ul></li>
+<li>Redis, memchaced, RDBMSとか。shareの部分はどうするか</li>
+<li>ロックに電話を使う</li>
+<li>相手と通話できる、できない 「究極の排他ロック」</li>
+<li>1876年以来の伝統</li>
+<li>Twilo で電話を掛けられる！</li>
+<li>Twiloの無料アカウントをexpireされてしまった</li>
+<li>ロックを見せることはできなかったけど電話は最高</li>
+</ul>
+<h3 id="cho45さんコミュ力あげてこ">cho45さん「コミュ力あげてこ」</h3>
+<ul>
+<li>コミュ力を鍛えるツール</li>
+<li>音が小さくて・・・デバグしましょう</li>
+<li>モールス信号 : 世界的、伝統的、通信手段
+<ul>
+<li>コミュ力が高い</li>
+</ul></li>
+<li>WebAudioでコミュ力(人力信号能力処理)UP</li>
+<li>WEBは情報量が多くて伝わらない感</li>
+<li>モールスだと遅れる情報量が少ないので、伝わるだけでうれしい</li>
+<li>わかった感はデータの厚さとは無関係</li>
+<li>劣った方法でコミュニケーションをすることでうれしさを取り戻せ</li>
+</ul>
+<h3 id="hirotaka-tajimaさんconbuの道具箱">Hirotaka Tajimaさん「CONBUの道具箱」</h3>
+<ul>
+<li>1.6km。1時間</li>
+<li>設営開始！
+<ul>
+<li>テープを養生する機械</li>
+</ul></li>
+<li>撤収！
+<ul>
+<li>ケーブルは8文字巻</li>
+</ul></li>
+<li>1.2kクライアントをさばいた</li>
+</ul>
+<h3 id="kuniwakさんvim-script静的解析の光と闇">Kuniwakさん「Vim script静的解析の光と闇」</h3>
+<ul>
+<li>闇</li>
+<li>変数の解析</li>
+<li>未定義変数、未使用変数</li>
+<li>謎構文</li>
+<li>変数の宣言と参照の追跡</li>
+<li>let、function、g:log : 変数宣言できてしまう</li>
+<li>スコープ
+<ul>
+<li>g: l: s: w: t: v: 暗黙</li>
+<li>v:count が参照される問題</li>
+<li>変数と関数を同じ名前で宣言。別空間</li>
+</ul></li>
+<li>map関数
+<ul>
+<li>文字列が入る</li>
+</ul></li>
+<li>mapコマンド</li>
+<li>再起展開する。キー入力を再起展開</li>
+<li>noremap は再起展開されない</li>
+<li>vint ツール</li>
+</ul>
 </p>
 
 </div>
