@@ -416,7 +416,93 @@
 <li>A. 8～9割完成していたところをRubyで書き直した</li>
 </ul></li>
 </ul>
+<h2 id="satoshi-ohkuboさんperl-で-rtb-の最前線を闘い抜く">Satoshi Ohkuboさん「Perl で RTB の最前線を闘い抜く」</h2>
+<ul>
+<li>RTBとは
+<ul>
+<li>SSP → DSP → SSP → ブラウザ</li>
+<li>SSPはメディア側、DSPは広告主側</li>
+<li>DSPのトーク</li>
+</ul></li>
+<li>OpenRTBというプロトコルが使われている
+<ul>
+<li>IAB(The Interactive Advertising Bureau)が規定</li>
+<li>JSONで。HTTPでやり取り。バナー、動画、インフィード</li>
+<li>PC、スマフォ、そのほかマニアックなものも</li>
+<li>PMP、優先取引</li>
+<li>プレイヤーごとに拡張が可能</li>
+</ul></li>
+<li>その他
+<ul>
+<li>Protocol Buffers : DoubleClick Ad Exchangeで採用されている形式</li>
+<li>クエストリング</li>
+<li>独自定義JSON</li>
+</ul></li>
+<li>DSPは広告マークアップをレスポンスする
+<ul>
+<li>その後配信リクエストで広告表示</li>
+<li>今日の話は入札のリクエストとレスポンス</li>
+</ul></li>
+<li>リクエスト : 広告枠情報、メディア情報、デバイス情報、閲覧者情報</li>
+<li>レスポンス : 入札金額、マークアップ</li>
+<li>入札最適化 : クリック、コンバージョン、セグメンテーションなどのアクションに繋がる</li>
+<li>サイズ、位置、サイトORアプリ(URLなど)、端末、Cookie ID
+<ul>
+<li>Web行動履歴に基づくオーディエンス？？</li>
+</ul></li>
+<li>価値のあるオーディエンス
+<ul>
+<li>オーディエンスデータをKVSに作成・参照する</li>
+<li>様々なサイトにビーコンを設置し、ユーザの行動履歴を貯める</li>
+</ul></li>
+<li>広告枠と人に対して最適な広告を導く</li>
+<li>数万種/日の広告から最適なインプレッションを</li>
+<li>データリソース
+<ul>
+<li>広告データ(MySQL)、オーディエンスデータ(KVS)、ログ解析したもの</li>
+</ul></li>
+<li>広告データとは
+<ul>
+<li>キャンペーン予算、課金タイプ</li>
+<li>入札の金額、ターゲット</li>
+</ul></li>
+<li>100ms以内にレスポンスを返す
+<ul>
+<li>レイテンシがあるので <code>50ms or die</code></li>
+</ul></li>
+<li>入札処理でネットワークI/Oは行わない
+<ul>
+<li>RAMディスクにて</li>
+<li><code>TokyoCabinet::HDB</code> を利用</li>
+</ul></li>
+<li>Q. DSPの処理だとオーディエンスデータへのアクセスが肝になるのは
+<ul>
+<li>A. オーディエンスデータは1度しか引かなくて済むという考え方。1ms程度で。300～400回くらい引いている。棲み分けている</li>
+</ul></li>
+<li>Q. 量が増えると大変
+<ul>
+<li>A. HBaseを使おうとしている</li>
+</ul></li>
+<li>Q. Starmanを使っていたそうですが
+<ul>
+<li>A. 変わっていない。CPU pinningでCPUのスイッチングを減らすことで高速化。ある一定の水準を保っている</li>
+</ul></li>
+<li>Q. 足りない機能があったら言ってください
+<ul>
+<li>A. めっちゃ頼りになります</li>
+</ul></li>
+<li>Q. DSPへの接続はconnectしてくるのか
+<ul>
+<li>A. Keep-aliveを有効化している</li>
+</ul></li>
+<li>Q. HTTP的なものなのか拡張しているものなのか
+<ul>
+<li>A. HTTP的なものです</li>
+</ul></li>
+</ul>
 <!--
+## CONBUさん「カンファレンスネットワークの作り方」
+
 ## LT
 
 ### yoku0825さん「MySQL 5.7の罠があなたを狙っている」
