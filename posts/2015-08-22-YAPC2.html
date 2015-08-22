@@ -71,6 +71,294 @@
 </div>
 <p>
     <p>ビッグサイト生活にも慣れてきました。今日も自分のためにメモを残しておきます。<a href="http://gihyo.jp/news/report/01/yapcasia2015/0002">gihyo.jpさんのレポート</a>も更新されると思われますので、お楽しみに。</p>
+<h3 id="nathan-leclaireさんpolyglotのためのdocker---我々はどこから来てどこへ向かうのか">Nathan LeClaireさん「PolyglotのためのDocker - 我々はどこから来てどこへ向かうのか」</h3>
+<ul>
+<li>色々なプログラミング言語での開発をどう楽にするか</li>
+<li>OSSへの貢献を楽にする。ツールを知らなくても</li>
+<li>色々なプロジェクトをサポートする</li>
+<li><span class="citation">@upthecyberpunks</span> さん</li>
+<li>yac shavingを楽にするもの</li>
+<li>Docker Machine : Dockerをより簡単に使うツール。thin clientを目指す</li>
+<li>DockerとLinuxの強いつながり</li>
+<li>クリエイティブな人々とテクノロジーをつなぐ</li>
+<li>Dockerと他の技術の本当の違いは？
+<ul>
+<li>より多くの人が使えるようにした</li>
+<li>民主化</li>
+<li>クリエイティビティを解き放つ</li>
+</ul></li>
+<li>プログラミング言語の多様化
+<ul>
+<li>適切な言語を適切なタスクに</li>
+<li>開発ツールをきちんと用意するのが難しい</li>
+<li>複数言語を使っていると運用が難しい</li>
+</ul></li>
+<li>WEBサイトの運用は大変
+<ul>
+<li>クラッカーの対策</li>
+<li>例: 物理マシンで運用したマシンのネジが外れて壊れた</li>
+<li>再現性が大事</li>
+</ul></li>
+<li>開発とオペレーションの言語を統一</li>
+<li>目まぐるしい変化が起きている
+<ul>
+<li>JSのフロントエンドは半年ごとに刷新されているくらい</li>
+<li>angularと思っていたらreact</li>
+</ul></li>
+<li>ツールは難しい
+<ul>
+<li><code>maven</code> はgoの開発者には難しい</li>
+<li>導入が楽だと学習への手助けとなる</li>
+<li>学習したことがない人もいる</li>
+<li>動かしてみたい</li>
+<li>新参者を退けてしまう</li>
+</ul></li>
+<li>OSSはいいもの。世界への貢献
+<ul>
+<li>新参者は、成長する</li>
+<li>「ダンプカーリスク BUS FACTOR」</li>
+<li>環境を整備していた一人がバスにひかれるとやばい</li>
+<li>環境を作るのは難しい → puppetやchef</li>
+</ul></li>
+<li>dockerのver.1はpush/pullなどが遅かった。今は早くなった</li>
+<li>dependency hell - OpenRestyでPCREが必要になる例
+<ul>
+<li>ライブラリはどんどん複雑になっている</li>
+</ul></li>
+<li>Dockerはこれらのものを解決する</li>
+<li>ネット上のモノをすべてプログラミングできるようにする
+<ul>
+<li>全てのデバイス上でコーディングする</li>
+<li>Dockerでそれぞれのデバイスの環境を吸収</li>
+</ul></li>
+<li>展望
+<ul>
+<li>シンプル、であることがいいこと</li>
+<li>環境の違いを統一化する
+<ul>
+<li>統一されていればdev-opsもしやすい</li>
+</ul></li>
+<li>PHOENIX DEVELOPMENT
+<ul>
+<li>サーバが壊れても、すべてのサーバが同じという状況</li>
+<li>作り直せば大丈夫</li>
+<li>5分で新しいコンピュータから開発を始められる</li>
+</ul></li>
+</ul></li>
+<li>デベロッパー、オペレータの用語を翻訳
+<ul>
+<li>「マイグレーション」「コントローラ」「ジョブキュー」</li>
+<li>「ロードバランサー」「S3バケット」</li>
+<li>DOCKER FILEはREADMEとなる</li>
+</ul></li>
+<li>DOCKER FILEはシンプルなshell scriptと変わらない
+<ul>
+<li>詳細なドキュメントとなる</li>
+</ul></li>
+<li>OpenResty
+<ul>
+<li>nginxのイベントループをluaで拡張</li>
+<li>すごく速いアプリを作れる</li>
+<li>リバースプロクシやイメージの拡縮</li>
+</ul></li>
+<li>OpenRestyを自分でセットアップ
+<ul>
+<li>依存関係を解決しなければならない</li>
+</ul></li>
+<li>Larry: ドキュメンテーションすると質問を避けられる</li>
+<li>StackOverflowに依存の質問が上がったりする
+<ul>
+<li>libncurses5-devを入れればいいのではないか</li>
+<li>環境によって回答は代わる</li>
+<li>Dockerであれば解決できる</li>
+</ul></li>
+<li>BOSS「DEBIANで作ってるのは知ってるけど、RHELで動かないとね」
+<ul>
+<li>開発者「ソフトウェアのinstallは退屈」</li>
+</ul></li>
+<li>DOCKERFILEを作る
+<ul>
+<li>どんなOSでもカーネルさえ合えば動く</li>
+<li>compatibilityはカーネルにある</li>
+<li>後方互換性はあるわけではない</li>
+<li>distributionの差を吸収</li>
+</ul></li>
+<li><code>docker build</code>, <code>docker push</code>, <code>docker run</code>
+<ul>
+<li><code>docker push</code> はファイルをすべて登録するので時間はかかる</li>
+</ul></li>
+<li>Macと使っているが、シームレスに作業ができる</li>
+<li>Dockerを使ってDockerのビルドをする</li>
+<li>Docker Machineをチェックしてください</li>
+<li>Docker compose : Dockerの組み合わせ</li>
+<li>Docker swarm</li>
+<li>Q. Docker社内でもMacで使っている？ Boot2docker？
+<ul>
+<li>A. Boot2dockerを使っている人がほとんど。Docker Machineを使うための移行期。xhyveはnative macのラッパー。xhyveを使ってる人はいないが、これから使えるようにしたい。Docker Machineへの移行を進めている</li>
+</ul></li>
+<li>Q. Docker Machineのロードマップを確認したい
+<ul>
+<li>A. 050について、今まではCLIとモジュールが密結合していた。別個にビルドできるようにする。プラグイン機構にして、プロバイダによらないようにする。安定性を増してprovisioningを</li>
+</ul></li>
+</ul>
+<h3 id="tatsuro-hisamoriさん-実はホットでオープンな-microsoft-azure">Tatsuro Hisamoriさん 「実はホットでオープンな Microsoft Azure」</h3>
+<ul>
+<li>8/22 現在の状態。開発がかなり活発のため</li>
+<li>Microsoft Azureとは
+<ul>
+<li>パブリッククラウド : IaasS, PaaS, SaaS</li>
+<li>2014年に日本データセンター</li>
+</ul></li>
+<li>Azureのサービス 500+</li>
+<li>リージョンは19リージョン
+<ul>
+<li>日本も2つリージョンがある</li>
+</ul></li>
+<li>Linux仮想マシンは25%くらい。増えている</li>
+<li>“as a Service”</li>
+<li>イケてる : Event Hubs, Stream Analytics, Machine Learning</li>
+<li>Stream Analyticsとは？
+<ul>
+<li>道路を走っている車の赤い車の台数を数える</li>
+</ul></li>
+<li>Event Hub : Pub sub</li>
+<li>Stream Analytics
+<ul>
+<li>SQL likeなクエリで流れるデータを集計</li>
+<li>JSONを受け付ける</li>
+<li><code>GROUP BY TumblingWindow(...)</code></li>
+</ul></li>
+<li>(Tumbling|Hopping|Sliding)Window
+<ul>
+<li>時間を切って集計。切り方が違う</li>
+</ul></li>
+<li>クエリを書くのは、 Norikra と同じアプローチ</li>
+<li>コレクターにfluentd を使える</li>
+<li>Power BI Dashboard
+<ul>
+<li>可視化ツール</li>
+<li>グラフだけではなく地図なども</li>
+<li>Azure SQL Database や Spark などと連携する</li>
+</ul></li>
+<li>ラズパイ → Event hub → stream analytics → power BI doshboard
+<ul>
+<li>qiitaに書いたから見てね</li>
+</ul></li>
+<li>マイクロソフトは昔から機械学習を使っている
+<ul>
+<li>スパム判定、キーワード判定など</li>
+<li>Joseph Sirosh : 機械学習専門の部署のpresident</li>
+</ul></li>
+<li>ML Studio
+<ul>
+<li>Yahoo! Pipes と似たようなUI</li>
+<li>gallery.azureml.com : サンプルがすごく多い。インポートしてソースが見れる</li>
+</ul></li>
+<li>例: ゲームの解約者数の予測</li>
+<li>Cortana Analytics Suite
+<ul>
+<li>パーツがたくさんあるので好きなものを使いましょう</li>
+</ul></li>
+<li>“as a Service” の下回りについて</li>
+<li>Microsoft Azureのデータセンター
+<ul>
+<li>フットボール場、ジャンボジェットが2機</li>
+<li>1つのリージョンは16データセンター分</li>
+<li>コンテナごと搬入し、メンテせずコンテナごと捨てる</li>
+</ul></li>
+<li>インタネット人口に合わせてリージョンを作っている</li>
+<li>Open Compute Project
+<ul>
+<li>Microsoftがサーバを販売している</li>
+<li>Catapult : FPGA搭載サーバ</li>
+</ul></li>
+<li>IaaS : Compute, Network, Storage
+<ul>
+<li>リソースグループという概念で管理</li>
+<li>タイプでわかれる</li>
+<li>Azure Resource Manager : リソースグループをJSONで定義</li>
+<li>IaaS - Paas - Azure Resource Manager</li>
+</ul></li>
+<li>Microsoft Azure の仮想ネットワーク
+<ul>
+<li>MVGRE : ハードウェア非依存。ソフトウェアで定義するネットワーク</li>
+<li>NVGRE Key でカプセル化して配信、その後ユーザーへ</li>
+</ul></li>
+<li>NVGREに関する本が出ている</li>
+<li>クラウドを使う人は機能だけを開発したい</li>
+<li>Service Fabric
+<ul>
+<li>「マイクロサービス」を作るとき、コード書く以外のことを全部やる</li>
+</ul></li>
+</ul>
+<p>ここでPower pointがフリーズ 。「マイクロソフトっぽいなーと」。</p>
+<ul>
+<li>Service Fabricは他の環境でも使える。linux版も</li>
+<li>Azure Stack : オンプレにクラウドを持ってくる
+<ul>
+<li>オンプレでAzure の管理画面が動く</li>
+<li>クラウドファースト</li>
+<li>一貫した扱い</li>
+</ul></li>
+<li>まとめ
+<ul>
+<li>AzureはWindowsだけのものでない</li>
+<li>必要なものを組み合わせて使う</li>
+<li>既存環境にも開かれている</li>
+<li>Event Hubs/Stream Analytics, PowerBI Dashboard 辺りから使うと良い</li>
+</ul></li>
+<li>feedback.azure.com からフィードバックを送ることができる
+<ul>
+<li>FBアカウントとGoogleアカウントしか使えない</li>
+</ul></li>
+<li>クラウドは手元に届く時代が来る
+<ul>
+<li>オンプレVSクラウドではない</li>
+<li>クラウドを支配する</li>
+<li>正しく選択して選んでいくのが重要</li>
+</ul></li>
+<li>Q. Azure でOSSと自社開発の割合は？
+<ul>
+<li>A. 使っているところと使っていないところがある</li>
+</ul></li>
+<li>Q. RDBを使いたい場合は？
+<ul>
+<li>A. Azure DB。clearDBを使うのも手。VMで自分でやると性能までコントロールできる</li>
+</ul></li>
+<li>Q. MS以外の人が増えているのでは？何パーくらい？
+<ul>
+<li>A. 全体ではわからないけど、増えている</li>
+</ul></li>
+<li>Q. 文化の衝突は？
+<ul>
+<li>A. いい意味で大人</li>
+</ul></li>
+<li>Q. 実際に個人ユーザで使うにはお高いんでしょ？
+<ul>
+<li>A. 1日140円から</li>
+</ul></li>
+<li>Q. ここを見ておけばというのは？
+<ul>
+<li>A. Azure のポータル。あと、ウェビナーをやってる。</li>
+<li>Q. githubにazureのドキュメントがあるので、pull-req下さい。azure-content</li>
+</ul></li>
+<li>Q. リソースマネージャーで使えないサービスはどのくらいで？
+<ul>
+<li>A. わかるようになったら情報をどんどん出していく</li>
+</ul></li>
+<li>Q. なぜ西がおすすめなのか
+<ul>
+<li>A. 東は今拡張中のため</li>
+</ul></li>
+<li>Q. DWHサービスは？
+<ul>
+<li>A. Asure SQL DWH が出ている。今年後半に利用可能。データの保存と処理が分かれていて、おすすめ</li>
+</ul></li>
+<li>Q. asureの売りは？料金とか？
+<ul>
+<li>A. データプラットフォームとしての側面を強く出していく。料金は電卓で出してみてください</li>
+</ul></li>
+</ul>
 </p>
 
 
