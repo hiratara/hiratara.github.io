@@ -74,7 +74,7 @@
 </div>
 <p>
     <p>ビッグサイト生活にも慣れてきました。今日も自分のためにメモを残しておきます。<a href="http://gihyo.jp/news/report/01/yapcasia2015/0002">gihyo.jpさんのレポート</a>も更新されると思われますので、お楽しみに。</p>
-<h3 id="nathan-leclaireさんpolyglotのためのdocker---我々はどこから来てどこへ向かうのか">Nathan LeClaireさん「PolyglotのためのDocker - 我々はどこから来てどこへ向かうのか」</h3>
+<h2 id="nathan-leclaireさんpolyglotのためのdocker---我々はどこから来てどこへ向かうのか">Nathan LeClaireさん「PolyglotのためのDocker - 我々はどこから来てどこへ向かうのか」</h2>
 <ul>
 <li>色々なプログラミング言語での開発をどう楽にするか</li>
 <li>OSSへの貢献を楽にする。ツールを知らなくても</li>
@@ -204,7 +204,7 @@
 <li>A. 050について、今まではCLIとモジュールが密結合していた。別個にビルドできるようにする。プラグイン機構にして、プロバイダによらないようにする。安定性を増してprovisioningを</li>
 </ul></li>
 </ul>
-<h3 id="tatsuro-hisamoriさん-実はホットでオープンな-microsoft-azure">Tatsuro Hisamoriさん 「実はホットでオープンな Microsoft Azure」</h3>
+<h2 id="tatsuro-hisamoriさん-実はホットでオープンな-microsoft-azure">Tatsuro Hisamoriさん 「実はホットでオープンな Microsoft Azure」</h2>
 <ul>
 <li>8/22 現在の状態。開発がかなり活発のため</li>
 <li>Microsoft Azureとは
@@ -362,6 +362,85 @@
 <li>A. データプラットフォームとしての側面を強く出していく。料金は電卓で出してみてください</li>
 </ul></li>
 </ul>
+<h2 id="masaru-hoshinoさんperlがメインじゃない現場でもperlを使うadtech現場編">Masaru Hoshinoさん「Perlがメインじゃない現場でもPerlを使う(AdTech現場編）」</h2>
+<ul>
+<li>本当にこのトークで大丈夫ですか？</li>
+<li>SSP, DSP/Adnetwork</li>
+<li>fluctはPHPをはじめたくさんの言語で動いている</li>
+<li>やりたいことに対して制約がある</li>
+<li>レビュー
+<ul>
+<li>PSR-2 に沿うことを目視と手動修正していた</li>
+<li>php-cs-fixerが使える (<code>perltidy</code>的なの)</li>
+<li>既存のファイルすべてに php-cs-fixer を適用</li>
+<li>Perlでやった時は、逆にblacklistにして無視した</li>
+<li><code>make php-cs-fixer</code></li>
+<li>人がやるべきでない作業の自動化</li>
+</ul></li>
+<li>crontabの設定の自動チェック
+<ul>
+<li><code>###prev 2014-12-31 19:00:00</code> のようなコメントを期待値としたテスト</li>
+<li><code>Test::Parse::Crontab::Simple</code> というのをPerlへバックポートした
+<ul>
+<li><code>Parse::Crontab</code> なので微妙に使用は違う</li>
+</ul></li>
+</ul></li>
+<li>なぜPerlモジュールを作ったのか
+<ul>
+<li>他言語からの流入が大きいので</li>
+<li>そういう還元をしたかった</li>
+</ul></li>
+<li>adnetworkの登録
+<ul>
+<li>入稿ミスが起きていた</li>
+<li>初めPerl、Rubyで書き直す</li>
+</ul></li>
+<li>なぜ最初からRubyで書かないのか
+<ul>
+<li>要件があいまい。重複してもいい、ということがたくさんある</li>
+<li>Rubyで最初に書くと、慣れてないので時間がかかる</li>
+<li>オペレーターの手作業が発生するので、書き換え時間が取れることがわかっていた</li>
+</ul></li>
+<li>なぜRubyで書き直したのか？ → 既存のメンバーの保守コストを下げるため</li>
+<li>言語が変わってもやることは同じ。その時に必要な技術を使う。</li>
+<li>Q. 本番サーバで perl の環境をどう整えた
+<ul>
+<li>A. perlのスクリプトは0ではなかった。使いたかったCPANモジュールは諦めた</li>
+</ul></li>
+<li>Q. 社内から反対意見などは出なかったか？
+<ul>
+<li>A. 事前に説明してO.K.もらった。スクリプトにtmpとかつけて消すことを明確にした</li>
+</ul></li>
+<li>Q. 完全にPerlを書いてから切り替えた？
+<ul>
+<li>A. 8～9割完成していたところをRubyで書き直した</li>
+</ul></li>
+</ul>
+<!--
+## LT
+
+### yoku0825さん「MySQL 5.7の罠があなたを狙っている」
+
+### magnoliaさん「吉祥寺.pmというイベントを作った話〜聞きたいトークが有れば自分でイベントを作ろう！〜」
+
+### Satoshi.Sさん「命名の話をします」
+
+### HIRATA, Satoshiさん「botになる技術」
+
+### zoncoenさん「モダンなクライアントサイド JavaScript に追い付くためのための小さな（しかし大変な）一歩の話」
+
+### Koji Ishimotoさん「Evaluating your stylesheets」
+
+### Kazuhiro Osawaさん「Thank you for ${^ENCODING} variable」
+
+### moznionさん「本物の "ロック" ってやつを魅せてあげますよ - 分散排他ロック篇」
+
+### cho45さん「コミュ力あげてこ」
+
+### Hirotaka Tajimaさん「CONBUの道具箱」
+
+### Kuniwakさん「Vim script静的解析の光と闇」
+-->
 </p>
 
 </div>
