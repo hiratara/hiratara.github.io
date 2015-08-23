@@ -139,12 +139,29 @@
 <ul>
 <li><span class="math">\(\sum_{i=1}^0 i\)</span> は定義できるのか → 定義は怪しいけど、<span class="math">\(i=0\)</span>入れても変わらないのはまあそうだよね</li>
 <li>例2.31 : なんでこうなるか不思議(意味は分かるけど直観的ではないという意味で)</li>
+</ul>
+<h2 id="構造帰納法">2.3 構造帰納法</h2>
+<ul>
 <li><span class="math">\(Z plus n_2 is n_3\)</span> と <span class="math">\(Z plus n_2 is n_4\)</span> が成り立つときに <span class="math">\(n_3 \equiv n_4\)</span> は言っていいの？
 <ul>
 <li>Natの4つしかルールは使えない</li>
 <li>「はずである」にその気持ちが入っているのでは</li>
 </ul></li>
 <li>Haskellでexistsどうするのみたいな話</li>
+<li>「P-ZEROの形より」をHaskellで表現するには
+<ul>
+<li><code>case</code> で場合分けで矛盾では</li>
+<li>inductive ではないのでHaskellでは無理でしょう ( <code>undef</code> あるし)</li>
+</ul></li>
+</ul>
+<h2 id="算術式に関する構造帰納法">2.3.2 算術式に関する構造帰納法</h2>
+<ul>
+<li>原理2.33が何を言っているのか
+<ul>
+<li>オペラントについてある性質が言えれば、<code>+</code>や<code>*</code>したものも性質が言える。という状態ならすべての算術式について成り立つ</li>
+<li>自然数と違って再帰の仕方が木となる</li>
+</ul></li>
+<li>図2.3は<span class="math">\(Z*S(S(Z))+S(Z)\)</span>を言いたいだけ</li>
 </ul>
 </p>
 
