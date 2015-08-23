@@ -48,7 +48,7 @@ mathjax: on
     * 演算子の個数、がよさそう
     * プログラム意味論の本では型について帰納法使ってたけど → この推論規則では型とかはないので
     * 型なしラムダ計算では強正規化可能性はなりたたない(だから型が必要)
-        * $(\x.x x) (\x.x x)$
+        * $(\lambda x.x x) (\lambda x.x x)$
 
 ## 2.2 数学的帰納法
 
@@ -57,7 +57,7 @@ mathjax: on
 
 ## 2.3 構造帰納法
 
-* $Z plus n_2 is n_3$ と $Z plus n_2 is n_4$ が成り立つときに $n_3 \equiv n_4$ は言っていいの？
+* $Z \operatorname{plus} n_2 \operatorname{is} n_3$ と $Z \operatorname{plus} n_2 \operatorname{is} n_4$ が成り立つときに $n_3 \equiv n_4$ は言っていいの？
     * Natの4つしかルールは使えない
     * 「はずである」にその気持ちが入っているのでは
 * Haskellでexistsどうするのみたいな話
