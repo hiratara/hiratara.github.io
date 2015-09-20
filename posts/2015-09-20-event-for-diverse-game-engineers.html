@@ -379,12 +379,99 @@
 </ul></li>
 <li>Q. コンパイラの選択はできる？ clangとか
 <ul>
-<li>A. 去年の12月に出てきている。問題はまだある</li>
+<li>A. 去年の12月に出てきている。問題はまだある。そのうちはいるはず</li>
 </ul></li>
 </ul>
+<h2 id="shw95349-さん-元コンシューマ系pgがアケゲ開発やってみたアケゲ開発でのc"><span class="citation">@shw95349</span> さん 「元コンシューマ系PGがアケゲ開発やってみた　～アケゲ開発でのC++～」</h2>
+<ul>
+<li>男の煩悩担当みたいなコンシュマーゲーム開発
+<ul>
+<li>4vs4オンライン協力対戦アーケードゲーム</li>
+</ul></li>
+<li>PS3, XBOX360, Wii, Vita, 3DSの時代のコンシュマー</li>
+<li>プラットフォーム複数なのでコンパイラも複数
+<ul>
+<li>C++ベースでビルドが通るように。方言は禁止</li>
+<li>STL, Boostの使用制限 → レガシーなコーディング</li>
+</ul></li>
+<li>最近のアーケードゲーム開発
+<ul>
+<li>PCゲームの開発のようなもの</li>
+<li>筐体の中にPCが入ってる、ようなもの</li>
+<li>OS: Win, CPU: Intel Core i3, GPU: NVIDIA GeForce</li>
+<li>コンパイラを選べる。外部ライブラリやミドルウェアの使用。ハードウェアの自由な設計</li>
+</ul></li>
+<li>アーケード、コンシューマーとモバイルの比較
+<ul>
+<li>言語は変わらない</li>
+<li>アーケードの場合、店舗(オペレータ)もお客様</li>
+<li>アーケードの場合、デバイスが自由度</li>
+<li>アーケードは風営法など、地域の法律への考慮が必要</li>
+</ul></li>
+<li>作ったゲーム
+<ul>
+<li>30fps, 1280x1080をアップスケーリングして1080p</li>
+<li>グラフィックはオーソドックス</li>
+<li>エフェクトの社内制ツールやADX2(サウンド)</li>
+<li>ネットワーク周りは大変。ゲームデータ管理からパッチ、Wifi周りまで</li>
+<li>C++がメイン。ツールはC#。DBサーバはJava</li>
+<li>STLを多用。VS2012のためC++11機能が一部使える</li>
+<li>足りない部分は Boost</li>
+<li>典型的なOOP、MVC。(</li>
+<li>クラス図は複雑: 出力しようと思ったら1日かかっても出力できなかった)</li>
+</ul></li>
+<li>C++11の嬉しい機能
+<ul>
+<li>ラムダ式 : STLと相性が多い。コールバック定義場所が近くに。boost::bindの緩和。式がでかいと見にくい</li>
+<li>型推論 auto と decltype
+<ul>
+<li>無駄なtypedefの駆逐。その場でしか書かないやつとか</li>
+<li><code>auto&amp;&amp;</code> Reference Collapsing の挙動を知らないとハマる</li>
+</ul></li>
+<li>range-based for</li>
+<li>std::tuple 構造体定義を少なく
+<ul>
+<li>ただしtupleの構造を変えるとstd::get, std::tieの調整が大変</li>
+</ul></li>
+<li>std::array : 全要素比較が楽だったり</li>
+<li>Scoped Enumeration : 名前衝突の危険性を低減。ラッパーなどあった方が</li>
+<li>std::atomic : 通信同期に使ったり</li>
+<li>std::future, std::promise : 非同期処理に (問題になったけど)</li>
+<li>static_assert : バグの芽を摘む</li>
+<li>final, override : コンパイル時にエラー見つける</li>
+<li>Boost.Property_tree : XML便利</li>
+<li>Boost.Preprocessor : 便利マクロ群</li>
+</ul></li>
+<li>C++は進化してもバグは尽きない
+<ul>
+<li>オブジェクト・エフェクトを大量に出すとクラッシュ → プールしてメモリを節約</li>
+<li>オブジェクト大量にあるときのコンテナへのアクセスコスト
+<ul>
+<li>std::list を std::vectorへ</li>
+<li>固定長のモノは reserve や std::array へ切り替え</li>
+<li>push_*** を emplace_***</li>
+<li>アルゴリズムを見直し</li>
+</ul></li>
+<li>std::thread, std::future, std::promiseのリーク
+<ul>
+<li>VS2012のバグだったのでBoostへ</li>
+</ul></li>
+</ul></li>
+<li>CI(Jenkins)、Coverity などで問題を炙り出す → 割と平和にリリース</li>
+<li>アーケードゲームで違ったこと
+<ul>
+<li>テストモード</li>
+<li>筐体が場所を取る。キーチップなど</li>
+<li>作成基準が会社独自</li>
+<li>KPIの分析はモバゲーに近い</li>
+<li>データのバックアップ・復元処理</li>
+<li>アーケードは初回起動に時間かかっても問題ない</li>
+<li>ソフトウェア面ではコンシューマ開発と変わらない</li>
+<li>コンテンツそのもの以外に現場体験重視</li>
+</ul></li>
+<li>ゲーセン来てね！</li>
+</ul>
 <!--
-## @shw95349 さん 「元コンシューマ系PGがアケゲ開発やってみた　～アケゲ開発でのC++～」
-
 ## @hotwatermorning さん 「JUCEで作るオーディオアプリケーション」
 
 ## @tsuchidasama さん 「プログラマの生存戦略 ～生き残る為に出世しろ～」
