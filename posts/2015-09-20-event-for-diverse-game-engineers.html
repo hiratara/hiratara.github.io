@@ -231,9 +231,158 @@
 <li>A. new, delete は使わずにスマートポインタを使おう</li>
 </ul></li>
 </ul>
+<h2 id="aizen76-さん-ue4とunreal-cでのプログラミング環境について"><span class="citation">@aizen76</span> さん 「UE4とUnreal C++でのプログラミング環境について」</h2>
+<ul>
+<li>Unreal Engine 4
+<ul>
+<li>2015年 無料化が発表された</li>
+<li>3Dでも2Dでも</li>
+<li>ドラクエ11のPS4版</li>
+<li>デスノートのリュークのCGも</li>
+<li>アニメ会社とかでも注目度が高い</li>
+<li>ブループリント(ビジュアルなスクリプトシステム)を使うのがオススメ</li>
+<li>「ボクが作るならはC++のコード一行もかきません」</li>
+</ul></li>
+<li>C++を使う理由
+<ul>
+<li>パフォーマンスの追及(速さは十分だけど、数十～数百倍の差が出ることも)</li>
+<li>エンジン・エディタを拡張したい (ほとんどの部分が公開されていて拡張可能)
+<ul>
+<li>pull-reqしたりできるよ</li>
+</ul></li>
+<li>外部ライブラリやSDKの使用 (OpenCVとか)</li>
+<li>独自デバイスの利用 (KINECTとか)</li>
+<li>C++の勉強！</li>
+</ul></li>
+<li>“Unreal C++ is Awesome!” 自画自賛
+<ul>
+<li>初心者向けC++。独自拡張。Unreal Editorとの親和性</li>
+<li>C#やJSの特徴も</li>
+</ul></li>
+<li>Unreal BuildTool → Mono C# → VisualStudio OR Xcode</li>
+<li>UnrealBuild Tool
+<ul>
+<li>C++のメタ情報</li>
+</ul></li>
+<li>Mono C#
+<ul>
+<li>クロスプラットフォームを意識したモジュールの管理・リンク</li>
+</ul></li>
+<li>Windows, Macで動く。Linuxでも実は動く</li>
+<li>比較的モダンC++
+<ul>
+<li>Range based forに対応</li>
+<li>ムーブセマンティクス (右辺値参照)</li>
+<li>コンテナのアルゴリズムにラムダ式</li>
+<li>auto, enum</li>
+<li>ただし、対応してないコンパイラがある機能には慎重 (マルチプラットフォームなので)</li>
+<li>テンプレートとか難解な部分はなるべく使わない</li>
+</ul></li>
+<li>コーディングルールが決まっている
+<ul>
+<li>C#の標準にかなり近い</li>
+<li>C++の標準よりこちらを</li>
+<li>「中かっこ論争は醜い」</li>
+<li>誰が書いたかわからないくらい普通のルール</li>
+</ul></li>
+<li>STLは使わない。ゲーム用に特化したいいライブラリがあるので
+<ul>
+<li>boostとか無理やり使うと苦しくなる</li>
+</ul></li>
+<li>C++標準より圧倒的にコンテナ多い。50種類くらいある
+<ul>
+<li>TArray, TSet, TMap (std::unordered_* とか書かなくていい)</li>
+<li>FString (std::stringベースだがほぼ別物), FText (言語切り替えに対応), FName (静的文字列。速い。アセットの名前などに)
+<ul>
+<li>ネットワーク周りのエンディアンとかにも対応</li>
+</ul></li>
+<li>C#ライクなデリゲート。ダイナミックデリゲート(特殊。シリアライズ可能)</li>
+</ul></li>
+<li>Unreal Editorが自動でコード生成
+<ul>
+<li>.cppと.hも個別に作らない</li>
+<li>wizardみたいな感じで</li>
+</ul></li>
+<li>GCあり。UnrealObject (UObject) を継承していれば
+<ul>
+<li>GC最適化可能 (呼び出し感覚、強制GC、並列化、オブジェクトプールなど)</li>
+<li>メモリの可視化</li>
+</ul></li>
+<li>UObjectじゃないものはスマートポインタ
+<ul>
+<li>TSharedPtr, TSharedRef, TWeakPtr</li>
+<li>ゲームで使用する前提の設計</li>
+<li>スレッドセーフじゃなく、標準スマートポインタより早い</li>
+<li>TThreadSafeSharedPtr (ロックフリーアルゴリズム)</li>
+<li>コピー時にメモリ割り当てしない</li>
+<li>例外使わない</li>
+</ul></li>
+<li>C++にメタ情報はない
+<ul>
+<li>RTTI(実行時型情報)はある</li>
+<li>Unreal Header Tool にて実現
+<ul>
+<li>UCLASS, UPROPERTY, UFUNCTION, USTRICT のようなアノテーション</li>
+<li>reflectionだけでなく、様々な情報を追加可能</li>
+<li>ブループリントとの連携に利用 (BlueprintReadWrite, BlueprintCallable)</li>
+</ul></li>
+</ul></li>
+<li>ホットリロード
+<ul>
+<li>ゲーム実行中にC++コードを書き換えることができる</li>
+<li>部分的にDLLをリロードできる (Mono C# がやってる)</li>
+</ul></li>
+<li>ホットリロードのデモ
+<ul>
+<li>C++コード(Actor)を追加</li>
+<li>ヘッダを書き換えるとビルドが遅くなるので、try and error はヘッダを書き換えない方が</li>
+<li>ゲーム実行中にマネキンを設置、C++コードを書く、ビルドすると回転を始める</li>
+<li>さらにC++を書いてビルド → 失敗。エラー箇所にジャンプできる</li>
+<li>さらにC++を書いてビルド → 失敗。ライブデバグ</li>
+<li>「何度も成功してたのですが、やはり生は怖いですね」</li>
+<li>プロパティはblue print 上から見えるようになる</li>
+<li>「ログのLがlに！」 → コンソールにライフの表示を成功</li>
+<li>コンソールへクラス名を吐く (リフレクションの例)</li>
+<li>再起動。Visual Studioとの接続を切断</li>
+<li>Unreal Engineでソースコードをエディットする (VCのインストールはいるけど、立ち上げなくていい)
+<ul>
+<li>VCは重いから。ただしエディタはしょぼい</li>
+</ul></li>
+<li>blue printからVCで該当行にジャンプとか</li>
+</ul></li>
+<li>Unreal C++ は素晴らしい。ただし、ブループリントで十分にゲームを作れる</li>
+<li>Unreal Fest 2015 横浜というイベントがあるよ (1000人まで)</li>
+<li>UE4 GameJamというイベントを関西でやるよ (20人まで)</li>
+<li>Q. コーディング規約をサポートするツールはあるの？
+<ul>
+<li>A. ツールはなさそう。レビューで直しているようだ。ルールで書けないところもあるので難しい</li>
+</ul></li>
+<li>Q. Unreal C++でラムダ式は使える？
+<ul>
+<li>A. はい。VC++で使える機能なら</li>
+</ul></li>
+<li>Q. コンパイル速度はマシン性能による？
+<ul>
+<li>A. VCのコンパイラ速度に依存。モジュール単位でビルドしてるので普通より速いはず</li>
+<li>Q. 今のはでもマシンの性能のせい？</li>
+<li>A. はい。普通は5秒。ハイスペックマシンを使って</li>
+</ul></li>
+<li>Q. コンパイル速度を速くするツールとかノウハウを
+<ul>
+<li>A. すでにやられている。我々ができることはほとんどない</li>
+<li>Q. 分散ビルドは？</li>
+<li>A. 公式にサポートされてるので、使っても</li>
+</ul></li>
+<li>Q. C++14への対応は？
+<ul>
+<li>A. 少しずつ増えている。VC++やXCodeが対応されていれば</li>
+</ul></li>
+<li>Q. コンパイラの選択はできる？ clangとか
+<ul>
+<li>A. 去年の12月に出てきている。問題はまだある</li>
+</ul></li>
+</ul>
 <!--
-## @aizen76 さん 「UE4とUnreal C++でのプログラミング環境について」
-
 ## @shw95349 さん 「元コンシューマ系PGがアケゲ開発やってみた　～アケゲ開発でのC++～」
 
 ## @hotwatermorning さん 「JUCEで作るオーディオアプリケーション」
