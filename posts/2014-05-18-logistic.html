@@ -71,10 +71,10 @@
 </div>
 <p>
     <p>説明変数が複数の二値変数からなり、目的変数が二値をとるロジスティック回帰を考える。</p>
-<p><span class="math">\(\bf{w}\)</span>をウェイト、<span class="math">\(\bf{x}_n\)</span>と<span class="math">\(t_n\)</span>を学習データとする。確率的勾配降下法を用いれば、以下のよく見る式で都度重みを更新できる。 ただし、<span class="math">\(y_n\)</span>は<span class="math">\(\bf{w}^{(i)}\)</span>による<span class="math">\(\bf{x}_n\)</span>に対する予測値で、<span class="math">\(\eta\)</span>は1未満の正の定数。</p>
-<p><span class="math">\[\bf{w}^{(i+1)} = \bf{w}^{(i)} - \eta ( y_n - t_n ) \bf{x}_n \]</span></p>
-<p>二値を0、1とすれば、説明変数は疎ベクトルとなる可能性がある。この場合、ハッシュで表すと空間効率が良い。 定数項を含めるため、<span class="math">\(\bf{w}\)</span>、<span class="math">\(\bf{x}\)</span>にそれぞれ“bias”という項を設け、常に<span class="math">\(1\)</span>で入力するようにする。</p>
-<p>例えば説明変数が2次元の場合、取りうる値は<span class="math">\((0, 0), (1, 0), (0, 1), (1, 1)\)</span>の4つしかないので、 それぞれの点での値とマッチするようにフィッティングされる。<span class="math">\(N\)</span>次元の場合は、<span class="math">\(2^N\)</span>個の等式ができるが、 パラメータ<span class="math">\(\bf{w}\)</span>の数は定数項を入れて<span class="math">\(N + 1\)</span>個であるので、対数尤度を最大にするようにパラメータを 決めなければならないというのは通常のロジスティック回帰と変わらない。</p>
+<p><span class="math inline">\(\bf{w}\)</span>をウェイト、<span class="math inline">\(\bf{x}_n\)</span>と<span class="math inline">\(t_n\)</span>を学習データとする。確率的勾配降下法を用いれば、以下のよく見る式で都度重みを更新できる。 ただし、<span class="math inline">\(y_n\)</span>は<span class="math inline">\(\bf{w}^{(i)}\)</span>による<span class="math inline">\(\bf{x}_n\)</span>に対する予測値で、<span class="math inline">\(\eta\)</span>は1未満の正の定数。</p>
+<p><span class="math display">\[\bf{w}^{(i+1)} = \bf{w}^{(i)} - \eta ( y_n - t_n ) \bf{x}_n \]</span></p>
+<p>二値を0、1とすれば、説明変数は疎ベクトルとなる可能性がある。この場合、ハッシュで表すと空間効率が良い。 定数項を含めるため、<span class="math inline">\(\bf{w}\)</span>、<span class="math inline">\(\bf{x}\)</span>にそれぞれ“bias”という項を設け、常に<span class="math inline">\(1\)</span>で入力するようにする。</p>
+<p>例えば説明変数が2次元の場合、取りうる値は<span class="math inline">\((0, 0), (1, 0), (0, 1), (1, 1)\)</span>の4つしかないので、 それぞれの点での値とマッチするようにフィッティングされる。<span class="math inline">\(N\)</span>次元の場合は、<span class="math inline">\(2^N\)</span>個の等式ができるが、 パラメータ<span class="math inline">\(\bf{w}\)</span>の数は定数項を入れて<span class="math inline">\(N + 1\)</span>個であるので、対数尤度を最大にするようにパラメータを 決めなければならないというのは通常のロジスティック回帰と変わらない。</p>
 <p>perlでさくっと実装すれば以下のような感じ。説明変数が10010次元あり(よって、ウェイトは定数項を入れて10011次元)、それぞれの入力に対して1となる 確率を予測している。</p>
 <div class="sourceCode"><pre class="sourceCode perl"><code class="sourceCode perl"><span class="fu">use</span> <span class="kw">strict</span>;
 <span class="fu">use</span> <span class="kw">warnings</span>;
@@ -187,8 +187,8 @@ subgroup=<span class="dv">7001</span>, RATE=<span class="fl">9.53</span> %
 subgroup=<span class="dv">8001</span>, RATE=<span class="fl">9.87</span> %
 subgroup=<span class="dv">9001</span>, RATE=<span class="fl">11.34</span> %
 UNKNOWN RATE=<span class="fl">6.62</span> %</code></pre></div>
-<p>ここで自分がひっかかっていたのが、説明変数に従属的な関係がある場合。 例えばこのコードだと、subgroupが決まるとgroupが自動的に決まるため、groupの値が一部死に体となる。 が、先ほど書いたようにパラメータ数より等式のほうが圧倒的に大きいので、一部が無視されても実際は問題とはならない。 例えば二次元の場合で第二要素が1の時は必ず第一要素が1となるという制約が入って <span class="math">\((0, 0), (1, 0), (1, 1)\)</span> の値しか 登場しないとしても、パラメータ3つに関して等式が3本となるので、パラメータを決定するには十分な情報がある。</p>
-<p>もう一点、逐次学習するに当たって、学習データにおいてgroupの登場回数(1となっているベクトルの件数)が1つにつき10万回あるのに対し、subgroupの登場回数は100回なので、 subgroupについては十分に学習されないのではないかという懸念もあった。これも結果を見る限りは大丈夫そうだ。 登場回数は少なくても、目的変数が<span class="math">\(1\)</span>となった場合には現時点のズレを元に大きく重みが増えることを考えれば自然に思える。 また、登場回数が少ないということは目的変数が<span class="math">\(0\)</span>になって重みが減算される機会も少ないと言えそうだ。</p>
+<p>ここで自分がひっかかっていたのが、説明変数に従属的な関係がある場合。 例えばこのコードだと、subgroupが決まるとgroupが自動的に決まるため、groupの値が一部死に体となる。 が、先ほど書いたようにパラメータ数より等式のほうが圧倒的に大きいので、一部が無視されても実際は問題とはならない。 例えば二次元の場合で第二要素が1の時は必ず第一要素が1となるという制約が入って <span class="math inline">\((0, 0), (1, 0), (1, 1)\)</span> の値しか 登場しないとしても、パラメータ3つに関して等式が3本となるので、パラメータを決定するには十分な情報がある。</p>
+<p>もう一点、逐次学習するに当たって、学習データにおいてgroupの登場回数(1となっているベクトルの件数)が1つにつき10万回あるのに対し、subgroupの登場回数は100回なので、 subgroupについては十分に学習されないのではないかという懸念もあった。これも結果を見る限りは大丈夫そうだ。 登場回数は少なくても、目的変数が<span class="math inline">\(1\)</span>となった場合には現時点のズレを元に大きく重みが増えることを考えれば自然に思える。 また、登場回数が少ないということは目的変数が<span class="math inline">\(0\)</span>になって重みが減算される機会も少ないと言えそうだ。</p>
 </p>
 
 

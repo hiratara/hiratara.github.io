@@ -48,62 +48,62 @@
 </section>
 <section class="slide level1">
 <h1>monoidal 圏</h1>
-<p>[復習] <span class="math">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
+<p>[復習] <span class="math inline">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
 <ul>
-<li><span class="math">\(\mathbb{C}\)</span> 圏</li>
-<li><span class="math">\(\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}\)</span> 双関手</li>
-<li><span class="math">\(I \in \mathbb{C}_0\)</span></li>
-<li><span class="math">\(\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -\)</span> 自然同型</li>
-<li><span class="math">\(\lambda : I \otimes - \Rightarrow -\)</span> 自然同型</li>
-<li><span class="math">\(\rho : - \otimes I \Rightarrow -\)</span> 自然同型</li>
+<li><span class="math inline">\(\mathbb{C}\)</span> 圏</li>
+<li><span class="math inline">\(\otimes : \mathbb{C} \times \mathbb{C} \to \mathbb{C}\)</span> 双関手</li>
+<li><span class="math inline">\(I \in \mathbb{C}_0\)</span></li>
+<li><span class="math inline">\(\alpha : - \otimes (- \otimes -) \Rightarrow (- \otimes -) \otimes -\)</span> 自然同型</li>
+<li><span class="math inline">\(\lambda : I \otimes - \Rightarrow -\)</span> 自然同型</li>
+<li><span class="math inline">\(\rho : - \otimes I \Rightarrow -\)</span> 自然同型</li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>monoidal 圏</h1>
-<p>[復習] <span class="math">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
+<p>[復習] <span class="math inline">\((\mathbb{C}, \otimes, I, \alpha, \lambda, \rho)\)</span> がモノイダル圏とは、</p>
 <ul>
-<li><span class="math">\(\lambda_I = \rho_I\)</span></li>
-<li><span class="math">\(\alpha \circ \alpha = (\alpha \otimes \mathrm{id}) \circ \alpha \circ (\mathrm{id} \otimes \alpha)\)</span></li>
-<li><span class="math">\(( \rho \otimes \mathrm{id} ) \circ \alpha = \mathrm{id} \otimes \lambda\)</span></li>
+<li><span class="math inline">\(\lambda_I = \rho_I\)</span></li>
+<li><span class="math inline">\(\alpha \circ \alpha = (\alpha \otimes \mathrm{id}) \circ \alpha \circ (\mathrm{id} \otimes \alpha)\)</span></li>
+<li><span class="math inline">\(( \rho \otimes \mathrm{id} ) \circ \alpha = \mathrm{id} \otimes \lambda\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>monoid</h1>
-<p>[復習] モノイダル圏<span class="math">\(\mathbb{C}\)</span>において、<span class="math">\((M, e, m)\)</span> がモノイドとは、</p>
+<p>[復習] モノイダル圏<span class="math inline">\(\mathbb{C}\)</span>において、<span class="math inline">\((M, e, m)\)</span> がモノイドとは、</p>
 <ul>
-<li><span class="math">\(M \in \mathbb{C}_0\)</span></li>
-<li><span class="math">\(e : I \to M \in \mathbb{C}_1\)</span></li>
-<li><span class="math">\(m : M \otimes M \to M \in \mathbb{C}_1\)</span></li>
+<li><span class="math inline">\(M \in \mathbb{C}_0\)</span></li>
+<li><span class="math inline">\(e : I \to M \in \mathbb{C}_1\)</span></li>
+<li><span class="math inline">\(m : M \otimes M \to M \in \mathbb{C}_1\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>monoid</h1>
-<p>[復習] モノイダル圏<span class="math">\(\mathbb{C}\)</span>において、<span class="math">\((M, e, m)\)</span> がモノイドとは、</p>
+<p>[復習] モノイダル圏<span class="math inline">\(\mathbb{C}\)</span>において、<span class="math inline">\((M, e, m)\)</span> がモノイドとは、</p>
 <ul>
-<li><p><span class="math">\(m \circ ( m \otimes \mathrm{id} ) \circ \alpha = m \circ ( \mathrm{id} \otimes m )\)</span></p></li>
-<li><span class="math">\(m \circ ( e \otimes \mathrm{id} ) = \lambda\)</span></li>
-<li><p><span class="math">\(\rho =m \circ ( \mathrm{id} \otimes e )\)</span></p></li>
+<li><p><span class="math inline">\(m \circ ( m \otimes \mathrm{id} ) \circ \alpha = m \circ ( \mathrm{id} \otimes m )\)</span></p></li>
+<li><span class="math inline">\(m \circ ( e \otimes \mathrm{id} ) = \lambda\)</span></li>
+<li><p><span class="math inline">\(\rho =m \circ ( \mathrm{id} \otimes e )\)</span></p></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>monoidとmonad</h1>
 <p>[復習]以下のように読み替えるとよい。</p>
 <ul>
-<li><span class="math">\(\beta \otimes \alpha : G \otimes F \to G&#39; \otimes F&#39;\)</span></li>
-<li><span class="math">\(\beta_{F&#39;X} \circ G\alpha_X : (G \circ F)X \to (G&#39; \circ F&#39;)X\)</span></li>
+<li><span class="math inline">\(\beta \otimes \alpha : G \otimes F \to G&#39; \otimes F&#39;\)</span></li>
+<li><span class="math inline">\(\beta_{F&#39;X} \circ G\alpha_X : (G \circ F)X \to (G&#39; \circ F&#39;)X\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>monoid 準同型</h1>
-<p>射<span class="math">\(f : M \to M&#39;\)</span>がモノイド<span class="math">\((M, e, m)\)</span>と<span class="math">\((M&#39;, e&#39;, m&#39;)\)</span>の間の準同型とは、</p>
+<p>射<span class="math inline">\(f : M \to M&#39;\)</span>がモノイド<span class="math inline">\((M, e, m)\)</span>と<span class="math inline">\((M&#39;, e&#39;, m&#39;)\)</span>の間の準同型とは、</p>
 <ul>
-<li><span class="math">\(f \circ e = e&#39;\)</span></li>
-<li><span class="math">\(f \circ m = m&#39; \circ (f \otimes f)\)</span></li>
+<li><span class="math inline">\(f \circ e = e&#39;\)</span></li>
+<li><span class="math inline">\(f \circ m = m&#39; \circ (f \otimes f)\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>例: 集合圏</h1>
-<p>直積を <span class="math">\(\otimes\)</span> としたモノイダル圏のモノイド準同型は、通常の意味のモノイド準同型となる。</p>
+<p>直積を <span class="math inline">\(\otimes\)</span> としたモノイダル圏のモノイド準同型は、通常の意味のモノイド準同型となる。</p>
 <ul>
 <li>exercise</li>
 </ul>
@@ -126,32 +126,32 @@
 </ul>
 </section>
 <section class="slide level1">
-<h1><span class="math">\(\mathrm{Mon}(\mathbb{C})\)</span></h1>
+<h1><span class="math inline">\(\mathrm{Mon}(\mathbb{C})\)</span></h1>
 <p>モノイドとモノイド準同型は圏を成す。</p>
 </section>
 <section class="slide level1">
 <h1>monoid 変換子</h1>
-<p>モノイド変換子 <span class="math">\((T, \mathrm{lift})\)</span>とは、</p>
+<p>モノイド変換子 <span class="math inline">\((T, \mathrm{lift})\)</span>とは、</p>
 <ul>
-<li><span class="math">\(T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> 関手</li>
-<li><span class="math">\(\mathrm{lift} : \mathrm{In} \Rightarrow T\)</span> 自然変換</li>
+<li><span class="math inline">\(T : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> 関手</li>
+<li><span class="math inline">\(\mathrm{lift} : \mathrm{In} \Rightarrow T\)</span> 自然変換</li>
 </ul>
-<p>ただし、 <span class="math">\(\mathrm{In} : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> は埋め込み関手とする。</p>
+<p>ただし、 <span class="math inline">\(\mathrm{In} : \mathrm{Mon}(\mathbb{C})_0 \to \mathrm{Mon}(\mathbb{C})\)</span> は埋め込み関手とする。</p>
 </section>
 <section class="slide level1">
 <h1>monad 変換子</h1>
-<p>関手圏 <span class="math">\(\mathbb{C}^\mathbb{C}\)</span> において、関手の合成・自然変換の水平合成を<span class="math">\(\otimes\)</span> ととったモノイダル圏におけるモノイド変換子。</p>
+<p>関手圏 <span class="math inline">\(\mathbb{C}^\mathbb{C}\)</span> において、関手の合成・自然変換の水平合成を<span class="math inline">\(\otimes\)</span> ととったモノイダル圏におけるモノイド変換子。</p>
 </section>
 <section class="slide level1">
 <h1>monad 変換子</h1>
 <ul>
 <li>monadから新しいmonadを作れる</li>
-<li><span class="math">\(T\)</span>は貧弱
+<li><span class="math inline">\(T\)</span>は貧弱
 <ul>
 <li>射関数がない関手</li>
 <li>継続モナドのための定義</li>
 </ul></li>
-<li><span class="math">\(\mathrm{lift}\)</span>は<code>return</code>と<code>bind</code>を保つ</li>
+<li><span class="math inline">\(\mathrm{lift}\)</span>は<code>return</code>と<code>bind</code>を保つ</li>
 <li>モナドの構造を保つだけではprogrammingでは不十分
 <ul>
 <li>モナド特有の操作の再利用が必要</li>
@@ -161,18 +161,18 @@
 </section>
 <section class="slide level1">
 <h1>H-operations</h1>
-<p>モノイダル圏 <span class="math">\(\mathbb{C}\)</span> において <span class="math">\(op : HM \to M\)</span> が H-operation であるとは、</p>
+<p>モノイダル圏 <span class="math inline">\(\mathbb{C}\)</span> において <span class="math inline">\(op : HM \to M\)</span> が H-operation であるとは、</p>
 <ul>
-<li><span class="math">\(M\)</span> モノイド</li>
-<li><span class="math">\(H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}\)</span> 関手</li>
+<li><span class="math inline">\(M\)</span> モノイド</li>
+<li><span class="math inline">\(H : \mathrm{Mon}(\mathbb{C}) \to \mathbb{C}\)</span> 関手</li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>例: <code>catchError</code></h1>
 <p>ほとんどの操作はH-operationsを元に導出できる。</p>
 <ul>
-<li><span class="math">\(S - = - \times -^E\)</span> とする</li>
-<li><span class="math">\(\mathrm{catchError&#39;} : S \otimes M \to M\)</span> is first-order
+<li><span class="math inline">\(S - = - \times -^E\)</span> とする</li>
+<li><span class="math inline">\(\mathrm{catchError&#39;} : S \otimes M \to M\)</span> is first-order
 <ul>
 <li>exercise: Check that it’s not algebraic</li>
 </ul></li>
@@ -181,9 +181,9 @@
 </section>
 <section class="slide level1">
 <h1>lifting</h1>
-<p><span class="math">\(\mathrm{op}^M : HM \to M\)</span>をH-operation、<span class="math">\(h : M \to N\)</span>をモノイド準同型とする。<span class="math">\(\mathrm{op}^N : HN \to N\)</span> が以下を満たすとき、<span class="math">\(\mathrm{op}^M\)</span>の<span class="math">\(h\)</span>に沿った持ち上げであるという。</p>
+<p><span class="math inline">\(\mathrm{op}^M : HM \to M\)</span>をH-operation、<span class="math inline">\(h : M \to N\)</span>をモノイド準同型とする。<span class="math inline">\(\mathrm{op}^N : HN \to N\)</span> が以下を満たすとき、<span class="math inline">\(\mathrm{op}^M\)</span>の<span class="math inline">\(h\)</span>に沿った持ち上げであるという。</p>
 <ul>
-<li><span class="math">\(h \circ \mathrm{op}^M = \mathrm{op}^N \circ Hh\)</span></li>
+<li><span class="math inline">\(h \circ \mathrm{op}^M = \mathrm{op}^N \circ Hh\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
@@ -207,7 +207,7 @@
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math">\(\tiny{(S \otimes M) \otimes F \to M}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\tiny{(S \otimes M) \otimes F \to M}\)</span></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -272,23 +272,23 @@
 </section>
 <section class="slide level1">
 <h1>first-order</h1>
-<p>H-operation <span class="math">\(\mathrm{op} : HM \to M\)</span> がfirst-orderであるとは、</p>
+<p>H-operation <span class="math inline">\(\mathrm{op} : HM \to M\)</span> がfirst-orderであるとは、</p>
 <ul>
-<li><span class="math">\(H - = S \otimes -\)</span></li>
-<li><span class="math">\(S \in \mathbb{C}_0\)</span> シグネチャ</li>
+<li><span class="math inline">\(H - = S \otimes -\)</span></li>
+<li><span class="math inline">\(S \in \mathbb{C}_0\)</span> シグネチャ</li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>algebraic</h1>
-<p>H-operation <span class="math">\(\mathrm{op} : HM \to M\)</span> が代数的であるとは、</p>
+<p>H-operation <span class="math inline">\(\mathrm{op} : HM \to M\)</span> が代数的であるとは、</p>
 <ul>
-<li><span class="math">\(\mathrm{op}\)</span> はfirst-order</li>
-<li><span class="math">\(m \circ (\mathrm{op} \otimes \mathrm{id}) \circ \alpha = \mathrm{op} \circ (\mathrm{id} \otimes m)\)</span></li>
+<li><span class="math inline">\(\mathrm{op}\)</span> はfirst-order</li>
+<li><span class="math inline">\(m \circ (\mathrm{op} \otimes \mathrm{id}) \circ \alpha = \mathrm{op} \circ (\mathrm{id} \otimes m)\)</span></li>
 </ul>
 </section>
 <section class="slide level1">
 <h1>algebraic</h1>
-<p>代数的なoperation <span class="math">\(\mathrm{op} : S \otimes M \to M\)</span> と <span class="math">\(S \to M\)</span> という形のH-operationは一対一で対応している。</p>
+<p>代数的なoperation <span class="math inline">\(\mathrm{op} : S \otimes M \to M\)</span> と <span class="math inline">\(S \to M\)</span> という形のH-operationは一対一で対応している。</p>
 <!-- # covariant -->
 <!-- モナド変換子 $(T, \mathrm{lift})$ が共変とは、 -->
 <!-- * $T : \mathrm{Mon}(\mathbb{C}) \to \mathrm{Mon}(\mathbb{C})$ 関手 -->
@@ -327,9 +327,9 @@
 </section>
 <section class="slide level1">
 <h1>algebraic lifting</h1>
-<p><span class="math">\(\mathrm{op}^M : S \otimes M \to M\)</span> をalgebraic operation、 <span class="math">\(h : M \to N\)</span> をモノイド変換子とすると、<span class="math">\(\mathrm{op}^N : S \otimes N \to N\)</span> なる algebraic operation で <span class="math">\(\mathrm{op}^M\)</span> の <span class="math">\(h\)</span> に沿った持ち上げとなっているものが唯一存在する。</p>
+<p><span class="math inline">\(\mathrm{op}^M : S \otimes M \to M\)</span> をalgebraic operation、 <span class="math inline">\(h : M \to N\)</span> をモノイド変換子とすると、<span class="math inline">\(\mathrm{op}^N : S \otimes N \to N\)</span> なる algebraic operation で <span class="math inline">\(\mathrm{op}^M\)</span> の <span class="math inline">\(h\)</span> に沿った持ち上げとなっているものが唯一存在する。</p>
 <ul>
-<li><span class="math">\(\mathrm{op}^N = m \circ ((h \circ \mathrm{op}^M \circ (S \otimes e) \circ \rho^{-1}) \otimes M)\)</span></li>
+<li><span class="math inline">\(\mathrm{op}^N = m \circ ((h \circ \mathrm{op}^M \circ (S \otimes e) \circ \rho^{-1}) \otimes M)\)</span></li>
 </ul>
 <!-- # condensity lifting -->
 <!-- $\mathbb{C}$ をright closedなモノイダル圏とする。 -->

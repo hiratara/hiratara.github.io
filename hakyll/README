@@ -1,8 +1,6 @@
-1. cabal sandbox init
-2. cabal install --dependencies-only
-3. cabal build
-4. ./site build
-5. ./site deploy
-6. Do add and commit and push with git command
+1. stack build --install-ghc
+2. stack exec -- site build
+3. stack exec -- site deploy
+4. Do add and commit and push with git command
 
-If you want to check your post offline, run `./site watch'
+If you want to check your post offline, run `stack exec -- site watch'
