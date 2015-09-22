@@ -2,3 +2,12 @@
 
 Here you can find all my previous posts:
 $partial("templates/post-list.html")$
+
+<ul>
+$if(prevPage)$
+<li><a href="$prevPage$">NEW ENTRIES</a></li>
+$endif$
+$if(nextPage)$
+<li><a href="$nextPage$">OLD ENTRIES</a></li>
+$endif$
+</ul>

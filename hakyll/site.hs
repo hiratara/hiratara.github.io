@@ -1,6 +1,8 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import Control.Monad as M
 import           Data.Monoid (mappend)
+import qualified Data.List.Split as SP
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 import           Hakyll
@@ -42,19 +44,31 @@ main = do
             >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` postCtx)
             >>= relativizeUrls
 
-    create ["archive.html"] $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    defaultContext
+    ids <- do
+      ids' <- getMatches "posts/*"
+      sortRecentFirst ids'
+    let pages = SP.chunksOf 50 ids
+        lastPage = length pages
+        pagePath i = "archive" ++ show i ++ ".html"
 
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` archiveCtx)
-                >>= relativizeUrls
+    M.forM_ (zip [1..] pages) $ \(i, ids) -> do
+        create [fromFilePath (pagePath i)] $ do
+            route idRoute
+            compile $ do
+                posts <- sequence (map load ids)
+                let archiveCtx =
+                        listField "posts" postCtx (return posts) `mappend`
+                        constField "title" ("Archives " ++ show i) `mappend`
+                        (if i > 1 then constField "prevPage" (pagePath (i - 1))
+                                  else mempty) `mappend`
+                        (if i < lastPage then constField "nextPage" (pagePath (i + 1))
+                                         else mempty) `mappend`
+                        defaultContext
+
+                makeItem ""
+                    >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
+                    >>= loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` archiveCtx)
+                    >>= relativizeUrls
 
 
     match "index.html" $ do
