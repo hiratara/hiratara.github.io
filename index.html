@@ -62,6 +62,175 @@
         
 
 <div>
+  <h1>今日は 数学カフェ の日です</h1>
+<div class="post-info">
+    Posted on <a href="./posts/2015-09-27-math-cafe.html">September 27, 2015</a>
+    <!-- facebook button -->
+    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-09-27-math-cafe.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <!-- Twitter button -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-09-27-math-cafe.html" data-text="今日は 数学カフェ の日です" data-via="hiratara">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</div>
+<p>
+    <p><a href="https://www.facebook.com/mathcafejapan">数学カフェ</a> に来ていますので、メモを残しておきます。</p>
+<ul>
+<li>就職しても数学を学びたい、これからを就職する学生さん、数学好きな女性を増やしたい</li>
+<li>今日はデータサイエンスの数学的な部分をきちんとやりたい</li>
+</ul>
+<h2 id="pseudo_finite-さんデータ分析における数理最適化"><span class="citation">@pseudo_finite</span> さん「データ分析における数理最適化」</h2>
+<ul>
+<li>学生時代は数理論理学やってた
+<ul>
+<li><span class="math inline">\(N + Z\)</span> もペアノの公理を満たす(前の数取れるので)</li>
+</ul></li>
+<li>「データサイエンティスト」ではなく「研究員」</li>
+<li>データ分析
+<ul>
+<li>wikipedia : データを用いて分析</li>
+<li>ビジネス : 意思決定・施策
+<ul>
+<li>現象を知る、施策を打つ</li>
+<li>データの元となる現象を解明</li>
+</ul></li>
+</ul></li>
+<li>データ分析の結果を誰が使うか
+<ul>
+<li>経営 : モニタリング・ざっくりした結果</li>
+<li>現場 : アナリスト的</li>
+<li>システム : プログラマ寄り・機械に落とし込む</li>
+</ul></li>
+<li>現象・施策のバランス == ビジネスインパクト
+<ul>
+<li>「日経平均と強い相関」コントロールできない、施策が打てない</li>
+</ul></li>
+<li>レコメンデーション
+<ul>
+<li>Conversion UP、(顧客|店舗)満足度UP</li>
+<li>例: ホテル、本、ニュース、不動産、異性、広告、SNSの友達</li>
+<li>商品を個人へ？ クラスタリング？</li>
+</ul></li>
+<li>レコメンデーション戦略
+<ul>
+<li>データ: 顧客・商品・属性、履歴、事前知識</li>
+<li>シーン : タイミング、個数</li>
+</ul></li>
+<li>技術
+<ul>
+<li>協調フィルタリング、LR、SVM、隠れ状態系(NMF、pLSA、LDA)、数理最適化、RF-確率表</li>
+<li>隠れ状態系はあまり現場で使われてない</li>
+<li>スコアのテーブルを作るのが目標</li>
+</ul></li>
+<li>RF-確率表
+<ul>
+<li>タスク例 : 10週間のログから、顧客が閲覧する物件を予測 (TOP N レコメンド)</li>
+</ul></li>
+<li>分析の流れ
+<ul>
+<li>データクレンジング
+<ul>
+<li>BOT(はずれ値)、0/1 のカラムに日本語が入ってる(QUERY STRINGを生で突っ込んでるとか)</li>
+<li>苦行。ロジック実装後にクレンジングすることもよくある</li>
+</ul></li>
+<li>可視化・基礎集計 (分析の方針を決定する)</li>
+<li>分析用DBを作成</li>
+<li>特徴量を洗い出したり</li>
+</ul></li>
+<li>可視化
+<ul>
+<li>人間が理解しやすい形に</li>
+<li>1万ユーザくらいテキストファイルにして見る。通勤電車で1,000ユーザくらいずつ</li>
+</ul></li>
+<li>RF-確率表 : RecencyとFrequencyで確率を出す
+<ul>
+<li>実績値を確率とする？</li>
+<li>単調性制約 : Recencyが小さい、Frequencyが大きいほど閲覧、という仮定</li>
+<li>実績値は単調性制約を満たさない　(オーバーフィッティング)</li>
+<li>確率表を推定する！</li>
+</ul></li>
+<li>確率表の推定
+<ul>
+<li>単調性制約を満たす</li>
+<li>データ件数が多いセルの閲覧確率は信頼</li>
+<li><span class="math inline">\(p_{ij}\)</span> 実績。 <span class="math inline">\(x_{ij}\)</span> 推定。</li>
+<li>単調性制約を入れる</li>
+<li>数理最適化問題として、ソルバーで解く</li>
+</ul></li>
+<li>RF-確率表のまとめ
+<ul>
+<li>実装が簡単</li>
+<li>チューニングがいらない (ノンパラメトリック)</li>
+<li>運用が現実的</li>
+</ul></li>
+<li>Q. 小数データというのは、個々人で再現してデータが少ないから？
+<ul>
+<li>A. この案件は大規模だから気にしなくていい。小規模な応用とか、商品の違いとかでデータが減る</li>
+</ul></li>
+<li>Q. Recencyとか冪分布になりそう。
+<ul>
+<li>A. 対数分布になりそうだけどやってない。ECサイトによって減衰が違うはず。関数形を仮定しなくていい</li>
+</ul></li>
+<li>Q. ロングテールが問題になりそうだけど？
+<ul>
+<li>A. 気にしてない。時計とかだとなりそう。不動産だと1 conversionで終わりとか。</li>
+</ul></li>
+<li>Q. binの切り方を工夫した方がいいのでは？
+<ul>
+<li>A. 課題はあるのか優先順位は低い。FとRをどうとるか。</li>
+</ul></li>
+<li>Q. 一定数溜まったbinのみを使うとかしない？
+<ul>
+<li>A. 議論はあった。1次元は簡単。2次元だと・・・。簡単さを求めているが、将来はやりたい</li>
+</ul></li>
+<li>制約付きレコメンデーション
+<ul>
+<li>TOP Nではなく、バランスを考慮したリコメンドが必要</li>
+<li>1つの商品ではなくいろんな商品を売りたい</li>
+<li>売れ行き悪い商品の援護</li>
+<li>過剰レコメンドの抑制(店舗の課金を加味。いいホテルは勝手に売れる)</li>
+<li>顧客のリピート率、顧客育成</li>
+</ul></li>
+<li>例えば、各商品の期待利得を1000円以上とか
+<ul>
+<li><span class="math inline">\(x_{ui}\)</span> user×itemの割り当てテーブル、<span class="math inline">\(e_{ui}\)</span> CV期待値</li>
+<li>商品数<span class="math inline">\(\sum{x_{ui}}\)</span> や 期待コンバージョン数 <span class="math inline">\(\sum{x_{ui}e_{ui}}\)</span> に制約</li>
+</ul></li>
+<li>素直なモデルの問題
+<ul>
+<li>CV数が現実的ではなく解がない</li>
+<li>変数のオーダーが10,000オーダーでソルバが厳しい
+<ul>
+<li>100顧客×100商品・・・</li>
+</ul></li>
+<li>レコメンド可能商品を絞ると1,000顧客にはできるけど・・・</li>
+<li><span class="math inline">\(p_i\)</span> を追加。CV目標の違反量。これを重みづけして混ぜて最適化
+<ul>
+<li>連続変数が入るので問題は難しくなっている</li>
+</ul></li>
+</ul></li>
+<li>列生成法とラグランジュ緩和法を組み合わせる
+<ul>
+<li>10,000顧客まで解けるように</li>
+<li>Oracle, Primal*, QUERY を反復する</li>
+<li><span class="math inline">\(P\)</span> パターン集合、 <span class="math inline">\(g_{uip}\)</span> CV期待値</li>
+<li>ラグランジュ乗数でCV目標制約を制御</li>
+<li>ラグランジュ緩和問題が下界を与える</li>
+<li>item×userから、userごとの制約に書き換えられる</li>
+<li>反復回数は10回、40～50回</li>
+</ul></li>
+</ul>
+<!--
+
+## @ simizut22 さん
+
+-->
+</p>
+
+</div>
+
+
+
+<div>
   <h1>今日は「Event for Diverse Game Engineers」の日です</h1>
 <div class="post-info">
     Posted on <a href="./posts/2015-09-20-event-for-diverse-game-engineers.html">September 20, 2015</a>
@@ -1465,748 +1634,6 @@
 </ul>
 <p><a href="http://gihyo.jp/news/report/01/yapcasia2015">gihyo.jpさんのレポーター</a>は今年11人も集まってビビった。今年もこういう機会を与えてもらえたことに感謝。<a href="http://hiratara.github.io/presentations/2015-08-yapc-asia-lt.html">自分のLT</a>についてはミスが重なって<a href="http://hiratara.github.io/presentations/2015-08-yapc-asia-lt.html#/26">オチ</a>まで辿りつかなかった上に、興味を持って英語で話しかけてくれたテンパってまともな受け答えができなかったとこまで含めてとても悲しい。まあ全部自分が失敗したのだから仕方ない。</p>
 <p>年数だけ重ねてるとPerl界隈の色んな方に声をかけてもらえてすごくありがたいのだけど、それに見合うような自分で満足の行く成果はまったく出せていないので、引き続き精進するのみである(と、毎年YAPCの度に思っているのだけど)。そういう反省ができるという意味でも、今年も大変有意義なイベントだった。</p>
-</p>
-
-</div>
-
-
-
-<div>
-  <h1>今日はYAPC::Asia TOKYO 2015 Day 1 の日です</h1>
-<div class="post-info">
-    Posted on <a href="./posts/2015-08-21-YAPC1.html">August 21, 2015</a>
-    <!-- facebook button -->
-    <div class="fb-like" data-href="http://hiratara.github.io/posts/2015-08-21-YAPC1.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <!-- Twitter button -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://hiratara.github.io/posts/2015-08-21-YAPC1.html" data-text="今日はYAPC::Asia TOKYO 2015 Day 1 の日です" data-via="hiratara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-</div>
-<p>
-    <p>今日もビッグサイトの近くにおります。<a href="http://gihyo.jp/news/report/01/yapcasia2015/0001">gihyo.jpさんのレポート</a>も更新されていますので、ぜひご覧くださいませ。</p>
-<h2 id="オープニング">オープニング</h2>
-<ul>
-<li><span class="citation">@yapcasia</span> 使ってね</li>
-<li>5トラックあるよ</li>
-<li>タグは #yapcasia[A-E] でわけてね</li>
-<li>同時通訳あるよ</li>
-<li>wifiのトラフィックレポートあるよ</li>
-<li><a href="http://yapcasia.org/2015/vote/form">ベストトーク投票</a>してね</li>
-<li>6Fでランチあるよ（300食）。明日はランチセッションも別であるよ</li>
-<li>懇親会18時からだよ</li>
-<li>スポンサーには感謝しましょう</li>
-<li>blogを書くまでがYAPC</li>
-</ul>
-<h2 id="larry-wallさん-メリークリスマス">Larry Wallさん 「メリークリスマス！」</h2>
-<ul>
-<li>Larryは今年61才</li>
-<li>「2」にまつわる悪いことがあった</li>
-<li>「6」でも「.pl」でもない話をする？</li>
-<li>トールキン　ホビット物語、指輪物語
-<ul>
-<li>6本の映画。3*2本</li>
-<li>3+2 = 5 (!) Perl 5は決戦の行方</li>
-</ul></li>
-<li>Perl5は成功し、今でも成功を収めている</li>
-<li>Perl5はホビット物語、Perl6は指輪物語</li>
-<li>どちらも「15」年の労力</li>
-<li>N年かかったかどうかは、過去のことであれば関係ない</li>
-<li>「2つのパーティー」「山を登る旅路の物語」</li>
-<li>指輪物語はホビット物語から盗んだ点が多い</li>
-<li>Perlも成長の物語</li>
-<li>様々な敵 - 「Wood Wide Web」</li>
-<li>Second System Syndrome を克服した Perl6</li>
-<li>Perl6はPerl5から色々盗んでいる
-<ul>
-<li>シジル</li>
-<li>簡単なことは簡単に</li>
-<li>実践的</li>
-</ul></li>
-<li>Perlが好かれているのは表面上ではなく真相の部分</li>
-<li>Perl6は表面の部分は代わっている</li>
-<li>Perl5には欠点がある</li>
-<li>Unixの正規表現やawkの型、Cの演算子</li>
-<li>Perl6では正規表現を再設計。Perl6のパーサをパターンで書ける
-<ul>
-<li>他の言語はPerl5の正規表現を真似ているのは皮肉</li>
-</ul></li>
-<li>Perl6のいいところは？ → 経験しないとわからない</li>
-<li>どうやるかより何をやるか</li>
-<li>型 - Mooseのようなもの。Meta Object Protocol
-<ul>
-<li>今までの言語でここまで柔軟なものはない</li>
-</ul></li>
-<li>multi path parsingを整理
-<ul>
-<li>正規表現 「//x がデフォルト」「パターンはstringではなくlanguage」</li>
-<li>1 path parsing 言語ごとに切り替える「Mixins」</li>
-</ul></li>
-<li>単位元の扱い、大きな整数</li>
-<li>言語を設計することは世界を設計すること</li>
-<li>仲間。IRCには200人がログインしている
-<ul>
-<li>トロールもいるが仲良くしようとしている</li>
-<li>意見が違ってもいいけど仲良くしたい</li>
-</ul></li>
-<li>Perl5 スレッドとグローバル変数
-<ul>
-<li>BEGIN, CHECK, INIT, END : フェーザー</li>
-<li>CHECK コンパイルの終わり、INIT ランタイムの始まり</li>
-<li>CATCH、CONTROL 例外処理</li>
-<li><code>signal(SIGINT).act: { ... }</code> プリミティブとして</li>
-<li>マルチコアに対して対応</li>
-</ul></li>
-<li><code>0, 1, *+* ... *</code> フィボナッチ</li>
-<li><code>my ($a, $b, $c) = 42 xx *</code> lazy list</li>
-<li>contextの決定は実行時</li>
-<li>実行時例外 : pythonよりクリーンな言語にできる</li>
-<li>実行時の字句解析</li>
-<li>ANNOUNCEMENT!
-<ul>
-<li>christmas??</li>
-<li>2015!! の予定のつもりで頑張ってる</li>
-<li>ボランティアなので。人生の方が大事だよね</li>
-</ul></li>
-<li>機能を固めてる段階。今後は安定版のメンテも行う</li>
-<li>まずはrakudo。MoarVMも</li>
-<li><code>-Ofun</code></li>
-<li>Perl6のリライトの3分野
-<ul>
-<li>NFG : ユニコードのNFD, NFC</li>
-<li>NSA : 科学用行列計算</li>
-<li>GLR : セマンティックの単純化。リストのリストをできるよう</li>
-</ul></li>
-<li>「正しく失敗する」
-<ul>
-<li>Perl6は失敗すると想定していた</li>
-<li>Perl5は欠点があるが使われている。Perl5のよくない部分を直す</li>
-<li>boot strapのPerl6コンパイラはまだ</li>
-</ul></li>
-<li>ユーザの邪魔をしない言語。自然言語のような言語</li>
-<li>指輪物語から得たことは多い</li>
-<li>Perl7の設計できるまで長生きするかもね。</li>
-<li>パーティーを楽しみましょう！</li>
-</ul>
-<h2 id="aerealさん灘友さん世界展開する大規模ウェブサービスのデプロイを支える技術">aerealさん、灘友さん「世界展開する大規模ウェブサービスのデプロイを支える技術」</h2>
-<ul>
-<li>Miiverse
-<ul>
-<li>世界展開。リージョン跨ぎ</li>
-<li>Wii Uや3DSのアバターサービス</li>
-<li>PC、スマホからも利用可能</li>
-<li>全てをWEBベースで実装</li>
-<li>ゲームからAPIを叩くことも。専用ライブラリも</li>
-</ul></li>
-<li>インフラはHatena、クライアントはNintendo
-<ul>
-<li>ローカライズや運営は海外ごと</li>
-<li>JS/US/EUの3リージョン構成</li>
-</ul></li>
-<li>Proxy server, AppServer, DB
-<ul>
-<li>DBはマルチマスタで相互レプリケーション</li>
-<li>PC版はUSリージョンのみ</li>
-</ul></li>
-<li>Timeline, Empathy, Notificationを処理を分離。RESTで</li>
-<li>Capistrano2 + Git : いわゆるpull型
-<ul>
-<li>海を越えると <code>git pull</code> は辛い</li>
-<li>Gitサーバが耐えられなくなる</li>
-</ul></li>
-<li>Git slaveを用意する
-<ul>
-<li>lsyncdでinode監視してrsync</li>
-<li>ファイル数多すぎてlsyncdの上限を超えた事件</li>
-<li>rsync中のgit fetchで配布物がサーバ毎に変わる事件</li>
-</ul></li>
-<li>ロールでデプロイを分ける。ランダムスリープ</li>
-<li>デプロイ対象サーバの管理は Mackerel APIを使って
-<ul>
-<li>net-sshが負荷でセグフォするなど</li>
-<li>サーバ毎にroleを分けてる</li>
-<li>サブシステムはMackerelでAutoScale</li>
-</ul></li>
-<li>内容による手動対応も多い</li>
-</ul>
-<p>ここからバトンタッチ。</p>
-<ul>
-<li>昔はRedmineで開発していた</li>
-<li>GitHub Enterpriseを導入</li>
-<li>コードレビュー用の <code>ghe</code> というリモートを別に用意している
-<ul>
-<li>2箇所に <code>push</code> が必要</li>
-<li>Merge pull requestボタンは使わない (GHE上でマージすると <code>HEAD</code> の不一致が起こる可能性)</li>
-</ul></li>
-<li>複数のGitリポジトリの同期
-<ul>
-<li><code>google/hesokuri</code> Clojureで書かれている
-<ul>
-<li>マッピングは静的に決まる</li>
-<li><code>ghe</code> のメンテなどに耐えられない</li>
-</ul></li>
-<li><code>ghm</code> はてな製
-<ul>
-<li>Webアプリ。同期したりしなかったり</li>
-</ul></li>
-<li>同期が直列 (リポジトリが増えるときつい)</li>
-<li>古いリビジョンのデプロイ</li>
-</ul></li>
-<li>新たなgit同期システムを開発
-<ul>
-<li>JSONのREST API群</li>
-<li>Gitサーバ登録・取得、マスタ昇格・降格、リポジトリ、ジョブ実施</li>
-<li>GHEへpush → リポジトリsyncへWEB HOOK → <code>pull@して</code>push`</li>
-<li>HTTP POSTすればいいだけなのでいろいろなサービスとの連携が容易</li>
-<li>複数スレーブを扱える、同期ジョブの並列実行</li>
-</ul></li>
-</ul>
-<p>ここでまたバトンタッチ。</p>
-<ul>
-<li>pull型の問題
-<ul>
-<li>全部 <code>commit</code> する場合 : リポジトリが肥大化（コンパイルしたものも）</li>
-<li>ソースだけの場合 : デプロイが長い、違う成果物</li>
-</ul></li>
-<li>Consulとstretcher
-<ul>
-<li>配布物をAmazon S3などへ保存</li>
-<li>デプロイのmanifest(YAML)も</li>
-<li>consul event でイベント通知</li>
-<li>イベントを受けてデプロイを実施</li>
-<li>consulなので並列</li>
-<li>S3なので負荷は考えなくていい</li>
-<li>gitリポジトリに成果物は不要</li>
-<li>追加、rollbackなどもmanifest指定だけ</li>
-</ul></li>
-<li>成果物はjenkins先生におまかせ</li>
-<li>100台へのデプロイでベンチ
-<ul>
-<li>1,142秒から29秒</li>
-<li><code>git pull</code> がそんなに早くない、という話</li>
-</ul></li>
-<li>AutoScaleとの連携をしたい (ただし、初回はconsulイベントは送れない)</li>
-<li>Miiverse での利用もしたい (3リージョン必要)</li>
-<li>デプロイの高速化で、価値のお届けも高速化</li>
-<li>Q. どの言語で？ なぜ？
-<ul>
-<li>A. Perl5。MiiverseなどはPerl5で実装されている。開発を支えるものなので冒険せずに済むもの</li>
-</ul></li>
-<li>Q. デプロイの頻度は？
-<ul>
-<li>A. 2週間に一度。bug fixがあればいつでも</li>
-</ul></li>
-<li>Q. capistranoでデプロイに失敗した時の検出は
-<ul>
-<li>A. strecherは成功・失敗のコマンドフックがある。Ikachan経由で通知を</li>
-</ul></li>
-<li>Q. Merge pull request ボタンは使えるようになった？
-<ul>
-<li>A. リポジトリ同期システムがあれば使えるようになった</li>
-</ul></li>
-<li>Q. コードデプロイの検討は？
-<ul>
-<li>A. 検討してない。確かまだリリースされていなかった</li>
-</ul></li>
-<li>Q. consulは台数が少ないとメリットない？
-<ul>
-<li>A. 30～50台くらいでgitサーバの負荷が高くなる</li>
-</ul></li>
-</ul>
-<h2 id="kazuho-okuさん-http2-時代のウェブサイト設計">Kazuho Okuさん 「HTTP/2 時代のウェブサイト設計」</h2>
-<ul>
-<li>サーバの応答遅延とクリック率の研究 by Microsoft
-<ul>
-<li>2秒の遅延で4.4%クリック率が下がる</li>
-</ul></li>
-<li>WEBサイトあたりのデータ転送量の増加</li>
-<li>インタネットのバンド幅の増加、年率50%</li>
-<li>ページロード時間はバンド幅に比例しない。1.6Mbps程度で頭打ち</li>
-<li>バンド幅ではなくレイテンシーが小さいとページロードが速い</li>
-<li>1RTTにに1リクエストしか送れない
-<ul>
-<li>HTTP/1.1 のパイプラインによる改善
-<ul>
-<li>サーバにおくれたかわからない、最初の転送が遅いと詰まる、サーバ実装にバグ</li>
-</ul></li>
-</ul></li>
-<li>レイテンシは光の速度で決まる。アメリカで80ms</li>
-<li>携帯回線のレイテンシのおおきさ</li>
-<li>レイテンシに負けないプロトコルの作成 HTTP/2</li>
-<li>ChromeのQUICプロトコルを標準化
-<ul>
-<li>バイナリ、多重化、ヘッダ圧縮、優先度制御、サーバプッシュ</li>
-</ul></li>
-<li>バイナリ
-<ul>
-<li>脆弱性の防止
-<ul>
-<li>asciiだと、スペースなどの解釈があいまいとなる</li>
-</ul></li>
-<li>転送データを小さくする</li>
-<li>ヘッダ圧縮がバイナリなんだから</li>
-</ul></li>
-<li>全ての通信データはフレームに
-<ul>
-<li>様々なフレームタイプがある</li>
-</ul></li>
-<li>先にHEADERSフレームをクライアントとサーバで交換、その後DATAフレーム</li>
-<li>METHODやschmeもヘッダに入れることに注意</li>
-<li><code>h2i</code> ASCIIでHTTP/2を試せるツール</li>
-<li>同時に100以上のリクエストが可能、レスポンスも任意、stream IDで制御</li>
-<li>HTTP/1.1のヘッダのおおきさ → 100レスポンスでで30KBとか
-<ul>
-<li>HPACK : 静的は不満圧縮、再登場の文字列をオフセットで、など</li>
-<li>最初のリクエストは半分くらいのサイズに</li>
-<li>2回目は直前のリクエストを利用して 1/5 に</li>
-<li>3回目は1/20程度に！</li>
-<li>画像、CSSの大量な数の転送に強い</li>
-</ul></li>
-<li>小さい画像をたくさん並べるでもデモ
-<ul>
-<li>リロードを続けて失敗が(まあこういうことも)</li>
-</ul></li>
-<li>優先度
-<ul>
-<li>クライアントが指定</li>
-<li>サーバが尊重</li>
-</ul></li>
-<li>HTTP/1.1, SPDY/3.1, HTTP/2 の比較</li>
-<li>Firefoxの優先度制御
-<ul>
-<li>weightに比例して優先してレスポンスを返す</li>
-<li>HEADのJSとBODYのJSで違う</li>
-</ul></li>
-<li>chromeの優先度制御 : 残念
-<ul>
-<li>依存関係を分析してない</li>
-<li>画像がバンド幅を食いつぶす</li>
-</ul></li>
-<li>H2Oの優先度制御
-<ul>
-<li>クライアントの優先度が怪しいとき、サーバ側が優先度制御する</li>
-</ul></li>
-<li>他のサーバの優先度制御
-<ul>
-<li>nghttp2 は頑張ってるけど、他はやばい</li>
-<li>サーバがやらないとクライアントの最適化が効かない</li>
-</ul></li>
-<li>サーバプッシュ
-<ul>
-<li>ラウンドトリップを0にする</li>
-<li><code>&lt;link /&gt;</code> を見るとかして、予測して返す</li>
-<li>RFC通りだと速くならない</li>
-</ul></li>
-<li>キャッシュに入っている場合はpushしたくない
-<ul>
-<li>H2O 1.5 : cache-aware server-push → Cookieでキャッシュに何を持ってるか追跡する</li>
-</ul></li>
-<li>HTTP/2 で無意味になるクライアントの最適化
-<ul>
-<li>アセットの結合 : 余分なものが入っていると転送量が増えるため</li>
-<li>expiresの利用 : 304レスポンスを使い放題なので。 <code>?</code> の管理が面倒</li>
-<li>ドメインシャーディング : 複数TCPにしてしまうと、優先度制御ができない
-<ul>
-<li>WEBアプリからのレスポンスもCDNを通すといい</li>
-</ul></li>
-</ul></li>
-<li>「H2Oを使えば売り上げが上がる」</li>
-<li>HTTP/2はHTTPS限定
-<ul>
-<li>無料で。 LetsEncrypt 11/16から</li>
-<li>Ciphersuites : 使ってよい暗号化手法の一覧</li>
-<li>Forward Secrecy : 暗号カギを変える
-<ul>
-<li>CiphersuitesのみではPFSにならない</li>
-<li>セッションキャッシュによって</li>
-<li>session resumption</li>
-<li>session ticket : クッキーと同様、サーバが覚える
-<ul>
-<li>キーを暗号化する鍵がバレルと終わる</li>
-<li>session ticketを無効にする</li>
-</ul></li>
-<li>H2Oはクラスタ化してもmemcachedでresumption可。session ticketの秘密鍵も自動更新</li>
-</ul></li>
-</ul></li>
-<li>nginxの技術者とも意見交換したので追いかけてくる
-<ul>
-<li>H2Oはその先を行くので、ぜひ使ってください</li>
-</ul></li>
-<li>Q. RFCの機能への対応表一覧は？
-<ul>
-<li>A. <code>MUST</code>、<code>SHOULD</code>は大体対応している</li>
-</ul></li>
-<li>Q. 画像が表示できなかった理由のイメージは？
-<ul>
-<li>A. サーバ負荷の問題ではないかと予想</li>
-</ul></li>
-<li>Q. HTTPはRPCでも使われていてHTTP/2の恩恵は受けられるが、クライアント側の状況は？
-<ul>
-<li>A. 今のところ <code>libcurl</code> のみ。</li>
-</ul></li>
-<li>Q. 1st paint timeはどうやって計測している？ Firefoxは対応してなかったはず
-<ul>
-<li>A. 最後のCSS、JSの転送終了を見ている。いつ1st paintが起きうるか、で測定</li>
-</ul></li>
-<li>Q. 普及時期は？
-<ul>
-<li>A. Firefox, Chromeは対応済。主要なブラウザもサーバも秋には対応される。HTTPSである必要があるのでLetsEncrypt待ち。早いと今年の年末には3～4割になるのでは</li>
-</ul></li>
-<li>Q. チューニングの勘所はApacheなどと違う？
-<ul>
-<li>A. デフォルトで最適になるようにするので、チューニングは不要。サイト設計のファイルサイズが変わるのが</li>
-</ul></li>
-</ul>
-<h2 id="ジンジニアさん若手エンジニア達の生存戦略">ジンジニアさん「若手エンジニア達の生存戦略」</h2>
-<p>座談会でした。 <span class="citation">@crazygirl_lover</span> さんがファシリテータでした。ほか、<span class="citation">@hisaichi5518さん</span>、<span class="citation">@mihyaeru21さん</span>、<span class="citation">@__papix__さん</span>、<span class="citation">@zoncoenさんです</span>。</p>
-<ul>
-<li>C: 生存戦略の話です</li>
-<li>C: PyCon開催されます</li>
-<li>C: Perlはベテランなのではという疑問から。緊張しているのでゆるふわっと。</li>
-<li>Z: 去年入社で動画配信やってます</li>
-<li>P: 去年入社で基盤とか、エンジニア文化とか、入学式とか</li>
-<li>M: 去年入社でゲームのバックエンド</li>
-<li>H: 中途でハンドメイドマーケットのAPI開発</li>
-<li>C: 人事やってます</li>
-</ul>
-<p>とりあえずビールで乾杯。</p>
-<ul>
-<li>C: ほんとに若いのか</li>
-<li>P: 先日26。サスペンダーでおめかししてます</li>
-<li>M, Z: 26です</li>
-<li>H: 26だけど早生まれなので学年上。社会人歴は4年目</li>
-<li>C: いつからPerlを書いている</li>
-<li>H: 大学一年からPerl</li>
-<li>C: 学生でPerlはめずらしい？</li>
-<li>H: Perlはいない。Rubyはいる</li>
-<li>C: 自分の開発に使った？</li>
-<li>H: 掲示板。ググったらCGI</li>
-<li>C: 初めがPerl。他に学生では？</li>
-<li>P: 大学3年で研究室が</li>
-<li>C: どう思った？</li>
-<li>P: へえ、Perlなんだ、くらい。</li>
-<li>M: 最初はBASIC。化学だったけど授業で。面白かった。</li>
-<li>P: あー</li>
-<li>M: 隣から「あー」っておっさんの声がｗｗ</li>
-<li>M: C触ってた。Perlは古いイメージ。記号が意味わからないという印象</li>
-<li>P: 同じ印象は持っていた。けどやってみた</li>
-<li>Z: 生命科学やってて、VB触ってみたり、情報へ移った。CとPython使ってた。DeNAに移るときに2013年くらいにPerl</li>
-<li>Z: 会社に入って初めてfastcgi書いた</li>
-<li>C: Perlくそふざけんな、ってDISること多いと聞いたけど？</li>
-<li>Z: もともと情報系じゃなかったのでクソと思う知識もなかった。すでにいい意味で枯れてた。公開されていたいい情報も多かった</li>
-<li>C: 今は仕事でどう使ってる？</li>
-<li>P: YAPCのスポンサーもしている。サーバサイドはperl。日常がPerlとある</li>
-<li>C: hisaichiさんは使ってないのでは</li>
-<li>H: 今はRuby。前はPerlだった。</li>
-<li>C: Perlを懐かしむことは？</li>
-<li>H: 見ると懐かしい気持ちになる。 <code>use strict</code> を打てなかった</li>
-<li>C: 入社前どんなもの作ってた？ 会社に入って変わったことは？</li>
-<li>M: 入社前はiOSアプリ。入社してからPerl。モダンなPerlは書きやすく、記号も簡潔に書くために存在している</li>
-<li>M: 周りに聞ける人も多かった</li>
-<li>C: 影響を受けた人っていますか？</li>
-<li>H: 最初の会社のsongmuさんの影響が大きい。人と話すことを重要視するエンジニア。</li>
-<li>Z: チームでPerlごりごりはやってない。研修で。入社前に見た有名な人のブログとか。人とのコミュニケーションが大事</li>
-<li>C: 人とのコミュニケーションって大事？</li>
-<li>P: 会社に入る＝みんなでやる、を自分で選んだということ。強みを生かすためのコミュニケーション。その上に技術</li>
-<li>C: コミュニケーションでフラストレーションは？</li>
-<li>P: 暴投とかはやっぱりあるけど、お互い様</li>
-<li>C: エンジニア同士？違う職種？</li>
-<li>P: どちらもある。それを乗り越えるのが仕事なので頑張る</li>
-<li>C: 思ったよりまともな回答ですね</li>
-<li>P: 若手ですけどみんな成人しているので大人です</li>
-<li>C: 会社の違いでコミュニケーションの違いとかは？</li>
-<li>H: 1社目は対面でやってた。今は福岡と東京。リモートが違う。</li>
-<li>C: 物理的な距離をどう克服？</li>
-<li>H: 最初戸惑った。skypeでエンジニアだけの朝会を別チームだけどやるようにしたら改善。レビューとかもスムーズに</li>
-<li>C: そういう改善はだれが言い出す？</li>
-<li>H: 福岡の人たちが提案してくれる。週一でエンジニアで集まって座談会したり</li>
-<li>C: お酒が足りないのか、まともな話。上の人がムカつくとか話してたのに</li>
-<li>P: 部長がそこにいるのでやめてください！！！</li>
-<li>C: 若手だからこそ困ることはある？</li>
-<li>P: マサカリは飛んでこないに越したことないけど、飛んできたらありがたい。政治とかは避ける。部長を巻き込んだりして解決してる</li>
-<li>M: 一個人の意見は上に発言しにくい。チームとして声を集める。最近そういうことが多い</li>
-<li>C: 大きい会社ほどそういうところは大変では？</li>
-<li>Z: リードエンジニアに話せばあとはやってくれてるので、今のところは大丈夫。若手ということに甘えていろいろ言うことがある。クソって言っても許されるとか</li>
-<li>Z: 自分のチーム以外と知り合うことがあまりなかったのが、Slackとかで会話しやすくなったので改善された</li>
-<li>C: 若手の特権は使ってる？</li>
-<li>P: あれ、これ、やりましょうってのを言ってる。特権はうまく使った方が</li>
-<li>H: Arkをまったく理解できなかった。今思うと青かったな</li>
-<li>C: 中堅になると老獪的になったりする？</li>
-<li>H: 「老害」にはなってないと信じてる</li>
-<li>C: 「老獪」です</li>
-<li>P: そろそろガソリンを投入しないと</li>
-</ul>
-<p>ここでビールを追加。</p>
-<ul>
-<li>C: コミュニティに参加する意味は？</li>
-<li>Z: songmuさんにとりあえず応募してから考えろと言われたので去年トークに応募した。他の人のブログが役に立ったことから、そういうことをやりたかった。</li>
-<li>Z: 懇親会でしゃべれるのが便利、ってのも</li>
-<li>C: 登壇すると社内での評判も変わる？</li>
-<li>Z: 外の部署からそういうことで話しかけてもらえる。</li>
-<li>C: 大きい企業だからこそですね。Perl入学式については？</li>
-<li>P: Perlという言語への貢献にもいろいろあるという考えから。就活の時有利って思いも</li>
-<li>C: 実際就活に役立った？</li>
-<li>P: 正直めっちゃ役立った。Perlで飯食うと決めていた。相手は自分を知ってくれていたので。みんなが幸せになるように巻き込んでいきたい</li>
-<li>C: ブログ書いてるんだっけ？</li>
-<li>M: そうでもない。コミュニティに積極的に参加してないし、ここに居ることが珍しい。たぶん前に出ない人の方が多いし、自分も貢献しようってところはできてない</li>
-<li>M: 新潟の開発者コミュニティに影響されてこの業界に入ることを決めた。そういう影響は受けた</li>
-<li>C: 同世代の登壇者のような知り合いから何か影響を受けている？</li>
-<li>M: papixさんとかは近い存在。研修一緒に受けたり。ライブラリを公開したりという意識は</li>
-<li>C: ちょうどmihyaelさんのライブラリが公開されている</li>
-<li>H: ブログでtokuhiromさん、gfxさん、lestrratさんの影響を受けた。dankogaiさんに勝手に添削されたり、すごいありがたかった。Perlの人たちはやさしいので教えてくれる</li>
-<li>H: すぎゃーんさんに説明会に誘われてそのまま入社。コミュニティには感謝している</li>
-<li>C: これからどうエンジニアという仕事に向き合っていく？ 35才定年説とか</li>
-<li>Z: 目の前の課題に必死になってる段階。将来についてはITだけじゃなくよくわからないけど、なるようになる。今の仕事は楽しいから続けたい</li>
-<li>P: 将来はわからない。技術も明日はわからない。目の前の楽しいことを片付けたい。楽しく生きたいけど、楽しいと楽は違う。</li>
-<li>M: 変わるってことを前提に生きていく。一つのことをやるよりはいろいろ手を出す</li>
-<li>H: 自分の弱みを直したくて転職した。Ruby、go、coffeeなどをやりまくったけど、いろいろできそう。強みを育てたい</li>
-<li>Q. 上の人が話を聞いてくれなくてやばいとおもったこととかは？
-<ul>
-<li>M: むかしの経験で考えるため、マシン性能を上げることを渋る節がある</li>
-<li>P: 上司に中途半端に言わないようにしている。納得するまで言い続ける</li>
-</ul></li>
-<li>Q. どういうことを聞いて老害っぽいことを思うのか
-<ul>
-<li>Z: 過去と同じ状況を前提して、話されると柔軟性ないと感じる</li>
-<li>H: だいたい言われてしまいました・・・そんな感じです</li>
-<li>P: 下の話を聞いてくれなくなったときに感じる。コミュニケーション放棄するとか</li>
-</ul></li>
-<li>Q. 登壇やコミュニティーに出てないとのことだったが、今日のことはどう感じている？
-<ul>
-<li>M: 普段出てこない人の意見は貴重なので、それを言えたのはいい。前に出たい性格ではないので、隠居したい</li>
-</ul></li>
-<li>Q. 来年から新卒でエンジニアやる。業務中の失敗をなんとかした体験談
-<ul>
-<li>Z: やらかしたと思ったら生き延びれない。しょうがない</li>
-<li>Z: スキーマ更新忘れてリリースしたとか。やった時点でダメなので、再発防止が大事</li>
-<li>P: 公開鍵吹っ飛ばしたとか。誰でもやらかすので、やらかしたら頑張る。再発防止が大事</li>
-<li>M: DB変更込みのリリースをしてrevertしたらさらにひどいことに。syntaxエラーがあって単体テスト書けてなかった。</li>
-<li>H: 事前にデプロイしてあって1/1に確認するだけだったが、エラーがでた。去年の1/1のデータを消してなかったため発生。やっていることを書きながら説明したこと、すぐ対応したことは褒められた</li>
-</ul></li>
-<li>C: 次のセッションのうっかりをなくす技術を聞いたらいいよ</li>
-<li>Q. みなさんの若いフレキシブルな野望を！
-<ul>
-<li>P: 自分の会社をエンジニアにとって最高の会社にする</li>
-<li>M: アプリで一山当てて隠居する</li>
-<li>H: 金を稼げるようなエンジニアになる</li>
-<li>Z: IT芸人じゃなく有名になって、お金を儲けたい</li>
-</ul></li>
-</ul>
-<h2 id="fukayatsuさん趣味から育てたwebサービスで生きていく"><span class="citation">@fukayatsuさん</span>「趣味から育てたWEBサービスで生きていく」</h2>
-<ul>
-<li>esa.io : markdownによるチーム内ドキュメント共有サービス
-<ul>
-<li>会社を作って２人でやっている</li>
-</ul></li>
-<li>5回転職していろいろやっていた</li>
-<li>Androidアプリ、Ruby Gems、Chrom Apps、などを趣味でたくさん作っている</li>
-<li>LTTMという拡張を作ってる</li>
-<li>たくさん試すと、どれかはうまくいく</li>
-<li>使っていたアプリの使用期間が切れたので、開発合宿で二人で作った</li>
-<li>合宿後も開発してた。仕事終わりにハッカソン</li>
-<li>10人くらいの別のチームでドッグフーディング</li>
-<li>知り合いの会社に使ってもらった → 事業化の希望が見える</li>
-<li>副業するための会社を作った。責任を取って会社を運営するため</li>
-<li>オープンβでユーザを待たせすぎてしまった</li>
-<li>会社を辞めた。ユーザが急に増えてきた</li>
-<li>「楽しく開発したい」
-<ul>
-<li>自分が楽しむことでユーザも楽しい</li>
-<li>楽しさやモチベーションは直接コントロールできない</li>
-</ul></li>
-<li>制御可能なものを見極めて、それを制御
-<ul>
-<li>毎日 <code>bundle update</code> BOTがやってる</li>
-<li>Bug Fix タイムアタック : 10分でできると、良し！</li>
-<li>フィードバック駆動。メールは5分以内。弁当食べてる時だと返せなくて落ち込む</li>
-<li>リリースノート駆動。esaがいいサービスなのでリリースノートを書きたくなる、ことを利用</li>
-<li>“心からの” ドッグフーディング : 自然に使うこと</li>
-<li>よく寝る → 機嫌悪くなる損失とか。従業員全員睡眠トラッキング</li>
-<li>We’re Not Hiring → 機動性重視</li>
-<li>Herokuを使う - Heroku便利(という媚びをｗ)</li>
-<li>開発スケジュールを決めない
-<ul>
-<li>モチベーション駆動。ユーザからの要求にモチベーションが上がることが大事</li>
-</ul></li>
-<li>かわいみ - かわいい歯正義。キャラクターやグッズをリリース前から</li>
-</ul></li>
-<li>日に3.2回くらいデプロイ</li>
-<li>100クラス程度。小さい</li>
-<li>weekly active usersを追跡。半年で2倍に</li>
-<li>5年前の日記にいいことを書いている
-<ul>
-<li>たくさん試行錯誤をしたおかげで今がある</li>
-</ul></li>
-<li>やりたいことをやって生活できて周りの人を幸せにできると最高</li>
-<li>「最高！」(拍手)</li>
-<li>Q. フリープランは作る予定は？
-<ul>
-<li>A. OSSコミュニティ、学割などは考えている</li>
-</ul></li>
-<li>Q. トライアル期間が終了した某サービスとは
-<ul>
-<li>A. qiita teamです</li>
-</ul></li>
-<li>Q. esa.ioへ別システムから移行するには
-<ul>
-<li>A. APIがあるので、それ経由</li>
-</ul></li>
-<li>Q. かわいい鳥はどうやって決めたのか
-<ul>
-<li>A. 勝手にキャラクターが動いた感じ</li>
-</ul></li>
-<li>Q. テストはどのくらい書いていますか
-<ul>
-<li>A. カバレッジ90%以上</li>
-</ul></li>
-</ul>
-<h2 id="lt">LT</h2>
-<h3 id="くしいさん日本最多のオフィス訪問シリーズ-行ってきたシリーズのtop5αとして日本のイケてるオフィスを紹介しちゃうよ">くしいさん「日本最多のオフィス訪問シリーズ 「行ってきたシリーズ」のTOP5＋αとして日本のイケてるオフィスを紹介しちゃうよ！」</h3>
-<ul>
-<li>反応してね！</li>
-<li>Perl書いたことないけど運営やってた</li>
-<li>「行ってきた」</li>
-<li>107記事、2009年より</li>
-<li>自分のオフィス移転に伴って他社の写真をとった</li>
-<li>オフィスという切り口で環境を変えると人生が変わる</li>
-<li>5位 NHN</li>
-<li>4位 グリー</li>
-<li>3位 クックパッド</li>
-<li>2位 フリークアウト</li>
-<li>1位 ネクストイノベーション株式会社(ドラマのセット)</li>
-<li>日本マイクロソフト、バーグハンバーグバーグ (番外編)</li>
-<li>isuconあるのでよろ！ WEB DB Pressよろ！</li>
-</ul>
-<h3 id="どきゅねおさんgitの作り方">どきゅねおさん「Gitの作り方」</h3>
-<ul>
-<li>今月就職しました！</li>
-<li>gitを理解する最良の方法は自分でGitを実装する</li>
-<li>gitはコンテンツ管理システムと見れる
-<ul>
-<li>ソース、コンテンツ。</li>
-<li>KVSで格納している</li>
-<li>SHA1とzlib圧縮されたなにか</li>
-<li>“hello world” 12byte → headerつけて圧縮</li>
-</ul></li>
-<li><code>git cat-file-p</code> Cでzlibでごにょごにょすれば実装できる</li>
-<li>サブコマンドを一個ずつ作っていけば作れる
-<ul>
-<li>サブコマンド数個で疲れたので終了</li>
-</ul></li>
-</ul>
-<h3 id="papixさんsaasを組み合わせて作る-ぼくらの障害対応術">papixさん「SaaSを組み合わせて作る, ぼくらの障害対応術!」</h3>
-<ul>
-<li>障害はぼくらに牙をむく</li>
-<li>発見する仕組みを各社作ってるでしょう</li>
-<li>直ればO.K.ではない</li>
-<li>記録を残すことも大事</li>
-<li>Saasで作る</li>
-<li>Mackerel::Webhook::Manager がミソ</li>
-<li>デモ
-<ul>
-<li>Mackerelで発生したものをチャットで対応</li>
-<li>電話もかかってくる</li>
-<li>qiita teamなどで情報共有</li>
-<li>障害は起こるので対応する</li>
-</ul></li>
-</ul>
-<h3 id="shoichi-kajiさんcpm---an-experimental-cpan-client">Shoichi Kajiさん「cpm - an experimental cpan client」</h3>
-<ul>
-<li>cpm : cpanクライアント</li>
-<li>インストールするモジュールの量が多いと、直列なので時間がかかる</li>
-<li>cpanm 2.0を内部で並列で使うという仕組み</li>
-<li>デモ : Plack のインストール
-<ul>
-<li>cpanmで50秒、cpmだと18秒</li>
-</ul></li>
-</ul>
-<h3 id="masahiro-naganoさんnorikraで作るphpの例外検出システム">Masahiro Naganoさん「Norikraで作るPHPの例外検出システム」</h3>
-<ul>
-<li>PHPをやってた</li>
-<li>PHPの例外 : <code>error_log</code>, <code>set_exception_handler</code>, <code>set_error_handler</code></li>
-<li>syntaxエラーや存在しないメソッドの呼び出しとかは拾えない</li>
-<li><code>error_reporting</code> を指定する</li>
-<li>Apacheの設定に書く。ErrorLogも見る</li>
-<li>結局、4つのファイルに書かれる</li>
-<li>Norikraで集約してslackへ送る</li>
-<li>Norikraで一分間のログを集約する</li>
-<li>PHPすごいむずいけど uzullaさんすごい</li>
-</ul>
-<h3 id="aceさんrssをざっくりクロールしてゆるふわにパースする">ACEさん「RSSをざっくりクロールしてゆるふわにパースする」</h3>
-<ul>
-<li>グンマーにインタネットなどない→あります！</li>
-<li>Feed windというサービスをやっている</li>
-<li>RSSから生成する系</li>
-<li>ブロックされる系 → 先方に連絡がつかなければプロクシ使う</li>
-<li>Mojo::DOM : <code>&lt;br&lt;</code> をパースできないバグ (？)
-<ul>
-<li>ゆるふわに正規表現で</li>
-</ul></li>
-<li>もし断ると不思議な力で死ぬことになる</li>
-</ul>
-<h3 id="さいさんslack-hubot-でお前の一番好きな二次元嫁キャラと一緒に仕事をする">さいさん「Slack + Hubot でお前の一番好きな二次元嫁キャラと一緒に仕事をする」</h3>
-<ul>
-<li>一人で趣味プログラミングはさみしい</li>
-<li>「ほい！」</li>
-<li>二次元の美少女が大好きです</li>
-<li>marisaと二人でチームを作る</li>
-<li>２人が大事。botがほかの人としゃべってヤキモチ妬かないように</li>
-<li>「まりさ」「呼んだか？」COOL</li>
-<li>cronで向こうから話しかけてくれる</li>
-<li>メッセージはJSONでまとめている</li>
-<li>github issueとかチケット書かせたりとか</li>
-<li>botより自分でやった方が速いけど、BOTがやってくれるのが大事!</li>
-</ul>
-<h3 id="likkさんyapc雨事情">Likkさん「YAPC?雨事情」</h3>
-<ul>
-<li>会社を出てエレベータを降りたら雨、は辛い</li>
-<li>エレベータホールで雨を通知したりするのもあるみたいだけど</li>
-<li>tenki.jp からデータ取ってきて、通知</li>
-<li>縮尺が小さすぎて五反田がわからない</li>
-<li>航空写真と見比べて、西側に広く</li>
-<li>普段の色と、今の色の違いを見て、違ったら雨 → Slack</li>
-<li>YAPCの過去に雨が降ったかの情報を取れることに気が付いた</li>
-<li>デモ</li>
-<li>返事くるまで宣伝 : ametto</li>
-</ul>
-<h3 id="hiratarahaskell-strikes-back">hiratara「Haskell Strikes Back」</h3>
-<p>自分のセッションでした。</p>
-<h3 id="wataru-miyaguniさん昔の-php-が誇った最高の機能-register_globals-の真実そして未来へ">Wataru MIYAGUNIさん「(昔の) PHP が誇った最高の機能 register_globals の真実、そして未来へ」</h3>
-<ul>
-<li>PHPの話をします</li>
-<li>5.3以下を使ってる人は？
-<ul>
-<li>安全でないコードを書くことをきわめて容易にする</li>
-</ul></li>
-<li>php.netに秘策が出ている
-<ul>
-<li>載っていない隠された使用があるので、使ってはいけない</li>
-<li><code>$_FILES</code></li>
-</ul></li>
-<li>「その結果に驚くことでしょう」</li>
-<li>ゴーン</li>
-</ul>
-<h3 id="makamakaさんperl同人活動報告2015">makamakaさん「Perl同人活動報告2015」</h3>
-<ul>
-<li>「今宣伝できますよ！」「気が散るから！」</li>
-<li>「本日はコミケ・・・あ、いや」</li>
-<li>例の紐→例のモヒ</li>
-<li>Acme大全2015
-<ul>
-<li>チャームポイントはない</li>
-<li>電子書籍版・・・？</li>
-<li>全巻格納BOXは待ってね</li>
-</ul></li>
-<li>何で書いてる？ Microsoft Word</li>
-<li>フォントは？ IPAexフォント</li>
-<li>なぜ作るの？ CPANにAcmeモジュールがあるから</li>
-<li>7/7が起点？ 覚えてない</li>
-<li>期間は？ 仕事のさぼりぐわい</li>
-<li>いいモジュールは？ Acme::Cake</li>
-<li>息詰まることは？ 常に行き詰ってるので</li>
-<li>電子書籍版は？ Perl6と同時リリース</li>
-<li>250枚のシールが150枚余ってる</li>
-<li>もずにおん (ゴーン)</li>
-</ul>
 </p>
 
 </div>
