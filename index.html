@@ -105,7 +105,7 @@
 </ul></li>
 <li>例: <span class="math inline">\(cRing\)</span> : 1を持つ可換環
 <ul>
-<li>$Ob(cRing)$1を持つ可換環, <span class="math inline">\(Hom_{cRing}(S,S)\)</span> <span class="math inline">\(1\)</span>を1に移す環準同型</li>
+<li><span class="math inline">\(Ob(cRing)\)</span> 1を持つ可換環, <span class="math inline">\(Hom_{cRing}(S,S)\)</span> <span class="math inline">\(1\)</span>を1に移す環準同型</li>
 <li>環準同型の例 : 多項式環への代入写像</li>
 </ul></li>
 <li>集合と集まりは違うもの？ → 今日扱う圏は、小さい圏ということで</li>
@@ -118,13 +118,44 @@
 <ul>
 <li><span class="math inline">\(A : cRing \to Set\)</span></li>
 <li><span class="math inline">\(A : S \mapsto {(x, y) \in S^2 | x^2 + y^2 = 1}\)</span></li>
-<li>$A : f A f : (x, y) (f(x), f(y))</li>
+<li><span class="math inline">\(A : f \mapsto A f : (x, y) \mapsto (f(x), f(y))\)</span></li>
 <li>関手を図形と思える例</li>
 </ul></li>
 <li>関手の例: <span class="math inline">\(Hom_C(X, -)\)</span>
 <ul>
 <li><span class="math inline">\(Y \mapsto Hom_C(X, Y)\)</span></li>
 <li><span class="math inline">\(f \mapsto f_* = Hom_C(X, f) : \phi \mapsto f \circ \phi\)</span></li>
+</ul></li>
+<li>「ここからは時間を気にせず、思う存分質問して下さい」</li>
+<li>自然変換の定義 : <span class="math inline">\(\alpha : F \to G\)</span>
+<ul>
+<li>F : <span class="math inline">\({\alpha_X}_{\X \in Ob(C)}\)</span> <span class="math inline">\(\alpha_X : FX \to GX\)</span></li>
+<li>可換になる</li>
+<li><span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\dot \arrow\)</span> とか使わない。 <span class="math inline">\(\arrow\)</span> で。</li>
+</ul></li>
+<li>共変関手の定義 <span class="math inline">\(D^C\)</span>
+<ul>
+<li><span class="math inline">\(Ob(D^C)\)</span> <span class="math inline">\(C\)</span>から<span class="math inline">\(D\)</span>への共変関手全体</li>
+<li><span class="math inline">\(Hom_{D^C}\)</span> 自然変換</li>
+</ul></li>
+<li>例
+<ul>
+<li><span class="math inline">\(S \in Ob(cRing)\)</span> について、 <span class="math inline">\(Hom{cRing}(S,)\)</span> を <span class="math inline">\(Spec S\)</span> と書く</li>
+<li><span class="math inline">\(R = Z[x, y] / (x^2 + y^2 - 1)\)</span></li>
+<li><span class="math inline">\(\alpha : Spec R \to A\)</span></li>
+<li><span class="math inline">\(\alpha_S : \phi \to (\phi(x), \phi(y))\)</span></li>
+<li><span class="math inline">\(\alpha_S\)</span> は全部同型 <span class="math inline">\(Spec R \simeq A\)</span></li>
+</ul></li>
+<li>表現可能関手 : 関手が <span class="math inline">\(Hom(...)\)</span> と同型</li>
+<li>米田の補題
+<ul>
+<li><span class="math inline">\(FX \simeq Hom_{Set^C}(Hom_C(X), F)\)</span></li>
+</ul></li>
+<li>例:
+<ul>
+<li><span class="math inline">\(cRing, Q, A\)</span>に適用</li>
+<li><span class="math inline">\(AQ \simeq Hom_{Set^{cRing}}(SpecQ, A) \simeq Hom_{Set^{cRing}}(Spec Q, Spec R)\)</span></li>
+<li>自然変換が有理点と思える。座標によらない (と感じた)</li>
 </ul></li>
 </ul>
 </p>
