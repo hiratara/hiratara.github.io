@@ -129,9 +129,9 @@
 <li>「ここからは時間を気にせず、思う存分質問して下さい」</li>
 <li>自然変換の定義 : <span class="math inline">\(\alpha : F \to G\)</span>
 <ul>
-<li>F : <span class="math inline">\({\alpha_X}_{\X \in Ob(C)}\)</span> <span class="math inline">\(\alpha_X : FX \to GX\)</span></li>
+<li>F : <span class="math inline">\({\alpha_X}_{X \in Ob(C)}\)</span> <span class="math inline">\(\alpha_X : FX \to GX\)</span></li>
 <li>可換になる</li>
-<li><span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\dot \arrow\)</span> とか使わない。 <span class="math inline">\(\arrow\)</span> で。</li>
+<li><span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\dot \to\)</span> とか使わない。 <span class="math inline">\(\to\)</span> で。</li>
 </ul></li>
 <li>共変関手の定義 <span class="math inline">\(D^C\)</span>
 <ul>
@@ -156,8 +156,51 @@
 <li><span class="math inline">\(cRing, Q, A\)</span>に適用</li>
 <li><span class="math inline">\(AQ \simeq Hom_{Set^{cRing}}(SpecQ, A) \simeq Hom_{Set^{cRing}}(Spec Q, Spec R)\)</span></li>
 <li>自然変換が有理点と思える。座標によらない (と感じた)</li>
-<li>Q). <span class="math inline">\((\frac{3}{5}, \frac{4}{5})\)</span> は何に移る？ A). <span class="math inline">\(\phi:(x, y) \mapto (\frac{3}{5}, \frac{4}{5})\)</span></li>
+<li>Q). <span class="math inline">\((\frac{3}{5}, \frac{4}{5})\)</span> は何に移る？ A). <span class="math inline">\(\phi:(x, y) \mapsto (\frac{3}{5}, \frac{4}{5})\)</span></li>
 </ul></li>
+<li>ここから後半</li>
+<li>直積の定義 : <span class="math inline">\(k : W \to X, l : W \to Y\)</span> について <span class="math inline">\(h : W \to X \times Y\)</span> がユニークに存在</li>
+<li>同型を除いて一意に存在</li>
+<li>例: Setでの</li>
+<li>余積の定義</li>
+<li>ファイバー積(pull-back)の定義
+<ul>
+<li><span class="math inline">\(k : W \to X, l : W \to Y, f \circ k = g \circ l\)</span> のとき、<span class="math inline">\(h : W \to X \times_Z Y\)</span> が一意に存在</li>
+</ul></li>
+<li>例: ベクトル束 : 「エックス、ワイ、ファイ・バー・プロダクト！」
+<ul>
+<li><span class="math inline">\(Z\)</span> が１点だと、ファイバー積は直積になる</li>
+</ul></li>
+<li>ファイバー和(push-out)の定義</li>
+<li>例: van Kampen の定義</li>
+<li>極限の定義
+<ul>
+<li><span class="math inline">\(C, J\)</span>, <span class="math inline">\(F : J \to C\)</span> <span class="math inline">\(lim F\)</span></li>
+<li><span class="math inline">\(k_j : W \to F_j\)</span>, <span class="math inline">\(u : i \to j\)</span>, <span class="math inline">\(Fu \circ k_i = k_j\)</span> のとき <span class="math inline">\(h : W \to Lim F\)</span> が唯一存在</li>
+<li>射影的極限(Projective limit)、逆極限(inverse limit)、などと言う</li>
+</ul></li>
+<li>例: <span class="math inline">\(F : (1, 2) \to C\)</span> 直積</li>
+<li>例: <span class="math inline">\(F : (\to \leftarrow) \to C\)</span> ファイバー積</li>
+<li>例: <span class="math inline">\(F : N \to cRing, Fn = Z/p^nZ\)</span> の時 <span class="math inline">\(Lim F = Z_p\)</span></li>
+<li>余極限の定義: 帰納的極限、順極限</li>
+<li>覚え方: <span class="math inline">\(Hom\)</span>で書いた時の<span class="math inline">\(W\)</span>の位置。極限を取ると小さくなる(←)イメージ</li>
+</ul>
+<h2 id="圏とhaskellの型-kinebuchi-tomohiko-さん">圏とHaskellの型 / Kinebuchi Tomohiko さん</h2>
+<ul>
+<li>Haskellの型システムに出てくる圏論の概念</li>
+<li>型 : 間違い検出、抽象化(1, 2, 3ではなく<code>Int</code>)、可読性、最適化</li>
+<li>Hask : 対象は型、射は一変数関数</li>
+<li>対象 : <code>Integer</code>, <code>String Maybe</code>, <code>String</code>, <code>[Integer]</code></li>
+<li>数学の世界とHaskellの世界とdoble関数は似ている</li>
+<li>関数は型？射？ 圏論を使う意味は？ 集合圏？</li>
+<li>積 : tuple</li>
+<li>余積 : Either</li>
+<li>関手 : <code>Functor f</code>
+<ul>
+<li><code>f</code>が型関数、<code>map</code>が射関数</li>
+<li><code>fmap id == id</code>、<code>fmap (f . g) == fmap f . fmap g</code></li>
+</ul></li>
+<li>例: <code>Maybe</code>、<code>[]</code></li>
 </ul>
 </p>
 
