@@ -73,9 +73,11 @@
     <p>東大駒場に来てますのでメモを取ります。</p>
 <h2 id="圏論とは">圏論とは</h2>
 <ul>
-<li>圏論の父 S.Mac Lane</li>
+<li>圏論の父 S.Mac Lane
+<ul>
 <li>arrowとdiagramで数学的体系の多くの性質を</li>
 <li>可換図式</li>
+</ul></li>
 <li>今日のテーマ: 位相幾何学とプログラミング</li>
 </ul>
 <h2 id="圏論の基礎-松森至宏さん">圏論の基礎 / 松森至宏さん</h2>
@@ -83,10 +85,32 @@
 <li>圏が初めての人向け</li>
 <li>代数的位相幾何学の文脈から生まれた</li>
 <li>自然変換を表現したかった</li>
-<li>圏の定義</li>
+<li>圏の定義
+<ul>
 <li><span class="math inline">\(Ob(C)\)</span>, <span class="math inline">\(Hom_c(,)\)</span>, <span class="math inline">\(\circ\)</span></li>
 <li><span class="math inline">\(f : X \to Y\)</span></li>
 <li><span class="math inline">\(\circ : Hom_C(Y, Z) \times Hom_C(X, Y) \to Hom_C(X, Z)\)</span></li>
+<li><span class="math inline">\(1_X \in Hom_C(X, X)\)</span> identity, <span class="math inline">\((h \circ g) \circ f = h \circ (f \circ g)\)</span> composition</li>
+</ul></li>
+<li><span class="math inline">\(f: X \to Y\)</span>, <span class="math inline">\(X\)</span> domain, <span class="math inline">\(Y\)</span> codomain
+<ul>
+<li>これがwell-definedになるように <span class="math inline">\(Hom_C(X,Y) \cap Hom_C(X', Y') = \phi\)</span></li>
+</ul></li>
+<li>例: <span class="math inline">\(Set\)</span>
+<ul>
+<li><span class="math inline">\(Ob(Set)\)</span> : 集合の集まり, <span class="math inline">\(Hom_{Set}(X, Y)\)</span> XからYへの写像全体</li>
+</ul></li>
+<li>例: <span class="math inline">\(cRing\)</span> : 1を持つ可換環
+<ul>
+<li>$Ob(cRing)$1を持つ可換環, <span class="math inline">\(Hom_{cRing}(S,S)\)</span> <span class="math inline">\(1\)</span>を1に移す環準同型</li>
+<li>環準同型の例 : 多項式環への代入写像</li>
+</ul></li>
+<li>集合と集まりは違うもの？ → 今日扱う圏は、小さい圏ということで</li>
+<li><span class="math inline">\(F : C \to D\)</span> 共変関手、反変関手
+<ul>
+<li><span class="math inline">\(F1_X = 1_{FX}\)</span></li>
+<li><span class="math inline">\(F(g \circ f) = F g \circ F f\)</span></li>
+</ul></li>
 </ul>
 </p>
 
